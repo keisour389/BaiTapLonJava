@@ -5,6 +5,7 @@
  */
 package com.project.controller;
 
+import com.project.common.AccountDTO;
 import com.project.model.AccountInfo;
 import com.project.service.AccountService;
 import org.json.JSONObject;
@@ -41,4 +42,11 @@ public class AccountController {
         return ResponseEntity.ok(accountInfo);
     }
     
+    //Tài khoản
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    //Tham số này nhận từ URL theo path đã định sẵn
+    public ResponseEntity<?> registerUser(@RequestBody AccountDTO request){
+        accountInfo = accountService.registerAccount(request);
+        return ResponseEntity.ok(accountInfo);
+    }
 }
