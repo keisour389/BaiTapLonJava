@@ -16,4 +16,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRepository extends CrudRepository<AccountInfo, String>{
     AccountInfo findByUserId(String userId);
+    
+    //Insert value vào table
+    @Override
+    AccountInfo save(AccountInfo accountInfo);
 }

@@ -3,43 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.project.model;
-
-import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+package com.project.common;
 
 /**
  *
  * @author Keisour
  */
-@Entity
-@Table(name = "account_info")
-public class AccountInfo {
-    @Id
-    @Column(name="USER_ID")
-    private String userId;
-    
-    @Column(name="PASSWORD")
+//Class này dùng để tạo request cho Account Entity
+public class AccountDTO {
+    private String userId;  
     private String password;
-    
-    @Column(name="TYPE")
     private String type;
-    
-    @Column(name="STATUS")
     private String status;
-    
-    @Column(name="CREATED_ON")
-    private LocalDateTime createdOn;
-    
-    @Column(name="UPDATED_ON")
-    private LocalDateTime updatedOn;
-    
-    @Column(name="NOTE")
+    private String createdOn;
+    private String updatedOn;
     private String note;
-    
 
     /**
      * @return the userId
@@ -100,28 +78,28 @@ public class AccountInfo {
     /**
      * @return the createdOn
      */
-    public LocalDateTime getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
     /**
      * @param createdOn the createdOn to set
      */
-    public void setCreatedOn(LocalDateTime createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 
     /**
      * @return the updatedOn
      */
-    public LocalDateTime getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
     /**
      * @param updatedOn the updatedOn to set
      */
-    public void setUpdatedOn(LocalDateTime updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 
@@ -139,8 +117,5 @@ public class AccountInfo {
         this.note = note;
     }
     
-//    @Override
-//    public String toString() {
-//        return String.format("UserInfo [userId=%s]", getUserId()); //To change body of generated methods, choose Tools | Templates.
-//    }
+    
 }
