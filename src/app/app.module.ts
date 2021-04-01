@@ -9,9 +9,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
 const appRouters: Routes = [
-  {path: '', component: RegisterComponent, pathMatch:'full'},
+  {path: '', component: HomeComponent, pathMatch:'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}
 ];
@@ -23,7 +24,8 @@ const appRouters: Routes = [
     TestComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

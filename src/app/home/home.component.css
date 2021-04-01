@@ -1,0 +1,23 @@
+.d-block{
+    height: 50vh;
+}
+.slogan{
+    margin: 20px;
+    color: #6bd7ff;
+    text-align: center;
+    font-weight: 600;
+    font-style: italic;
+
+}
+
+/**/
+.search-form{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.text-search{
+    font-size: 22px;
+    font-weight: 600;
+}
+
