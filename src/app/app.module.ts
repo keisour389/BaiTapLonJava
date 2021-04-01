@@ -6,16 +6,18 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 const appRouters: Routes = [
-  {path: '', component: TestComponent, pathMatch:'full'}
+  {path: '', component: LoginComponent, pathMatch:'full'}
 ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
