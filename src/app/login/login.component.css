@@ -1,3 +1,4 @@
+/*webpage*/
 .main{
     background-image: linear-gradient(180deg, #bdfffc, #6bd7ff) ;
 }
@@ -9,8 +10,16 @@
   align-items: center; /* center vertically */
 }
 
+.text-tip {
+  white-space: pre-line;
+  font-size: large;
+  font-weight: 500;
+  color: gainsboro;
+  text-align: center;
+}
+
 .login-form {
-  min-height: 450px;
+  min-height: 500px;
   background-color: white;
   height: 70%;
   width: 50%;
@@ -18,7 +27,7 @@
   opacity: 0.9;
 }
 
-/**/
+/*inside login form*/
 .login-type {
   background-color: black;
   height: 15vh;
@@ -39,15 +48,6 @@
     text-align: center;
     color: black;
   }
-
-/**/
-.text-tip {
-  white-space: pre-line;
-  font-size: large;
-  font-weight: 500;
-  color: gainsboro;
-  text-align: center;
-}
 
 /*Event*/
 .img-login-type:hover{
