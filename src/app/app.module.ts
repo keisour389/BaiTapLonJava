@@ -8,9 +8,12 @@ import { TestComponent } from './test/test.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRouters: Routes = [
-  {path: '', component: RegisterComponent, pathMatch:'full'}
+  {path: '', component: RegisterComponent, pathMatch:'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 
@@ -19,7 +22,8 @@ const appRouters: Routes = [
     AppComponent,
     TestComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
