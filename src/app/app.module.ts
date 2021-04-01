@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRouters: Routes = [
-  {path: '', component: LoginComponent, pathMatch:'full'}
+  {path: '', component: RegisterComponent, pathMatch:'full'}
 ];
 
 
@@ -17,7 +18,8 @@ const appRouters: Routes = [
   declarations: [
     AppComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
