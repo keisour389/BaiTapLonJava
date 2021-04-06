@@ -21,3 +21,36 @@
     font-weight: 600;
 }
 
+/**/
+.service-banner{
+    background-color: #0041C2;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding: 30px;
+}
+.service-frame{
+    display: inline-block;
+    width: fit-content;
+    margin-right: 50px;
+}
+.service-text{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+/*Event*/
+.service-frame:hover .service-text {
+    cursor: pointer;
+    color: #ffee00;
+    margin-top: 10px;
+}
+
+.service-frame:hover .service-image {
+    cursor: pointer;
+}
