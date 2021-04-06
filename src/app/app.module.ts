@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch:'full'},
@@ -25,7 +26,8 @@ const appRouters: Routes = [
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
