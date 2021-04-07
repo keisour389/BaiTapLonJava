@@ -11,11 +11,13 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { SearchTicketsComponent } from './search-tickets/search-tickets.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch:'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'search-tickets', component: SearchTicketsComponent}
 ];
 
 
@@ -27,7 +29,8 @@ const appRouters: Routes = [
     RegisterComponent,
     NavbarComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    SearchTicketsComponent
   ],
   imports: [
     BrowserModule,
