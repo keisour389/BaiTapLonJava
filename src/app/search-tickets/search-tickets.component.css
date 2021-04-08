@@ -7,6 +7,13 @@
     flex: 1;
 }
 /*Option*/
+.option{
+    background-color: rgb(217, 253, 255, 0.7);
+}
+.option-text{
+    margin-left: 5px;
+    font-size: large;
+}
 /*Option*/
 /*Content*/
 .content{
