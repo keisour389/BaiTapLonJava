@@ -1,0 +1,59 @@
+<div class="container">
+    <app-navbar></app-navbar>
+    <div class="order-tickets">
+        <div class="seat-diagram shadow-sm p-3 mb-5 bg-white rounded">
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="front-row-seat">
+                        <div class="seat-text">Tài xế</div>
+                    </span>
+                </div>
+                <div class="col-md-6" style="text-align: right;">
+                    <span class="front-row-seat">
+                        <div class="seat-text">Cửa</div>
+                    </span>
+                </div>
+            </div>
+            <div class="row" *ngFor="let seat of totalRow; let i = index;">
+                <div class="seat-row col-md-6" *ngFor="let numberOfRow of ticketRow; let i = index;">
+                    <div class="couple">
+                        <span class="seat">
+                            <div class="seat-text">A{{(seatNumber | count)}}</div>
+                        </span>
+                        <span class="seat">
+                            <div class="seat-text">B{{(seatNumber | count)}}</div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="last-row">
+                <span class="last-row-seat" *ngFor="let seat of lastRow">
+                    <div class="seat-text">C{{seat}}</div>
+                </span>
+            </div>
+            <div class="diagram-note">
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-md-4">
+                        <span class="note-block">
+                            <div class="empty"></div>
+                            <p class="diagram-note-text">Trống</p>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="note-block">
+                            <div class="booked"></div>
+                            <p class="diagram-note-text">Đã đặt</p>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="note-block">
+                            <div class="selected"></div>
+                            <p class="diagram-note-text">Đang chọn</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

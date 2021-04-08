@@ -12,17 +12,21 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchTicketsComponent } from './search-tickets/search-tickets.component';
+import { OrderTicketsComponent } from './order-tickets/order-tickets.component';
+import { CountPipe } from './order-tickets/count.pipe';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch:'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'search-tickets', component: SearchTicketsComponent}
+  {path: 'search-tickets', component: SearchTicketsComponent},
+  {path: 'order-tickets', component: OrderTicketsComponent}
 ];
 
 
 @NgModule({
   declarations: [
+    CountPipe,
     AppComponent,
     TestComponent,
     LoginComponent,
@@ -30,7 +34,8 @@ const appRouters: Routes = [
     NavbarComponent,
     HomeComponent,
     FooterComponent,
-    SearchTicketsComponent
+    SearchTicketsComponent,
+    OrderTicketsComponent
   ],
   imports: [
     BrowserModule,
