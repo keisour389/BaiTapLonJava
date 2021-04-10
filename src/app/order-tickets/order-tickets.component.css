@@ -25,6 +25,7 @@
 .last-row-seat {
   height: 50px;
   border: 1px solid #000000;
+  padding: 1px;
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -51,6 +52,7 @@
 }
 /*Event*/
 .seat:hover, .last-row-seat:hover {
+  padding: 0;
   cursor: pointer;
   border: 2px solid #0041c2;
 }
