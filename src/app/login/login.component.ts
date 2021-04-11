@@ -18,11 +18,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.loginType = type;
     //Change border after choosing login type
     if(type === 'khách hàng'){
-      this.cus.nativeElement.style.border = "1px solid #6bd7ff";
+      this.cus.nativeElement.style.border = "1px solid #0068bd";
       this.emp.nativeElement.style.border = "none";
     }
     else{
-      this.emp.nativeElement.style.border = "1px solid #6bd7ff";
+      this.emp.nativeElement.style.border = "1px solid #0068bd";
       this.cus.nativeElement.style.border = "none";
     }
   }
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   //Setting login type is "Cus" after create template
   ngAfterViewInit(){
-    this.cus.nativeElement.style.border = "1px solid #6bd7ff";
+    this.cus.nativeElement.style.border = "1px solid #0068bd";
   }
 
 }

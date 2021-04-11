@@ -47,7 +47,7 @@
 /*Event*/
 .service-frame:hover .service-text {
     cursor: pointer;
-    color: #ffee00;
+    color: #fff200;    
     margin-top: 10px;
 }
 

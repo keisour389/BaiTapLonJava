@@ -14,7 +14,7 @@
   white-space: pre-line;
   font-size: large;
   font-weight: 500;
-  color: gainsboro;
+  color: #1f1f1d;
   text-align: center;
 }
 
@@ -38,10 +38,11 @@
   height: 100%;
   width: 100%;
   background-color: white;
+  border: 1px solid transparent;
 }
 .text-login {
   text-align: center;
-  color: #6bd7ff;
+  color: #0068bd;
 }
 
 .text-type {
@@ -53,7 +54,7 @@
 .img-login-type:hover{
     opacity: 0.8;
     cursor: pointer;
-    border: 1px solid #6bd7ff;
+    border: 1px solid #0068bd;
 }
 
 .img-login-type:active{
