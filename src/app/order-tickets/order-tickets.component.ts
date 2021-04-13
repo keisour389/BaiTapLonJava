@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
-import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-order-tickets',
@@ -11,15 +10,70 @@ export class OrderTicketsComponent implements OnInit {
   @ViewChildren('seatA') seatA!: QueryList<ElementRef>;
   @ViewChildren('seatB') seatB!: QueryList<ElementRef>;
 
-  isClicked: boolean = false;
-  
+  dummyData: any = [
+    {
+      ticketId: "1",
+      seatId: "1",
+      price: 120000,
+      status: 1,
+      payment: null,
+      paymentDate: null,
+      bookingDate: null,
+      note: null,
+      tripId: 1,
+      cusId: null
+    },
+    {
+      ticketId: "2",
+      seatId: "2",
+      price: 120000,
+      status: 1,
+      payment: null,
+      paymentDate: null,
+      bookingDate: null,
+      note: null,
+      tripId: 1,
+      cusId: null
+    },
+    {
+      ticketId: "3",
+      seatId: "3",
+      price: 120000,
+      status: 1,
+      payment: null,
+      paymentDate: null,
+      bookingDate: null,
+      note: null,
+      tripId: 1,
+      cusId: null
+    },
+    {
+      ticketId: "4",
+      seatId: "4",
+      price: 120000,
+      status: 0,
+      payment: null,
+      paymentDate: null,
+      bookingDate: null,
+      note: null,
+      tripId: 1,
+      cusId: null
+    }
+  ];
+  data: any;
+  isSelectedTickets: boolean = false;
+  ticketPrice: number = 120000; //Default ticketPrice get from database
+  totalPrice: number = 0;
+  ticketsSelectedList: Array<any> = []; //This var store the tickets customer selected
+
   totalSeat: Array<number>;
   ticketRow: any;
   totalRow: any;
   lastRow: any;
   seatNumber: number = 0;
   seperate: any;
-  diagramLocation: Array<Array<number>>;
+  diagramLocation: Array<any>;
+  viewLocation: Array<any>;
 
   constructor(private render: Renderer2) {
     //Total seat get form other place
@@ -34,53 +88,145 @@ export class OrderTicketsComponent implements OnInit {
     console.log(this.ticketRow);
     this.diagramLocation = this.createLocationFormDiagram();
     console.log(this.diagramLocation);
+    this.data = this.spearateTicketsToDiagram(this.dummyData);
+    console.log("Data seperate from API:");
+    console.log(this.data);
+    this.viewLocation = this.createViewChildrenLoction();
+    console.log("View Children:");
+    console.log(this.viewLocation);
   }
 
   ngOnInit(): void {
+    // this.data.push(this.spearateTicketsToDiagram(this.dummyData));
+    // console.log(this.data);
   }
 
   //isLeft: Check the seat is left or right
   //i: Number of row
   //j: Number of couple column
-  selectedTicketInDiagram(isLeft: boolean, i: number, j:number){
-    var location: number = this.diagramLocation[i][j];
-    var backgroundColor = "rgb(255, 0, 0)"; //Set default background color
-    var currentColor: any;
+  selectedTicketInDiagram(isLeft: boolean, i: number, j: number, z: number) {
+    //This var to show the position of data array
+    let location: number = this.diagramLocation[i][j][z];
+    //This var to show the positon of view children
+    let viewChildenLocation: number = this.viewLocation[i][j];
+    let backgroundColor = "rgb(255, 0, 0)"; //Set default background color
+    let currentColor: any;
+    let ticketSelected: string;
+    //Set selected status
+    this.isSelectedTickets = true;
     //Check A seat or B seat
     //Get current background color
-    isLeft ? currentColor = this.seatA.get(location)!.nativeElement.style.backgroundColor
-      : currentColor = this.seatB.get(location)!.nativeElement.style.backgroundColor
-    //Check current background color
-    currentColor != backgroundColor  ? backgroundColor = "rgb(255, 0, 0)" : backgroundColor = "rgb(255, 255, 255)"
-    //Check seat in right or left to set background color
-    if(isLeft){
-      this.render.setStyle(this.seatA.get(location)!.nativeElement, "backgroundColor", backgroundColor);
+    // isLeft ? currentColor = this.seatA.get(location)!.nativeElement.style.backgroundColor
+    //   : currentColor = this.seatB.get(location)!.nativeElement.style.backgroundColor;
+    if (isLeft) {
+      //A ticket
+      currentColor = this.seatA.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
+      ticketSelected = "A" + (this.dummyData[location].seatId);
     }
-    else{
-      this.render.setStyle(this.seatB.get(location)!.nativeElement, "backgroundColor", backgroundColor);
+    else {
+      //B ticket
+      currentColor = this.seatB.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
+      ticketSelected = "B" + (this.dummyData[location].seatId);
+    }
+    //Check current background color
+    //currentColor != backgroundColor  ? backgroundColor = "rgb(255, 0, 0)" : backgroundColor = "rgb(255, 255, 255)";
+    if (currentColor != backgroundColor) {
+      //Select tickets
+      backgroundColor = "rgb(255, 0, 0)";
+      //Plus price for ticket
+      this.totalPrice += this.ticketPrice;
+      //Add ticket selected in list
+      this.ticketsSelectedList.push(ticketSelected);
+    }
+    else {
+      //Remove selected
+      backgroundColor = "rgb(255, 255, 255)";
+      //Minus total ticket price
+      this.totalPrice -= this.ticketPrice;
+      //Remove ticket unslected
+      this.ticketsSelectedList = this.arrayRemove(this.ticketsSelectedList, ticketSelected);
+      if(this.ticketsSelectedList.length < 1){
+        //None selection
+        this.isSelectedTickets = false;
+      }
+    }
+    //Check seat in right or left to set background color
+    if (isLeft) {
+      this.render.setStyle(this.seatA.get(viewChildenLocation)!.nativeElement, "backgroundColor", backgroundColor);
+    }
+    else {
+      this.render.setStyle(this.seatB.get(viewChildenLocation)!.nativeElement, "backgroundColor", backgroundColor);
     }
   }
 
   //This function use for count pipe to make ascending number
-  countNumber(){
+  countNumber() {
     return this.seperate.next().value;
   }
 
-  //This function use to know the correct loction of diagram
+  //This function seperate to know the correct loction of diagram
   //It's used by the relevant function of reacted diagram
-  createLocationFormDiagram(){
+  createLocationFormDiagram() {
+    let amount = 0;
+    let coupleArray: Array<number> = [];
+    let rowArray: Array<Array<number>> = [];
+    let resultArray: Array<Array<Array<number>>> = [];
+    for (var i = 0; i < 10; i++) {
+      for (var j = 0; j < 2; j++) {
+        for (var z = 0; z < 2; z++) {
+          coupleArray.push(amount);
+          amount++;
+        }
+        rowArray.push(coupleArray);
+        coupleArray = [];
+      }
+      resultArray.push(rowArray);
+      rowArray = [];
+    }
+    return resultArray;
+  }
+
+  //This function seperate to know the correct viewchildren position of diagram
+  createViewChildrenLoction() {
     let amount = 0;
     let rowArray: Array<number> = [];
     let resultArray: Array<Array<number>> = [];
-    //this.a = Array.from(Array(4), (x, i) => i+1)
-    for(var i=0; i<10; i++){
-      for(var j=0; j<2; j++){
+    for (var i = 0; i < 10; i++) {
+      for (var z = 0; z < 2; z++) {
         rowArray.push(amount);
         amount++;
       }
       resultArray.push(rowArray);
-      rowArray=[];
+      rowArray = [];
     }
     return resultArray;
+  }
+
+  spearateTicketsToDiagram(data: Array<any>) {
+    let amount = 0;
+    let coupleArray: Array<any> = [];
+    let rowArray: Array<Array<any>> = [];
+    let resultArray: Array<Array<Array<any>>> = [];
+    for (var z = 0; z < 1; z++) {
+      for (var i = 0; i < 2; i++) {
+        for (var j = 0; j < 2; j++) {
+          coupleArray.push(data[amount]);
+          amount++;
+        }
+        rowArray.push(coupleArray);
+        coupleArray = [];
+      }
+      resultArray.push(rowArray)
+      rowArray = [];
+    }
+
+    return resultArray;
+  }
+
+  arrayRemove(arr: any, value: any) {
+
+    return arr.filter((ele: any) => {
+      return ele != value;
+    });
   }
 }

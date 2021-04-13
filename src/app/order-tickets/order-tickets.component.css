@@ -1,3 +1,13 @@
+/*Set container always at bottom*/
+.container{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.order-tickets{
+  flex: 1;
+}
+/*Set container always at bottom*/
 /*Seat diagram*/
 .seat-diagram {
   margin: 0 auto;

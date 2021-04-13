@@ -16,14 +16,15 @@
                             </span>
                         </div>
                     </div>
-                    <div class="row" *ngFor="let seat of totalRow; let i = index;">
-                        <div class="seat-row col-md-6" *ngFor="let numberOfRow of ticketRow; let j = index;">
+                    <div class="row" *ngFor="let rowData of data; let i = index;">
+                        <div class="seat-row col-md-6" *ngFor="let coupleData of rowData; let j = index;">                  
                             <div class="couple">
-                                <span #seatA class="seat seat-a{{i}}{{j}}" (click)="selectedTicketInDiagram(true, i, j)">
-                                    <div class="seat-text">A{{(seatNumber | count)}}</div>
+                                <span #seatA class="seat seat-a{{i}}{{j}}" (click)="selectedTicketInDiagram(true, i, j, 0)">
+                                    <!-- <div class="seat-text">A{{(seatNumber | count)}}</div> -->
+                                    <div class="seat-text">A{{coupleData[0].seatId}}</div>
                                 </span>
-                                <span #seatB class="seat seat-b{{i}}{{j}}" (click)="selectedTicketInDiagram(false, i, j)">
-                                    <div class="seat-text">B{{(seatNumber | count)}}</div>
+                                <span #seatB class="seat seat-b{{i}}{{j}}" (click)="selectedTicketInDiagram(false, i, j, 1)">
+                                    <div class="seat-text">B{{coupleData[1].seatId}}</div>
                                 </span>
                             </div>
                         </div>
@@ -103,14 +104,18 @@
                         <p class="selected-tickets-title">Giá vé: <em class="ticket-price">120.000VNĐ</em></p>
                     </div>
                     <hr>
-                    <h2>Hãy chọn ghế mà bạn muốn đặt</h2>
-                    <div class="load-tickets-selected">
+                    <h2 *ngIf="!isSelectedTickets">Hãy chọn ghế mà bạn muốn đặt</h2>
+                    <div *ngIf="isSelectedTickets" class="load-tickets-selected">
                         <p class="title-content">Thông tin vé</p>
                         <p class="selected-tickets-title text-break">
-                            Bạn đang chọn: <strong class="tickets-cus-selected">A1</strong>
+                            Bạn đang chọn: 
+                            <strong class="tickets-cus-selected"
+                            *ngFor="let ticket of ticketsSelectedList">
+                                {{ticket}}
+                            </strong>
                         </p>
                         <p class="selected-tickets-title">
-                            Tổng tiền: <em class="ticket-price">120.000VNĐ</em>
+                            Tổng tiền: <em class="ticket-price">{{totalPrice}}VNĐ</em>
                         </p>
                     </div>
                 </div>
