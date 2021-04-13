@@ -1,7 +1,7 @@
 /*Seat diagram*/
 .seat-diagram {
   margin: 0 auto;
-  width: 30%;
+  width: 70%;
 }
 .seat, .front-row-seat {
   height: 50px;
@@ -49,6 +49,42 @@
   text-align: center;
   margin-left: 3px;
   font-size: 18px;
+}
+/*Selected ticked*/
+.bus-info-frames{
+  background: rgb(235, 235, 235, 0.4);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.title-content{
+  color: #6600ff;
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
+}
+.selected-tickets-title{
+  font-size: 25px;
+  color: #000000;
+  font-weight: 600;
+}
+.selected-tickets-text{
+  color: #0041c2;
+  font-size: 20px;
+  font-weight: 500;
+  
+}
+.ticket-price{
+  color: #ff9d00;
+  font-size: 25px;
+  font-weight: 600;
+}
+.info-frame{
+  border-right: 2px solid #ebebeb;
+}
+.tickets-cus-selected{
+  color: #ff0000;
+  font-weight: 500;
 }
 /*Event*/
 .seat:hover, .last-row-seat:hover {
