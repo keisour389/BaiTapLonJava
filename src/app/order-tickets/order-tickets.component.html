@@ -17,12 +17,12 @@
                         </div>
                     </div>
                     <div class="row" *ngFor="let seat of totalRow; let i = index;">
-                        <div class="seat-row col-md-6" *ngFor="let numberOfRow of ticketRow; let i = index;">
+                        <div class="seat-row col-md-6" *ngFor="let numberOfRow of ticketRow; let j = index;">
                             <div class="couple">
-                                <span class="seat">
+                                <span #seatA class="seat seat-a{{i}}{{j}}" (click)="selectedTicketInDiagram(true, i, j)">
                                     <div class="seat-text">A{{(seatNumber | count)}}</div>
                                 </span>
-                                <span class="seat">
+                                <span #seatB class="seat seat-b{{i}}{{j}}" (click)="selectedTicketInDiagram(false, i, j)">
                                     <div class="seat-text">B{{(seatNumber | count)}}</div>
                                 </span>
                             </div>
