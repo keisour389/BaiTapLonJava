@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="booking-tip">
-                    <h3>Lưu ý</h3>
+                    <h3>Lưu ý khi đặt vé</h3>
                 </div>
             </div>
             <div class="col-md-8">
@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <div class="row" style="vertical-align: middle;">
                             <div class="col-md-12">
-                                <div class="person-info-title" for="fullName">Họ tên: </div>            
+                                <div class="person-info-title" for="fullName">Họ tên: </div>
                                 <span id="fullName" class="person-info-text">Huấn Rô Sì</span>
                             </div>
                         </div>
@@ -25,8 +25,131 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <span class="person-info-title">Email: </span>
+                                <div class="person-info-title">Email: </div>
                                 <span class="person-info-text">1751010069huan@ou.edu.vn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="ticket-info">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="ticket-info-title">
+                                    Điểm đi:
+                                    <span class="tikect-info-text">
+                                        TP. Hồ Chí Minh
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="ticket-info-title">
+                                    Điểm đến:
+                                    <span class="tikect-info-text">
+                                        TP. Đà Lạt
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="ticket-info-title">
+                                    Ngày giờ khởi hành:
+                                    <span class="tikect-info-text">
+                                        12:00 30/02/2021
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="payment-info">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="ticket-info-title">
+                                                Tổng số ghế:
+                                                <span class="total-ticket">
+                                                    2
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="ticket-info-title">
+                                                Mã ghế:
+                                                <span class="seat-id">
+                                                    A1, A2
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="payment-frame">
+                                                <h5>Phương thức thanh toán</h5>
+                                                <ul class="payment-type-list">
+
+                                                    <li class="payment-type">
+                                                        <input type="radio" id="cash" name="payment">
+                                                        <label for="cash" class="payment-type-text">
+                                                            Thanh toán trực tiếp
+                                                        </label>
+                                                        <img src="/assets/images/CASH_ICON.png" alt="cash"
+                                                            class="payment-icon">
+                                                    </li>
+                                                    <li class="payment-type">
+                                                        <input type="radio" id="momo" name="payment">
+                                                        <label for="momo" class="payment-type-text">
+                                                            Thanh toán Momo
+                                                        </label>
+                                                        <img src="/assets/images/LOGO_MOMO.jpg" alt="momo"
+                                                            class="payment-icon">
+                                                    </li>
+                                                    <li class="payment-type">
+                                                        <input type="radio" id="troll" name="payment" checked="checked">
+                                                        <label for="troll" class="payment-type-text">
+                                                            Thanh toán bằng
+                                                        </label>
+                                                        <img src="/assets/images/TROLL.PNG" alt="troll"
+                                                            class="payment-icon">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success" (click)="openConfirmModal()">Xác nhận thanh toán</button>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <h4>Lưu ý</h4>
+                                <div class="tip-frame">
+                                    <ol class="tip-list">
+                                        <li class="tip">Mỗi vé chỉ dành cho một người.
+                                            Đối với trẻ em dưới 6 tuổi sẽ được miễn phí vé
+                                            (trẻ miễn phí sẽ ngồi cùng ghế với người mua vé).
+                                        </li>
+                                        <li class="tip">
+                                            Quý khách đi xe vui lòng trạm xe trước <strong>15 phút</strong>
+                                            tại địa chỉ <strong>69 Phao Sần Va Lây, Láng Thượng, TP.Hồ Chí
+                                                Minh.</strong>
+                                        </li>
+                                        <li class="tip">
+                                            Mọi thắc mắc của quý khách vui lòng liên hệ hotline <strong>091 234
+                                                5678</strong>.
+                                        </li>
+                                        <li class="tip">
+                                            Vì một số lí do về thuần phong mỹ tục và đạo đức lý tưởng.
+                                            Quý khách vui lòng không để <strong>ĐẦU CẮT MOI</strong> lên xe.
+                                            Trường hợp nếu không thay đổi kiểu tóc kịp, quý khách vui lòng đội nón suốt
+                                            chuyến đi.
+                                        </li>
+                                    </ol>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -36,3 +159,26 @@
     </div>
     <app-footer></app-footer>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="comfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="confirm-text">
+              Quý khách chắc chắn thông tin đã chính xác và tiếp tục thanh toán?
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+          <button type="button" class="btn btn-primary">Tiếp tục</button>
+        </div>
+      </div>
+    </div>
+  </div>
