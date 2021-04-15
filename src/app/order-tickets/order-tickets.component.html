@@ -4,6 +4,17 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="seat-diagram shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="error-in-diagram">
+                        <div *ngIf="isTicketAcceptable === 0" class="alert alert-secondary" role="alert">
+                            Hãy chọn chỗ ngồi.
+                        </div>
+                        <div *ngIf="isTicketAcceptable === 1" class="alert alert-danger" role="alert">
+                            Chỗ ngồi này đã được đặt.
+                        </div>
+                        <div *ngIf="isTicketAcceptable === 2" class="alert alert-success" role="alert">
+                            Chọn chỗ ngồi thành công.
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <span class="front-row-seat">
@@ -17,13 +28,25 @@
                         </div>
                     </div>
                     <div class="row" *ngFor="let rowData of data; let i = index;">
-                        <div class="seat-row col-md-6" *ngFor="let coupleData of rowData; let j = index;">                  
+                        <div class="seat-row col-md-6" *ngFor="let coupleData of rowData; let j = index;">
                             <div class="couple">
-                                <span #seatA class="seat seat-a{{i}}{{j}}" (click)="selectedTicketInDiagram(true, i, j, 0)">
+                                <span #seatA *ngIf="coupleData[0].status == 1" class="seat seat-a{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(true, i, j, 0)">
                                     <!-- <div class="seat-text">A{{(seatNumber | count)}}</div> -->
                                     <div class="seat-text">A{{coupleData[0].seatId}}</div>
                                 </span>
-                                <span #seatB class="seat seat-b{{i}}{{j}}" (click)="selectedTicketInDiagram(false, i, j, 1)">
+                                <span #seatA *ngIf="coupleData[0].status == 0" ngModel name="seatA"
+                                    class="seat-unavailable seat-a{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(true, i, j, 0, seatA)">
+                                    <!-- <div class="seat-text">A{{(seatNumber | count)}}</div> -->
+                                    <div class="seat-text">A{{coupleData[0].seatId}}</div>
+                                </span>
+                                <span #seatB *ngIf="coupleData[1].status == 1" class="seat seat-b{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(false, i, j, 1)">
+                                    <div class="seat-text">B{{coupleData[1].seatId}}</div>
+                                </span>
+                                <span #seatB *ngIf="coupleData[1].status == 0" class="seat-unavailable seat-b{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(false, i, j, 1)">
                                     <div class="seat-text">B{{coupleData[1].seatId}}</div>
                                 </span>
                             </div>
@@ -104,13 +127,12 @@
                         <p class="selected-tickets-title">Giá vé: <em class="ticket-price">120.000VNĐ</em></p>
                     </div>
                     <hr>
+                    <p class="title-content">Thông tin vé</p>
                     <h2 *ngIf="!isSelectedTickets">Hãy chọn ghế mà bạn muốn đặt</h2>
                     <div *ngIf="isSelectedTickets" class="load-tickets-selected">
-                        <p class="title-content">Thông tin vé</p>
                         <p class="selected-tickets-title text-break">
-                            Bạn đang chọn: 
-                            <strong class="tickets-cus-selected"
-                            *ngFor="let ticket of ticketsSelectedList">
+                            Bạn đang chọn:
+                            <strong class="tickets-cus-selected" *ngFor="let ticket of ticketsSelectedList">
                                 {{ticket}}
                             </strong>
                         </p>

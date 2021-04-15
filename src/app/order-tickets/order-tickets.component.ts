@@ -62,6 +62,10 @@ export class OrderTicketsComponent implements OnInit {
   ];
   data: any;
   isSelectedTickets: boolean = false;
+  //0: Cus haven't select seat
+  //1: This seat isn't empty
+  //2: This seat is empty
+  isTicketAcceptable: number = 0;
   ticketPrice: number = 120000; //Default ticketPrice get from database
   totalPrice: number = 0;
   ticketsSelectedList: Array<any> = []; //This var store the tickets customer selected
@@ -104,7 +108,8 @@ export class OrderTicketsComponent implements OnInit {
   //isLeft: Check the seat is left or right
   //i: Number of row
   //j: Number of couple column
-  selectedTicketInDiagram(isLeft: boolean, i: number, j: number, z: number) {
+  selectedTicketInDiagram(isLeft: boolean, i: number, j: number, z: number, localRef?: any) {
+
     //This var to show the position of data array
     let location: number = this.diagramLocation[i][j][z];
     //This var to show the positon of view children
@@ -112,50 +117,67 @@ export class OrderTicketsComponent implements OnInit {
     let backgroundColor = "rgb(255, 0, 0)"; //Set default background color
     let currentColor: any;
     let ticketSelected: string;
-    //Set selected status
-    this.isSelectedTickets = true;
-    //Check A seat or B seat
-    //Get current background color
-    // isLeft ? currentColor = this.seatA.get(location)!.nativeElement.style.backgroundColor
-    //   : currentColor = this.seatB.get(location)!.nativeElement.style.backgroundColor;
-    if (isLeft) {
-      //A ticket
-      currentColor = this.seatA.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
-      ticketSelected = "A" + (this.dummyData[location].seatId);
+    let ticketFromData: any;
+    //Get ticket from data
+    ticketFromData = this.dummyData[location];
+    if (ticketFromData.status === 0) {
+      //This seat isn't empty
+      this.isTicketAcceptable = 1;
+      // setTimeout(() => {
+      //   this.isTicketAcceptable = true;
+      // }, 2000);
+      console.log("Set error");
     }
     else {
-      //B ticket
-      currentColor = this.seatB.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
-      ticketSelected = "B" + (this.dummyData[location].seatId);
-    }
-    //Check current background color
-    //currentColor != backgroundColor  ? backgroundColor = "rgb(255, 0, 0)" : backgroundColor = "rgb(255, 255, 255)";
-    if (currentColor != backgroundColor) {
-      //Select tickets
-      backgroundColor = "rgb(255, 0, 0)";
-      //Plus price for ticket
-      this.totalPrice += this.ticketPrice;
-      //Add ticket selected in list
-      this.ticketsSelectedList.push(ticketSelected);
-    }
-    else {
-      //Remove selected
-      backgroundColor = "rgb(255, 255, 255)";
-      //Minus total ticket price
-      this.totalPrice -= this.ticketPrice;
-      //Remove ticket unslected
-      this.ticketsSelectedList = this.arrayRemove(this.ticketsSelectedList, ticketSelected);
-      if(this.ticketsSelectedList.length < 1){
-        //None selection
-        this.isSelectedTickets = false;
+      //This seat is empty
+      this.isTicketAcceptable = 2;
+      //Set selected status
+      this.isSelectedTickets = true;
+      //Check A seat or B seat
+      //Get current background color
+      // isLeft ? currentColor = this.seatA.get(location)!.nativeElement.style.backgroundColor
+      //   : currentColor = this.seatB.get(location)!.nativeElement.style.backgroundColor;
+      if (isLeft) {
+        //A ticket
+        currentColor = this.seatA.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
+        ticketSelected = "A" + (this.dummyData[location].seatId);
       }
-    }
-    //Check seat in right or left to set background color
-    if (isLeft) {
-      this.render.setStyle(this.seatA.get(viewChildenLocation)!.nativeElement, "backgroundColor", backgroundColor);
-    }
-    else {
-      this.render.setStyle(this.seatB.get(viewChildenLocation)!.nativeElement, "backgroundColor", backgroundColor);
+      else {
+        //B ticket
+        currentColor = this.seatB.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
+        ticketSelected = "B" + (this.dummyData[location].seatId);
+      }
+      //Check current background color
+      //currentColor != backgroundColor  ? backgroundColor = "rgb(255, 0, 0)" : backgroundColor = "rgb(255, 255, 255)";
+      if (currentColor != backgroundColor) {
+        //Select tickets
+        backgroundColor = "rgb(255, 0, 0)";
+        //Plus price for ticket
+        this.totalPrice += this.ticketPrice;
+        //Add ticket selected in list
+        this.ticketsSelectedList.push(ticketSelected);
+      }
+      else {
+        //Remove selected
+        backgroundColor = "rgb(255, 255, 255)";
+        //Minus total ticket price
+        this.totalPrice -= this.ticketPrice;
+        //Remove ticket unslected
+        this.ticketsSelectedList = this.arrayRemove(this.ticketsSelectedList, ticketSelected);
+        if (this.ticketsSelectedList.length < 1) {
+          //None selection
+          this.isSelectedTickets = false;
+          //Set alert haven't select seat
+          this.isTicketAcceptable = 0;
+        }
+      }
+      //Check seat in right or left to set background color
+      if (isLeft) {
+        this.render.setStyle(this.seatA.get(viewChildenLocation)!.nativeElement, "backgroundColor", backgroundColor);
+      }
+      else {
+        this.render.setStyle(this.seatB.get(viewChildenLocation)!.nativeElement, "backgroundColor", backgroundColor);
+      }
     }
   }
 
