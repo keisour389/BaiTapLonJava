@@ -14,13 +14,15 @@ import { FooterComponent } from './footer/footer.component';
 import { SearchTicketsComponent } from './search-tickets/search-tickets.component';
 import { OrderTicketsComponent } from './order-tickets/order-tickets.component';
 import { CountPipe } from './order-tickets/count.pipe';
+import { PaymentComponent } from './payment/payment.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch:'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'search-tickets', component: SearchTicketsComponent},
-  {path: 'order-tickets', component: OrderTicketsComponent}
+  {path: 'order-tickets', component: OrderTicketsComponent},
+  {path: 'payment', component: PaymentComponent}
 ];
 
 
@@ -35,7 +37,8 @@ const appRouters: Routes = [
     HomeComponent,
     FooterComponent,
     SearchTicketsComponent,
-    OrderTicketsComponent
+    OrderTicketsComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
