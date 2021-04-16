@@ -1,0 +1,117 @@
+<div class="container">
+    <app-navbar></app-navbar>
+    <div class="row search-tickets">
+        <div class="option col-md-4">
+            <form class="options-frame">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="from">Điểm đi</label>
+                            <input class="form-control" id="from" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="to">Điểm đến</label>
+                            <input class="form-control" id="to" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="departureDay">Ngày khởi hành</label>
+                            <input class="form-control" id="from" type="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="departureTime">Giờ khởi hành</label>
+                            <input class="form-control" id="to" type="time">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Giá vé</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="radio" id="sortMoneyAsc" name="money">
+                            <label for="sortMoneyAsc" class="option-text">Tăng dần</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" id="sortMoneyDesc" name="money">
+                            <label for="sortMoneyDesc" class="option-text">Giảm dần</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Số ghế</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="radio" id="sortSeatAsc" name="seat">
+                            <label for="sortSeatAsc" class="option-text">Tăng dần</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" id="sortSeatDesc" name="seat">
+                            <label for="sortSeatDesc" class="option-text">Giảm dần</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Loại ghế</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select class="form-control" name="seatType" id="seatType">
+                                <option value="all">Tất cả</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="content col-md-8">
+            <div class="search-tickets-result">
+                <h2>Kết quả tìm kiếm</h2>
+                <div class="search-results-list">
+                    <div class="search-result shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="row ticket-info">
+                            <div class="col-md-4">
+                                <p class="search-result-title">Điểm đi</p>
+                                <p class="search-result-content">TP.Hồ Chí Minh</p>
+                                <p class="search-result-title">Loại xe</p>
+                                <p class="search-result-content">Giường nằm</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="search-result-title">Điểm đến</p>
+                                <p class="search-result-content">TP.Đà Lạt</p>
+                                <p class="search-result-title">Giá vé</p>
+                                <p class="search-result-content">100.000VNĐ</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="search-result-title">Ngày khởi hành</p>
+                                <p class="search-result-content">01-01-2021</p>
+                                <p class="search-result-title">Giờ khởi hành</p>
+                                <p class="search-result-content">10h30</p>
+                            </div>
+                        </div>
+                        <div class="row ticket-amount">
+                            <div class="col-md-12">
+                                <div class="ticket-amount-text">Số vé còn lại: <strong>12</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

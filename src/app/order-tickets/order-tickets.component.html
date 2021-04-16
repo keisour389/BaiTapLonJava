@@ -1,0 +1,148 @@
+<div class="container">
+    <app-navbar></app-navbar>
+    <div class="order-tickets">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="seat-diagram shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="error-in-diagram">
+                        <div *ngIf="isTicketAcceptable === 0" class="alert alert-secondary" role="alert">
+                            Hãy chọn chỗ ngồi.
+                        </div>
+                        <div *ngIf="isTicketAcceptable === 1" class="alert alert-danger" role="alert">
+                            Chỗ ngồi này đã được đặt.
+                        </div>
+                        <div *ngIf="isTicketAcceptable === 2" class="alert alert-success" role="alert">
+                            Chọn chỗ ngồi thành công.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="front-row-seat">
+                                <div class="seat-text">Tài xế</div>
+                            </span>
+                        </div>
+                        <div class="col-md-6" style="text-align: right;">
+                            <span class="front-row-seat">
+                                <div class="seat-text">Cửa</div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" *ngFor="let rowData of data; let i = index;">
+                        <div class="seat-row col-md-6" *ngFor="let coupleData of rowData; let j = index;">
+                            <div class="couple">
+                                <span #seatA *ngIf="coupleData[0].status == 1" class="seat seat-a{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(true, i, j, 0)">
+                                    <!-- <div class="seat-text">A{{(seatNumber | count)}}</div> -->
+                                    <div class="seat-text">A{{coupleData[0].seatId}}</div>
+                                </span>
+                                <span #seatA *ngIf="coupleData[0].status == 0" ngModel name="seatA"
+                                    class="seat-unavailable seat-a{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(true, i, j, 0, seatA)">
+                                    <!-- <div class="seat-text">A{{(seatNumber | count)}}</div> -->
+                                    <div class="seat-text">A{{coupleData[0].seatId}}</div>
+                                </span>
+                                <span #seatB *ngIf="coupleData[1].status == 1" class="seat seat-b{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(false, i, j, 1)">
+                                    <div class="seat-text">B{{coupleData[1].seatId}}</div>
+                                </span>
+                                <span #seatB *ngIf="coupleData[1].status == 0" class="seat-unavailable seat-b{{i}}{{j}}"
+                                    (click)="selectedTicketInDiagram(false, i, j, 1)">
+                                    <div class="seat-text">B{{coupleData[1].seatId}}</div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="last-row">
+                        <span class="last-row-seat" *ngFor="let seat of lastRow">
+                            <div class="seat-text">C{{seat}}</div>
+                        </span>
+                    </div>
+                    <div class="diagram-note">
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-4">
+                                <span class="note-block">
+                                    <div class="empty"></div>
+                                    <p class="diagram-note-text">Trống</p>
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="note-block">
+                                    <div class="booked"></div>
+                                    <p class="diagram-note-text">Đã đặt</p>
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="note-block">
+                                    <div class="selected"></div>
+                                    <p class="diagram-note-text">Đang chọn</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="selected-tickets">
+                    <div class="bus-info">
+                        <p class="title-content">Thông tin chuyến xe</p>
+                        <div class="bus-info-frames">
+                            <div class="row">
+                                <div class="col-md-4 info-frame">
+                                    <div class="selected-tickets-title">
+                                        Điểm đi
+                                    </div>
+                                </div>
+                                <div class="col-md-4 info-frame">
+                                    <div class="selected-tickets-title">
+                                        Điểm đến
+                                    </div>
+                                </div>
+                                <div class="col-md-4 info-frame" style="border-right: none !important;">
+                                    <div class="selected-tickets-title">
+                                        Khởi hành
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="margin: 0;">
+                            <div class="row">
+                                <div class="col-md-4 info-frame">
+                                    <p class="selected-tickets-text text-break">
+                                        TP.HCM
+                                    </p>
+                                </div>
+                                <div class="col-md-4 info-frame">
+                                    <p class="selected-tickets-text text-break">
+                                        Đà Lạt
+                                    </p>
+                                </div>
+                                <div class="col-md-4 info-frame" style="border-right: none !important;">
+                                    <p class="selected-tickets-text text-break">
+                                        12:00
+                                        <br>
+                                        30/02/2020
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="selected-tickets-title">Giá vé: <em class="ticket-price">120.000VNĐ</em></p>
+                    </div>
+                    <hr>
+                    <p class="title-content">Thông tin vé</p>
+                    <h2 *ngIf="!isSelectedTickets">Hãy chọn ghế mà bạn muốn đặt</h2>
+                    <div *ngIf="isSelectedTickets" class="load-tickets-selected">
+                        <p class="selected-tickets-title text-break">
+                            Bạn đang chọn:
+                            <strong class="tickets-cus-selected" *ngFor="let ticket of ticketsSelectedList">
+                                {{ticket}}
+                            </strong>
+                        </p>
+                        <p class="selected-tickets-title">
+                            Tổng tiền: <em class="ticket-price">{{totalPrice}}VNĐ</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

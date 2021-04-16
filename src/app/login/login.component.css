@@ -1,0 +1,65 @@
+/*webpage*/
+.main{
+    background-image: linear-gradient(180deg, #bdfffc, #6bd7ff) ;
+}
+.back_model {
+  background: rgba(107, 95, 95, 0.2);
+}
+.page { 
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+}
+
+.text-tip {
+  white-space: pre-line;
+  font-size: large;
+  font-weight: 500;
+  color: #1f1f1d;
+  text-align: center;
+}
+
+.login-form {
+  min-height: 500px;
+  background-color: white;
+  height: 70%;
+  width: 50%;
+  width: 50%;
+  opacity: 0.9;
+}
+
+/*inside login form*/
+.login-type {
+  background-color: black;
+  height: 15vh;
+  width: 60%;
+  margin: 0 auto;
+}
+.img-login-type {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border: 1px solid transparent;
+}
+.text-login {
+  text-align: center;
+  color: #0068bd;
+}
+
+.text-type {
+    text-align: center;
+    color: black;
+  }
+
+/*Event*/
+.img-login-type:hover{
+    opacity: 0.8;
+    cursor: pointer;
+    border: 1px solid #0068bd;
+}
+
+.img-login-type:active{
+    opacity: 0.5;
+}

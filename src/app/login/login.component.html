@@ -1,0 +1,53 @@
+<div class="main">
+    <div class="back_model">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page">
+                    <form class="login-form shadow-sm p-3 mb-5 bg-white rounded" action="">
+                        <h4 class="text-login">Chọn loại đăng nhập</h4>
+                        <div class="form-group">
+                            <div class="row">
+                                <div (click)="changeLoginType('nhân viên')" class="col-md-6">
+                                    <div #emp class="login-type form-group">
+                                        <img class="img-login-type"
+                                            src="https://image.freepik.com/free-vector/operator-employee-male-female-cartoon-characters_68708-261.jpg">
+                                    </div>
+                                    <h5 class="text-type">Nhân viên</h5>
+                                </div>
+                                <div (click)="changeLoginType('khách hàng')" class="col-md-6">
+                                    <div #cus class="login-type form-group">
+                                        <img class="img-login-type"
+                                            src="https://i.pinimg.com/564x/0a/75/bd/0a75bd7273c456ed5a6d08a05dd72836.jpg">
+                                    </div>
+                                    <h5 class="text-type">Khách hàng</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-tip">Xin chào {{loginType}}<br>Vui lòng điền thông tin đăng nhập vào các ô
+                                bên dưới<br></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="userId" class="text-login">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="userId">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-login">Mật khẩu</label>
+                            <input type="text" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    Chưa có tài khoản? <a routerLink='/register'>Tạo ngay</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-success">Đăng nhập</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
