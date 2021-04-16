@@ -1,0 +1,12 @@
+.navbar{
+    background-color: white;
+}
+.bus-icon{
+    height: 50px;
+}
+.navbar-nav.center{
+    text-align: center;
+}
+.nav-item-text{
+    font-size: large;
+}

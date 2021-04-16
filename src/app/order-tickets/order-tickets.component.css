@@ -1,0 +1,113 @@
+/*Set container always at bottom*/
+.container{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.order-tickets{
+  flex: 1;
+}
+/*Set container always at bottom*/
+/*Seat diagram*/
+.error-in-diagram{
+  min-height: 70px;
+}
+.seat-diagram {
+  margin: 0 auto;
+  width: 70%;
+}
+.seat, .front-row-seat, .seat-unavailable {
+  height: 50px;
+  width: 48%; /*2% for margin*/
+  border: 1px solid #000000;
+  margin: 1px;
+  /*Set text in center of div (parnent)*/
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.seat-unavailable{
+  background-color: #d1d1d1;
+}
+.seat-text {
+  /*Set text in center of div (child)*/
+  flex: 0 0 1px;
+}
+.last-row {
+  width: 100%;
+  display: table;
+  border-spacing:2px;
+}
+.last-row-seat {
+  height: 50px;
+  border: 1px solid #000000;
+  padding: 1px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+/*Diagram note*/
+.empty,
+.booked,
+.selected {
+  margin: 0 auto;
+  height: 15px;
+  width: 25px;
+  border: 1px solid #000000;
+}
+.booked {
+  background-color: #d1d1d1;
+}
+.selected {
+  background-color: #ff0000;
+}
+.diagram-note-text {
+  text-align: center;
+  margin-left: 3px;
+  font-size: 18px;
+}
+/*Selected ticked*/
+.bus-info-frames{
+  background: rgb(235, 235, 235, 0.4);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.title-content{
+  color: #6600ff;
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
+}
+.selected-tickets-title{
+  font-size: 25px;
+  color: #000000;
+  font-weight: 600;
+}
+.selected-tickets-text{
+  color: #0041c2;
+  font-size: 20px;
+  font-weight: 500;
+  
+}
+.ticket-price{
+  color: #ff9d00;
+  font-size: 25px;
+  font-weight: 600;
+}
+.info-frame{
+  border-right: 2px solid #ebebeb;
+}
+.tickets-cus-selected{
+  color: #ff0000;
+  font-weight: 500;
+}
+/*Event*/
+.seat:hover, .last-row-seat:hover {
+  padding: 0;
+  cursor: pointer;
+  border: 2px solid #0041c2;
+}
+.front-row-seat:hover, .seat-unavailable:hover{
+  cursor: not-allowed;
+}

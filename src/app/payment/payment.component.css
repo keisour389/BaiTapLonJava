@@ -1,0 +1,73 @@
+/*Set container always at bottom*/
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.payment {
+  flex: 1;
+}
+/*Booking tip*/
+.booking-tip{
+    min-height: 65vh;
+    border-right: 2px solid #5c5c5c;
+}
+/*Booking tip*/
+/*Payment content*/
+.person-info{
+    background: rgb(92, 92, 92, 0.1);
+    padding: 5px;
+
+}
+.person-info-title, .ticket-info-title{
+    display: inline-block;
+    width: 150px;
+    font-size: 17px;
+    font-style: italic;
+    color: #000;
+}
+.person-info-text{
+    font-size: 20px;
+    font-weight: 500;
+    color: #0011ad;
+}
+.ticket-info-title{
+    display: inline;
+    font-weight: bold;
+    font-size: 17px;
+    font-style: italic;
+    color: #000;
+}
+.tikect-info-text{
+    margin-left: 10px;
+    color: #ff6600;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    
+}
+.total-ticket, .seat-id{
+    margin-left: 10px;
+    font-size: 25px;
+    font-style: normal;
+    color: #b09f00;
+}
+/*Payment type*/
+.payment-type{
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+.payment-type-text{
+    font-size: 17px;
+}
+.payment-icon{
+    width: 50px;
+}
+/*Tip*/
+.payment-info{
+    /* border-right: 1px solid #000; */
+}
+.tip{
+    margin-bottom: 10px;
+}
+/*Payment content*/
