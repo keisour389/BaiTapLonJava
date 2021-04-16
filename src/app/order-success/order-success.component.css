@@ -1,0 +1,56 @@
+/*Set container always at bottom*/
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.order-success {
+  flex: 1;
+}
+.title{
+  text-align: center;
+}
+/*Info frame*/
+.info-frame{
+  width: fit-content;
+  padding: 5px;
+
+}
+.person-info-title{
+  display: inline-block;
+  width: 150px;
+  font-size: 17px;
+  font-style: italic;
+  color: #000;
+}
+.person-info-text{
+  font-size: 20px;
+  font-weight: 500;
+  color: #0011ad;
+}
+/*Ticket review*/
+.ticket-review-frame{
+  margin-top: 20px;
+  padding: 5px;
+  background: rgb(232, 232, 232, 0.6);
+}
+.qr-code-frame{
+  height: 200px;
+  background-color: white;
+  border: 1px solid #000000;
+}
+.qr-code-frame>img {
+  transform: translate(50%, 50%);
+}
+.ticket-info-title{
+  font-size: 17px;
+  font-weight: 500;
+}
+.ticket-info-text{
+  margin-left: 20px;
+  font-size: 23px;
+  font-weight: 400;
+  font-style: italic;
+  color: #ff6600;
+ 
+}

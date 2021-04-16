@@ -3,8 +3,27 @@
     <div class="payment">
         <div class="row">
             <div class="col-md-4">
-                <div class="booking-tip">
+                <div class="booking-tip shadow-sm p-3 mb-5 bg-white rounded">
                     <h3>Lưu ý khi đặt vé</h3>
+                    <ol class="tip-list">
+                        <li class="tip">
+                            Mua vé xe trực tuyến hỗ trợ hai phương thức thanh toán
+                            <uL>
+                                <li><strong>Thanh toán trực tiếp</strong></li>
+                                <li><strong>Thanh toán Momo</strong></li>
+                            </uL>
+                        </li>
+                        <li class="tip">
+                            Đối vối <strong>thanh toán trực tiếp</strong> quý khách vui lòng đến trạm xe thanh toán tiền
+                            và lấy vé trước <strong>một ngày</strong> khởi hành. Nếu không vé sẽ tự động hủy.
+                        </li>
+                        <li class="tip">
+                            Đối vối <strong>thanh toán Momo </strong>quý khách vui lòng giữ QR code sau khi thanh toán để có thể lấy vé tại quầy.
+                            Quý khách có thể hủy vé trước <strong>12 tiếng</strong> của ngày khởi hành.
+                            Trường hợp hủy vé trong 12 tiếng trước ngày khởi hành. Quý khách vui lòng liên hệ <strong>hotline</strong>
+                            để được hỗ trợ. Tiền đã thanh toán sẽ được hoàn trong 7 ngày.
+                        </li>
+                    </ol>
                 </div>
             </div>
             <div class="col-md-8">
@@ -93,29 +112,32 @@
                                             <div class="payment-frame">
                                                 <h5>Phương thức thanh toán</h5>
                                                 <ul class="payment-type-list">
-
                                                     <li class="payment-type">
-                                                        <input type="radio" id="cash" name="payment">
+                                                        <input [value]="0" type="radio" id="cash" name="payment"
+                                                        [(ngModel)]="paymentType">
                                                         <label for="cash" class="payment-type-text">
-                                                            Thanh toán trực tiếp
+                                                            Thanh toán trực tiếp 
                                                         </label>
                                                         <img src="/assets/images/CASH_ICON.png" alt="cash"
                                                             class="payment-icon">
                                                     </li>
                                                     <li class="payment-type">
-                                                        <input type="radio" id="momo" name="payment">
+                                                        <input [value]="1" type="radio" id="momo" name="payment"
+                                                        [(ngModel)]="paymentType">
                                                         <label for="momo" class="payment-type-text">
-                                                            Thanh toán Momo
+                                                            Thanh toán Momo 
                                                         </label>
                                                         <img src="/assets/images/LOGO_MOMO.jpg" alt="momo"
                                                             class="payment-icon">
                                                     </li>
                                                     <li class="payment-type">
-                                                        <input type="radio" id="troll" name="payment" checked="checked">
-                                                        <label for="troll" class="payment-type-text">
-                                                            Thanh toán bằng
+                                                        <input [value]="2" type="radio" id="zaloPay"
+                                                         name="payment" checked
+                                                         [(ngModel)]="paymentType">
+                                                        <label for="zaloPay" class="payment-type-text">
+                                                            Thanh toán Zalo Pay 
                                                         </label>
-                                                        <img src="/assets/images/TROLL.PNG" alt="troll"
+                                                        <img src="/assets/images/LOGO_ZALOPAY.jpg" alt="troll"
                                                             class="payment-icon">
                                                     </li>
                                                 </ul>
@@ -177,7 +199,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-          <button type="button" class="btn btn-primary">Tiếp tục</button>
+          <button type="button" class="btn btn-primary" (click)="payment()">Tiếp tục</button>
         </div>
       </div>
     </div>

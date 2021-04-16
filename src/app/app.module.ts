@@ -15,6 +15,7 @@ import { SearchTicketsComponent } from './search-tickets/search-tickets.componen
 import { OrderTicketsComponent } from './order-tickets/order-tickets.component';
 import { CountPipe } from './order-tickets/count.pipe';
 import { PaymentComponent } from './payment/payment.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch:'full'},
@@ -22,7 +23,8 @@ const appRouters: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'search-tickets', component: SearchTicketsComponent},
   {path: 'order-tickets', component: OrderTicketsComponent},
-  {path: 'payment', component: PaymentComponent}
+  {path: 'payment', component: PaymentComponent},
+  {path: 'order-success', component: OrderSuccessComponent}
 ];
 
 
@@ -38,7 +40,8 @@ const appRouters: Routes = [
     FooterComponent,
     SearchTicketsComponent,
     OrderTicketsComponent,
-    PaymentComponent
+    PaymentComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
