@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _location: Location) { }
+
+  backClicked(){
+    //Return previous page
+    this._location.back();
+  }
+
 
   ngOnInit(): void {
   }

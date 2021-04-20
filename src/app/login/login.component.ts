@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   public loginType: String = "khách hàng";
 
-  constructor() { }
+  constructor(private _location: Location) { }
 
   changeLoginType(type: String){
     this.loginType = type;
@@ -25,6 +26,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.emp.nativeElement.style.border = "1px solid #0068bd";
       this.cus.nativeElement.style.border = "none";
     }
+  }
+
+  backClicked(){
+    //Return previous page
+    this._location.back();
   }
 
   ngOnInit(): void {
