@@ -1,9 +1,71 @@
-<div class="container">
+<div id="navigation">
     <app-admin-navbar></app-admin-navbar>
+</div>  
+<div class="container" id="container" (scroll)="onScroll()">
     <div class="management">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-3 menu-page">
                 <app-menu></app-menu>
+            </div>
+            <div class="col-9 management-page">
+                <div class="title">Quản lí</div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="managed-frame shadow-sm mb-5 bg-white rounded">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="/assets/images/BUS.png" alt="bus" class="managed-image">
+                                </div>
+                                <div class="col-md-7">
+                                    <span class="managed-text">
+                                        Tuyến xe
+                                    </span>
+                                    <div class="managed-description text-break">
+                                        Quản lí tuyến xe
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="managed-frame shadow-sm mb-5 bg-white rounded">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="/assets/images/TICKET.png" alt="ticket" class="managed-image">
+                                </div>
+                                <div class="col-md-7">
+                                    <span class="managed-text">
+                                        Vé xé
+                                    </span>
+                                    <div class="managed-description text-break">
+                                        Quản lí vé xe
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="managed-frame shadow-sm mb-5 bg-white rounded">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="/assets/images/STAFF.png" alt="bus" class="managed-image">
+                                </div>
+                                <div class="col-md-7">
+                                    <span class="managed-text">
+                                        Nhân viên
+                                    </span>
+                                    <div class="managed-description text-break">
+                                        Quản lí nhân viên
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title">Thống kê</div>
+                <google-chart class="chart" #chart [title]="title" [type]="type" [data]="data" [columns]="columnNames"
+                    [options]="options" [width]="width" [height]="height">
+                </google-chart>
             </div>
         </div>
     </div>

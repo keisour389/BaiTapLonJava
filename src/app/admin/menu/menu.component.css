@@ -1,16 +1,17 @@
 .title {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   padding-left: 5px;
-  color: #c20000;
+  color: #ff7247;
 }
 .menu{
-  margin-top: 10px;
+  position: fixed;
+  height: 100vh;
+  background: #303030;
   border: 1px solid #a8a8a8;
 }
 /*Info*/
 .person-info {
-  background: rgb(232, 232, 232, 0.5);
   padding: 5px;
 }
 .avatar {
@@ -20,12 +21,18 @@
   border-radius: 90px;
   margin: 0 auto;
 }
+.ava-image{
+  width: 100%;
+  height: 100%;
+  border-radius: 90px;
+}
 .info-title {
   font: 20px aria;  
   font-weight: 600;
   color: #ffc800;
 }
 .full-name {
+  color: white;
   font-size: 23px;
   font-style: italic;
 }
@@ -36,13 +43,14 @@
 }
 .option {
   border: 1px solid transparent;
-  border-top: 1px solid #a8a8a8;
+  /* border-top: 1px solid #a8a8a8; */
 }
 .option-text{
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 15px;
-  font-size: 20px;
+  font-size: 15px;
+  color: #e3e3e3;
 }
 /*Option*/
 /*Event*/

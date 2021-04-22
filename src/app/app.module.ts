@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
@@ -55,6 +56,7 @@ const appRouters: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    GoogleChartsModule.forRoot(),
     RouterModule.forRoot(appRouters)
   ],
   providers: [],
