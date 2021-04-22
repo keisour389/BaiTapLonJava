@@ -17,6 +17,8 @@ import { CountPipe } from './order-tickets/count.pipe';
 import { PaymentComponent } from './payment/payment.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ManagementComponent } from './admin/management/management.component';
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
+import { MenuComponent } from './admin/menu/menu.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch:'full'},
@@ -26,7 +28,8 @@ const appRouters: Routes = [
   {path: 'order-tickets', component: OrderTicketsComponent},
   {path: 'payment', component: PaymentComponent},
   {path: 'order-success', component: OrderSuccessComponent},
-  {path: 'management', component: ManagementComponent}
+  {path: 'management', component: ManagementComponent},
+  {path: 'menu', component: MenuComponent}
 ];
 
 
@@ -44,7 +47,9 @@ const appRouters: Routes = [
     OrderTicketsComponent,
     PaymentComponent,
     OrderSuccessComponent,
-    ManagementComponent
+    ManagementComponent,
+    AdminNavbarComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

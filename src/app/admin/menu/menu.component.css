@@ -1,0 +1,54 @@
+.title {
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 5px;
+  color: #c20000;
+}
+.menu{
+  margin-top: 10px;
+  border: 1px solid #a8a8a8;
+}
+/*Info*/
+.person-info {
+  background: rgb(232, 232, 232, 0.5);
+  padding: 5px;
+}
+.avatar {
+  height: 60px;
+  width: 60px;
+  border: 1px solid #000000;
+  border-radius: 90px;
+  margin: 0 auto;
+}
+.info-title {
+  font: 20px aria;  
+  font-weight: 600;
+  color: #ffc800;
+}
+.full-name {
+  font-size: 23px;
+  font-style: italic;
+}
+/*Info*/
+/*Option*/
+.option-list {
+  list-style-type: square;
+}
+.option {
+  border: 1px solid transparent;
+  border-top: 1px solid #a8a8a8;
+}
+.option-text{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+  font-size: 20px;
+}
+/*Option*/
+/*Event*/
+.option:hover{
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(40, 230, 247, 0.8); 
+  /* border: 1px solid #000000; */
+}
+/*Event*/
