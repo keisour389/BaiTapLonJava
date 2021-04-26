@@ -11,7 +11,7 @@
                 <div class="title">Quản lí</div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="managed-frame shadow-sm mb-5 bg-white rounded">
+                        <div class="managed-frame shadow-sm mb-5 bg-white rounded" (click)="selectOption('bus-management')">
                             <div class="row">
                                 <div class="col-md-5">
                                     <img src="/assets/images/BUS.png" alt="bus" class="managed-image">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="managed-frame shadow-sm mb-5 bg-white rounded">
+                        <div class="managed-frame shadow-sm mb-5 bg-white rounded" (click)="selectOption('ticket-management')">
                             <div class="row">
                                 <div class="col-md-5">
                                     <img src="/assets/images/TICKET.png" alt="ticket" class="managed-image">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="managed-frame shadow-sm mb-5 bg-white rounded">
+                        <div class="managed-frame shadow-sm mb-5 bg-white rounded" (click)="selectOption('employee-management')">
                             <div class="row">
                                 <div class="col-md-5">
                                     <img src="/assets/images/STAFF.png" alt="bus" class="managed-image">
@@ -70,3 +70,4 @@
         </div>
     </div>
 </div>
+<!-- <router-outlet></router-outlet> -->

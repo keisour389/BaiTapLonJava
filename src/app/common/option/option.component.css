@@ -1,0 +1,23 @@
+.option{
+    width: 150px;
+}
+.option-image{
+    width: 150px;
+    height: 150px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-shadow: 0 0 5px grey;
+    padding: 5px;
+    transition: box-shadow 0.3s ease-out;
+}
+.option-text{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+/*Event*/ 
+.option-image:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(40, 230, 247);
+    /* border: 1px solid rgba(40, 230, 247); */
+}

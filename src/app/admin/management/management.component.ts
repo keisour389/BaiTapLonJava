@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, HostListener, OnInit, Type } from '@angular/core';
-import { ChartType, Row } from "angular-google-charts";
+import { ActivatedRoute, Router } from '@angular/router';
+import { ChartType } from 'angular-google-charts';
 
 @Component({
   selector: 'app-management',
@@ -8,20 +9,18 @@ import { ChartType, Row } from "angular-google-charts";
 })
 export class ManagementComponent implements OnInit, AfterViewInit {
 
-  
-
   navbar: any;
   sticky: any;
 
   title = 'Thống kê lợi nhuận theo quý';
   type = ChartType.LineChart;
   data = [
-    ["1", 7.0, 0.2],
-    ["2", 6.9, 0.8],
-    ["3", 9.5, 5.7],
-    ["4", 14.5, 11.3]
+    ['1', 7.0, 0.2],
+    ['2', 6.9, 0.8],
+    ['3', 9.5, 5.7],
+    ['4', 14.5, 11.3]
   ];
-  columnNames = ["Thống kê", "2020", "2021"];
+  columnNames = ['Thống kê', '2020', '2021'];
   options = {
     hAxis: {
       title: 'Quý'
@@ -33,29 +32,33 @@ export class ManagementComponent implements OnInit, AfterViewInit {
   width = 700;
   height = 400;
 
-  constructor() { 
-  
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
   ngAfterViewInit(): void {
-    this.navbar = document.getElementById("navigation");
-    this.sticky = this.navbar!.offsetTop;
+    this.navbar = document.getElementById('navigation');
+    this.sticky = this.navbar.offsetTop;
     console.log(this.navbar);
   }
 
   @HostListener('window:scroll', ['$event'])
-  myFunction() {
+  myFunction(): void {
     if (window.pageYOffset >= this.sticky) {
-      this.navbar!.classList.add("sticky")
+      this.navbar.classList.add('sticky');
     } else {
-      this.navbar!.classList.remove("sticky");
+      this.navbar.classList.remove('sticky');
     }
   }
 
-  onScroll(){
-    console.log("test");
+  onScroll(): void{
+    console.log('test');
   }
 
-  ngOnInit(): void {
+  selectOption(router: string): void{
+    // Navigate to another component and set prefix is current route
+    this.router.navigate(['./' + router], {relativeTo: this.route});
+  }
+
+  ngOnInit(): void{
   }
 
 }

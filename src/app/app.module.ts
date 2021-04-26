@@ -20,16 +20,33 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ManagementComponent } from './admin/management/management.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { MenuComponent } from './admin/menu/menu.component';
+import { BusManagementComponent } from './admin/bus-management/bus-management.component';
+import { OptionComponent } from './common/option/option.component';
+import { TicketManagementComponent } from './admin/ticket-management/ticket-management.component';
+import { EmployeeManagementComponent } from './admin/employee-management/employee-management.component';
 
 const appRouters: Routes = [
-  {path: '', component: HomeComponent, pathMatch:'full'},
+  {path: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'search-tickets', component: SearchTicketsComponent},
   {path: 'order-tickets', component: OrderTicketsComponent},
   {path: 'payment', component: PaymentComponent},
   {path: 'order-success', component: OrderSuccessComponent},
-  {path: 'management', component: ManagementComponent},
+  {path: 'management', component: AppComponent, children: [
+    {
+      path: '', component: ManagementComponent, pathMatch: 'full'
+    },
+    {
+      path: 'bus-management', component: BusManagementComponent
+    },
+    {
+      path: 'ticket-management', component: TicketManagementComponent
+    },
+    {
+      path: 'employee-management', component: EmployeeManagementComponent
+    }
+  ]},
   {path: 'menu', component: MenuComponent}
 ];
 
@@ -50,7 +67,11 @@ const appRouters: Routes = [
     OrderSuccessComponent,
     ManagementComponent,
     AdminNavbarComponent,
-    MenuComponent
+    MenuComponent,
+    BusManagementComponent,
+    OptionComponent,
+    TicketManagementComponent,
+    EmployeeManagementComponent
   ],
   imports: [
     BrowserModule,
