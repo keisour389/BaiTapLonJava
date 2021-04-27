@@ -24,6 +24,7 @@ import { BusManagementComponent } from './admin/bus-management/bus-management.co
 import { OptionComponent } from './common/option/option.component';
 import { TicketManagementComponent } from './admin/ticket-management/ticket-management.component';
 import { EmployeeManagementComponent } from './admin/employee-management/employee-management.component';
+import { BusCreatedComponent } from './admin/bus-created/bus-created.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -38,7 +39,13 @@ const appRouters: Routes = [
       path: '', component: ManagementComponent, pathMatch: 'full'
     },
     {
-      path: 'bus-management', component: BusManagementComponent
+      path: 'bus-management', component: AppComponent, children: [
+      {
+        path: '', component: BusManagementComponent, pathMatch: 'full'
+      },
+      {
+        path: 'create', component: BusCreatedComponent
+      }]
     },
     {
       path: 'ticket-management', component: TicketManagementComponent
@@ -71,7 +78,8 @@ const appRouters: Routes = [
     BusManagementComponent,
     OptionComponent,
     TicketManagementComponent,
-    EmployeeManagementComponent
+    EmployeeManagementComponent,
+    BusCreatedComponent
   ],
   imports: [
     BrowserModule,
