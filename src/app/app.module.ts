@@ -26,6 +26,7 @@ import { TicketManagementComponent } from './admin/ticket/ticket-management/tick
 import { EmployeeManagementComponent } from './admin/employee/employee-management/employee-management.component';
 import { BusCreatedComponent } from './admin/bus/bus-created/bus-created.component';
 import { EmployeeCreatedComponent } from './admin/employee/employee-created/employee-created.component';
+import { ManageInformationComponent } from './admin/manage-information/manage-information.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -59,6 +60,9 @@ const appRouters: Routes = [
       {
         path: 'create', component: EmployeeCreatedComponent
       }]
+    },
+    {
+      path: 'information/:managedType', component: ManageInformationComponent
     }
   ]},
   {path: 'menu', component: MenuComponent}
@@ -87,7 +91,8 @@ const appRouters: Routes = [
     TicketManagementComponent,
     EmployeeManagementComponent,
     BusCreatedComponent,
-    EmployeeCreatedComponent
+    EmployeeCreatedComponent,
+    ManageInformationComponent
   ],
   imports: [
     BrowserModule,
