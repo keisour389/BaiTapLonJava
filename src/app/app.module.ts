@@ -20,11 +20,12 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ManagementComponent } from './admin/management/management.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { MenuComponent } from './admin/menu/menu.component';
-import { BusManagementComponent } from './admin/bus-management/bus-management.component';
+import { BusManagementComponent } from './admin/bus/bus-management/bus-management.component';
 import { OptionComponent } from './common/option/option.component';
-import { TicketManagementComponent } from './admin/ticket-management/ticket-management.component';
-import { EmployeeManagementComponent } from './admin/employee-management/employee-management.component';
-import { BusCreatedComponent } from './admin/bus-created/bus-created.component';
+import { TicketManagementComponent } from './admin/ticket/ticket-management/ticket-management.component';
+import { EmployeeManagementComponent } from './admin/employee/employee-management/employee-management.component';
+import { BusCreatedComponent } from './admin/bus/bus-created/bus-created.component';
+import { EmployeeCreatedComponent } from './admin/employee/employee-created/employee-created.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -51,7 +52,13 @@ const appRouters: Routes = [
       path: 'ticket-management', component: TicketManagementComponent
     },
     {
-      path: 'employee-management', component: EmployeeManagementComponent
+      path: 'employee-management', component: AppComponent, children: [
+      {
+        path: '', component: EmployeeManagementComponent, pathMatch: 'full'
+      },
+      {
+        path: 'create', component: EmployeeCreatedComponent
+      }]
     }
   ]},
   {path: 'menu', component: MenuComponent}
@@ -79,7 +86,8 @@ const appRouters: Routes = [
     OptionComponent,
     TicketManagementComponent,
     EmployeeManagementComponent,
-    BusCreatedComponent
+    BusCreatedComponent,
+    EmployeeCreatedComponent
   ],
   imports: [
     BrowserModule,
