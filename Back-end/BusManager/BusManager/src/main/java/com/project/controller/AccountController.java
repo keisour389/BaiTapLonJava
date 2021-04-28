@@ -6,6 +6,7 @@
 package com.project.controller;
 
 import com.project.common.AccountDTO;
+import com.project.model.Account;
 import com.project.model.AccountInfo;
 import com.project.service.AccountService;
 import org.json.JSONObject;
@@ -30,7 +31,7 @@ public class AccountController {
     private AccountService accountService;
     
     @Autowired
-    private AccountInfo accountInfo;
+    private Account accountInfo;
     
     //Get
     //URL = /hello-world-param

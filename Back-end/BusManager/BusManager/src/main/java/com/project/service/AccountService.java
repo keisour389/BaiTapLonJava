@@ -6,6 +6,7 @@
 package com.project.service;
 
 import com.project.common.AccountDTO;
+import com.project.model.Account;
 import com.project.model.AccountInfo;
 import com.project.repository.AccountRepository;
 import java.time.LocalDateTime;
@@ -28,17 +29,17 @@ public class AccountService {
     private AccountRepository accountRepository;
 
     @Autowired
-    private AccountInfo accountInfo;
+    private Account accountInfo;
     
         //Mã hóa mật khẩu
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
-    public AccountInfo loadUserbyUserId(String userId) {
+    public Account loadUserbyUserId(String userId) {
         return accountRepository.findByUserId(userId);
     }
 
-    public AccountInfo registerAccount(AccountDTO request) {
+    public Account registerAccount(AccountDTO request) {
         //Gán dữ liệu cho account info để insert data xuống database
         accountInfo.setUserId(request.getUserId());
         //Mã hóa mật khẩu trước khi đưa xuống database

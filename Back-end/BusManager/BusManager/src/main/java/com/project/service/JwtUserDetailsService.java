@@ -6,6 +6,7 @@
 package com.project.service;
 
 import com.project.common.AccountDTO;
+import com.project.model.Account;
 import com.project.model.AccountInfo;
 import com.project.repository.AccountRepository;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         //Tìm user theo userId dưới database
-        AccountInfo user = accountRepository.findByUserId(userId);
+        Account user = accountRepository.findByUserId(userId);
         if (user == null) {
             throw new UsernameNotFoundException("User not found with user id: " + userId);
         }
