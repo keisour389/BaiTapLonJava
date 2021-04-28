@@ -3,55 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.project.model;
+package com.project.request;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
- * @author Keisour
+ * @author DELL
  */
-@Entity
-@Table(name = "account_info")
-public class AccountInfo implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="USER_ID", length = 20)
+public class AccountInfoRequest {
     private String userId;
-    
-    @Column(name="PASSWORD", length = 300, nullable = false)
     private String password;
-    
-    @Column(name="TYPE", nullable = false)
     private String type;
-    
-    @Column(name="STATUS", nullable = false)
     private String status;
-    
-    @Column(name="CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
-    
-    @Column(name="UPDATED_ON", nullable = true)
     private LocalDateTime updatedOn;
-    
-    @Column(name="NOTE", length = 200, nullable = true)
     private String note;
     
-    @OneToOne(mappedBy = "account_info", fetch = FetchType.EAGER)
-    private List<CusInfo> cusInfo;
+    public AccountInfoRequest(){
+    }
     
-    @OneToOne(mappedBy = "account_info", fetch = FetchType.EAGER)
-    private List<EmpInfo> empInfo;
+    public AccountInfoRequest(String userId, String password, String type, String status,
+                LocalDateTime createdOn, LocalDateTime updatedOn, String note){
+        this.userId = userId;
+        this.password = password;
+        this.type = type;
+        this.status = status;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.note = note;
+    }
 
     /**
      * @return the userId
@@ -149,33 +130,5 @@ public class AccountInfo implements Serializable {
      */
     public void setNote(String note) {
         this.note = note;
-    }
-
-    /**
-     * @return the cusInfo
-     */
-    public List<CusInfo> getCusInfo() {
-        return cusInfo;
-    }
-
-    /**
-     * @param cusInfo the cusInfo to set
-     */
-    public void setCusInfo(List<CusInfo> cusInfo) {
-        this.cusInfo = cusInfo;
-    }
-
-    /**
-     * @return the empInfo
-     */
-    public List<EmpInfo> getEmpInfo() {
-        return empInfo;
-    }
-
-    /**
-     * @param empInfo the empInfo to set
-     */
-    public void setEmpInfo(List<EmpInfo> empInfo) {
-        this.empInfo = empInfo;
     }
 }

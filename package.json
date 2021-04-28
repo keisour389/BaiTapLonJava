@@ -29,6 +29,7 @@
     "crypto-js": "^4.0.0",
     "jquery": "^3.6.0",
     "ngx-bootstrap": "^6.2.0",
+    "patch": "0.0.1",
     "rxjs": "~6.6.0",
     "save": "^2.4.0",
     "tslib": "^2.0.0",
