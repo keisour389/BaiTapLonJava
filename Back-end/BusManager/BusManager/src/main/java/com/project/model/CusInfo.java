@@ -32,9 +32,8 @@ import javax.persistence.Temporal;
 public class CusInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToOne
-    @JoinColumn(name = "USER_ID")
-    private AccountInfo userId;
+    @Column(name = "USER_ID")
+    private String userId;
     
     @JsonProperty("first_name")
     @Column(name = "FIRST_NAME", length = 50, nullable = false)
@@ -70,6 +69,10 @@ public class CusInfo implements Serializable {
     @Column(name = "NOTE", length = 200, nullable = true)
     private String note;
     
+    @OneToOne
+    @JoinColumn(name = "ACCOUNT_ID")
+    private AccountInfo accountId;
+    
     @JsonIgnore
     @OneToMany(mappedBy = "cus_info", fetch = FetchType.LAZY)
     private List<TicketManagement> ticketManagement;
@@ -85,14 +88,14 @@ public class CusInfo implements Serializable {
     /**
      * @return the userId
      */
-    public AccountInfo getUserId() {
+    public String getUserId() {
         return userId;
     }
 
     /**
      * @param userId the userId to set
      */
-    public void setUserId(AccountInfo userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -207,8 +210,8 @@ public class CusInfo implements Serializable {
     public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
     }
-    
-        /**
+
+    /**
      * @return the note
      */
     public String getNote() {
@@ -220,6 +223,22 @@ public class CusInfo implements Serializable {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * @return the accountId
+     */
+    public AccountInfo getAccountId() {
+        return accountId;
+    }
+    
+    /**
+     * @param accountId to set
+     */
+    public void setAccountId(String accountId) {
+        AccountInfo newAccountInfo = new AccountInfo();
+        newAccountInfo.setUserId(accountId);
+        this.accountId = newAccountInfo;
     }
 
     /**
@@ -263,6 +282,4 @@ public class CusInfo implements Serializable {
     public void setFeedback(List<Feedback> feedback) {
         this.feedback = feedback;
     }
-
-    
 }

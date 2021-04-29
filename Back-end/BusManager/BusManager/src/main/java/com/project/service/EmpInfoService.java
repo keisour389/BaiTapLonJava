@@ -5,13 +5,19 @@
  */
 package com.project.service;
 
-import com.project.model.EmpInfo;
-import java.util.List;
+import com.project.request.EmpInfoRequest;
 
 /**
  *
  * @author DELL
  */
 public interface EmpInfoService {
-
+    Object getAllEmpInfo(int page, int size);
+    
+    //Using getEmpInfoById in Repository
+    //EmpInfoResponse getEmpInfoById(String id);
+    
+    EmpInfoRequest createEmpInfo(EmpInfoRequest empInfo);
+    EmpInfoRequest updateEmpInfoById(String id, EmpInfoRequest empInfo);
+    boolean deleteEmpInfoById(String id);
 }

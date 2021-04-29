@@ -5,13 +5,19 @@
  */
 package com.project.service;
 
-import com.project.model.CancelHistory;
-import java.util.List;
+import com.project.request.CancelHistoryRequest;
 
 /**
  *
  * @author DELL
  */
 public interface CancelHistoryService {
-
+    Object getAllCancelHistory(int page, int size);
+    
+    //Using getCancelHistoryById in Repository
+    //CancelHistoryResponse getCancelHistoryById(String id);
+    
+    CancelHistoryRequest createCancelHistory(CancelHistoryRequest cancelHistory);
+    CancelHistoryRequest updateCancelHistoryById(String id, CancelHistoryRequest cancelHistory);
+    boolean deleteCancelHistoryById(String id);
 }

@@ -5,10 +5,19 @@
  */
 package com.project.service;
 
+import com.project.request.AccountInfoRequest;
+
 /**
  *
  * @author DELL
  */
 public interface AccountInfoService {
+    Object getAllAccountInfo(int page, int size);
     
+    //Using getAccountInfoById in Repository
+    //AccountInfoResponse getAccountInfoById(String id);
+    
+    AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo);
+    AccountInfoRequest updateAccountInfoById(String id, AccountInfoRequest accountInfo);
+    boolean deleteAccountInfoById(String id);
 }

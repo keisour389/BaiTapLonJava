@@ -195,12 +195,14 @@ public class TicketManagement implements Serializable {
     public BusSchedules getTripId() {
         return tripId;
     }
-
+    
     /**
-     * @param tripId the tripId to set
+     * @param tripId to set
      */
-    public void setTripId(BusSchedules tripId) {
-        this.tripId = tripId;
+    public void setTripId(String tripId) {
+        BusSchedules newBusSchedules = new BusSchedules();
+        newBusSchedules.setTripId(tripId);
+        this.tripId = newBusSchedules;
     }
 
     /**
@@ -209,12 +211,14 @@ public class TicketManagement implements Serializable {
     public CusInfo getCusId() {
         return cusId;
     }
-
+    
     /**
-     * @param cusId the cusId to set
+     * @param cusId to set
      */
-    public void setCusId(CusInfo cusId) {
-        this.cusId = cusId;
+    public void setCusId(String cusId) {
+        CusInfo newCusInfo = new CusInfo();
+        newCusInfo.setUserId(cusId);
+        this.cusId = newCusInfo;
     }
 
     /**
@@ -230,6 +234,4 @@ public class TicketManagement implements Serializable {
     public void setCancelHistory(List<CancelHistory> cancelHistory) {
         this.cancelHistory = cancelHistory;
     }
-
-    
 }

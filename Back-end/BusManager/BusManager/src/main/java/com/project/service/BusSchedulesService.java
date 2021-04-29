@@ -5,13 +5,19 @@
  */
 package com.project.service;
 
-import com.project.model.BusSchedules;
-import java.util.List;
+import com.project.request.BusSchedulesRequest;
 
 /**
  *
  * @author DELL
  */
 public interface BusSchedulesService {
-
+    Object getAllBusSchedules(int page, int size);
+    
+    //Using getBusSchedulesById in Repository
+    //BusSchedulesResponse getBusSchedulesById(String id);
+    
+    BusSchedulesRequest createBusSchedules(BusSchedulesRequest busSchedules);
+    BusSchedulesRequest updateBusSchedulesById(String id, BusSchedulesRequest busSchedules);
+    boolean deleteBusSchedulesById(String id);
 }

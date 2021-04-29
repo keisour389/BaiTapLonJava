@@ -5,13 +5,19 @@
  */
 package com.project.service;
 
-import com.project.model.TicketManagement;
-import java.util.List;
+import com.project.request.TicketManagementRequest;
 
 /**
  *
  * @author DELL
  */
 public interface TicketManagementService {
-
+    Object getAllTicketManagement(int page, int size);
+    
+    //Using getTicketManagementById in Repository
+    //TicketManagementResponse getTicketManagementById(String id);
+    
+    TicketManagementRequest createTicketManagement(TicketManagementRequest ticketManagement);
+    TicketManagementRequest updateTicketManagementById(String id, TicketManagementRequest ticketManagement);
+    boolean deleteTicketManagementById(String id);
 }

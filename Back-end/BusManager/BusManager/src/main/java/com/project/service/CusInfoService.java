@@ -5,13 +5,19 @@
  */
 package com.project.service;
 
-import com.project.model.CusInfo;
-import java.util.List;
+import com.project.request.CusInfoRequest;
 
 /**
  *
  * @author DELL
  */
 public interface CusInfoService {
-
+    Object getAllCusInfo(int page, int size);
+    
+    //Using getCusInfoById in Repository
+    //CusInfoResponse getCusInfoById(String id);
+    
+    CusInfoRequest createCusInfo(CusInfoRequest cusInfo);
+    CusInfoRequest updateCusInfoById(String id, CusInfoRequest cusInfo);
+    boolean deleteCusInfoById(String id);
 }

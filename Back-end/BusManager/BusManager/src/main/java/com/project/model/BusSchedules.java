@@ -130,12 +130,14 @@ public class BusSchedules implements Serializable {
     public EmpInfo getMainDriver() {
         return mainDriver;
     }
-
+    
     /**
-     * @param mainDriver the mainDriver to set
+     * @param mainDriver to set
      */
-    public void setMainDriver(EmpInfo mainDriver) {
-        this.mainDriver = mainDriver;
+    public void setMainDriver(String mainDriver) {
+        EmpInfo newEmpInfo = new EmpInfo();
+        newEmpInfo.setUserId(mainDriver);
+        this.mainDriver = newEmpInfo;
     }
 
     /**
@@ -144,12 +146,14 @@ public class BusSchedules implements Serializable {
     public EmpInfo getSubDriver() {
         return subDriver;
     }
-
+    
     /**
-     * @param subDriver the subDriver to set
+     * @param subDriver to set
      */
-    public void setSubDriver(EmpInfo subDriver) {
-        this.subDriver = subDriver;
+    public void setSubDriver(String subDriver) {
+        EmpInfo newEmpInfo = new EmpInfo();
+        newEmpInfo.setUserId(subDriver);
+        this.subDriver = newEmpInfo;
     }
 
     /**
@@ -298,12 +302,14 @@ public class BusSchedules implements Serializable {
     public EmpInfo getManager() {
         return manager;
     }
-
+    
     /**
-     * @param manager the manager to set
+     * @param manager to set
      */
-    public void setManager(EmpInfo manager) {
-        this.manager = manager;
+    public void setManager(String manager) {
+        EmpInfo newEmpInfo = new EmpInfo();
+        newEmpInfo.setUserId(manager);
+        this.manager = newEmpInfo;
     }
 
     /**

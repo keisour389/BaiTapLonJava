@@ -109,12 +109,14 @@ public class Feedback implements Serializable {
     public CusInfo getCusId() {
         return cusId;
     }
-
+    
     /**
-     * @param cusId the cusId to set
+     * @param cusId to set
      */
-    public void setCusId(CusInfo cusId) {
-        this.cusId = cusId;
+    public void setCusId(String cusId) {
+        CusInfo newCusInfo = new CusInfo();
+        newCusInfo.setUserId(cusId);
+        this.cusId = newCusInfo;
     }
 
     /**
@@ -123,11 +125,13 @@ public class Feedback implements Serializable {
     public EmpInfo getEmpId() {
         return empId;
     }
-
+    
     /**
-     * @param empId the empId to set
+     * @param empId to set
      */
-    public void setEmpId(EmpInfo empId) {
-        this.empId = empId;
+    public void setEmpId(String empId) {
+        EmpInfo newEmpInfo = new EmpInfo();
+        newEmpInfo.setUserId(empId);
+        this.empId = newEmpInfo;
     }
 }

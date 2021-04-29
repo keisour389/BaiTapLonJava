@@ -5,13 +5,19 @@
  */
 package com.project.service;
 
-import com.project.model.Feedback;
-import java.util.List;
+import com.project.request.FeedbackRequest;
 
 /**
  *
  * @author DELL
  */
 public interface FeedbackService {
-
+    Object getAllFeedback(int page, int size);
+    
+    //Using getFeedbackById in Repository
+    //FeedbackResponse getFeedbackById(String id);
+    
+    FeedbackRequest createFeedback(FeedbackRequest feedback);
+    FeedbackRequest updateFeedbackById(String id, FeedbackRequest feedback);
+    boolean deleteFeedbackById(String id);
 }
