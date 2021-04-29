@@ -1,5 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+declare const $: any;
 
 @Component({
   selector: 'app-manage-information',
@@ -7,6 +10,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./manage-information.component.css']
 })
 export class ManageInformationComponent implements OnInit {
+
+  // This var to get specific or updated data
+  indexData: any = {
+    userId: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    dOB: '',
+    address: '',
+    id: '',
+    gender: '',
+    type: 0,
+    createdOn: '',
+    updatedOn: '',
+    note: null
+  };
+
+  isUpdate = false;
 
   managedType!: any;
 
@@ -20,7 +41,8 @@ export class ManageInformationComponent implements OnInit {
 
   empData: any = [{
     userId: 'HSA123',
-    fullName: 'Nguyễn Văn E',
+    firstName: 'Nguyễn',
+    lastName: 'Văn E',
     phoneNumber: '012345453',
     dOB: '2012-04-23T18:25:43.511Z',
     address: '12 Gia Phú',
@@ -33,7 +55,8 @@ export class ManageInformationComponent implements OnInit {
   },
   {
     userId: 'HSA123',
-    fullName: 'Nguyễn Văn E',
+    firstName: 'Nguyễn',
+    lastName: 'Văn E',
     phoneNumber: '012345453',
     dOB: '2012-04-23T18:25:43.511Z',
     address: '12 Gia Phú',
@@ -46,7 +69,8 @@ export class ManageInformationComponent implements OnInit {
   },
   {
     userId: 'HSA123',
-    fullName: 'Nguyễn Văn E',
+    firstName: 'Nguyễn',
+    lastName: 'Văn E',
     phoneNumber: '012345453',
     dOB: '2012-04-23T18:25:43.511Z',
     address: '12 Gia Phú',
@@ -147,8 +171,8 @@ export class ManageInformationComponent implements OnInit {
     managed: 'Nguyễn Văn C'
   }];
 
-  title!: any;
-  data!: any;
+  title: Array<any> = [];
+  data: Array<any> = [];
 
   // This function get param form URL to know what component need to render
   render(value: string): void {
@@ -177,11 +201,70 @@ export class ManageInformationComponent implements OnInit {
     }
   }
 
-  constructor(private route: ActivatedRoute) { }
+  openInfoModal(isUpdate: boolean, index: number): void {
+    this.isUpdate = isUpdate;
+    this.indexData = this.data[index];
+    this.indexData = this.changeDateInData(this.indexData, this.managedType);
+    console.log(this.indexData);
+    $('#infoModal').modal('show');
+  }
+
+  constructor(private route: ActivatedRoute, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.managedType = this.route.snapshot.paramMap.get('managedType');
     this.render(this.managedType);
   }
+
+  transformToNormalDate(jsonDate: string): string | null {
+    // yyyy-MM-dd is date standal format of date
+    // Check null
+    if (jsonDate !== null){
+      const result = this.datePipe.transform(new Date(jsonDate), 'yyyy-MM-dd');
+      return result;
+    }
+    else{
+      return null;
+    }
+  }
+
+  transformToNormalDateTime(jsonDate: string): string | null {
+    // yyyy-MM-ddThh:mm is date standal format of datetime-loction
+    // Check null
+    if (jsonDate !== null){
+      const result = this.datePipe.transform(new Date(jsonDate), 'yyyy-MM-ddThh:mm');
+      return result;
+    }
+    else{
+      return null;
+    }
+  }
+
+  // This function use to change Json date to normal date for index data
+  // Value is the type of render data
+  // Data is data corresponding with seperated value
+  changeDateInData(data: any, value: string): any {
+    switch (value) {
+      case '1':
+        // Bus
+        data.departureDay = this.transformToNormalDateTime(data.departureDay);
+        data.createdOn = this.transformToNormalDate(data.createdOn);
+        data.updatedOn = this.transformToNormalDate(data.updatedOn);
+        break;
+      case '2':
+        // Ticket
+        data.paymentDate = this.transformToNormalDateTime(data.paymentDate);
+        data.bookingDate = this.transformToNormalDateTime(data.bookingDate);
+        break;
+      case '3':
+        // Employee
+        data.dOB = this.transformToNormalDate(data.dOB);
+        data.createdOn = this.transformToNormalDate(data.createdOn);
+        data.updatedOn = this.transformToNormalDate(data.updatedOn);
+        break;
+    }
+    return data;
+  }
+
 
 }

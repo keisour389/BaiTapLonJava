@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { DatePipe } from '@angular/common';
+import { CountPipe } from './order-tickets/count.pipe';
 
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
@@ -14,7 +16,6 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchTicketsComponent } from './search-tickets/search-tickets.component';
 import { OrderTicketsComponent } from './order-tickets/order-tickets.component';
-import { CountPipe } from './order-tickets/count.pipe';
 import { PaymentComponent } from './payment/payment.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ManagementComponent } from './admin/management/management.component';
@@ -27,6 +28,9 @@ import { EmployeeManagementComponent } from './admin/employee/employee-managemen
 import { BusCreatedComponent } from './admin/bus/bus-created/bus-created.component';
 import { EmployeeCreatedComponent } from './admin/employee/employee-created/employee-created.component';
 import { ManageInformationComponent } from './admin/manage-information/manage-information.component';
+import { EmployeeInfoModalComponent } from './common/modal/employee-info-modal/employee-info-modal.component';
+import { TicketInfoModalComponent } from './common/modal/ticket-info-modal/ticket-info-modal.component';
+import { BusInfoModalComponent } from './common/modal/bus-info-modal/bus-info-modal.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -92,16 +96,19 @@ const appRouters: Routes = [
     EmployeeManagementComponent,
     BusCreatedComponent,
     EmployeeCreatedComponent,
-    ManageInformationComponent
+    ManageInformationComponent,
+    EmployeeInfoModalComponent,
+    TicketInfoModalComponent,
+    BusInfoModalComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     GoogleChartsModule.forRoot(),
-    RouterModule.forRoot(appRouters)
+    RouterModule.forRoot(appRouters),
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
