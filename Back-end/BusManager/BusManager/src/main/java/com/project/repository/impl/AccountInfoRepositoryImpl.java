@@ -19,11 +19,13 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author DELL
  */
+@Repository
 public class AccountInfoRepositoryImpl implements AccountInfoRepository{
     @Autowired
     private LocalSessionFactoryBean localSessionFactoryBean;

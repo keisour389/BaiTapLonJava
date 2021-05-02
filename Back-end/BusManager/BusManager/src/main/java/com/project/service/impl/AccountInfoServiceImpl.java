@@ -16,14 +16,16 @@ import com.project.service.AccountInfoService;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author DELL
  */
+@Service
 public class AccountInfoServiceImpl implements AccountInfoService{
     @Autowired
-    AccountInfoRepository accountInfoRepository;
+    private AccountInfoRepository accountInfoRepository;
 
     @Override
     public Object getAllAccountInfo(int page, int size) {
