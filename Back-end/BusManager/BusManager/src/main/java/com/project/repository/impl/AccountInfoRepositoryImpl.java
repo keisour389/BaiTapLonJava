@@ -65,6 +65,22 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
 
     @Override
     @Transactional
+    public AccountInfo getAccountInfoByUserIdPassword(String userId, String password) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<AccountInfo> query = criteriaBuilder.createQuery(AccountInfo.class);
+        Root<AccountInfo> root = query.from(AccountInfo.class);
+        query.select(root);
+        
+        Predicate p1 = criteriaBuilder.like(root.get("userId").as(String.class), userId);
+        Predicate p2 = criteriaBuilder.equal(root.get("password").as(String.class), password);
+        query.where(criteriaBuilder.and(p1,p2));
+        
+        return session.createQuery(query).uniqueResult();
+    }
+    
+    @Override
+    @Transactional
     public AccountInfo createAccountInfo(AccountInfo accountInfo) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         if(accountInfo != null){

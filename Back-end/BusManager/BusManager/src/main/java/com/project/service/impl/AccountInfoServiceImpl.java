@@ -9,6 +9,8 @@ import com.google.common.hash.Hashing;
 import com.project.model.AccountInfo;
 import com.project.repository.AccountInfoRepository;
 import com.project.request.AccountInfoRequest;
+import com.project.request.LoginRequest;
+import com.project.response.AccountInfoResponse;
 import com.project.response.CommonResponse;
 import com.project.service.AccountInfoService;
 import java.nio.charset.StandardCharsets;
@@ -37,13 +39,29 @@ public class AccountInfoServiceImpl implements AccountInfoService{
         commonResponse.setTotalPage(page);
         commonResponse.setTotalPage(size);
         
-        return  commonResponse;
+        return commonResponse;
     }
 
+    @Override
+    public AccountInfoResponse getAccountInfoByUserIdPassword(LoginRequest loginRequest) {
+        String passwordHash = Hashing.sha256().hashString(loginRequest.getPassword(), StandardCharsets.UTF_8).toString();
+        AccountInfo result = accountInfoRepository.getAccountInfoByUserIdPassword(loginRequest.getUserId(), passwordHash);
+        AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
+        
+        accountInfoResponse.setType(result.getType());
+        accountInfoResponse.setStatus(result.getStatus());
+        accountInfoResponse.setCreatedOn(result.getCreatedOn());
+        accountInfoResponse.setUpdatedOn(result.getUpdatedOn());
+        accountInfoResponse.setNote(result.getNote());
+        
+        return accountInfoResponse;
+    }
+    
     @Override
     public AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo) {
         AccountInfo newAccountInfo = new AccountInfo();
         String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
+        newAccountInfo.setUserId(accountInfo.getUserId());
         newAccountInfo.setPassword(passwordHash);
         newAccountInfo.setType(accountInfo.getType());
         newAccountInfo.setStatus(accountInfo.getStatus());

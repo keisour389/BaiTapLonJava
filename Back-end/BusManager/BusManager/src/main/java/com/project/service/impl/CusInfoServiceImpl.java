@@ -52,6 +52,7 @@ public class CusInfoServiceImpl implements CusInfoService{
         newCusInfo.setCreatedOn(cusInfo.getCreatedOn());
         newCusInfo.setUpdatedOn(cusInfo.getUpdatedOn());
         newCusInfo.setNote(cusInfo.getNote());
+        newCusInfo.setUsername(cusInfo.getUsername());
         
         if(cusInfoRepository.createCusInfo(newCusInfo) != null)
             return cusInfo;
@@ -71,6 +72,7 @@ public class CusInfoServiceImpl implements CusInfoService{
         newCusInfo.setCreatedOn(cusInfo.getCreatedOn());
         newCusInfo.setUpdatedOn(cusInfo.getUpdatedOn());
         newCusInfo.setNote(cusInfo.getNote());
+        newCusInfo.setUsername(cusInfo.getUsername());
         
         if(cusInfoRepository.createCusInfo(newCusInfo) != null){
             cusInfoRepository.updateCusInfoById(id, newCusInfo);

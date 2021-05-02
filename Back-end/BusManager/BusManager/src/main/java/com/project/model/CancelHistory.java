@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 @Table(name="cancel_history")
 public class CancelHistory implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CANCEL_ID", length = 20)
     private String cancelId;
     
@@ -35,15 +36,18 @@ public class CancelHistory implements Serializable {
     @Column(name="NOTE", length = 200, nullable = true)
     private String note;
     
-    @ManyToOne
+    @JsonProperty("cusId")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="CUS_ID")
     private CusInfo cusId;
     
-    @ManyToOne
+    @JsonProperty("empId")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="EMP_ID")
     private EmpInfo empId;
     
-    @ManyToOne
+    @JsonProperty("ticketId")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="TICKET_ID")
     private TicketManagement ticketId;
 

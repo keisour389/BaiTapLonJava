@@ -15,6 +15,7 @@ import java.util.List;
 public interface AccountInfoRepository {
     List getAllAccountInfo();
     AccountInfo getAccountInfoById(String id);
+    AccountInfo getAccountInfoByUserIdPassword(String userId, String password);
     AccountInfo createAccountInfo(AccountInfo accountInfo);
     void updateAccountInfoById(String id, AccountInfo accountInfo);
     void deleteAccountInfoById(String id);

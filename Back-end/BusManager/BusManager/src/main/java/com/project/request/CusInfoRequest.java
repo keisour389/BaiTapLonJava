@@ -23,13 +23,14 @@ public class CusInfoRequest {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
+    private String username;
     
     public CusInfoRequest(){
     }
     
     public CusInfoRequest(String userId, String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String gender, 
-            LocalDateTime createdOn, LocalDateTime updatedOn, String note){
+            LocalDateTime createdOn, LocalDateTime updatedOn, String note, String username){
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,6 +41,7 @@ public class CusInfoRequest {
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
         this.note = note;
+        this.username = username;
     }
 
     /**
@@ -180,5 +182,19 @@ public class CusInfoRequest {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,7 +26,7 @@ import javax.persistence.Table;
 @Table(name = "account_info")
 public class AccountInfo implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="USER_ID", length = 20)
     private String userId;
     
@@ -47,9 +48,11 @@ public class AccountInfo implements Serializable {
     @Column(name="NOTE", length = 200, nullable = true)
     private String note;
     
+    @JsonIgnore
     @OneToOne(mappedBy = "account_info", fetch = FetchType.EAGER)
     private List<CusInfo> cusInfo;
     
+    @JsonIgnore
     @OneToOne(mappedBy = "account_info", fetch = FetchType.EAGER)
     private List<EmpInfo> empInfo;
 

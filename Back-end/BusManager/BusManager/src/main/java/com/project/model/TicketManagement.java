@@ -32,7 +32,7 @@ import javax.persistence.Temporal;
 @Table(name = "ticket_management")
 public class TicketManagement implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TICKET_ID", length = 20)
     private String ticketId;
     
@@ -65,16 +65,16 @@ public class TicketManagement implements Serializable {
     @Column(name = "NOTE", length = 200, nullable = true)
     private String note;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TRIP_ID")
     private BusSchedules tripId;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUS_ID")
     private CusInfo cusId;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "ticket_management", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ticket_management", fetch = FetchType.EAGER)
     private List<CancelHistory> cancelHistory = new ArrayList<>();
 
     /**

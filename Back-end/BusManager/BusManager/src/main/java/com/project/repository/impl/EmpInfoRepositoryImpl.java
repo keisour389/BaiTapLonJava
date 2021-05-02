@@ -51,7 +51,8 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
                 root.get("type"),
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
-                root.get("note")
+                root.get("note"),
+                root.get("username")
         ));
         return session.createQuery(query).getResultList();
     }
@@ -103,6 +104,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         query.set("createdOn", empInfo.getCreatedOn());
         query.set("updatedOn", empInfo.getUpdatedOn());
         query.set("note", empInfo.getNote());
+        query.set("username", empInfo.getUsername());
         
         Predicate p = criteriaBuilder.equal(root.get("userId"), id);
         query.where(p);
@@ -121,5 +123,4 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
-    
 }

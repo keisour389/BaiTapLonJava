@@ -32,7 +32,7 @@ import javax.persistence.Temporal;
 @Table(name="bus_schedules")
 public class BusSchedules implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="TRIP_ID", length = 20)
     private String tripId;
     
@@ -41,13 +41,13 @@ public class BusSchedules implements Serializable {
     private String licensePlates;
     
     @JsonProperty("main_driver")
-    @ManyToOne
-    @JoinColumn(name="MAIN_DRIVER")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="MAIN_DRIVER", nullable = false)
     private EmpInfo mainDriver;
     
     @JsonProperty("sub_driver")
-    @ManyToOne
-    @JoinColumn(name="SUB_DRIVER")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="SUB_DRIVER", nullable = false)
     private EmpInfo subDriver;
     
     @JsonProperty("from")
@@ -88,8 +88,9 @@ public class BusSchedules implements Serializable {
     @Column(name="NOTE", length = 200, nullable = true)
     private String note;
     
-    @ManyToOne
-    @JoinColumn(name="MANAGER")
+    @JsonProperty("manager")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="MANAGER", nullable = false)
     private EmpInfo manager;
     
     @JsonIgnore

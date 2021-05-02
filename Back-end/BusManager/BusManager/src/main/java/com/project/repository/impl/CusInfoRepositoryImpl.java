@@ -5,6 +5,7 @@
  */
 package com.project.repository.impl;
 
+import com.project.model.AccountInfo;
 import com.project.model.CusInfo;
 import com.project.repository.CusInfoRepository;
 import com.project.response.CusInfoResponse;
@@ -48,7 +49,8 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
                 root.get("gender"),
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
-                root.get("note")
+                root.get("note"),
+                root.get("username")
         ));
         return session.createQuery(query).getResultList();
     }
@@ -97,6 +99,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         query.set("createdOn", cusInfo.getCreatedOn());
         query.set("updatedOn", cusInfo.getUpdatedOn());
         query.set("note", cusInfo.getNote());
+        query.set("username", cusInfo.getUsername());
         
         Predicate p = criteriaBuilder.equal(root.get("userId"), id);
         query.where(p);
@@ -115,5 +118,4 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
-
 }

@@ -26,6 +26,7 @@ public class EmpInfoRequest {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
+    private String username;
     
     public EmpInfoRequest(){
     }
@@ -33,7 +34,7 @@ public class EmpInfoRequest {
     public EmpInfoRequest(String userId, String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String address, 
             String id, String gender, Integer type, LocalDateTime createdOn, 
-            LocalDateTime updatedOn, String note){
+            LocalDateTime updatedOn, String note, String username){
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,6 +48,7 @@ public class EmpInfoRequest {
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
         this.note = note;
+        this.username = username;
     }
 
     /**
@@ -229,5 +231,19 @@ public class EmpInfoRequest {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

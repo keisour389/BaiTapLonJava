@@ -55,6 +55,7 @@ public class EmpInfoServiceImpl implements EmpInfoService{
         newEmpInfo.setCreatedOn(empInfo.getCreatedOn());
         newEmpInfo.setUpdatedOn(empInfo.getUpdatedOn());
         newEmpInfo.setNote(empInfo.getNote());
+        newEmpInfo.setUsername(empInfo.getUsername());
         
         if(empInfoRepository.createEmpInfo(newEmpInfo) != null)
             return empInfo;
@@ -77,6 +78,7 @@ public class EmpInfoServiceImpl implements EmpInfoService{
         newEmpInfo.setCreatedOn(empInfo.getCreatedOn());
         newEmpInfo.setUpdatedOn(empInfo.getUpdatedOn());
         newEmpInfo.setNote(empInfo.getNote());
+        newEmpInfo.setUsername(empInfo.getUsername());
         
         if(empInfoRepository.createEmpInfo(newEmpInfo) != null){
             empInfoRepository.updateEmpInfoById(id, newEmpInfo);

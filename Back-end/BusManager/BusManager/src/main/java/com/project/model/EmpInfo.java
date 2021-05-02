@@ -31,7 +31,7 @@ import javax.persistence.Temporal;
 @Table(name = "emp_info")
 public class EmpInfo implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private String userId;
     
@@ -81,9 +81,10 @@ public class EmpInfo implements Serializable {
     @Column(name = "NOTE", length = 200, nullable = true)
     private String note;
     
-    @OneToOne
-    @JoinColumn(name = "ACCOUNT_ID")
-    private AccountInfo accountId;
+    @JsonProperty("username")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USERNAME", nullable = false)
+    private AccountInfo username;
     
     @JsonIgnore
     @OneToMany(mappedBy = "emp_info", fetch = FetchType.LAZY)
@@ -280,19 +281,19 @@ public class EmpInfo implements Serializable {
     }
 
     /**
-     * @return the accountId
+     * @return the username
      */
-    public AccountInfo getAccountId() {
-        return accountId;
+    public AccountInfo getUsername() {
+        return username;
     }
     
     /**
-     * @param accountId to set
+     * @param username to set
      */
-    public void setAccountId(String accountId) {
+    public void setUsername(String username) {
         AccountInfo newAccountInfo = new AccountInfo();
-        newAccountInfo.setUserId(accountId);
-        this.accountId = newAccountInfo;
+        newAccountInfo.setUserId(username);
+        this.username = newAccountInfo;
     }
 
     /**
