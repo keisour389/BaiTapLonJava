@@ -5,10 +5,18 @@
  */
 package com.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,29 +25,38 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "account_info")
-public class AccountInfo {
+public class AccountInfo implements Serializable {
     @Id
-    @Column(name="USER_ID")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="USER_ID", length = 20, nullable = false)
     private String userId;
     
-    @Column(name="PASSWORD")
+    @Column(name="PASSWORD", length = 300, nullable = false)
     private String password;
     
-    @Column(name="TYPE")
+    @Column(name="TYPE", nullable = false)
     private String type;
     
-    @Column(name="STATUS")
+    @Column(name="STATUS", nullable = false)
     private String status;
     
-    @Column(name="CREATED_ON")
+    @Column(name="CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
     
-    @Column(name="UPDATED_ON")
+    @Column(name="UPDATED_ON", nullable = true)
     private LocalDateTime updatedOn;
     
-    @Column(name="NOTE")
+    @Column(name="NOTE", length = 200, nullable = true)
     private String note;
     
+    @JsonIgnore
+    @OneToOne(mappedBy = "username", fetch = FetchType.EAGER)
+    private CusInfo cusInfo;
+    
+    @JsonIgnore
+    @OneToOne(mappedBy = "username", fetch = FetchType.EAGER)
+    private EmpInfo empInfo;
 
     /**
      * @return the userId
@@ -138,9 +155,32 @@ public class AccountInfo {
     public void setNote(String note) {
         this.note = note;
     }
-    
-//    @Override
-//    public String toString() {
-//        return String.format("UserInfo [userId=%s]", getUserId()); //To change body of generated methods, choose Tools | Templates.
-//    }
+
+    /**
+     * @return the cusInfo
+     */
+    public CusInfo getCusInfo() {
+        return cusInfo;
+    }
+
+    /**
+     * @param cusInfo the cusInfo to set
+     */
+    public void setCusInfo(CusInfo cusInfo) {
+        this.cusInfo = cusInfo;
+    }
+
+    /**
+     * @return the empInfo
+     */
+    public EmpInfo getEmpInfo() {
+        return empInfo;
+    }
+
+    /**
+     * @param empInfo the empInfo to set
+     */
+    public void setEmpInfo(EmpInfo empInfo) {
+        this.empInfo = empInfo;
+    }
 }
