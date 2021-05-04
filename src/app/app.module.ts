@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { DatePipe } from '@angular/common';
 import { CountPipe } from './order-tickets/count.pipe';
@@ -34,48 +34,58 @@ import { BusInfoModalComponent } from './common/modal/bus-info-modal/bus-info-mo
 import { BirthdayValidatorDirective } from './directive/birthday-validator.directive';
 import { PhonenumberValidatorDirective } from './directive/phonenumber-validator.directive';
 import { ProfitStatisticComponent } from './admin/profit-statistic/profit-statistic.component';
+import { DataStatisticsComponent } from './admin/data-statistics/data-statistics.component';
 
 const appRouters: Routes = [
-  {path: '', component: HomeComponent, pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'search-tickets', component: SearchTicketsComponent},
-  {path: 'order-tickets', component: OrderTicketsComponent},
-  {path: 'payment', component: PaymentComponent},
-  {path: 'order-success', component: OrderSuccessComponent},
-  {path: 'management', component: AppComponent, children: [
-    {
-      path: '', component: ManagementComponent, pathMatch: 'full'
-    },
-    {
-      path: 'bus-management', component: AppComponent, children: [
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'search-tickets', component: SearchTicketsComponent },
+  { path: 'order-tickets', component: OrderTicketsComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'order-success', component: OrderSuccessComponent },
+  {
+    path: 'management', component: AppComponent, children: [
       {
-        path: '', component: BusManagementComponent, pathMatch: 'full'
+        path: '', component: ManagementComponent, pathMatch: 'full'
       },
       {
-        path: 'create', component: BusCreatedComponent
-      }]
-    },
-    {
-      path: 'ticket-management', component: TicketManagementComponent
-    },
-    {
-      path: 'employee-management', component: AppComponent, children: [
-      {
-        path: '', component: EmployeeManagementComponent, pathMatch: 'full'
+        path: 'bus-management', component: AppComponent, children: [
+          {
+            path: '', component: BusManagementComponent, pathMatch: 'full'
+          },
+          {
+            path: 'create', component: BusCreatedComponent
+          }]
       },
       {
-        path: 'create', component: EmployeeCreatedComponent
-      }]
-    },
-    {
-      path: 'information/:managedType', component: ManageInformationComponent
-    },
-    {
-      path: 'profit', component: ProfitStatisticComponent
-    }
-  ]},
-  {path: 'menu', component: MenuComponent}
+        path: 'ticket-management', component: TicketManagementComponent
+      },
+      {
+        path: 'employee-management', component: AppComponent, children: [
+          {
+            path: '', component: EmployeeManagementComponent, pathMatch: 'full'
+          },
+          {
+            path: 'create', component: EmployeeCreatedComponent
+          }]
+      },
+      {
+        path: 'information/:managedType', component: ManageInformationComponent
+      },
+      {
+        path: 'profit', component: AppComponent, children: [
+          {
+            path: '', component: ProfitStatisticComponent, pathMatch: 'full'
+          },
+          {
+            path: 'statistic/:statisticType', component: DataStatisticsComponent
+          }
+        ]
+      }
+    ]
+  },
+  { path: 'menu', component: MenuComponent }
 ];
 
 
@@ -108,7 +118,8 @@ const appRouters: Routes = [
     BusInfoModalComponent,
     BirthdayValidatorDirective,
     PhonenumberValidatorDirective,
-    ProfitStatisticComponent
+    ProfitStatisticComponent,
+    DataStatisticsComponent
   ],
   imports: [
     BrowserModule,

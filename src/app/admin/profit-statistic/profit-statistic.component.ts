@@ -17,7 +17,7 @@ export class ProfitStatisticComponent implements OnInit {
       image: '/assets/images/BUS_STATICTIS.png'
     },
     {
-      text: 'Thông kê vé bị hủy',
+      text: 'Thống kê vé bị hủy',
       image: '/assets/images/CANCEL_STATICTIS.png'
     }
   ];
