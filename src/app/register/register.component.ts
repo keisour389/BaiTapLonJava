@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
+  isAcceptTerm = false;
+
+  // tslint:disable-next-line:variable-name
   constructor(private _location: Location) { }
 
-  backClicked(){
-    //Return previous page
+  backClicked(): void{
+    // Return previous page
     this._location.back();
   }
 
+  onSubmit(form: NgModel): void{
+    console.log(form);
+  }
 
   ngOnInit(): void {
   }

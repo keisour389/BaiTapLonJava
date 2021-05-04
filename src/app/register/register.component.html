@@ -12,18 +12,37 @@
             <g />
         </svg>
         <div class="row">
-            <div class="col-md-12 page">     
-                <form class="register-form shadow-sm p-3 mb-5 bg-white rounded" action="">
+            <div class="col-md-12 page">
+                <form (ngSubmit)="onSubmit(phoneNumber)" #f="ngForm"
+                    class="register-form shadow-sm p-3 mb-5 bg-white rounded">
                     <h4>Đăng kí</h4>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="firstName">Họ</label>
-                                <input class="form-control" id="firstName" type="text">
+                                <input class="form-control" id="firstName" type="text" name="firstName"
+                                    #firstName="ngModel" ngModel required>
                             </div>
                             <div class="col-md-6">
                                 <label for="lastName">Tên</label>
-                                <input class="form-control" id="firstName" type="text">
+                                <input class="form-control" id="lastName" type="text" name="lastName"
+                                    #lastName="ngModel" ngModel required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error-message">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div *ngIf="firstName.invalid && firstName.touched" class=" alert alert-danger"
+                                    role="alert">
+                                    Họ không được để trống
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div *ngIf="lastName.invalid && lastName.touched" class="alert alert-danger"
+                                    role="alert">
+                                    Tên không được để trống
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -31,7 +50,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="dob">Ngày sinh</label>
-                                <input class="form-control" id="dob" type="date">
+                                <input class="form-control" id="dob" type="date" name="dob" #dob="ngModel" ngModel
+                                    required appBirthdayValidator>
                             </div>
                             <div class="col-md-6">
                                 <label for="gender">Giới tính</label>
@@ -43,26 +63,59 @@
                             </div>
                         </div>
                     </div>
+                    <div class="error-message">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="dob.invalid && dob.touched  && dob.errors!.dateError == null"
+                                    class="alert alert-danger" role="alert">
+                                    Ngày sinh không được để trống
+                                </div>
+                                <div *ngIf="dob.errors !== null && !dob.errors.required" class="alert alert-danger"
+                                    role="alert">
+                                    {{dob.errors!.message}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="phoneNumber">Số điện thoại</label>
-                                <input class="form-control" id="phoneNumber" type="tel">
+                                <input class="form-control" id="phoneNumber" type="tel" name="phoneNumber"
+                                    #phoneNumber="ngModel" ngModel appPhonenumberValidator required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error-message">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="phoneNumber.invalid && phoneNumber.touched  && phoneNumber.errors!.phoneError == null"
+                                    class="alert alert-danger" role="alert">
+                                    Số điện thoại không được để trống
+                                </div>
+                                <div *ngIf="phoneNumber.errors !== null && !phoneNumber.errors.required"
+                                    class="alert alert-danger" role="alert">
+                                    {{phoneNumber.errors!.message}}
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="acceptTerm">Tôi đồng ý với tất cả <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">điều khoản</a>.</label>
-                                <input style="margin-left: 10px;" id="acceptTerm" type="checkbox">
+                                <label for="acceptTerm">Tôi đồng ý với tất cả <a
+                                        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">điều
+                                        khoản</a>.</label>
+                                <input style="margin-left: 10px;" id="acceptTerm" name="acceptTerm"
+                                    #acceptTerm="ngModel" ngModel [(ngModel)]="isAcceptTerm" type="checkbox" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3 offset-md-9" style="text-align: right;">
-                                <button class="btn btn-success" type="submit">Xác nhận</button>
+                                <button [disabled]='f.invalid' class="btn btn-success" type="submit">Xác nhận</button>
                             </div>
                         </div>
                     </div>
