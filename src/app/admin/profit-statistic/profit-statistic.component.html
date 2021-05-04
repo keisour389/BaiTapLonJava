@@ -1,0 +1,17 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="container">
+    <h2>Thống kê</h2>
+    <div class="option-list">
+        <div class="row">
+            <div class="col-md-3">
+                <app-option [data]="optionData[0]" [routerLink]="['../information', 3]"></app-option>
+            </div>
+            <div class="col-md-3">
+                <app-option [data]="optionData[1]" [routerLink]="['./create']"></app-option>
+            </div>
+            <div class="col-md-3">
+                <app-option [data]="optionData[2]" [routerLink]="['./create']"></app-option>
+            </div>
+        </div>
+    </div>
+</div>

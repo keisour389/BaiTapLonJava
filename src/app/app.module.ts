@@ -33,6 +33,7 @@ import { TicketInfoModalComponent } from './common/modal/ticket-info-modal/ticke
 import { BusInfoModalComponent } from './common/modal/bus-info-modal/bus-info-modal.component';
 import { BirthdayValidatorDirective } from './directive/birthday-validator.directive';
 import { PhonenumberValidatorDirective } from './directive/phonenumber-validator.directive';
+import { ProfitStatisticComponent } from './admin/profit-statistic/profit-statistic.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -69,6 +70,9 @@ const appRouters: Routes = [
     },
     {
       path: 'information/:managedType', component: ManageInformationComponent
+    },
+    {
+      path: 'profit', component: ProfitStatisticComponent
     }
   ]},
   {path: 'menu', component: MenuComponent}
@@ -103,7 +107,8 @@ const appRouters: Routes = [
     TicketInfoModalComponent,
     BusInfoModalComponent,
     BirthdayValidatorDirective,
-    PhonenumberValidatorDirective
+    PhonenumberValidatorDirective,
+    ProfitStatisticComponent
   ],
   imports: [
     BrowserModule,

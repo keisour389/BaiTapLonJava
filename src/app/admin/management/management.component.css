@@ -12,6 +12,9 @@
     padding-left: 0;
 }
 /*Management page*/
+.management-page{
+  height: 100vh;
+}
 /*Managed frame*/
 .managed-frame {
   background: white;

@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-9">
-                                    Chưa có tài khoản? <a routerLink='/register'>Tạo ngay</a>
+                                    <div *ngIf="loginType === 'khách hàng'" class="register">Chưa có tài khoản? <a routerLink='/register'>Tạo ngay</a></div>           
                                 </div>
                                 <div class="col-md-3">
                                     <button class="btn btn-success" type="submit">Đăng nhập</button>

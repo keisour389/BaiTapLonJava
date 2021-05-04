@@ -19,7 +19,7 @@ export class TicketManagementComponent implements OnInit {
   {
     text: 'Lịch sử hủy vé',
     image: '/assets/images/CANCEL.png'
-  },
+  }
 ];
 
   constructor() { }
