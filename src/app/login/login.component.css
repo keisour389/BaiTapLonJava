@@ -66,6 +66,12 @@
     color: black;
   }
 
+/*Error handling*/
+.error-message{
+  height: 60px;
+  width: 100%;
+}
+
 /*Event*/
 .img-login-type:hover{
     opacity: 0.8;

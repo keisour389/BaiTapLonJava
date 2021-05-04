@@ -14,7 +14,7 @@
             </svg>
             <div class="row">
                 <div class="col-md-12 page">
-                    <form class="login-form shadow-sm p-3 mb-5 bg-white rounded" action="">
+                    <form class="login-form shadow-sm p-3 mb-5 bg-white rounded" (ngSubmit)="onSubmit(f)" #f="ngForm">
                         <h4 class="text-login">Chọn loại đăng nhập</h4>
                         <div class="form-group">
                             <div class="row">
@@ -38,13 +38,23 @@
                             <p class="text-tip">Xin chào {{loginType}}<br>Vui lòng điền thông tin đăng nhập vào các ô
                                 bên dưới<br></p>
                         </div>
+                        <div class="error-message">
+                            <div *ngIf="isSubmitted && userId.invalid" class="alert alert-danger" role="alert">
+                                Vui lòng nhập tài khoản
+                            </div>
+                            <div *ngIf="isSubmitted && userId.valid && password.invalid" class="alert alert-danger" role="alert">
+                                Vui lòng nhập mật khẩu
+                            </div>
+                        </div>                     
                         <div class="form-group">
                             <label for="userId" class="text-login">Tên đăng nhập</label>
-                            <input type="text" class="form-control" id="userId">
+                            <input type="text" class="form-control" id="userId" name="userId" #userId="ngModel" ngModel
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="password" class="text-login">Mật khẩu</label>
-                            <input type="text" class="form-control" id="password">
+                            <input type="text" class="form-control" id="password" name="password" #password="ngModel"
+                                ngModel required>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -52,7 +62,7 @@
                                     Chưa có tài khoản? <a routerLink='/register'>Tạo ngay</a>
                                 </div>
                                 <div class="col-md-3">
-                                    <button class="btn btn-success">Đăng nhập</button>
+                                    <button class="btn btn-success" type="submit">Đăng nhập</button>
                                 </div>
                             </div>
                         </div>
