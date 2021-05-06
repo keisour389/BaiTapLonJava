@@ -1,31 +1,30 @@
 import { Directive } from '@angular/core';
 import { AbstractControl, FormControl, NG_VALIDATORS, ValidatorFn, Validators } from '@angular/forms';
-import { pipe } from 'rxjs';
 
 @Directive({
-  selector: '[appBirthdayValidator]',
+  selector: '[appBiggerDayValidator]',
   providers: [
     {
       provide: NG_VALIDATORS,
-      useClass: BirthdayValidatorDirective,
+      useClass: BiggerDayValidatorDirective,
       multi: true
     }
   ]
 })
-export class BirthdayValidatorDirective implements Validators {
+export class BiggerDayValidatorDirective implements Validators {
 
   validator: ValidatorFn;
 
   nowDate: Date = new Date();
 
   constructor() {
-    this.validator = this.birthdayValidator();
+    this.validator = this.biggerDayValidator();
   }
   validate(c: FormControl): any {
     return this.validator(c);
   }
 
-  birthdayValidator(): ValidatorFn {
+  biggerDayValidator(): ValidatorFn {
     return (control: AbstractControl) => {
       // If control doesn't have value
       if (!control.value){
@@ -38,7 +37,7 @@ export class BirthdayValidatorDirective implements Validators {
           if (dateData > this.nowDate){
             return{dateError: true,
               // message: 'DATE_GREATER_THAN_NOW_DATE',
-              message: 'Ngày sinh không thể lớn hơn ngày hiện tại'};
+              message: 'Ngày chọn không thể lớn hơn ngày hiện tại'};
           }
           // Error free
           else{

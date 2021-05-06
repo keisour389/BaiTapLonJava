@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-created',
@@ -8,6 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class EmployeeCreatedComponent implements OnInit {
 
   constructor() { }
+
+  onSubmit(model: NgModel): void{
+    console.log(model);
+  }
 
   ngOnInit(): void {
   }

@@ -51,7 +51,7 @@
                             <div class="col-md-6">
                                 <label for="dob">Ngày sinh</label>
                                 <input class="form-control" id="dob" type="date" name="dob" #dob="ngModel" ngModel
-                                    required appBirthdayValidator>
+                                    required appBiggerDayValidator>
                             </div>
                             <div class="col-md-6">
                                 <label for="gender">Giới tính</label>
@@ -66,13 +66,13 @@
                     <div class="error-message">
                         <div class="row">
                             <div class="col-md-12">
-                                <div *ngIf="dob.invalid && dob.touched  && dob.errors!.dateError == null"
+                                <div *ngIf="dob.invalid && dob.touched && dob.errors!.required"
                                     class="alert alert-danger" role="alert">
                                     Ngày sinh không được để trống
                                 </div>
                                 <div *ngIf="dob.errors !== null && !dob.errors.required" class="alert alert-danger"
                                     role="alert">
-                                    {{dob.errors!.message}}
+                                    {{dob.errors.message}}
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                     <div class="error-message">
                         <div class="row">
                             <div class="col-md-12">
-                                <div *ngIf="phoneNumber.invalid && phoneNumber.touched  && phoneNumber.errors!.phoneError == null"
+                                <div *ngIf="phoneNumber.invalid && phoneNumber.touched && phoneNumber.errors!.required"
                                     class="alert alert-danger" role="alert">
                                     Số điện thoại không được để trống
                                 </div>

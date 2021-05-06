@@ -31,10 +31,13 @@ import { ManageInformationComponent } from './admin/manage-information/manage-in
 import { EmployeeInfoModalComponent } from './common/modal/employee-info-modal/employee-info-modal.component';
 import { TicketInfoModalComponent } from './common/modal/ticket-info-modal/ticket-info-modal.component';
 import { BusInfoModalComponent } from './common/modal/bus-info-modal/bus-info-modal.component';
-import { BirthdayValidatorDirective } from './directive/birthday-validator.directive';
+import { BiggerDayValidatorDirective } from './directive/biggerday-validator.directive';
 import { PhonenumberValidatorDirective } from './directive/phonenumber-validator.directive';
 import { ProfitStatisticComponent } from './admin/profit-statistic/profit-statistic.component';
 import { DataStatisticsComponent } from './admin/data-statistics/data-statistics.component';
+import { ChecknumericDirective } from './directive/checknumeric.directive';
+import { LicencePlateValidatorDirective } from './directive/licence-plate-validator.directive';
+import { IdValidatorDirective } from './directive/id-validator.directive';
 
 const appRouters: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -116,10 +119,13 @@ const appRouters: Routes = [
     EmployeeInfoModalComponent,
     TicketInfoModalComponent,
     BusInfoModalComponent,
-    BirthdayValidatorDirective,
+    BiggerDayValidatorDirective,
     PhonenumberValidatorDirective,
     ProfitStatisticComponent,
-    DataStatisticsComponent
+    DataStatisticsComponent,
+    ChecknumericDirective,
+    LicencePlateValidatorDirective,
+    IdValidatorDirective
   ],
   imports: [
     BrowserModule,

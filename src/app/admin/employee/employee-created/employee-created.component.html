@@ -4,16 +4,32 @@
         <div class="title">
             <h1>Tạo tài khoản cho nhân viên</h1>
         </div>
-        <form action="" class="shadow p-3 mb-5 bg-white rounded">
+        <form (ngSubmit)="onSubmit(id)" class="shadow p-3 mb-5 bg-white rounded">
             <div class="form-group">
                 <div class="row">
                     <div class="label" class="col-md-6">
                         <label for="fName">Họ</label>
-                        <input type="text" class="form-control" id="fName">
+                        <input type="text" class="form-control" id="fName" name="fName" #fName="ngModel" ngModel
+                            required>
                     </div>
                     <div class="col-md-6">
                         <label class="label" for="lName">Tên</label>
-                        <input type="text" class="form-control" id="lName">
+                        <input type="text" class="form-control" id="lName" name="lName" #lName="ngModel" ngModel
+                            required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div *ngIf="fName.invalid && fName.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div *ngIf="lName.invalid && lName.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
                     </div>
                 </div>
             </div>
@@ -24,11 +40,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8">                     
-                        <input type="text" class="form-control" id="userId">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="userId" name="userId" #userId="ngModel" ngModel
+                            required>
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-primary form-control">Đề xuất tên</button>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="userId.invalid && userId.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
                     </div>
                 </div>
             </div>
@@ -36,11 +62,27 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label" for="password">Mật khẩu</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" class="form-control" class="form-control" id="password" name="password"
+                            #password="ngModel" ngModel required>
                     </div>
                     <div class="col-md-6">
                         <label class="label" for="repassword">Nhập lại mật khẩu</label>
-                        <input type="password" class="form-control" id="repassword">
+                        <input type="password" class="form-control" class="form-control" id="repassword"
+                            name="repassword" #repassword="ngModel" ngModel required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div *ngIf="password.invalid && password.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div *ngIf="repassword.invalid && repassword.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,7 +90,22 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="label" for="dOB">Ngày sinh</label>
-                        <input type="date" class="form-control" id="dOB">
+                        <input type="date" class="form-control" class="form-control" id="dOB" name="dOB" #dOB="ngModel"
+                            ngModel appBiggerDayValidator required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="dOB.invalid && dOB.touched && dOB.errors!.required" class="alert alert-danger"
+                            role="alert">
+                            Không được để trống
+                        </div>
+                        <div *ngIf="dOB.errors !== null && !dOB.errors.required" class="alert alert-danger"
+                            role="alert">
+                            {{dOB.errors.message}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,24 +113,63 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="label" for="address">Địa chỉ</label>
-                        <input type="text" class="form-control" id="address">
-                    </div>        
+                        <input type="text" class="form-control" id="address" name="address" #address="ngModel" ngModel
+                            required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="address.invalid && address.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12">
                         <label class="label" for="phoneNumber">Số điện thoại</label>
-                        <input type="text" class="form-control" id="phoneNumber">
-                    </div>        
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                            #phoneNumber="ngModel" ngModel appPhonenumberValidator required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="phoneNumber.invalid && phoneNumber.touched && phoneNumber.errors!.required"
+                            class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                        <div *ngIf="phoneNumber.errors !== null && !phoneNumber.errors.required"
+                            class="alert alert-danger" role="alert">
+                            {{phoneNumber.errors!.message}}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12">
                         <label class="label" for="id">CMND</label>
-                        <input type="text" class="form-control" id="id">
-                    </div>        
+                        <input type="text" class="form-control" id="id" name="id" #id="ngModel" ngModel appIdValidator
+                            required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="id.invalid && id.touched && id.errors!.required" class="alert alert-danger"
+                            role="alert">
+                            Không được để trống
+                        </div>
+                        <div *ngIf="id.errors !== null && !id.errors.required" class="alert alert-danger" role="alert">
+                            {{id.errors!.message}}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -81,18 +177,16 @@
                     <div class="col-md-12">
                         <label class="label" for="note">Ghi chú</label>
                         <textarea rows="3" class="form-control" id="note"></textarea>
-                    </div>        
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12" style="text-align: right;">
-                       <button class="btn btn-success" type="submit">Xác nhận</button>
-                    </div>        
+                        <button class="btn btn-success" type="submit">Xác nhận</button>
+                    </div>
                 </div>
-            </div>                                
+            </div>
         </form>
     </div>
 </div>
-
-

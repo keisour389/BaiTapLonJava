@@ -1,8 +1,8 @@
-import { BirthdayValidatorDirective } from './birthday-validator.directive';
+import { BiggerDayValidatorDirective } from './biggerday-validator.directive';
 
 describe('BirthdayValidatorDirective', () => {
   it('should create an instance', () => {
-    const directive = new BirthdayValidatorDirective();
+    const directive = new BiggerDayValidatorDirective();
     expect(directive).toBeTruthy();
   });
 });
