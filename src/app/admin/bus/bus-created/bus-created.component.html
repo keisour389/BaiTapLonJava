@@ -4,7 +4,7 @@
         <div class="title">
             <h1>Tạo chuyến xe mới</h1>
         </div>
-        <form (ngSubmit)="onSubmit(licensePlates)" class="shadow p-3 mb-5 bg-white rounded">
+        <form (ngSubmit)="onSubmit(licensePlates)" #f="ngForm" class="shadow p-3 mb-5 bg-white rounded">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
@@ -147,14 +147,14 @@
                     <div class="col-md-12">
                         <label class="label" for="note">Ghi chú</label>
                         <textarea rows="3" class="form-control" id="note" name="note" #note="ngModel" ngModel
-                            required></textarea>
+                        ></textarea>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12" style="text-align: right;">
-                        <button class="btn btn-success" type="submit">Xác nhận</button>
+                        <button [disabled]="f.invalid" class="btn btn-success" type="submit">Xác nhận</button>
                     </div>
                 </div>
             </div>
