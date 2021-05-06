@@ -1,0 +1,62 @@
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 5px;
+  color: #ff7247;
+}
+.menu{
+  position: fixed;
+  height: 100vh;
+  background: #303030;
+  border: 1px solid #a8a8a8;
+}
+/*Info*/
+.person-info {
+  padding: 5px;
+}
+.avatar {
+  height: 60px;
+  width: 60px;
+  border: 1px solid #000000;
+  border-radius: 90px;
+  margin: 0 auto;
+}
+.ava-image{
+  width: 100%;
+  height: 100%;
+  border-radius: 90px;
+}
+.info-title {
+  font: 20px aria;  
+  font-weight: 600;
+  color: #ffc800;
+}
+.full-name {
+  color: white;
+  font-size: 23px;
+  font-style: italic;
+}
+/*Info*/
+/*Option*/
+.option-list {
+  list-style-type: square;
+}
+.option {
+  border: 1px solid transparent;
+  /* border-top: 1px solid #a8a8a8; */
+}
+.option-text{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  font-size: 15px;
+  color: #e3e3e3;
+}
+/*Option*/
+/*Event*/
+.option:hover{
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(40, 230, 247, 0.8); 
+  /* border: 1px solid #000000; */
+}
+/*Event*/

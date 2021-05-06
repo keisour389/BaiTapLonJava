@@ -1,0 +1,17 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="container">
+    <div class="bus-management">
+        <h2>Các chức năng</h2>
+        <div class="option-list">
+            <div class="row">
+                <div class="col-md-3">
+                    <app-option [data]="optionData[0]" [routerLink]="['./create']"></app-option>
+                </div>
+                <div class="col-md-3">
+                    <app-option [data]="optionData[1]" [routerLink]="['../information', 1]"></app-option>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

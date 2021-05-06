@@ -1,0 +1,202 @@
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 *ngIf="!isUpdate" class="modal-title" id="exampleModalLongTitle">Xem chi tiết</h5>
+                <h5 *ngIf="isUpdate" class="modal-title" id="exampleModalLongTitle">Cập nhật</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="!isUpdate" class="modal-body">
+                <div class="bus-info">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="tripId" class="info-label">Mã chuyến</label>
+                                <input [disabled]=true name="tripId" id="tripId" type="text" class="form-control" [(ngModel)]="indexData.tripId">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="licensePlate" class="info-label">Biển số xe</label>
+                                <input [disabled]=true name="licensePlate" id="licensePlate" type="text" class="form-control" [(ngModel)]="indexData.licensePlate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="vehicleType" class="info-label">Loại xe</label>
+                                <input [disabled]=true name="vehicleType" id="vehicleType" type="text" class="form-control" [(ngModel)]="indexData.vehicleType">                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="driver" class="info-label">Tài xế</label>
+                                <input [disabled]=true name="driver" id="driver" type="text" class="form-control" [(ngModel)]="indexData.driver">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="subDriver" class="info-label">Phụ xe</label>
+                                <input [disabled]=true name="subDriver" id="subDriver" type="text" class="form-control" [(ngModel)]="indexData.subDriver">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="from" class="info-label">Điểm đi</label>
+                                <input [disabled]=true name="from" id="from" type="text" class="form-control" [(ngModel)]="indexData.from">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="to" class="info-label">Điểm đến</label>
+                                <input [disabled]=true name="to" id="to" type="text" class="form-control" [(ngModel)]="indexData.to">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label for="departureDay" class="info-label">Ngày giờ khởi hành </label>
+                                <input [disabled]=true name="departureDay" id="departureDay" type="datetime-local" class="form-control" [(ngModel)]="indexData.departureDay">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="totalTime" class="info-label">Tổng thời gian</label>
+                                <input [disabled]=true name="totalTime" id="totalTime" type="text" class="form-control" [(ngModel)]="indexData.totalTime">
+                            </div>                             
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="totalSeat" class="info-label">Số chỗ ngồi</label>
+                                <input [disabled]=true name="totalSeat" id="totalSeat" type="text" class="form-control" [(ngModel)]="indexData.totalSeat">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="status" class="info-label">Trạng thái</label>
+                                <input [disabled]=true name="status" id="status" type="text" class="form-control" [(ngModel)]="indexData.status">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="managed" class="info-label">Quản lí bởi</label>
+                                <input [disabled]=true name="managed" id="managed" type="text" class="form-control" [(ngModel)]="indexData.managed">
+                            </div>
+                        </div>
+                    </div>                  
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="createdOn" class="info-label">Ngày tạo</label>
+                                <input [disabled]=true name="createdOn" id="createdOn" type="date" class="form-control" [(ngModel)]="indexData.createdOn">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="updatedOn" class="info-label">Lần cuối sửa đổi</label>
+                                <input [disabled]=true name="updatedOn" id="updatedOn" type="date" class="form-control" [(ngModel)]="indexData.updatedOn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="note" class="info-label">Ghi chú</label>
+                                <textarea [disabled]=true name="note" rows="3" id="note" type="text" class="form-control" [(ngModel)]="indexData.note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isUpdate" class="modal-body">
+                <div class="bus-info">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="tripId" class="info-label">Mã chuyến</label>
+                                <input [disabled]=true name="tripId" id="tripId" type="text" class="form-control" [(ngModel)]="indexData.tripId">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="licensePlate" class="info-label">Biển số xe</label>
+                                <input name="licensePlate" id="licensePlate" type="text" class="form-control" [(ngModel)]="indexData.licensePlate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="vehicleType" class="info-label">Loại xe</label>
+                                <input name="vehicleType" id="vehicleType" type="text" class="form-control" [(ngModel)]="indexData.vehicleType">                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="driver" class="info-label">Tài xế</label>
+                                <input name="driver" id="driver" type="text" class="form-control" [(ngModel)]="indexData.driver">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="subDriver" class="info-label">Phụ xe</label>
+                                <input name="subDriver" id="subDriver" type="text" class="form-control" [(ngModel)]="indexData.subDriver">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="from" class="info-label">Điểm đi</label>
+                                <input name="from" id="from" type="text" class="form-control" [(ngModel)]="indexData.from">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="to" class="info-label">Điểm đến</label>
+                                <input name="to" id="to" type="text" class="form-control" [(ngModel)]="indexData.to">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label for="departureDay" class="info-label">Ngày giờ khởi hành </label>
+                                <input name="departureDay" id="departureDay" type="datetime-local" class="form-control" [(ngModel)]="indexData.departureDay">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="totalTime" class="info-label">Tổng thời gian</label>
+                                <input name="totalTime" id="totalTime" type="text" class="form-control" [(ngModel)]="indexData.totalTime">
+                            </div>                             
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="totalSeat" class="info-label">Số chỗ ngồi</label>
+                                <input name="totalSeat" id="totalSeat" type="text" class="form-control" [(ngModel)]="indexData.totalSeat">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="status" class="info-label">Trạng thái</label>
+                                <input name="status" id="status" type="text" class="form-control" [(ngModel)]="indexData.status">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="managed" class="info-label">Quản lí bởi</label>
+                                <input name="managed" id="managed" type="text" class="form-control" [(ngModel)]="indexData.managed">
+                            </div>
+                        </div>
+                    </div>                  
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="createdOn" class="info-label">Ngày tạo</label>
+                                <input [disabled]=true name="createdOn" id="createdOn" type="date" class="form-control" [(ngModel)]="indexData.createdOn">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="updatedOn" class="info-label">Lần cuối sửa đổi</label>
+                                <input [disabled]=true name="updatedOn" id="updatedOn" type="date" class="form-control" [(ngModel)]="indexData.updatedOn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="note" class="info-label">Ghi chú</label>
+                                <textarea name="note" rows="3" id="note" type="text" class="form-control" [(ngModel)]="indexData.note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button *ngIf="isUpdate" type="button" class="btn btn-success">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

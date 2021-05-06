@@ -1,18 +1,35 @@
-.main{
-    background-image: linear-gradient(180deg, #bdfffc, #6bd7ff) ;
+.main {
+  background-image: linear-gradient(180deg, #bdfffc, #6bd7ff);
 }
-.page { 
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center; /* center vertically */
+.page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
 }
- /**/
- .register-form{
-    background-color: white;
-    height: 70%;
-    width: 50%;
-    width: 50%;
-    opacity: 0.9;
- }
+.back-clicked {
+  margin-top: 20px;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  display: inline-block;
+  border: 2px solid #000000;
+  z-index: 1;
+}
+.back-clicked-icon {
+  width: 100%;
+  height: 100%;
+  transform: translate(20%, 20%);
+}
+/**/
+.register-form {
+  background-color: white;  
+  width: 50%;
+  opacity: 0.9;
+}
+/*Event*/
+.back-clicked:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}

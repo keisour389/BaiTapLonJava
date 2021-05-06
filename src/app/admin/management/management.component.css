@@ -1,0 +1,45 @@
+.main {
+  background: rgb(237, 237, 237, 0.6);
+}
+#navigation {
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+/*Menu page*/
+.menu-page{
+    padding-left: 0;
+}
+/*Management page*/
+.management-page{
+  height: 100vh;
+}
+/*Managed frame*/
+.managed-frame {
+  background: white;
+}
+.managed-image {
+  width: 100px;
+  height: 100px;
+}
+.managed-text {
+  vertical-align: top;
+  font-size: 20px;
+}
+.managed-description {
+  color: gray;
+}
+.title {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+/*Chart*/
+.chart {
+  margin: 0 auto;
+}
+/*Event*/
+.managed-frame:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
