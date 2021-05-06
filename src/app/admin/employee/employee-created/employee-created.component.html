@@ -4,7 +4,7 @@
         <div class="title">
             <h1>Tạo tài khoản cho nhân viên</h1>
         </div>
-        <form (ngSubmit)="onSubmit(id)" class="shadow p-3 mb-5 bg-white rounded">
+        <form (ngSubmit)="onSubmit(id)" #f="ngForm" class="shadow p-3 mb-5 bg-white rounded">
             <div class="form-group">
                 <div class="row">
                     <div class="label" class="col-md-6">
@@ -63,12 +63,13 @@
                     <div class="col-md-6">
                         <label class="label" for="password">Mật khẩu</label>
                         <input type="password" class="form-control" class="form-control" id="password" name="password"
-                            #password="ngModel" ngModel required>
+                            #password="ngModel" ngModel [(ngModel)]="empPassword.password" required>
                     </div>
                     <div class="col-md-6">
                         <label class="label" for="repassword">Nhập lại mật khẩu</label>
                         <input type="password" class="form-control" class="form-control" id="repassword"
-                            name="repassword" #repassword="ngModel" ngModel required>
+                            name="confirmPassword" #confirmPassword="ngModel" ngModel
+                            [(ngModel)]="empPassword.confirmPassword" required>
                     </div>
                 </div>
             </div>
@@ -80,8 +81,18 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div *ngIf="repassword.invalid && repassword.touched" class="alert alert-danger" role="alert">
+                        <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="alert alert-danger"
+                            role="alert">
                             Không được để trống
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="!isConfirmPasswordCorrectly && isConfirmPasswordCorrectly !== undefined" class="alert alert-danger" role="alert">
+                            Mật khẩu xác nhận không đúng
                         </div>
                     </div>
                 </div>
@@ -183,7 +194,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12" style="text-align: right;">
-                        <button class="btn btn-success" type="submit">Xác nhận</button>
+                        <button [disabled]="f.invalid" class="btn btn-success" type="submit">Xác nhận</button>
                     </div>
                 </div>
             </div>

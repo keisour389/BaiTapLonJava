@@ -8,10 +8,25 @@ import { NgModel } from '@angular/forms';
 })
 export class EmployeeCreatedComponent implements OnInit {
 
+  isConfirmPasswordCorrectly!: boolean;
+  empPassword: any = {
+    password: null,
+    confirmPassword: null
+  }
+
+
   constructor() { }
 
-  onSubmit(model: NgModel): void{
+  onSubmit(model: NgModel): void {
     console.log(model);
+    this.isConfirmPasswordCorrectly = this.checkConfirmPassword();
+  }
+
+  checkConfirmPassword(): boolean{
+    if(this.empPassword.password === this.empPassword.confirmPassword){
+      return true;
+    }
+    return false;
   }
 
   ngOnInit(): void {

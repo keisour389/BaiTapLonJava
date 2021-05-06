@@ -9,6 +9,12 @@ import { NgForm, NgModel } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  isConfirmPasswordCorrectly!: boolean;
+  userPassword: any = {
+     password: null,
+     confirmPassword: null
+  }
+
   isAcceptTerm = false;
 
   // tslint:disable-next-line:variable-name
@@ -21,6 +27,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form: NgModel): void{
     console.log(form);
+    this.isConfirmPasswordCorrectly = this.checkConfirmPassword();
+  }
+
+  checkConfirmPassword(): boolean{
+    if(this.userPassword.password === this.userPassword.confirmPassword){
+      return true;
+    }
+    return false;
   }
 
   ngOnInit(): void {
