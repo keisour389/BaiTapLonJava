@@ -38,6 +38,7 @@ import { DataStatisticsComponent } from './admin/data-statistics/data-statistics
 import { ChecknumericDirective } from './directive/checknumeric.directive';
 import { LicencePlateValidatorDirective } from './directive/licence-plate-validator.directive';
 import { IdValidatorDirective } from './directive/id-validator.directive';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const appRouters: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -88,7 +89,8 @@ const appRouters: Routes = [
       }
     ]
   },
-  { path: 'menu', component: MenuComponent }
+  { path: 'menu', component: MenuComponent },
+  { path: 'feedback', component: FeedbackComponent }
 ];
 
 
@@ -125,7 +127,8 @@ const appRouters: Routes = [
     DataStatisticsComponent,
     ChecknumericDirective,
     LicencePlateValidatorDirective,
-    IdValidatorDirective
+    IdValidatorDirective,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
