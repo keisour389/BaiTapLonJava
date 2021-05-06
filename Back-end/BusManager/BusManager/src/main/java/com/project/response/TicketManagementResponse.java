@@ -13,47 +13,24 @@ import java.util.Date;
  * @author DELL
  */
 public class TicketManagementResponse {
-    private String ticketId;
     private String seatId;
     private BigDecimal price;
     private Integer status;
     private BigDecimal payment;
     private Date paymentDate;
     private Date bookingDate;
-    private String note;
-    private String tripId;
-    private String cusId;
     
     public TicketManagementResponse(){
     }
     
-    public TicketManagementResponse(String ticketId, String seatId, BigDecimal price, 
-            Integer status, BigDecimal payment, Date paymentDate, Date bookingDate,
-            String note, String tripId, String cusId){
-        this.ticketId = ticketId;
+    public TicketManagementResponse(String seatId, BigDecimal price, Integer status, 
+            BigDecimal payment, Date paymentDate, Date bookingDate){
         this.seatId = seatId;
         this.price = price;
         this.status = status;
         this.payment = payment;
         this.paymentDate = paymentDate;
         this.bookingDate = bookingDate;
-        this.note = note;
-        this.tripId = tripId;
-        this.cusId = cusId;
-    }
-
-    /**
-     * @return the ticketId
-     */
-    public String getTicketId() {
-        return ticketId;
-    }
-
-    /**
-     * @param ticketId the ticketId to set
-     */
-    public void setTicketId(String ticketId) {
-        this.ticketId = ticketId;
     }
 
     /**
@@ -138,47 +115,5 @@ public class TicketManagementResponse {
      */
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
-    }
-
-    /**
-     * @return the note
-     */
-    public String getNote() {
-        return note;
-    }
-
-    /**
-     * @param note the note to set
-     */
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    /**
-     * @return the tripId
-     */
-    public String getTripId() {
-        return tripId;
-    }
-
-    /**
-     * @param tripId the tripId to set
-     */
-    public void setTripId(String tripId) {
-        this.tripId = tripId;
-    }
-
-    /**
-     * @return the cusId
-     */
-    public String getCusId() {
-        return cusId;
-    }
-
-    /**
-     * @param cusId the cusId to set
-     */
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
     }
 }

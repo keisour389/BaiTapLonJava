@@ -10,38 +10,15 @@ package com.project.response;
  * @author DELL
  */
 public class FeedbackResponse {
-    private String feedbackId;
     private String content;
     private Integer status;
-    private String note;
-    private String cusId;
-    private String empId;
     
     public FeedbackResponse(){
     }
     
-    public FeedbackResponse(String feedbackId, String content, Integer status, 
-            String note, String cusId, String empId){
-        this.feedbackId = feedbackId;
+    public FeedbackResponse(String content, Integer status){
         this.content = content;
         this.status = status;
-        this.note = note;
-        this.cusId = cusId;
-        this.empId = empId;
-    }
-
-    /**
-     * @return the feedbackId
-     */
-    public String getFeedbackId() {
-        return feedbackId;
-    }
-
-    /**
-     * @param feedbackId the feedbackId to set
-     */
-    public void setFeedbackId(String feedbackId) {
-        this.feedbackId = feedbackId;
     }
 
     /**
@@ -70,47 +47,5 @@ public class FeedbackResponse {
      */
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    /**
-     * @return the note
-     */
-    public String getNote() {
-        return note;
-    }
-
-    /**
-     * @param note the note to set
-     */
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    /**
-     * @return the cusId
-     */
-    public String getCusId() {
-        return cusId;
-    }
-
-    /**
-     * @param cusId the cusId to set
-     */
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
-    }
-
-    /**
-     * @return the empId
-     */
-    public String getEmpId() {
-        return empId;
-    }
-
-    /**
-     * @param empId the empId to set
-     */
-    public void setEmpId(String empId) {
-        this.empId = empId;
     }
 }

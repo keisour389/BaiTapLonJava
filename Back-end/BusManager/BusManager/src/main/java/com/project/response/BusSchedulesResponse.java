@@ -13,7 +13,6 @@ import java.util.Date;
  * @author DELL
  */
 public class BusSchedulesResponse {
-    private String tripId;
     private String licensePlates;
     private String mainDriver;
     private String subDriver;
@@ -24,19 +23,14 @@ public class BusSchedulesResponse {
     private Integer status;
     private String vehicalType;
     private Integer totalSeats;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
-    private String note;
     private String manager;
     
     public BusSchedulesResponse(){
     }
     
-    public BusSchedulesResponse(String tripId, String licensePlates, String mainDriver,
+    public BusSchedulesResponse(String licensePlates, String mainDriver,
                 String subDriver, String from, String to, Date departureDay, Integer totalTime, 
-                Integer status, String vehicalType, Integer totalSeats, LocalDateTime createdOn, 
-                LocalDateTime updatedOn, String note, String manager){
-        this.tripId = tripId;
+                Integer status, String vehicalType, Integer totalSeats, String manager){
         this.licensePlates = licensePlates;
         this.mainDriver = mainDriver;
         this.subDriver = subDriver;
@@ -47,24 +41,7 @@ public class BusSchedulesResponse {
         this.status = status;
         this.vehicalType = vehicalType;
         this.totalSeats = totalSeats;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
-        this.note = note;
         this.manager = manager;
-    }
-
-    /**
-     * @return the tripId
-     */
-    public String getTripId() {
-        return tripId;
-    }
-
-    /**
-     * @param tripId the tripId to set
-     */
-    public void setTripId(String tripId) {
-        this.tripId = tripId;
     }
 
     /**
@@ -205,48 +182,6 @@ public class BusSchedulesResponse {
      */
     public void setTotalSeats(Integer totalSeats) {
         this.totalSeats = totalSeats;
-    }
-
-    /**
-     * @return the createdOn
-     */
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    /**
-     * @param createdOn the createdOn to set
-     */
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    /**
-     * @return the updatedOn
-     */
-    public LocalDateTime getUpdatedOn() {
-        return updatedOn;
-    }
-
-    /**
-     * @param updatedOn the updatedOn to set
-     */
-    public void setUpdatedOn(LocalDateTime updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
-    /**
-     * @return the note
-     */
-    public String getNote() {
-        return note;
-    }
-
-    /**
-     * @param note the note to set
-     */
-    public void setNote(String note) {
-        this.note = note;
     }
 
     /**

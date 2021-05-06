@@ -31,7 +31,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
     private LocalSessionFactoryBean localSessionFactoryBean;
 
     @Override
-//    @Transactional
+    @Transactional
     public List<Object> getAllAccountInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
@@ -51,7 +51,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
     }
     
     @Override
-//    @Transactional
+    @Transactional
     public AccountInfo getAccountInfoById(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -66,7 +66,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
     }
 
     @Override
-//    @Transactional
+    @Transactional
     public AccountInfo getAccountInfoByUserIdPassword(String userId, String password) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -82,7 +82,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
     }
     
     @Override
-//    @Transactional
+    @Transactional
     public AccountInfo createAccountInfo(AccountInfo accountInfo) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         if(accountInfo != null){

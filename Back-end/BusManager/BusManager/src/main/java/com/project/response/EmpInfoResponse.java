@@ -13,7 +13,6 @@ import java.util.Date;
  * @author DELL
  */
 public class EmpInfoResponse {
-    private String userId;
     private String firstName;
     private String lastName;
     private String displayName;
@@ -23,19 +22,14 @@ public class EmpInfoResponse {
     private String id;
     private String gender;
     private Integer type;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
-    private String note;
     private String username;
     
     public EmpInfoResponse(){
     }
     
-    public EmpInfoResponse(String userId, String firstName, String lastName, 
+    public EmpInfoResponse(String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String address, 
-            String id, String gender, Integer type, LocalDateTime createdOn, 
-            LocalDateTime updatedOn, String note, String username){
-        this.userId = userId;
+            String id, String gender, Integer type, String username){
         this.firstName = firstName;
         this.lastName = lastName;
         this.displayName = displayName;
@@ -45,24 +39,7 @@ public class EmpInfoResponse {
         this.id = id;
         this.gender = gender;
         this.type = type;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
-        this.note = note;
         this.username = username;
-    }
-
-    /**
-     * @return the userId
-     */
-    public String getUserId() {
-        return userId;
-    }
-
-    /**
-     * @param userId the userId to set
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     /**
@@ -189,48 +166,6 @@ public class EmpInfoResponse {
      */
     public void setType(Integer type) {
         this.type = type;
-    }
-
-    /**
-     * @return the createdOn
-     */
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    /**
-     * @param createdOn the createdOn to set
-     */
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    /**
-     * @return the updatedOn
-     */
-    public LocalDateTime getUpdatedOn() {
-        return updatedOn;
-    }
-
-    /**
-     * @param updatedOn the updatedOn to set
-     */
-    public void setUpdatedOn(LocalDateTime updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
-    /**
-     * @return the note
-     */
-    public String getNote() {
-        return note;
-    }
-
-    /**
-     * @param note the note to set
-     */
-    public void setNote(String note) {
-        this.note = note;
     }
 
     /**

@@ -115,5 +115,4 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
-    
 }

@@ -52,9 +52,6 @@ public class AccountInfoServiceImpl implements AccountInfoService{
         
         accountInfoResponse.setType(result.getType());
         accountInfoResponse.setStatus(result.getStatus());
-        accountInfoResponse.setCreatedOn(result.getCreatedOn());
-        accountInfoResponse.setUpdatedOn(result.getUpdatedOn());
-        accountInfoResponse.setNote(result.getNote());
         
         return accountInfoResponse;
     }
