@@ -20,10 +20,10 @@ public class BusSchedulesRequest {
     private String from;
     private String to;
     private Date departureDay;
-    private Integer totalTime;
-    private Integer status;
+    private int totalTime;
+    private int status;
     private String vehicalType;
-    private Integer totalSeats;
+    private int totalSeats;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
@@ -33,8 +33,8 @@ public class BusSchedulesRequest {
     }
     
     public BusSchedulesRequest(String tripId, String licensePlates, String mainDriver,
-                String subDriver, String from, String to, Date departureDay, Integer totalTime, 
-                Integer status, String vehicalType, Integer totalSeats, LocalDateTime createdOn, 
+                String subDriver, String from, String to, Date departureDay, int totalTime, 
+                int status, String vehicalType, int totalSeats, LocalDateTime createdOn, 
                 LocalDateTime updatedOn, String note, String manager){
         this.tripId = tripId;
         this.licensePlates = licensePlates;
@@ -126,28 +126,28 @@ public class BusSchedulesRequest {
     /**
      * @return the totalTime
      */
-    public Integer getTotalTime() {
+    public int getTotalTime() {
         return totalTime;
     }
 
     /**
      * @param totalTime the totalTime to set
      */
-    public void setTotalTime(Integer totalTime) {
+    public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -168,14 +168,14 @@ public class BusSchedulesRequest {
     /**
      * @return the totalSeats
      */
-    public Integer getTotalSeats() {
+    public int getTotalSeats() {
         return totalSeats;
     }
 
     /**
      * @param totalSeats the totalSeats to set
      */
-    public void setTotalSeats(Integer totalSeats) {
+    public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
     }
 

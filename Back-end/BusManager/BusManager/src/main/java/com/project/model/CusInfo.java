@@ -32,8 +32,6 @@ import javax.persistence.Temporal;
 @Table(name="cus_info")
 public class CusInfo implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID", length = 20, nullable = false)
     private String userId;
     
@@ -55,8 +53,7 @@ public class CusInfo implements Serializable {
     
     @JsonProperty("dob")
     @Column(name = "DOB", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date birthday;
+    private LocalDateTime birthday;
     
     @JsonProperty("gender")
     @Column(name = "GENDER", length = 50, nullable = false)
@@ -161,14 +158,14 @@ public class CusInfo implements Serializable {
     /**
      * @return the birthday
      */
-    public Date getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday;
     }
 
     /**
      * @param birthday the birthday to set
      */
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 

@@ -21,7 +21,7 @@ public class EmpInfoResponse {
     private String address;
     private String id;
     private String gender;
-    private Integer type;
+    private int type;
     private String username;
     
     public EmpInfoResponse(){
@@ -29,7 +29,7 @@ public class EmpInfoResponse {
     
     public EmpInfoResponse(String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String address, 
-            String id, String gender, Integer type, String username){
+            String id, String gender, int type, String username){
         this.firstName = firstName;
         this.lastName = lastName;
         this.displayName = displayName;
@@ -157,14 +157,14 @@ public class EmpInfoResponse {
     /**
      * @return the type
      */
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 

@@ -41,8 +41,8 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
                 AccountInfoResponse.class,
                 root.get("userId"),
                 root.get("password"),
-                root.get("type"),
-                root.get("status"),
+                root.get("type").as(String.class),
+                root.get("status").as(String.class),
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
                 root.get("note")

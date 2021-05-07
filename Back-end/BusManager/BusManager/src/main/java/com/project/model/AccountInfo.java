@@ -27,8 +27,6 @@ import javax.persistence.Table;
 @Table(name = "account_info")
 public class AccountInfo implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="USER_ID", length = 20, nullable = false)
     private String userId;
     
@@ -36,10 +34,10 @@ public class AccountInfo implements Serializable {
     private String password;
     
     @Column(name="TYPE", nullable = false)
-    private String type;
+    private int type;
     
     @Column(name="STATUS", nullable = false)
-    private String status;
+    private int status;
     
     @Column(name="CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
@@ -89,28 +87,28 @@ public class AccountInfo implements Serializable {
     /**
      * @return the type
      */
-    public String getType() {
+    public int getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
     /**
      * @return the status
      */
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

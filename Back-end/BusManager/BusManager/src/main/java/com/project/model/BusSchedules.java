@@ -32,8 +32,6 @@ import javax.persistence.Temporal;
 @Table(name="bus_schedules")
 public class BusSchedules implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="TRIP_ID", length = 20, nullable = false)
     private String tripId;
     
@@ -66,11 +64,11 @@ public class BusSchedules implements Serializable {
     
     @JsonProperty("total_time")
     @Column(name="TOTAL_TIME", nullable = false)
-    private Integer totalTime;
+    private int totalTime;
     
     @JsonProperty("status")
     @Column(name="STATUS", nullable = false)
-    private Integer status;
+    private int status;
      
     @JsonProperty("vehical_type")
     @Column(name="VEHICAL_TYPE", length = 100, nullable = false)
@@ -78,7 +76,7 @@ public class BusSchedules implements Serializable {
     
     @JsonProperty("total_seat")
     @Column(name="TOTAL_SEATS", nullable = false)
-    private Integer totalSeats;
+    private int totalSeats;
     
     @Column(name="CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
@@ -203,28 +201,28 @@ public class BusSchedules implements Serializable {
     /**
      * @return the totalTime
      */
-    public Integer getTotalTime() {
+    public int getTotalTime() {
         return totalTime;
     }
 
     /**
      * @param totalTime the totalTime to set
      */
-    public void setTotalTime(Integer totalTime) {
+    public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -245,14 +243,14 @@ public class BusSchedules implements Serializable {
     /**
      * @return the totalSeats
      */
-    public Integer getTotalSeats() {
+    public int getTotalSeats() {
         return totalSeats;
     }
 
     /**
      * @param totalSeats the totalSeats to set
      */
-    public void setTotalSeats(Integer totalSeats) {
+    public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
     }
 

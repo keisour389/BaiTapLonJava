@@ -22,7 +22,7 @@ public class EmpInfoRequest {
     private String address;
     private String id;
     private String gender;
-    private Integer type;
+    private int type;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
@@ -33,7 +33,7 @@ public class EmpInfoRequest {
     
     public EmpInfoRequest(String userId, String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String address, 
-            String id, String gender, Integer type, LocalDateTime createdOn, 
+            String id, String gender, int type, LocalDateTime createdOn, 
             LocalDateTime updatedOn, String note, String username){
         this.userId = userId;
         this.firstName = firstName;
@@ -180,14 +180,14 @@ public class EmpInfoRequest {
     /**
      * @return the type
      */
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 

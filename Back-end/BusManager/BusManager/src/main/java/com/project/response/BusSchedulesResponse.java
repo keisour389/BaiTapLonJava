@@ -19,18 +19,18 @@ public class BusSchedulesResponse {
     private String from;
     private String to;
     private Date departureDay;
-    private Integer totalTime;
-    private Integer status;
+    private int totalTime;
+    private int status;
     private String vehicalType;
-    private Integer totalSeats;
+    private int totalSeats;
     private String manager;
     
     public BusSchedulesResponse(){
     }
     
     public BusSchedulesResponse(String licensePlates, String mainDriver,
-                String subDriver, String from, String to, Date departureDay, Integer totalTime, 
-                Integer status, String vehicalType, Integer totalSeats, String manager){
+                String subDriver, String from, String to, Date departureDay, int totalTime, 
+                int status, String vehicalType, int totalSeats, String manager){
         this.licensePlates = licensePlates;
         this.mainDriver = mainDriver;
         this.subDriver = subDriver;
@@ -131,28 +131,28 @@ public class BusSchedulesResponse {
     /**
      * @return the totalTime
      */
-    public Integer getTotalTime() {
+    public int getTotalTime() {
         return totalTime;
     }
 
     /**
      * @param totalTime the totalTime to set
      */
-    public void setTotalTime(Integer totalTime) {
+    public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -173,14 +173,14 @@ public class BusSchedulesResponse {
     /**
      * @return the totalSeats
      */
-    public Integer getTotalSeats() {
+    public int getTotalSeats() {
         return totalSeats;
     }
 
     /**
      * @param totalSeats the totalSeats to set
      */
-    public void setTotalSeats(Integer totalSeats) {
+    public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
     }
 

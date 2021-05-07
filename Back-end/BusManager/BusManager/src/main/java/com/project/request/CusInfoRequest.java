@@ -18,7 +18,7 @@ public class CusInfoRequest {
     private String lastName;
     private String displayName;
     private String phoneNumber;
-    private Date birthday;
+    private LocalDateTime birthday;
     private String gender;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
@@ -29,7 +29,7 @@ public class CusInfoRequest {
     }
     
     public CusInfoRequest(String userId, String firstName, String lastName, 
-            String displayName, String phoneNumber, Date birthday, String gender, 
+            String displayName, String phoneNumber, LocalDateTime birthday, String gender, 
             LocalDateTime createdOn, LocalDateTime updatedOn, String note, String username){
         this.userId = userId;
         this.firstName = firstName;
@@ -117,14 +117,14 @@ public class CusInfoRequest {
     /**
      * @return the birthday
      */
-    public Date getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday;
     }
 
     /**
      * @param birthday the birthday to set
      */
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 

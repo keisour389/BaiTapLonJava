@@ -32,8 +32,6 @@ import javax.persistence.Temporal;
 @Table(name = "ticket_management")
 public class TicketManagement implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "TICKET_ID", length = 20, nullable = false)
     private String ticketId;
     
@@ -43,15 +41,15 @@ public class TicketManagement implements Serializable {
     
     @JsonProperty("price")
     @Column(name = "PRICE", length = 45, nullable = false)
-    private BigDecimal price;
+    private String price;
     
     @JsonProperty("status")
     @Column(name = "STATUS", nullable = false)
-    private Integer status;
+    private int status;
     
     @JsonProperty("payment")
     @Column(name = "PAYMENT", nullable = true)
-    private BigDecimal payment;
+    private int payment;
     
     @JsonProperty("payment_date")
     @Column(name = "PAYMENT_DATE", nullable = true)
@@ -109,42 +107,42 @@ public class TicketManagement implements Serializable {
     /**
      * @return the price
      */
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     /**
      * @return the payment
      */
-    public BigDecimal getPayment() {
+    public int getPayment() {
         return payment;
     }
 
     /**
      * @param payment the payment to set
      */
-    public void setPayment(BigDecimal payment) {
+    public void setPayment(int payment) {
         this.payment = payment;
     }
 

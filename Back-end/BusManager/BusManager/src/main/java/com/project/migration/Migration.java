@@ -17,33 +17,33 @@ import org.hibernate.tool.schema.TargetType;
  *
  * @author DELL
  */
-public class Migration {
-    public static void dropDataBase(SchemaExport export, Metadata metadata){
-        EnumSet<TargetType> targetTypes = EnumSet.of(TargetType.DATABASE);
-        export.drop(targetTypes, metadata);
-        System.out.println("Drop Ok");
-    }
-
-    public static void createDataBase(SchemaExport export, Metadata metadata){
-        EnumSet<TargetType> targetTypes = EnumSet.of(TargetType.DATABASE);
-        SchemaExport.Action action = SchemaExport.Action.CREATE;
-        export.execute(targetTypes, action, metadata);
-        System.out.println("Export Ok");
-    }
-
-    public static void main(String[] args) {
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .configure("hibernate-mysql.cfg.xml")
-                .build();
-        Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
-        SchemaExport export = new SchemaExport();
-        System.out.println("Drop Database...");
-        // Drop Database
-        dropDataBase(export, metadata);
-
-        System.out.println("Create Database...");
-
-        // Tạo lại hệ thống bảng
-        createDataBase(export, metadata);
-    }
-}
+//public class Migration {
+//    public static void dropDataBase(SchemaExport export, Metadata metadata){
+//        EnumSet<TargetType> targetTypes = EnumSet.of(TargetType.DATABASE);
+//        export.drop(targetTypes, metadata);
+//        System.out.println("Drop Ok");
+//    }
+//
+//    public static void createDataBase(SchemaExport export, Metadata metadata){
+//        EnumSet<TargetType> targetTypes = EnumSet.of(TargetType.DATABASE);
+//        SchemaExport.Action action = SchemaExport.Action.CREATE;
+//        export.execute(targetTypes, action, metadata);
+//        System.out.println("Export Ok");
+//    }
+//
+//    public static void main(String[] args) {
+//        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+//                .configure("hibernate-mysql.cfg.xml")
+//                .build();
+//        Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
+//        SchemaExport export = new SchemaExport();
+//        System.out.println("Drop Database...");
+//        // Drop Database
+//        dropDataBase(export, metadata);
+//
+//        System.out.println("Create Database...");
+//
+//        // Tạo lại hệ thống bảng
+//        createDataBase(export, metadata);
+//    }
+//}

@@ -48,7 +48,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
                 root.get("address"),
                 root.get("id"),
                 root.get("gender"),
-                root.get("type"),
+                root.get("type").as(String.class),
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
                 root.get("note"),

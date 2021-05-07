@@ -15,9 +15,9 @@ import java.util.Date;
 public class TicketManagementRequest {
     private String ticketId;
     private String seatId;
-    private BigDecimal price;
-    private Integer status;
-    private BigDecimal payment;
+    private String price;
+    private int status;
+    private int payment;
     private Date paymentDate;
     private Date bookingDate;
     private String note;
@@ -27,8 +27,8 @@ public class TicketManagementRequest {
     public TicketManagementRequest(){
     }
     
-    public TicketManagementRequest(String ticketId, String seatId, BigDecimal price, 
-            Integer status, BigDecimal payment, Date paymentDate, Date bookingDate,
+    public TicketManagementRequest(String ticketId, String seatId, String price, 
+            int status, int payment, Date paymentDate, Date bookingDate,
             String note, String tripId, String cusId){
         this.ticketId = ticketId;
         this.seatId = seatId;
@@ -73,42 +73,42 @@ public class TicketManagementRequest {
     /**
      * @return the price
      */
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     /**
      * @return the payment
      */
-    public BigDecimal getPayment() {
+    public int getPayment() {
         return payment;
     }
 
     /**
      * @param payment the payment to set
      */
-    public void setPayment(BigDecimal payment) {
+    public void setPayment(int payment) {
         this.payment = payment;
     }
 

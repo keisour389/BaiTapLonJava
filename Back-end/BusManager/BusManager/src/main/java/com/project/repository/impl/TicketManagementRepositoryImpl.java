@@ -42,7 +42,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
                 root.get("ticketId"),
                 root.get("seatId"),
                 root.get("price").as(String.class),
-                root.get("status"),
+                root.get("status").as(String.class),
                 root.get("payment").as(String.class),
                 root.get("paymentDate").as(String.class),
                 root.get("bookingDate").as(String.class),

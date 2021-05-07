@@ -32,8 +32,6 @@ import javax.persistence.Temporal;
 @Table(name = "emp_info")
 public class EmpInfo implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID", length = 20, nullable = false)
     private String userId;
     
@@ -72,7 +70,7 @@ public class EmpInfo implements Serializable {
     
     @JsonProperty("type")
     @Column(name = "TYPE", nullable = false)
-    private Integer type;
+    private int type;
     
     @Column(name = "CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
@@ -237,14 +235,14 @@ public class EmpInfo implements Serializable {
     /**
      * @return the type
      */
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 

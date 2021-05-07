@@ -25,8 +25,6 @@ import javax.persistence.Table;
 @Table(name="cancel_history")
 public class CancelHistory implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CANCEL_ID", length = 20, nullable = false)
     private String cancelId;
     

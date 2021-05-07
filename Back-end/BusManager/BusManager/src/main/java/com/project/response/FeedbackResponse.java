@@ -11,12 +11,12 @@ package com.project.response;
  */
 public class FeedbackResponse {
     private String content;
-    private Integer status;
+    private int status;
     
     public FeedbackResponse(){
     }
     
-    public FeedbackResponse(String content, Integer status){
+    public FeedbackResponse(String content, int status){
         this.content = content;
         this.status = status;
     }
@@ -38,14 +38,14 @@ public class FeedbackResponse {
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

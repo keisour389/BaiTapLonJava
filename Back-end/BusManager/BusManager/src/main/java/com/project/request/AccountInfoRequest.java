@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 public class AccountInfoRequest {
     private String userId;
     private String password;
-    private String type;
-    private String status;
+    private int type;
+    private int status;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
@@ -23,7 +23,7 @@ public class AccountInfoRequest {
     public AccountInfoRequest(){
     }
     
-    public AccountInfoRequest(String userId, String password, String type, String status,
+    public AccountInfoRequest(String userId, String password, int type, int status,
                 LocalDateTime createdOn, LocalDateTime updatedOn, String note){
         this.userId = userId;
         this.password = password;
@@ -65,28 +65,28 @@ public class AccountInfoRequest {
     /**
      * @return the type
      */
-    public String getType() {
+    public int getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
     /**
      * @return the status
      */
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
