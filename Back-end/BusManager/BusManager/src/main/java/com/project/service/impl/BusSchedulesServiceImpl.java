@@ -8,6 +8,7 @@ package com.project.service.impl;
 import com.project.model.BusSchedules;
 import com.project.repository.BusSchedulesRepository;
 import com.project.request.BusSchedulesRequest;
+import com.project.response.BusSchedulesResponse;
 import com.project.response.CommonResponse;
 import com.project.service.BusSchedulesService;
 import java.util.List;
@@ -33,9 +34,9 @@ public class BusSchedulesServiceImpl implements BusSchedulesService{
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
         
         return  commonResponse;
     }
@@ -100,5 +101,28 @@ public class BusSchedulesServiceImpl implements BusSchedulesService{
         }
         else
             return false;
+    }
+
+    @Override
+    public BusSchedulesResponse getBusSchedulesById(String id) {
+        BusSchedules result = busSchedulesRepository.getBusSchedulesById(id);
+        if(result != null){
+            BusSchedulesResponse busSchedulesResponse = new BusSchedulesResponse();
+            busSchedulesResponse.setTripId(result.getTripId());
+            busSchedulesResponse.setMainDriver(result.getMainDriver().toString());
+            busSchedulesResponse.setSubDriver(result.getSubDriver().toString());
+            busSchedulesResponse.setFrom(result.getFrom());
+            busSchedulesResponse.setTo(result.getTo());
+            busSchedulesResponse.setDepartureDay(result.getDepartureDay());
+            busSchedulesResponse.setTotalTime(result.getTotalTime());
+            busSchedulesResponse.setStatus(result.getStatus());
+            busSchedulesResponse.setVehicalType(result.getVehicalType());
+            busSchedulesResponse.setTotalSeats(result.getTotalSeats());
+            busSchedulesResponse.setManager(result.getManager().toString());
+            
+            return busSchedulesResponse;
+        }
+        else
+            return null;
     }
 }

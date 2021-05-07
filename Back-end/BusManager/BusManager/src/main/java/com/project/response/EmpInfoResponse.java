@@ -13,6 +13,7 @@ import java.util.Date;
  * @author DELL
  */
 public class EmpInfoResponse {
+    private String userId;
     private String firstName;
     private String lastName;
     private String displayName;
@@ -27,9 +28,10 @@ public class EmpInfoResponse {
     public EmpInfoResponse(){
     }
     
-    public EmpInfoResponse(String firstName, String lastName, 
+    public EmpInfoResponse(String userId, String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String address, 
             String id, String gender, int type, String username){
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.displayName = displayName;
@@ -180,5 +182,19 @@ public class EmpInfoResponse {
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /**
+     * @return the userId
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

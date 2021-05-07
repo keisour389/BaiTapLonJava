@@ -6,6 +6,7 @@
 package com.project.service;
 
 import com.project.request.FeedbackRequest;
+import com.project.response.FeedbackResponse;
 
 /**
  *
@@ -15,7 +16,7 @@ public interface FeedbackService {
     Object getAllFeedback(int page, int size);
     
     //Using getFeedbackById in Repository
-    //FeedbackResponse getFeedbackById(String id);
+    FeedbackResponse getFeedbackById(String id);
     
     FeedbackRequest createFeedback(FeedbackRequest feedback);
     FeedbackRequest updateFeedbackById(String id, FeedbackRequest feedback);

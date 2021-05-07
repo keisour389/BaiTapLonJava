@@ -14,6 +14,7 @@ import java.util.Date;
  * @author DELL
  */
 public class CusInfoResponse implements Serializable{
+    private String userId;
     private String firstName;
     private String lastName;
     private String displayName;
@@ -25,9 +26,10 @@ public class CusInfoResponse implements Serializable{
     public CusInfoResponse(){
     }
     
-    public CusInfoResponse(String firstName, String lastName, String displayName, 
-            String phoneNumber, Date birthday, String gender, 
-            String username){
+    public CusInfoResponse(String userId, String firstName, String lastName, 
+            String displayName, String phoneNumber, Date birthday, 
+            String gender, String username){
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.displayName = displayName;
@@ -133,5 +135,19 @@ public class CusInfoResponse implements Serializable{
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /**
+     * @return the userId
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

@@ -41,7 +41,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CancelHistoryController {
     @Autowired
     CancelHistoryService cancelHistoryService;
-    CancelHistoryRepository cancelHistoryRepository;
     
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
@@ -67,7 +66,7 @@ public class CancelHistoryController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getCancelHistory/")
     public ResponseEntity<?> getCancelHistory(@RequestParam String id){
-        Object dataCancelHistory = cancelHistoryRepository.getCancelHistoryById(id);
+        Object dataCancelHistory = cancelHistoryService.getCancelHistoryById(id);
         if(dataCancelHistory != null){
             return new ResponseEntity<>(dataCancelHistory, HttpStatus.OK);
         }

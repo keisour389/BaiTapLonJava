@@ -53,7 +53,7 @@ public class CusInfo implements Serializable {
     
     @JsonProperty("dob")
     @Column(name = "DOB", nullable = false)
-    private LocalDateTime birthday;
+    private Date birthday;
     
     @JsonProperty("gender")
     @Column(name = "GENDER", length = 50, nullable = false)
@@ -158,14 +158,14 @@ public class CusInfo implements Serializable {
     /**
      * @return the birthday
      */
-    public LocalDateTime getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
     /**
      * @param birthday the birthday to set
      */
-    public void setBirthday(LocalDateTime birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

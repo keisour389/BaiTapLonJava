@@ -13,6 +13,7 @@ import java.util.Date;
  * @author DELL
  */
 public class BusSchedulesResponse {
+    private String tripId;
     private String licensePlates;
     private String mainDriver;
     private String subDriver;
@@ -28,9 +29,10 @@ public class BusSchedulesResponse {
     public BusSchedulesResponse(){
     }
     
-    public BusSchedulesResponse(String licensePlates, String mainDriver,
+    public BusSchedulesResponse(String tripId, String licensePlates, String mainDriver,
                 String subDriver, String from, String to, Date departureDay, int totalTime, 
                 int status, String vehicalType, int totalSeats, String manager){
+        this.tripId = tripId;
         this.licensePlates = licensePlates;
         this.mainDriver = mainDriver;
         this.subDriver = subDriver;
@@ -196,5 +198,19 @@ public class BusSchedulesResponse {
      */
     public void setManager(String manager) {
         this.manager = manager;
+    }
+
+    /**
+     * @return the tripId
+     */
+    public String getTripId() {
+        return tripId;
+    }
+
+    /**
+     * @param tripId the tripId to set
+     */
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
     }
 }

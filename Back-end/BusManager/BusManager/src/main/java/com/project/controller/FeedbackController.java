@@ -41,7 +41,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeedbackController {
     @Autowired
     FeedbackService feedbackService;
-    FeedbackRepository feedbackRepository;
     
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
@@ -67,7 +66,7 @@ public class FeedbackController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getFeedback/")
     public ResponseEntity<?> getCancelHistory(@RequestParam String id){
-        Object dataFeedback = feedbackRepository.getFeedbackById(id);
+        Object dataFeedback = feedbackService.getFeedbackById(id);
         if(dataFeedback != null){
             return new ResponseEntity<>(dataFeedback, HttpStatus.OK);
         }

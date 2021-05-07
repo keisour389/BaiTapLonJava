@@ -8,6 +8,7 @@ package com.project.service.impl;
 import com.project.model.CancelHistory;
 import com.project.repository.CancelHistoryRepository;
 import com.project.request.CancelHistoryRequest;
+import com.project.response.CancelHistoryResponse;
 import com.project.response.CommonResponse;
 import com.project.service.CancelHistoryService;
 import java.util.List;
@@ -33,9 +34,9 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
         
         return  commonResponse;
     }
@@ -82,5 +83,22 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         }
         else
             return false;
+    }
+
+    @Override
+    public CancelHistoryResponse getCancelHistoryById(String id) {
+        CancelHistory result = cancelHistoryRepository.getCancelHistoryById(id);
+        if(result != null){
+            CancelHistoryResponse cancelHistoryResponse = new CancelHistoryResponse();
+            cancelHistoryResponse.setCancelId(result.getCancelId());
+            cancelHistoryResponse.setReason(result.getReason());
+            cancelHistoryResponse.setCusId(result.getCusId().toString());
+            cancelHistoryResponse.setEmpId(result.getEmpId().toString());
+            cancelHistoryResponse.setTicketId(result.getTicketId().toString());
+            
+            return cancelHistoryResponse;
+        }
+        else
+            return null;
     }
 }

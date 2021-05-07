@@ -10,15 +10,22 @@ package com.project.response;
  * @author DELL
  */
 public class FeedbackResponse {
+    private String feedbackId;
     private String content;
     private int status;
+    private String cusId;
+    private String empId;
     
     public FeedbackResponse(){
     }
     
-    public FeedbackResponse(String content, int status){
+    public FeedbackResponse(String feedbackId, String content, int status,
+                String cusId, String empId){
+        this.feedbackId = feedbackId;
         this.content = content;
         this.status = status;
+        this.cusId = cusId;
+        this.empId = empId;
     }
 
     /**
@@ -47,5 +54,47 @@ public class FeedbackResponse {
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    /**
+     * @return the feedbackId
+     */
+    public String getFeedbackId() {
+        return feedbackId;
+    }
+
+    /**
+     * @param feedbackId the feedbackId to set
+     */
+    public void setFeedbackId(String feedbackId) {
+        this.feedbackId = feedbackId;
+    }
+
+    /**
+     * @return the cusId
+     */
+    public String getCusId() {
+        return cusId;
+    }
+
+    /**
+     * @param cusId the cusId to set
+     */
+    public void setCusId(String cusId) {
+        this.cusId = cusId;
+    }
+
+    /**
+     * @return the empId
+     */
+    public String getEmpId() {
+        return empId;
+    }
+
+    /**
+     * @param empId the empId to set
+     */
+    public void setEmpId(String empId) {
+        this.empId = empId;
     }
 }

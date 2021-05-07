@@ -39,7 +39,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CusInfoController {
     @Autowired
     CusInfoService cusInfoService;
-    CusInfoRepository cusInfoRepository;
     
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
@@ -65,7 +64,7 @@ public class CusInfoController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getCusInfo/")
     public ResponseEntity<?> getCusInfoById(@RequestParam String id){
-        Object dataCusInfo = cusInfoRepository.getCusInfoById(id);
+        Object dataCusInfo = cusInfoService.getCusInfoById(id);
         if(dataCusInfo != null){
             return new ResponseEntity<>(dataCusInfo, HttpStatus.OK);
         }

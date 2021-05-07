@@ -13,24 +13,31 @@ import java.util.Date;
  * @author DELL
  */
 public class TicketManagementResponse {
+    private String ticketId;
     private String seatId;
     private String price;
     private int status;
     private int payment;
     private Date paymentDate;
     private Date bookingDate;
+    private String tripId;
+    private String cusId;
     
     public TicketManagementResponse(){
     }
     
-    public TicketManagementResponse(String seatId, String price, int status, 
-            int payment, Date paymentDate, Date bookingDate){
+    public TicketManagementResponse(String ticketId, String seatId, String price, 
+            int status, int payment, Date paymentDate, Date bookingDate,
+            String tripId, String cusId){
+        this.ticketId = ticketId;
         this.seatId = seatId;
         this.price = price;
         this.status = status;
         this.payment = payment;
         this.paymentDate = paymentDate;
         this.bookingDate = bookingDate;
+        this.tripId = tripId;
+        this.cusId = cusId;
     }
 
     /**
@@ -115,5 +122,47 @@ public class TicketManagementResponse {
      */
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
+    }
+
+    /**
+     * @return the ticketId
+     */
+    public String getTicketId() {
+        return ticketId;
+    }
+
+    /**
+     * @param ticketId the ticketId to set
+     */
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    /**
+     * @return the tripId
+     */
+    public String getTripId() {
+        return tripId;
+    }
+
+    /**
+     * @param tripId the tripId to set
+     */
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
+    }
+
+    /**
+     * @return the cusId
+     */
+    public String getCusId() {
+        return cusId;
+    }
+
+    /**
+     * @param cusId the cusId to set
+     */
+    public void setCusId(String cusId) {
+        this.cusId = cusId;
     }
 }

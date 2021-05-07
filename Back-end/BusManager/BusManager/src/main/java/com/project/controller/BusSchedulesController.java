@@ -41,7 +41,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BusSchedulesController {
     @Autowired
     BusSchedulesService busSchedulesService;
-    BusSchedulesRepository busSchedulesRepository;
     
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
@@ -67,7 +66,7 @@ public class BusSchedulesController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getBusSchedules/")
     public ResponseEntity<?> getBusSchedulesById(@RequestParam String id){
-        Object dataBusSchedules = busSchedulesRepository.getBusSchedulesById(id);
+        Object dataBusSchedules = busSchedulesService.getBusSchedulesById(id);
         if(dataBusSchedules != null){
             return new ResponseEntity<>(dataBusSchedules, HttpStatus.OK);
         }

@@ -42,8 +42,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountInfoController {
     @Autowired
     AccountInfoService accountInfoService;
-    AccountInfoRepository accountInfoRepository;
-    
+
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
     @PostMapping(value = "createAccountInfo", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -68,7 +67,7 @@ public class AccountInfoController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getAccountInfo/")
     public ResponseEntity<?> getAccountInfo(@RequestParam String id){
-        Object dataAccountInfo = accountInfoRepository.getAccountInfoById(id);
+        Object dataAccountInfo = accountInfoService.getAccountInfoById(id);
         if(dataAccountInfo != null){
             return new ResponseEntity<>(dataAccountInfo, HttpStatus.OK);
         }

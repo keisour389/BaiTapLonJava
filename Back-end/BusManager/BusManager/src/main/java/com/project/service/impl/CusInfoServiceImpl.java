@@ -9,6 +9,7 @@ import com.project.model.CusInfo;
 import com.project.repository.CusInfoRepository;
 import com.project.request.CusInfoRequest;
 import com.project.response.CommonResponse;
+import com.project.response.CusInfoResponse;
 import com.project.service.CusInfoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class CusInfoServiceImpl implements CusInfoService{
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
         
         return  commonResponse;
     }
@@ -90,5 +91,25 @@ public class CusInfoServiceImpl implements CusInfoService{
         }
         else
             return false;
+    }
+
+    @Override
+    public CusInfoResponse getCusInfoById(String id) {
+        CusInfo result = cusInfoRepository.getCusInfoById(id);
+        if(result != null){
+            CusInfoResponse cusInfoResponse = new CusInfoResponse();
+            cusInfoResponse.setUserId(result.getUserId());
+            cusInfoResponse.setFirstName(result.getFirstName());
+            cusInfoResponse.setLastName(result.getLastName());
+            cusInfoResponse.setDisplayName(result.getDisplayName());
+            cusInfoResponse.setPhoneNumber(result.getPhoneNumber());
+            cusInfoResponse.setBirthday(result.getBirthday());
+            cusInfoResponse.setGender(result.getGender());
+            cusInfoResponse.setUsername(result.getUsername().toString());
+            
+            return cusInfoResponse;
+        }
+        else
+            return null;
     }
 }

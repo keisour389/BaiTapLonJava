@@ -50,7 +50,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
                 root.get("note"),
-                root.get("username")
+                root.get("username").as(String.class)
         ));
         return session.createQuery(query).getResultList();
     }

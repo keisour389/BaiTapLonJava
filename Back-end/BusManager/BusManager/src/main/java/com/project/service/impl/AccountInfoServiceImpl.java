@@ -37,9 +37,9 @@ public class AccountInfoServiceImpl implements AccountInfoService{
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
         
         return commonResponse;
     }
@@ -100,5 +100,20 @@ public class AccountInfoServiceImpl implements AccountInfoService{
         }
         else
             return false;
+    }
+
+    @Override
+    public AccountInfoResponse getAccountInfoById(String id) {
+        AccountInfo result = accountInfoRepository.getAccountInfoById(id);
+        if(result != null){
+            AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
+            accountInfoResponse.setUserId(result.getUserId());
+            accountInfoResponse.setType(result.getType());
+            accountInfoResponse.setStatus(result.getStatus());
+            
+            return accountInfoResponse;
+        }
+        else
+            return null;
     }
 }

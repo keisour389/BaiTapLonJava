@@ -41,7 +41,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TicketManagementController {
     @Autowired
     TicketManagementService ticketManagementService;
-    TicketManagementRepository ticketManagementRepository;
     
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
@@ -67,7 +66,7 @@ public class TicketManagementController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getTicketManagement/")
     public ResponseEntity<?> getTicketManagement(@RequestParam String id){
-        Object dataTicketManagement = ticketManagementRepository.getTicketManagementById(id);
+        Object dataTicketManagement = ticketManagementService.getTicketManagementById(id);
         if(dataTicketManagement != null){
             return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
         }

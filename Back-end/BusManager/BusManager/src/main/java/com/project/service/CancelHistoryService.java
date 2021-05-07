@@ -6,6 +6,7 @@
 package com.project.service;
 
 import com.project.request.CancelHistoryRequest;
+import com.project.response.CancelHistoryResponse;
 
 /**
  *
@@ -15,7 +16,7 @@ public interface CancelHistoryService {
     Object getAllCancelHistory(int page, int size);
     
     //Using getCancelHistoryById in Repository
-    //CancelHistoryResponse getCancelHistoryById(String id);
+    CancelHistoryResponse getCancelHistoryById(String id);
     
     CancelHistoryRequest createCancelHistory(CancelHistoryRequest cancelHistory);
     CancelHistoryRequest updateCancelHistoryById(String id, CancelHistoryRequest cancelHistory);

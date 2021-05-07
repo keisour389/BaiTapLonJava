@@ -13,13 +13,15 @@ import java.time.LocalDateTime;
  * @author DELL
  */
 public class AccountInfoResponse implements Serializable{
+    private String userId;
     private int type;
     private int status;
     
     public AccountInfoResponse(){
     }
     
-    public AccountInfoResponse(int type, int status){
+    public AccountInfoResponse(String userId, int type, int status){
+        this.userId = userId;
         this.type = type;
         this.status = status;
     }
@@ -50,5 +52,19 @@ public class AccountInfoResponse implements Serializable{
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    /**
+     * @return the userId
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

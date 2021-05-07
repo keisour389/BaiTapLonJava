@@ -9,6 +9,7 @@ import com.project.model.EmpInfo;
 import com.project.repository.EmpInfoRepository;
 import com.project.request.EmpInfoRequest;
 import com.project.response.CommonResponse;
+import com.project.response.EmpInfoResponse;
 import com.project.service.EmpInfoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class EmpInfoServiceImpl implements EmpInfoService{
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
         
         return  commonResponse;
     }
@@ -96,5 +97,28 @@ public class EmpInfoServiceImpl implements EmpInfoService{
         }
         else
             return false;
+    }
+
+    @Override
+    public EmpInfoResponse getEmpInfoById(String id) {
+        EmpInfo result = empInfoRepository.getEmpInfoById(id);
+        if(result != null){
+            EmpInfoResponse empInfoResponse = new EmpInfoResponse();
+            empInfoResponse.setUserId(result.getUserId());
+            empInfoResponse.setFirstName(result.getFirstName());
+            empInfoResponse.setLastName(result.getLastName());
+            empInfoResponse.setDisplayName(result.getDisplayName());
+            empInfoResponse.setPhoneNumber(result.getPhoneNumber());
+            empInfoResponse.setBirthday(result.getBirthday());
+            empInfoResponse.setAddress(result.getAddress());
+            empInfoResponse.setId(result.getId());
+            empInfoResponse.setGender(result.getGender());
+            empInfoResponse.setType(result.getType());
+            empInfoResponse.setUsername(result.getUsername().toString());
+            
+            return empInfoResponse;
+        }
+        else
+            return null;
     }
 }
