@@ -42,13 +42,13 @@ public class BusSchedules implements Serializable {
     @JsonProperty("main_driver")
     @ManyToOne
 //    fetch = FetchType.EAGER
-    @JoinColumn(name="MAIN_DRIVER", nullable = false)
+    @JoinColumn(name="MAIN_DRIVER")
     private EmpInfo mainDriver;
     
     @JsonProperty("sub_driver")
     @ManyToOne
 //    fetch = FetchType.EAGER
-    @JoinColumn(name="SUB_DRIVER", nullable = false)
+    @JoinColumn(name="SUB_DRIVER")
     private EmpInfo subDriver;
     
     @JsonProperty("from")
@@ -92,7 +92,7 @@ public class BusSchedules implements Serializable {
     @JsonProperty("manager")
     @ManyToOne
 //    fetch = FetchType.EAGER
-    @JoinColumn(name="MANAGER", nullable = false)
+    @JoinColumn(name="MANAGER")
     private EmpInfo manager;
     
     @JsonIgnore
