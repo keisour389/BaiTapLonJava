@@ -64,16 +64,19 @@ public class TicketManagement implements Serializable {
     @Column(name = "NOTE", length = 200, nullable = true)
     private String note;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+//    fetch = FetchType.LAZY
     @JoinColumn(name = "TRIP_ID")
     private BusSchedules tripId;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+//    fetch = FetchType.LAZY
     @JoinColumn(name = "CUS_ID")
     private CusInfo cusId;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "ticketId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "ticketId")
+//    fetch = FetchType.EAGER
     private List<CancelHistory> cancelHistory = new ArrayList<>();
 
     /**

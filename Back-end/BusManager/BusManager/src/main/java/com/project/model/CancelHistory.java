@@ -36,17 +36,20 @@ public class CancelHistory implements Serializable {
     private String note;
     
     @JsonProperty("cusId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+//    fetch = FetchType.LAZY
     @JoinColumn(name="CUS_ID")
     private CusInfo cusId;
     
     @JsonProperty("empId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+//    fetch = FetchType.LAZY
     @JoinColumn(name="EMP_ID")
     private EmpInfo empId;
     
     @JsonProperty("ticketId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+//    fetch = FetchType.LAZY
     @JoinColumn(name="TICKET_ID")
     private TicketManagement ticketId;
 

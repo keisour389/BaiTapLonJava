@@ -82,28 +82,34 @@ public class EmpInfo implements Serializable {
     private String note;
     
     @JsonProperty("username")
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
+//    fetch = FetchType.EAGER
     @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID", nullable = false)
     private AccountInfo username;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "empId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empId")
+//    fetch = FetchType.LAZY
     private List<CancelHistory> CancelHistory;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "empId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empId")
+//    fetch = FetchType.LAZY
     private List<Feedback> feedback;
             
     @JsonIgnore
-    @OneToMany(mappedBy = "mainDriver", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "mainDriver")
+//    fetch = FetchType.LAZY
     private List<BusSchedules> mainDriver;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "subDriver", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "subDriver")
+//    fetch = FetchType.LAZY
     private List<BusSchedules> subDriver;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "manager")
+//    fetch = FetchType.LAZY
     private List<BusSchedules> manager;
 
     /**

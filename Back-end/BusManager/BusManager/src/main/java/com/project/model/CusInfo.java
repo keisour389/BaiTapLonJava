@@ -69,20 +69,24 @@ public class CusInfo implements Serializable {
     private String note;
     
     @JsonProperty("username")
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
+//    fetch = FetchType.EAGER
     @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID", nullable = false)
     private AccountInfo username;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "cusId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cusId")
+//    fetch = FetchType.LAZY
     private List<TicketManagement> ticketManagement;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "cusId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cusId")
+//    fetch = FetchType.LAZY
     private List<CancelHistory> cancelHistory;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "cusId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cusId")
+//    fetch = FetchType.LAZY
     private List<Feedback> feedback;
 
     /**

@@ -49,11 +49,13 @@ public class AccountInfo implements Serializable {
     private String note;
     
     @JsonIgnore
-    @OneToOne(mappedBy = "username", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "username")
+//    fetch = FetchType.EAGER
     private CusInfo cusInfo;
     
     @JsonIgnore
-    @OneToOne(mappedBy = "username", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "username")
+//    fetch = FetchType.EAGER
     private EmpInfo empInfo;
 
     /**
