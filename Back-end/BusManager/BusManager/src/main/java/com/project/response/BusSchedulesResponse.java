@@ -5,19 +5,19 @@
  */
 package com.project.response;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import lombok.AllArgsConstructor;
 
 /**
  *
- * @author DELL
+ * @author Keisour
  */
 public class BusSchedulesResponse {
+
     private String tripId;
     private String licensePlates;
-    private String mainDriver;
-    private String subDriver;
+    private String mainDriverId;
+    private String subDriverId;
     private String start;
     private String destination;
     private LocalDateTime departureDay;
@@ -27,29 +27,37 @@ public class BusSchedulesResponse {
     private int totalSeats;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
-    private String manager;
+    private String managerId;
     
-    public BusSchedulesResponse(){
-    }
-    
-    public BusSchedulesResponse(String tripId, String licensePlates, String mainDriver,
-                String subDriver, String start, String destination, LocalDateTime departureDay, int totalTime, 
-                int status, String vehicleType, int totalSeats, LocalDateTime createdOn,
-                LocalDateTime updatedOn, String manager){
+    public BusSchedulesResponse(){}
+
+    public BusSchedulesResponse(String tripId, String licensePlates, String mainDriverId, String subDriverId,
+            String start, String destination, LocalDateTime departureDay, int totalTime,
+            int status, String vehicleType, int totalSeats, LocalDateTime createdOn,
+            LocalDateTime updatedOn, String managerId) {
         this.tripId = tripId;
         this.licensePlates = licensePlates;
-        this.mainDriver = mainDriver;
-        this.subDriver = subDriver;
+        this.mainDriverId = mainDriverId;
+        this.subDriverId = subDriverId;
         this.start = start;
         this.destination = destination;
         this.departureDay = departureDay;
         this.totalTime = totalTime;
-        this.status = status;
         this.vehicleType = vehicleType;
-        this.totalSeats = totalSeats;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
-        this.manager = manager;
+    }
+
+    /**
+     * @return the tripId
+     */
+    public String getTripId() {
+        return tripId;
+    }
+
+    /**
+     * @param tripId the tripId to set
+     */
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
     }
 
     /**
@@ -67,42 +75,42 @@ public class BusSchedulesResponse {
     }
 
     /**
-     * @return the mainDriver
+     * @return the mainDriverId
      */
-    public String getMainDriver() {
-        return mainDriver;
+    public String getMainDriverId() {
+        return mainDriverId;
     }
 
     /**
-     * @param mainDriver the mainDriver to set
+     * @param mainDriverId the mainDriverId to set
      */
-    public void setMainDriver(String mainDriver) {
-        this.mainDriver = mainDriver;
+    public void setMainDriverId(String mainDriverId) {
+        this.mainDriverId = mainDriverId;
     }
 
     /**
-     * @return the subDriver
+     * @return the subDriverId
      */
-    public String getSubDriver() {
-        return subDriver;
+    public String getSubDriverId() {
+        return subDriverId;
     }
 
     /**
-     * @param subDriver the subDriver to set
+     * @param subDriverId the subDriverId to set
      */
-    public void setSubDriver(String subDriver) {
-        this.subDriver = subDriver;
+    public void setSubDriverId(String subDriverId) {
+        this.subDriverId = subDriverId;
     }
 
     /**
-     * @return the from
+     * @return the start
      */
     public String getStart() {
         return start;
     }
 
     /**
-     * @param start the from to set
+     * @param start the start to set
      */
     public void setStart(String start) {
         this.start = start;
@@ -116,7 +124,7 @@ public class BusSchedulesResponse {
     }
 
     /**
-     * @param destination the to to set
+     * @param destination the destination to set
      */
     public void setDestination(String destination) {
         this.destination = destination;
@@ -134,6 +142,20 @@ public class BusSchedulesResponse {
      */
     public void setDepartureDay(LocalDateTime departureDay) {
         this.departureDay = departureDay;
+    }
+
+    /**
+     * @return the vehicleType
+     */
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    /**
+     * @param vehicleType the vehicleType to set
+     */
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     /**
@@ -165,20 +187,6 @@ public class BusSchedulesResponse {
     }
 
     /**
-     * @return the vehicleType
-     */
-    public String getVehicleType() {
-        return vehicleType;
-    }
-
-    /**
-     * @param vehicleType the vehicalType to set
-     */
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
-    }
-
-    /**
      * @return the totalSeats
      */
     public int getTotalSeats() {
@@ -190,34 +198,6 @@ public class BusSchedulesResponse {
      */
     public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
-    }
-
-    /**
-     * @return the manager
-     */
-    public String getManager() {
-        return manager;
-    }
-
-    /**
-     * @param manager the manager to set
-     */
-    public void setManager(String manager) {
-        this.manager = manager;
-    }
-
-    /**
-     * @return the tripId
-     */
-    public String getTripId() {
-        return tripId;
-    }
-
-    /**
-     * @param tripId the tripId to set
-     */
-    public void setTripId(String tripId) {
-        this.tripId = tripId;
     }
 
     /**
@@ -247,4 +227,19 @@ public class BusSchedulesResponse {
     public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
     }
+
+    /**
+     * @return the managerId
+     */
+    public String getManagerId() {
+        return managerId;
+    }
+
+    /**
+     * @param managerId the managerId to set
+     */
+    public void setManagerId(String managerId) {
+        this.managerId = managerId;
+    }
+
 }

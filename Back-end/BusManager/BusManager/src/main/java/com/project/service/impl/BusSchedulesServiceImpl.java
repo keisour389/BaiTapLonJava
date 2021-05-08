@@ -31,7 +31,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
     private EmpInfoRepository empInfoRepository;
 
     @Override
-    public Object getAllBusSchedules(int page, int size) {
+    public CommonResponse getAllBusSchedules(int page, int size) {
         CommonResponse commonResponse = new CommonResponse();
         List result = busSchedulesRepository.getAllBusSchedules();
         int offset = (page - 1) * size;
@@ -134,8 +134,8 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         if (result != null) {
             BusSchedulesResponse busSchedulesResponse = new BusSchedulesResponse();
             busSchedulesResponse.setTripId(result.getTripId());
-            busSchedulesResponse.setMainDriver(result.getMainDriver().toString());
-            busSchedulesResponse.setSubDriver(result.getSubDriver().toString());
+            busSchedulesResponse.setMainDriverId(result.getMainDriver().toString());
+            busSchedulesResponse.setSubDriverId(result.getSubDriver().toString());
             busSchedulesResponse.setStart(result.getStart());
             busSchedulesResponse.setDestination(result.getDestination());
             busSchedulesResponse.setDepartureDay(result.getDepartureDay());
@@ -143,7 +143,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
             busSchedulesResponse.setStatus(result.getStatus());
             busSchedulesResponse.setVehicleType(result.getVehicalType());
             busSchedulesResponse.setTotalSeats(result.getTotalSeats());
-            busSchedulesResponse.setManager(result.getManager().toString());
+            busSchedulesResponse.setManagerId(result.getManager().toString());
 
             return busSchedulesResponse;
         } else {

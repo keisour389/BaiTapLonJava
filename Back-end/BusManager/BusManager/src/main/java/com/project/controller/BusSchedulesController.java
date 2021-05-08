@@ -7,6 +7,7 @@ package com.project.controller;
 
 import com.project.repository.BusSchedulesRepository;
 import com.project.request.BusSchedulesRequest;
+import com.project.response.CommonResponse;
 import com.project.service.BusSchedulesService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -59,7 +60,7 @@ public class BusSchedulesController {
     @GetMapping(value = "getAllBusSchedules/")
     public ResponseEntity<?> getAllBusSchedules(@RequestParam int page,
                                         @RequestParam int size){
-        Object dataBusSchedules = busSchedulesService.getAllBusSchedules(page, size);
+        CommonResponse dataBusSchedules = busSchedulesService.getAllBusSchedules(page, size);
         return new ResponseEntity<>(dataBusSchedules, HttpStatus.OK);
     }
     
