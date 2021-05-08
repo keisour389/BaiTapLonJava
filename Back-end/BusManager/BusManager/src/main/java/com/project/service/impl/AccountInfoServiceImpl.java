@@ -103,15 +103,10 @@ public class AccountInfoServiceImpl implements AccountInfoService{
     }
 
     @Override
-    public AccountInfoResponse getAccountInfoById(String id) {
+    public AccountInfo getAccountInfoById(String id) {
         AccountInfo result = accountInfoRepository.getAccountInfoById(id);
         if(result != null){
-            AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
-            accountInfoResponse.setUserId(result.getUserId());
-            accountInfoResponse.setType(result.getType());
-            accountInfoResponse.setStatus(result.getStatus());
-            
-            return accountInfoResponse;
+            return result;
         }
         else
             return null;

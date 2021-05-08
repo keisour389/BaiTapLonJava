@@ -7,13 +7,14 @@ package com.project.service;
 
 import com.project.request.BusSchedulesRequest;
 import com.project.response.BusSchedulesResponse;
+import com.project.response.CommonResponse;
 
 /**
  *
  * @author DELL
  */
 public interface BusSchedulesService {
-    Object getAllBusSchedules(int page, int size);
+    CommonResponse getAllBusSchedules(int page, int size);
     
     //Using getBusSchedulesById in Repository
     BusSchedulesResponse getBusSchedulesById(String id);
