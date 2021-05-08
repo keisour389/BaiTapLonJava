@@ -96,8 +96,8 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository{
         query.set("licensePlates", busSchedules.getLicensePlates());
         query.set("mainDriver", busSchedules.getMainDriver());
         query.set("subDriver", busSchedules.getStatus());
-        query.set("from", busSchedules.getFrom());
-        query.set("to", busSchedules.getTo());
+        query.set("from", busSchedules.getStart());
+        query.set("to", busSchedules.getDestination());
         query.set("departureDay", busSchedules.getDepartureDay());
         query.set("totalTime", busSchedules.getTotalTime());
         query.set("status", busSchedules.getStatus());

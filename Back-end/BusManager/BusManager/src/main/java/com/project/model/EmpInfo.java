@@ -82,8 +82,8 @@ public class EmpInfo implements Serializable {
     private String note;
     
     @JsonProperty("username")
-    @OneToOne(cascade = CascadeType.ALL)
-//    fetch = FetchType.EAGER
+    @OneToOne()
+    //fetch = FetchType.EAGER
     @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID", nullable = true)
     private AccountInfo username;
     

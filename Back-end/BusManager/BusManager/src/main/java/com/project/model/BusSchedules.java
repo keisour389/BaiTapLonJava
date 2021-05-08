@@ -42,27 +42,26 @@ public class BusSchedules implements Serializable {
     @JsonProperty("main_driver")
     @ManyToOne
 //    fetch = FetchType.EAGER
-    @JoinColumn(name="MAIN_DRIVER")
+    @JoinColumn(name="MAIN_DRIVER", nullable = false)
     private EmpInfo mainDriver;
     
     @JsonProperty("sub_driver")
     @ManyToOne
 //    fetch = FetchType.EAGER
-    @JoinColumn(name="SUB_DRIVER")
+    @JoinColumn(name="SUB_DRIVER", nullable = false)
     private EmpInfo subDriver;
     
     @JsonProperty("from")
-    @Column(name="FROM", length = 100, nullable = false)
-    private String from;
+    @Column(name="START", length = 100, nullable = false)
+    private String start;
     
     @JsonProperty("to")
-    @Column(name="TO", length = 100, nullable = false)
-    private String to;
+    @Column(name="DESTINATION", length = 100, nullable = false)
+    private String destination;
     
     @JsonProperty("departure_day")
     @Column(name="DEPARTURE_DAY", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date departureDay;
+    private LocalDateTime departureDay;
     
     @JsonProperty("total_time")
     @Column(name="TOTAL_TIME", nullable = false)
@@ -73,8 +72,8 @@ public class BusSchedules implements Serializable {
     private int status;
      
     @JsonProperty("vehical_type")
-    @Column(name="VEHICAL_TYPE", length = 100, nullable = false)
-    private String vehicalType;
+    @Column(name="VEHICLE_TYPE", length = 100, nullable = false)
+    private String vehicleType;
     
     @JsonProperty("total_seat")
     @Column(name="TOTAL_SEATS", nullable = false)
@@ -92,13 +91,13 @@ public class BusSchedules implements Serializable {
     @JsonProperty("manager")
     @ManyToOne
 //    fetch = FetchType.EAGER
-    @JoinColumn(name="MANAGER")
+    @JoinColumn(name="MANAGER", nullable = false)
     private EmpInfo manager;
     
     @JsonIgnore
     @OneToMany(mappedBy = "tripId")
 //    fetch = FetchType.EAGER
-    private List<TicketManagement> ticketManagement = new ArrayList<>();
+    private List<TicketManagement> ticketManagement;
 
     /**
      * @return the tripId
@@ -138,10 +137,8 @@ public class BusSchedules implements Serializable {
     /**
      * @param mainDriver to set
      */
-    public void setMainDriver(String mainDriver) {
-        EmpInfo newEmpInfo = new EmpInfo();
-        newEmpInfo.setUserId(mainDriver);
-        this.mainDriver = newEmpInfo;
+    public void setMainDriver(EmpInfo mainDriver) {
+        this.mainDriver = mainDriver;
     }
 
     /**
@@ -154,51 +151,49 @@ public class BusSchedules implements Serializable {
     /**
      * @param subDriver to set
      */
-    public void setSubDriver(String subDriver) {
-        EmpInfo newEmpInfo = new EmpInfo();
-        newEmpInfo.setUserId(subDriver);
-        this.subDriver = newEmpInfo;
+    public void setSubDriver(EmpInfo subDriver) {
+        this.subDriver = mainDriver;
     }
 
     /**
      * @return the from
      */
-    public String getFrom() {
-        return from;
+    public String getStart() {
+        return start;
     }
 
     /**
-     * @param from the from to set
+     * @param start the from to set
      */
-    public void setFrom(String from) {
-        this.from = from;
+    public void setStart(String start) {
+        this.start = start;
     }
 
     /**
      * @return the to
      */
-    public String getTo() {
-        return to;
+    public String getDestination() {
+        return destination;
     }
 
     /**
-     * @param to the to to set
+     * @param destination the to to set
      */
-    public void setTo(String to) {
-        this.to = to;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     /**
      * @return the departureDay
      */
-    public Date getDepartureDay() {
+    public LocalDateTime getDepartureDay() {
         return departureDay;
     }
 
     /**
      * @param departureDay the departureDay to set
      */
-    public void setDepartureDay(Date departureDay) {
+    public void setDepartureDay(LocalDateTime departureDay) {
         this.departureDay = departureDay;
     }
 
@@ -234,14 +229,14 @@ public class BusSchedules implements Serializable {
      * @return the vehicalType
      */
     public String getVehicalType() {
-        return vehicalType;
+        return vehicleType;
     }
 
     /**
-     * @param vehicalType the vehicalType to set
+     * @param vehicleType the vehicalType to set
      */
-    public void setVehicalType(String vehicalType) {
-        this.vehicalType = vehicalType;
+    public void setVehicalType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     /**
@@ -310,10 +305,8 @@ public class BusSchedules implements Serializable {
     /**
      * @param manager to set
      */
-    public void setManager(String manager) {
-        EmpInfo newEmpInfo = new EmpInfo();
-        newEmpInfo.setUserId(manager);
-        this.manager = newEmpInfo;
+    public void setManager(EmpInfo manager) {
+        this.manager = manager;
     }
 
     /**

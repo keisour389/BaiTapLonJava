@@ -19,7 +19,7 @@ public class BusSchedulesRequest {
     private String subDriver;
     private String from;
     private String to;
-    private Date departureDay;
+    private LocalDateTime departureDay;
     private int totalTime;
     private int status;
     private String vehicalType;
@@ -33,7 +33,7 @@ public class BusSchedulesRequest {
     }
     
     public BusSchedulesRequest(String tripId, String licensePlates, String mainDriver,
-                String subDriver, String from, String to, Date departureDay, int totalTime, 
+                String subDriver, String from, String to, LocalDateTime departureDay, int totalTime, 
                 int status, String vehicalType, int totalSeats, LocalDateTime createdOn, 
                 LocalDateTime updatedOn, String note, String manager){
         this.tripId = tripId;
@@ -112,14 +112,14 @@ public class BusSchedulesRequest {
     /**
      * @return the departureDay
      */
-    public Date getDepartureDay() {
+    public LocalDateTime getDepartureDay() {
         return departureDay;
     }
 
     /**
      * @param departureDay the departureDay to set
      */
-    public void setDepartureDay(Date departureDay) {
+    public void setDepartureDay(LocalDateTime departureDay) {
         this.departureDay = departureDay;
     }
 
