@@ -304,10 +304,8 @@ public class EmpInfo implements Serializable {
     /**
      * @param username to set
      */
-    public void setUsername(String username) {
-        AccountInfo newAccountInfo = new AccountInfo();
-        newAccountInfo.setUserId(username);
-        this.username = newAccountInfo;
+    public void setUsername(AccountInfo accountInfo) {
+        this.username = accountInfo;
     }
 
     /**
