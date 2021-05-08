@@ -98,6 +98,10 @@ public class BusSchedules implements Serializable {
     @OneToMany(mappedBy = "tripId")
 //    fetch = FetchType.EAGER
     private List<TicketManagement> ticketManagement;
+    
+    public BusSchedules(){
+        
+    }
 
     /**
      * @return the tripId

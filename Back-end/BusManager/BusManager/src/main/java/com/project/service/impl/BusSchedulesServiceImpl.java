@@ -136,12 +136,12 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
             busSchedulesResponse.setTripId(result.getTripId());
             busSchedulesResponse.setMainDriver(result.getMainDriver().toString());
             busSchedulesResponse.setSubDriver(result.getSubDriver().toString());
-            busSchedulesResponse.setFrom(result.getStart());
-            busSchedulesResponse.setTo(result.getDestination());
+            busSchedulesResponse.setStart(result.getStart());
+            busSchedulesResponse.setDestination(result.getDestination());
             busSchedulesResponse.setDepartureDay(result.getDepartureDay());
             busSchedulesResponse.setTotalTime(result.getTotalTime());
             busSchedulesResponse.setStatus(result.getStatus());
-            busSchedulesResponse.setVehicalType(result.getVehicalType());
+            busSchedulesResponse.setVehicleType(result.getVehicalType());
             busSchedulesResponse.setTotalSeats(result.getTotalSeats());
             busSchedulesResponse.setManager(result.getManager().toString());
 

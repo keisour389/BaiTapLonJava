@@ -7,6 +7,7 @@ package com.project.response;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import lombok.AllArgsConstructor;
 
 /**
  *
@@ -17,32 +18,37 @@ public class BusSchedulesResponse {
     private String licensePlates;
     private String mainDriver;
     private String subDriver;
-    private String from;
-    private String to;
+    private String start;
+    private String destination;
     private LocalDateTime departureDay;
     private int totalTime;
     private int status;
-    private String vehicalType;
+    private String vehicleType;
     private int totalSeats;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
     private String manager;
     
     public BusSchedulesResponse(){
     }
     
     public BusSchedulesResponse(String tripId, String licensePlates, String mainDriver,
-                String subDriver, String from, String to, LocalDateTime departureDay, int totalTime, 
-                int status, String vehicalType, int totalSeats, String manager){
+                String subDriver, String start, String destination, LocalDateTime departureDay, int totalTime, 
+                int status, String vehicleType, int totalSeats, LocalDateTime createdOn,
+                LocalDateTime updatedOn, String manager){
         this.tripId = tripId;
         this.licensePlates = licensePlates;
         this.mainDriver = mainDriver;
         this.subDriver = subDriver;
-        this.from = from;
-        this.to = to;
+        this.start = start;
+        this.destination = destination;
         this.departureDay = departureDay;
         this.totalTime = totalTime;
         this.status = status;
-        this.vehicalType = vehicalType;
+        this.vehicleType = vehicleType;
         this.totalSeats = totalSeats;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
         this.manager = manager;
     }
 
@@ -91,29 +97,29 @@ public class BusSchedulesResponse {
     /**
      * @return the from
      */
-    public String getFrom() {
-        return from;
+    public String getStart() {
+        return start;
     }
 
     /**
-     * @param from the from to set
+     * @param start the from to set
      */
-    public void setFrom(String from) {
-        this.from = from;
+    public void setStart(String start) {
+        this.start = start;
     }
 
     /**
-     * @return the to
+     * @return the destination
      */
-    public String getTo() {
-        return to;
+    public String getDestination() {
+        return destination;
     }
 
     /**
-     * @param to the to to set
+     * @param destination the to to set
      */
-    public void setTo(String to) {
-        this.to = to;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     /**
@@ -159,17 +165,17 @@ public class BusSchedulesResponse {
     }
 
     /**
-     * @return the vehicalType
+     * @return the vehicleType
      */
-    public String getVehicalType() {
-        return vehicalType;
+    public String getVehicleType() {
+        return vehicleType;
     }
 
     /**
-     * @param vehicalType the vehicalType to set
+     * @param vehicleType the vehicalType to set
      */
-    public void setVehicalType(String vehicalType) {
-        this.vehicalType = vehicalType;
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     /**
@@ -212,5 +218,33 @@ public class BusSchedulesResponse {
      */
     public void setTripId(String tripId) {
         this.tripId = tripId;
+    }
+
+    /**
+     * @return the createdOn
+     */
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    /**
+     * @param createdOn the createdOn to set
+     */
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    /**
+     * @return the updatedOn
+     */
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    /**
+     * @param updatedOn the updatedOn to set
+     */
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
     }
 }
