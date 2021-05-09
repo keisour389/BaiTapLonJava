@@ -90,6 +90,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<CusInfo> query = criteriaBuilder.createCriteriaUpdate(CusInfo.class);
         Root<CusInfo> root = query.from(CusInfo.class);
+        query.set("userId", cusInfo.getUserId());
         query.set("firstName", cusInfo.getFirstName());
         query.set("lastName", cusInfo.getLastName());
         query.set("displayName", cusInfo.getDisplayName());
