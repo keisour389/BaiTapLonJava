@@ -5,6 +5,7 @@
  */
 package com.project.controller;
 
+import com.project.model.AccountInfo;
 import com.project.repository.AccountInfoRepository;
 import com.project.request.AccountInfoRequest;
 import com.project.request.LoginRequest;
@@ -78,8 +79,9 @@ public class AccountInfoController {
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateAccountInfo/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateAccountInfo(@RequestParam String id, @RequestBody AccountInfoRequest accountInfoRequest){
-        AccountInfoRequest dataAccountInfo = accountInfoService.updateAccountInfoById(id, accountInfoRequest);
+    //Dont need the request id param because we can get user id in Json file to update
+    public ResponseEntity<?> updateAccountInfo(@RequestBody AccountInfoRequest accountInfoRequest){
+        AccountInfo dataAccountInfo = accountInfoService.updateAccountInfoById(accountInfoRequest);
         if(dataAccountInfo != null){
             return new ResponseEntity<>(dataAccountInfo, HttpStatus.OK);
         }

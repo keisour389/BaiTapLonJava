@@ -61,12 +61,27 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
 
     @Override
     @Transactional
-    public BusSchedules getBusSchedulesById(String id) {
+    public BusSchedulesResponse getBusSchedulesById(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<BusSchedules> query = criteriaBuilder.createQuery(BusSchedules.class);
+        CriteriaQuery<BusSchedulesResponse> query = criteriaBuilder.createQuery(BusSchedulesResponse.class);
         Root<BusSchedules> root = query.from(BusSchedules.class);
-        query.select(root);
+//        query.select(root);
+        query.select(criteriaBuilder.construct(BusSchedulesResponse.class,
+                root.get("tripId"),
+                root.get("licensePlates"),
+                root.get("mainDriver").get("userId"),
+                root.get("subDriver").get("userId"),
+                root.get("start"),
+                root.get("destination"),
+                root.get("departureDay"),
+                root.get("totalTime"),
+                root.get("status"),
+                root.get("vehicleType"),
+                root.get("totalSeats"),
+                root.get("createdOn"),
+                root.get("updatedOn"),
+                root.get("manager").get("userId")));
         Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
 
         query.where(p);

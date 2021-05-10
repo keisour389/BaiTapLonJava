@@ -130,22 +130,10 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
 
     @Override
     public BusSchedulesResponse getBusSchedulesById(String id) {
-        BusSchedules result = busSchedulesRepository.getBusSchedulesById(id);
+        //Don't get the object, just get the id of the foreign key
+        BusSchedulesResponse result = busSchedulesRepository.getBusSchedulesById(id);
         if (result != null) {
-            BusSchedulesResponse busSchedulesResponse = new BusSchedulesResponse();
-            busSchedulesResponse.setTripId(result.getTripId());
-            busSchedulesResponse.setMainDriverId(result.getMainDriver().toString());
-            busSchedulesResponse.setSubDriverId(result.getSubDriver().toString());
-            busSchedulesResponse.setStart(result.getStart());
-            busSchedulesResponse.setDestination(result.getDestination());
-            busSchedulesResponse.setDepartureDay(result.getDepartureDay());
-            busSchedulesResponse.setTotalTime(result.getTotalTime());
-            busSchedulesResponse.setStatus(result.getStatus());
-            busSchedulesResponse.setVehicleType(result.getVehicalType());
-            busSchedulesResponse.setTotalSeats(result.getTotalSeats());
-            busSchedulesResponse.setManagerId(result.getManager().toString());
-
-            return busSchedulesResponse;
+            return result;
         } else {
             return null;
         }

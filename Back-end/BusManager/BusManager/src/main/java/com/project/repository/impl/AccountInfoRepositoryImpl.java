@@ -96,7 +96,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
 
     @Override
     @Transactional
-    public void updateAccountInfoById(String id, AccountInfo accountInfo) {
+    public void updateAccountInfoById(AccountInfo accountInfo) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<AccountInfo> query = criteriaBuilder.createCriteriaUpdate(AccountInfo.class);
@@ -108,7 +108,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
         query.set("updatedOn", accountInfo.getUpdatedOn());
         query.set("note", accountInfo.getNote());
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("userId"), accountInfo.getUserId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
