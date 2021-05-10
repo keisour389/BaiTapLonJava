@@ -75,7 +75,7 @@ public class CusInfoServiceImpl implements CusInfoService {
     }
 
     @Override
-    public CusInfoRequest updateCusInfoById(String id, CusInfoRequest cusInfo) {
+    public CusInfoRequest updateCusInfoById(CusInfoRequest cusInfo) {
         AccountInfo accountInfo = new AccountInfo();
         CusInfo newCusInfo = new CusInfo();
         accountInfo = accountInfoResitory.getAccountInfoById(cusInfo.getUserId());
@@ -91,10 +91,9 @@ public class CusInfoServiceImpl implements CusInfoService {
         newCusInfo.setUpdatedOn(cusInfo.getUpdatedOn());
         newCusInfo.setNote(cusInfo.getNote());
         newCusInfo.setUsername(accountInfo);
-//        newCusInfo.setUsername(cusInfo.getUsername());
 
-        if (cusInfoRepository.createCusInfo(newCusInfo) != null) {
-            cusInfoRepository.updateCusInfoById(id, newCusInfo);
+        if (cusInfo.getUserId() != null) {
+            cusInfoRepository.updateCusInfoById(newCusInfo);
             return cusInfo;
         } else {
             return null;

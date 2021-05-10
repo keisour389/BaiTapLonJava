@@ -75,8 +75,9 @@ public class CusInfoController {
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateCusInfo/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateCusInfo(@RequestParam String id, @RequestBody CusInfoRequest cusInfoRequest){
-        CusInfoRequest dataCusInfo = cusInfoService.updateCusInfoById(id, cusInfoRequest);
+    //Dont need id request param
+    public ResponseEntity<?> updateCusInfo(@RequestBody CusInfoRequest cusInfoRequest){
+        CusInfoRequest dataCusInfo = cusInfoService.updateCusInfoById(cusInfoRequest);
         if(dataCusInfo != null){
             return new ResponseEntity<>(dataCusInfo, HttpStatus.OK);
         }
