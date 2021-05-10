@@ -77,7 +77,7 @@ public class EmpInfoServiceImpl implements EmpInfoService {
     }
 
     @Override
-    public EmpInfoRequest updateEmpInfoById(String id, EmpInfoRequest empInfo) {
+    public EmpInfoRequest updateEmpInfoById(EmpInfoRequest empInfo) {
         AccountInfo accountInfo = new AccountInfo();
         EmpInfo newEmpInfo = new EmpInfo();
 
@@ -98,8 +98,8 @@ public class EmpInfoServiceImpl implements EmpInfoService {
         newEmpInfo.setNote(empInfo.getNote());
         newEmpInfo.setUsername(accountInfo);
 
-        if (empInfoRepository.createEmpInfo(newEmpInfo) != null) {
-            empInfoRepository.updateEmpInfoById(id, newEmpInfo);
+        if (empInfo.getUserId() != null) {
+            empInfoRepository.updateEmpInfoById(newEmpInfo);
             return empInfo;
         } else {
             return null;

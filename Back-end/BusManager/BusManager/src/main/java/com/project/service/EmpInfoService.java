@@ -19,6 +19,6 @@ public interface EmpInfoService {
     EmpInfoResponse getEmpInfoById(String id);
     
     EmpInfoRequest createEmpInfo(EmpInfoRequest empInfo);
-    EmpInfoRequest updateEmpInfoById(String id, EmpInfoRequest empInfo);
+    EmpInfoRequest updateEmpInfoById(EmpInfoRequest empInfo);
     boolean deleteEmpInfoById(String id);
 }

@@ -84,7 +84,8 @@ public class EmpInfo implements Serializable {
     @JsonProperty("username")
     @OneToOne()
     //fetch = FetchType.EAGER
-    @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID", nullable = true)
+    @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID"
+            , nullable = true, updatable = false)
     private AccountInfo username;
     
     @JsonIgnore
