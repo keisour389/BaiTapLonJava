@@ -1,0 +1,67 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="container">
+    <div class="information">
+        <h1>{{managedTitle}}</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" *ngFor="let data of title">{{data}}</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="managedType === '1'">
+                <tr *ngFor="let data of data; let i = index">
+                    <th scope="row">{{data.tripId}}</th>
+                    <td>{{data.driver}}</td>
+                    <td>{{data.subDriver}}</td>
+                    <td>{{data.from}}</td>
+                    <td>{{data.to}}</td>
+                    <td>{{data.departureDay | date:'dd-MM-yyyy'}}</td>
+                    <td>{{data.vehicleType}}</td>
+                    <td>
+                        <span class="function">
+                            <button class="btn btn-info function-btn" (click)="openInfoModal(false, i)">Xem chi tiết</button>
+                            <button class="btn btn-warning function-btn" (click)="openInfoModal(true, i)">Cập nhật</button>
+                            <button class="btn btn-danger function-btn">Xóa</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="managedType === '2'">
+                <tr *ngFor="let data of data; let i = index">
+                    <th scope="row">{{data.ticketId}}</th>
+                    <td>{{data.seatId}}</td>
+                    <td>{{data.price}}</td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.payment}}</td>
+                    <td>
+                        <span class="function">
+                            <button class="btn btn-info function-btn" (click)="openInfoModal(false, i)">Xem chi tiết</button>
+                            <button class="btn btn-danger function-btn">Hủy vé</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="managedType === '3'">
+                <tr *ngFor="let data of data; let i = index">
+                    <th scope="row">{{data.userId}}</th>
+                    <td>{{data.firstName}} {{data.lastName}}</td>
+                    <td>{{data.phoneNumber}}</td>
+                    <td>{{data.dOB | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{data.address}}</td>
+                    <td>{{data.id}}</td>
+                    <td>
+                        <span class="function">
+                            <button class="btn btn-info function-btn" (click)="openInfoModal(false, i)">Xem chi tiết</button>
+                            <button class="btn btn-warning function-btn" (click)="openInfoModal(true, i)">Cập nhật</button>
+                            <button class="btn btn-danger function-btn">Xóa</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-employee-info-modal *ngIf="managedType === '3'" [indexData]="indexData" [isUpdate]="isUpdate"></app-employee-info-modal>
+<app-ticket-info-modal *ngIf="managedType === '2'" [indexData]="indexData" [isUpdate]="isUpdate"></app-ticket-info-modal>
+<app-bus-info-modal *ngIf="managedType === '1'" [indexData]="indexData" [isUpdate]="isUpdate"></app-bus-info-modal>

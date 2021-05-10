@@ -1,0 +1,163 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="container">
+    <div id="bus-created">
+        <div class="title">
+            <h1>Tạo chuyến xe mới</h1>
+        </div>
+        <form (ngSubmit)="onSubmit(licensePlates)" #f="ngForm" class="shadow p-3 mb-5 bg-white rounded">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="from">Điểm đi</label>
+                        <input type="text" class="form-control" id="from" name="from" placeholder="Ví dụ: TP.Hồ Chí Minh" #from="ngModel" ngModel required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="to">Điểm đến</label>
+                        <input type="text" class="form-control" id="to" name="to" placeholder="Ví dụ: TP.Đà Lạt" #to="ngModel" ngModel required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div *ngIf="from.invalid && from.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div *ngIf="to.invalid && to.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label" for="driver">Tài xế</label>
+                        <input type="text" class="form-control" id="driver" name="driver" placeholder="Ví dụ: Nguyễn Văn A" #driver="ngModel" ngModel
+                            required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label" for="subDriver">Phụ xe</label>
+                        <input type="text" class="form-control" id="subDriver" name="subDriver" placeholder="Ví dụ: Nguyễn Văn B" #subDriver="ngModel"
+                            ngModel required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div *ngIf="driver.invalid && driver.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div *ngIf="subDriver.invalid && subDriver.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>                  
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label" for="depatureDay">Ngày khởi hành</label>
+                        <input type="date" class="form-control" id="depatureDay" name="depatureDay"
+                            #depatureDay="ngModel" ngModel required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label" for="totalTime">Tổng thời gian</label>
+                        <input type="text" class="form-control" id="totalTime" name="totalTime" placeholder="Đơn vị là phút" #totalTime="ngModel"
+                            ngModel appChecknumeric required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div *ngIf="depatureDay.invalid && depatureDay.touched && depatureDay.errors!.required" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div *ngIf="totalTime.invalid && totalTime.touched && totalTime.errors!.required" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                        <div *ngIf="totalTime.errors! !== null && !totalTime.errors.required" class="alert alert-danger" role="alert">
+                            {{totalTime.errors.message}}
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label" for="vehicleType">Loại xe</label>
+                        <input type="text" class="form-control" id="vehicleType" name="vehicleType" placeholder="Ví dụ: 50 chỗ"
+                            #vehicleType="ngModel" ngModel required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label" for="totalSeat">Số chỗ ngồi</label>
+                        <input type="text" class="form-control" id="totalSeat" name="totalSeat" #totalSeat="ngModel" placeholder="Ví dụ: 50"
+                            ngModel appChecknumeric required>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div *ngIf="vehicleType.invalid && vehicleType.touched" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div *ngIf="totalSeat.invalid && totalSeat.touched && totalSeat.errors!.required" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                        <div *ngIf="totalSeat.errors! !== null && !totalSeat.errors.required" class="alert alert-danger" role="alert">
+                            {{totalSeat.errors.message}}
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="label" for="licensePlates">Biển số xe</label>
+                        <input type="text" class="form-control" id="licensePlates" name="licensePlates" placeholder="Ví dụ: 51G-12345"
+                            #licensePlates="ngModel" ngModel required appLicencePlateValidator>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="licensePlates.invalid && licensePlates.touched && licensePlates.errors!.required" class="alert alert-danger" role="alert">
+                            Không được để trống
+                        </div>
+                        <div *ngIf="licensePlates.errors! !== null && !licensePlates.errors.required" class="alert alert-danger" role="alert">
+                            {{licensePlates.errors.message}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="label" for="note">Ghi chú</label>
+                        <textarea rows="3" class="form-control" id="note" name="note" #note="ngModel" ngModel
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right;">
+                        <button [disabled]="f.invalid" class="btn btn-success" type="submit">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

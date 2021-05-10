@@ -1,0 +1,28 @@
+.main{
+    background-color: #f0f0f0;
+}
+/*Set container always at bottom*/
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.feedback {
+  flex: 1;
+}
+/*Feedback form*/
+.feedback-text{
+    font-size: 17px;
+    vertical-align: middle
+}
+.slogan{
+    text-align: center;
+    font-size: 19px;
+    font-style: italic;
+    color: rgb(0, 157, 255);
+}
+.help-block{
+    margin-top: 10px;
+    font-size: 13px;
+    color: grey;
+}

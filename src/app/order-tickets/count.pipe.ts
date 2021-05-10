@@ -4,7 +4,7 @@ import { OrderTicketsComponent } from './order-tickets.component';
 export class CountPipe implements PipeTransform {
     constructor(public orderTicketsComponent: OrderTicketsComponent) {
     }
-    transform(value: any) {
+    transform(value: any): void {
         value = this.orderTicketsComponent.countNumber() + 1;
         return value;
     }

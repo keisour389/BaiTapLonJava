@@ -1,0 +1,85 @@
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Xem chi tiết</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="!isUpdate" class="modal-body">
+                <div class="employee-info">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="ticketId" class="info-label">Mã vé</label>
+                                <input [disabled]=true name="ticketId" id="ticketId" type="text" class="form-control" [(ngModel)]="indexData.ticketId">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="seatId" class="info-label">Mã ghế</label>
+                                <input [disabled]=true name="seatId" id="seatId" type="text" class="form-control" [(ngModel)]="indexData.seatId">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="price" class="info-label">Giá vé</label>
+                                <input [disabled]=true name="price" id="price" type="text" class="form-control" [(ngModel)]="indexData.price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="tripId" class="info-label">Chuyến xe</label>
+                                <input [disabled]=true name="tripId" id="tripId" type="text" class="form-control" [(ngModel)]="indexData.tripId">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="payment" class="info-label">Phương thức thanh toán</label>
+                                <input [disabled]=true name="payment" id="payment" type="text" class="form-control" [(ngModel)]="indexData.payment">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="status" class="info-label">Trạng thái</label>
+                                <input [disabled]=true name="status" id="status" type="text" class="form-control" [(ngModel)]="indexData.status">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="bookingDate" class="info-label">Ngày đặt vé</label>
+                                <input [disabled]=true name="bookingDate" id="bookingDate" type="datetime-local" class="form-control" [(ngModel)]="indexData.bookingDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="paymentDate" class="info-label">Ngày thanh toán</label>
+                                <input [disabled]=true name="paymentDate" id="paymentDate" type="datetime-local" class="form-control" [(ngModel)]="indexData.paymentDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="cusId" class="info-label">Khách hàng</label>
+                                <input [disabled]=true name="cusId" id="cusId" type="text" class="form-control" [(ngModel)]="indexData.cusId">
+                            </div>
+                        </div>
+                    </div>          
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="note" class="info-label">Ghi chú</label>
+                                <textarea [disabled]=true name="note" rows="3" id="note" type="text" class="form-control" [(ngModel)]="indexData.note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button *ngIf="isUpdate" type="button" class="btn btn-success">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 .navbar{
-    background-color: white;
+    background: rgb(0, 157, 255);
+    box-shadow: 0 0 10px rgba(40, 230, 247, 0.6); 
 }
 .bus-icon{
     height: 50px;
