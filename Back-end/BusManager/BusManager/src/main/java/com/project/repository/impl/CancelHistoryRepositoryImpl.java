@@ -42,8 +42,8 @@ public class CancelHistoryRepositoryImpl implements CancelHistoryRepository{
                 root.get("cancelId"),
                 root.get("reason"),
                 root.get("note"),
-                root.get("cusId").get("username").as(String.class),
-                root.get("empId").get("username").as(String.class),
+                root.get("cusId").get("userId").as(String.class),
+                root.get("empId").get("userId").as(String.class),
                 root.get("ticketId").get("ticketId").as(String.class)
         ));
         return session.createQuery(query).getResultList();
@@ -87,9 +87,9 @@ public class CancelHistoryRepositoryImpl implements CancelHistoryRepository{
         query.set("cancelId", cancelHistory.getCancelId());
         query.set("reason", cancelHistory.getReason());
         query.set("note", cancelHistory.getNote());
-        query.set("cusId", cancelHistory.getCusId().getUsername());
-        query.set("empId", cancelHistory.getEmpId().getUsername());
-        query.set("ticketId", cancelHistory.getTicketId().getTicketId());
+        query.set("cusId", cancelHistory.getCusId());
+        query.set("empId", cancelHistory.getEmpId());
+        query.set("ticketId", cancelHistory.getTicketId());
         
         Predicate p = criteriaBuilder.equal(root.get("cancelId"), id);
         query.where(p);

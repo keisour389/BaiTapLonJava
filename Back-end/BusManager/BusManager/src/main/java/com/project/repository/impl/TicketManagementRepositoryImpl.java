@@ -48,7 +48,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
                 root.get("bookingDate").as(String.class),
                 root.get("note"),
                 root.get("tripId").get("tripId").as(String.class),
-                root.get("cusId").get("username").as(String.class)
+                root.get("cusId").get("userId").as(String.class)
         ));
         return session.createQuery(query).getResultList();
     }
@@ -96,8 +96,8 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         query.set("paymentDate", ticketManagement.getPaymentDate());
         query.set("bookingDate", ticketManagement.getBookingDate());
         query.set("note", ticketManagement.getNote());
-        query.set("tripId", ticketManagement.getTripId().getTripId());
-        query.set("cusId", ticketManagement.getCusId().getUsername());
+        query.set("tripId", ticketManagement.getTripId());
+        query.set("cusId", ticketManagement.getCusId());
         
         Predicate p = criteriaBuilder.equal(root.get("ticketId"), id);
         query.where(p);

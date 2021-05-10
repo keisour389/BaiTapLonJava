@@ -96,8 +96,8 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         Root<BusSchedules> root = query.from(BusSchedules.class);
         query.set("tripId", busSchedules.getTripId());
         query.set("licensePlates", busSchedules.getLicensePlates());
-        query.set("mainDriver", busSchedules.getMainDriver().getUsername());
-        query.set("subDriver", busSchedules.getSubDriver().getUsername());
+        query.set("mainDriver", busSchedules.getMainDriver());
+        query.set("subDriver", busSchedules.getSubDriver());
         query.set("start", busSchedules.getStart());
         query.set("destination", busSchedules.getDestination());
         query.set("departureDay", busSchedules.getDepartureDay());
@@ -108,7 +108,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         query.set("createdOn", busSchedules.getCreatedOn());
         query.set("updatedOn", busSchedules.getUpdatedOn());
         query.set("note", busSchedules.getNote());
-        query.set("manager", busSchedules.getManager().getUsername());
+        query.set("manager", busSchedules.getManager());
 
         Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
         query.where(p);

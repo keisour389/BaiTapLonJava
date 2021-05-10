@@ -105,7 +105,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         query.set("createdOn", empInfo.getCreatedOn());
         query.set("updatedOn", empInfo.getUpdatedOn());
         query.set("note", empInfo.getNote());
-        query.set("username", empInfo.getUsername().getUserId());
+        query.set("username", empInfo.getUsername());
 
         Predicate p = criteriaBuilder.equal(root.get("userId"), id);
         query.where(p);

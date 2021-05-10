@@ -100,7 +100,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         query.set("createdOn", cusInfo.getCreatedOn());
         query.set("updatedOn", cusInfo.getUpdatedOn());
         query.set("note", cusInfo.getNote());
-        query.set("username", cusInfo.getUsername().getUserId());
+        query.set("username", cusInfo.getUsername());
         
         Predicate p = criteriaBuilder.equal(root.get("userId"), id);
         query.where(p);

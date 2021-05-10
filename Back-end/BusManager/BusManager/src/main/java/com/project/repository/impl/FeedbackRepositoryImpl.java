@@ -43,8 +43,8 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
                 root.get("content"),
                 root.get("status").as(String.class),
                 root.get("note"),
-                root.get("cusId").get("username").as(String.class),
-                root.get("empId").get("username").as(String.class)
+                root.get("cusId").get("userId").as(String.class),
+                root.get("empId").get("userId").as(String.class)
         ));
         return session.createQuery(query).getResultList();
     }
@@ -88,8 +88,8 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
         query.set("content", feedback.getContent());
         query.set("status", feedback.getStatus());
         query.set("note", feedback.getNote());
-        query.set("cusId", feedback.getCusId().getUsername());
-        query.set("empId", feedback.getEmpId().getUsername());
+        query.set("cusId", feedback.getCusId());
+        query.set("empId", feedback.getEmpId());
         
         Predicate p = criteriaBuilder.equal(root.get("feedbackId"), id);
         query.where(p);
