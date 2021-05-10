@@ -50,7 +50,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
                 root.get("note"),
-                root.get("username")
+                root.get("username").as(String.class)
         ));
         return session.createQuery(query).getResultList();
     }
@@ -85,7 +85,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
 
     @Override
     @Transactional
-    public void updateCusInfoById(String id, CusInfo cusInfo) {
+    public void updateCusInfoById(CusInfo cusInfo) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<CusInfo> query = criteriaBuilder.createCriteriaUpdate(CusInfo.class);
@@ -99,9 +99,9 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         query.set("createdOn", cusInfo.getCreatedOn());
         query.set("updatedOn", cusInfo.getUpdatedOn());
         query.set("note", cusInfo.getNote());
-        query.set("username", cusInfo.getUsername());
+//        query.set("username", cusInfo.getUsername());
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("userId"), cusInfo.getUserId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }

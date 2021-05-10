@@ -9,6 +9,7 @@ import com.project.model.Feedback;
 import com.project.repository.FeedbackRepository;
 import com.project.request.FeedbackRequest;
 import com.project.response.CommonResponse;
+import com.project.response.FeedbackResponse;
 import com.project.service.FeedbackService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class FeebackServiceImpl implements FeedbackService{
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
         
         return  commonResponse;
     }
@@ -82,5 +83,22 @@ public class FeebackServiceImpl implements FeedbackService{
         }
         else
             return false;
+    }
+
+    @Override
+    public FeedbackResponse getFeedbackById(String id) {
+        Feedback result = feedbackRepository.getFeedbackById(id);
+        if(result != null){
+            FeedbackResponse feedbackResponse = new FeedbackResponse();
+            feedbackResponse.setFeedbackId(result.getFeedbackId());
+            feedbackResponse.setContent(result.getContent());
+            feedbackResponse.setStatus(result.getStatus());
+            feedbackResponse.setCusId(result.getCusId().toString());
+            feedbackResponse.setEmpId(result.getEmpId().toString());
+            
+            return feedbackResponse;
+        }
+        else
+            return null;
     }
 }

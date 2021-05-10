@@ -7,6 +7,7 @@ package com.project.controller;
 
 import com.project.repository.BusSchedulesRepository;
 import com.project.request.BusSchedulesRequest;
+import com.project.response.CommonResponse;
 import com.project.service.BusSchedulesService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,7 +42,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BusSchedulesController {
     @Autowired
     BusSchedulesService busSchedulesService;
-    BusSchedulesRepository busSchedulesRepository;
     
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
@@ -60,14 +60,14 @@ public class BusSchedulesController {
     @GetMapping(value = "getAllBusSchedules/")
     public ResponseEntity<?> getAllBusSchedules(@RequestParam int page,
                                         @RequestParam int size){
-        Object dataBusSchedules = busSchedulesService.getAllBusSchedules(page, size);
+        CommonResponse dataBusSchedules = busSchedulesService.getAllBusSchedules(page, size);
         return new ResponseEntity<>(dataBusSchedules, HttpStatus.OK);
     }
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getBusSchedules/")
     public ResponseEntity<?> getBusSchedulesById(@RequestParam String id){
-        Object dataBusSchedules = busSchedulesRepository.getBusSchedulesById(id);
+        Object dataBusSchedules = busSchedulesService.getBusSchedulesById(id);
         if(dataBusSchedules != null){
             return new ResponseEntity<>(dataBusSchedules, HttpStatus.OK);
         }

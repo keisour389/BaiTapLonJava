@@ -16,6 +16,6 @@ public interface EmpInfoRepository{
     List getAllEmpInfo();
     EmpInfo getEmpInfoById(String id);
     EmpInfo createEmpInfo(EmpInfo empInfo);
-    void updateEmpInfoById(String id, EmpInfo empInfo);
+    void updateEmpInfoById(EmpInfo empInfo);
     void deleteEmpInfoById(String id);
 }

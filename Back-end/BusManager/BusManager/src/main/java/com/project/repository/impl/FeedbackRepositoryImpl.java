@@ -41,7 +41,7 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
                 FeedbackResponse.class,
                 root.get("feedbackId"),
                 root.get("content"),
-                root.get("status"),
+                root.get("status").as(String.class),
                 root.get("note"),
                 root.get("cusId").as(String.class),
                 root.get("empId").as(String.class)

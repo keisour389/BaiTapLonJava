@@ -9,6 +9,7 @@ import com.project.model.TicketManagement;
 import com.project.repository.TicketManagementRepository;
 import com.project.request.TicketManagementRequest;
 import com.project.response.CommonResponse;
+import com.project.response.TicketManagementResponse;
 import com.project.service.TicketManagementService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
         
         return  commonResponse;
     }
@@ -90,5 +91,26 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         }
         else
             return false;
+    }
+
+    @Override
+    public TicketManagementResponse getTicketManagementById(String id) {
+        TicketManagement result = ticketManagementRepository.getTicketManagementById(id);
+        if(result != null){
+            TicketManagementResponse ticketManagementResponse = new TicketManagementResponse();
+            ticketManagementResponse.setTicketId(result.getTicketId());
+            ticketManagementResponse.setSeatId(result.getSeatId());
+            ticketManagementResponse.setPrice(result.getPrice());
+            ticketManagementResponse.setStatus(result.getStatus());
+            ticketManagementResponse.setPayment(result.getPayment());
+            ticketManagementResponse.setPaymentDate(result.getPaymentDate());
+            ticketManagementResponse.setBookingDate(result.getBookingDate());
+            ticketManagementResponse.setTripId(result.getTripId().toString());
+            ticketManagementResponse.setCusId(result.getCusId().toString());
+            
+            return ticketManagementResponse;
+        }
+        else
+            return null;
     }
 }

@@ -8,6 +8,7 @@ package com.project.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,18 +27,17 @@ import javax.persistence.Table;
 @Table(name = "account_info")
 public class AccountInfo implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="USER_ID", length = 20)
+    @Column(name="USER_ID", length = 20, nullable = false)
     private String userId;
     
     @Column(name="PASSWORD", length = 300, nullable = false)
     private String password;
     
     @Column(name="TYPE", nullable = false)
-    private String type;
+    private int type;
     
     @Column(name="STATUS", nullable = false)
-    private String status;
+    private int status;
     
     @Column(name="CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
@@ -49,12 +49,14 @@ public class AccountInfo implements Serializable {
     private String note;
     
     @JsonIgnore
-    @OneToOne(mappedBy = "account_info", fetch = FetchType.EAGER)
-    private List<CusInfo> cusInfo;
+    @OneToOne(mappedBy = "username")
+//    fetch = FetchType.EAGER
+    private CusInfo cusInfo;
     
     @JsonIgnore
-    @OneToOne(mappedBy = "account_info", fetch = FetchType.EAGER)
-    private List<EmpInfo> empInfo;
+    @OneToOne(mappedBy = "username")
+//    fetch = FetchType.EAGER
+    private EmpInfo empInfo;
 
     /**
      * @return the userId
@@ -87,28 +89,28 @@ public class AccountInfo implements Serializable {
     /**
      * @return the type
      */
-    public String getType() {
+    public int getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
     /**
      * @return the status
      */
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -157,28 +159,28 @@ public class AccountInfo implements Serializable {
     /**
      * @return the cusInfo
      */
-    public List<CusInfo> getCusInfo() {
+    public CusInfo getCusInfo() {
         return cusInfo;
     }
 
     /**
      * @param cusInfo the cusInfo to set
      */
-    public void setCusInfo(List<CusInfo> cusInfo) {
+    public void setCusInfo(CusInfo cusInfo) {
         this.cusInfo = cusInfo;
     }
 
     /**
      * @return the empInfo
      */
-    public List<EmpInfo> getEmpInfo() {
+    public EmpInfo getEmpInfo() {
         return empInfo;
     }
 
     /**
      * @param empInfo the empInfo to set
      */
-    public void setEmpInfo(List<EmpInfo> empInfo) {
+    public void setEmpInfo(EmpInfo empInfo) {
         this.empInfo = empInfo;
     }
 }

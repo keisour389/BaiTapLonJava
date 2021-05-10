@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,8 +32,7 @@ import javax.persistence.Temporal;
 @Table(name="cus_info")
 public class CusInfo implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
+    @Column(name = "USER_ID", length = 20, nullable = false)
     private String userId;
     
     @JsonProperty("first_name")
@@ -53,7 +53,6 @@ public class CusInfo implements Serializable {
     
     @JsonProperty("dob")
     @Column(name = "DOB", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date birthday;
     
     @JsonProperty("gender")
@@ -70,20 +69,25 @@ public class CusInfo implements Serializable {
     private String note;
     
     @JsonProperty("username")
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USERNAME", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+//    fetch = FetchType.EAGER
+    @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID",
+            nullable = true, updatable = false)
     private AccountInfo username;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "cus_info", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cusId")
+//    fetch = FetchType.LAZY
     private List<TicketManagement> ticketManagement;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "cus_info", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cusId")
+//    fetch = FetchType.LAZY
     private List<CancelHistory> cancelHistory;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "cus_info", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cusId")
+//    fetch = FetchType.LAZY
     private List<Feedback> feedback;
 
     /**
@@ -226,7 +230,7 @@ public class CusInfo implements Serializable {
         this.note = note;
     }
 
-        /**
+    /**
      * @return the username
      */
     public AccountInfo getUsername() {
@@ -236,10 +240,8 @@ public class CusInfo implements Serializable {
     /**
      * @param username to set
      */
-    public void setUsername(String username) {
-        AccountInfo newAccountInfo = new AccountInfo();
-        newAccountInfo.setUserId(username);
-        this.username = newAccountInfo;
+    public void setUsername(AccountInfo accountInfo) {
+        this.username = accountInfo;
     }
 
     /**

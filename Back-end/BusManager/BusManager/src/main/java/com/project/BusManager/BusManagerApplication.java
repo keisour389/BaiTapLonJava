@@ -10,22 +10,23 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @SpringBootApplication
 //These annotation will config the packages run like beans operator
 //These annotation will config in config file ???
-@ComponentScan({"com.project"})
+@ComponentScan({ "com.project" })
 //@EntityScan("com.project.model")
 //@EnableJpaRepositories("com.project.repository")
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, 
     DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-public class BusManagerApplication extends WebSecurityConfigurerAdapter {
-
+public class BusManagerApplication {
+//extends WebSecurityConfigurerAdapter
     //Initiate class based on IoC principle to use @autowired
 //    @Bean
-//    public Account accountInfo() {
-//        return new Account();
+//    public AccountInfo accountInfo() {
+////        return new Account();
+//        return new AccountInfo();
 //    }
     
     public static void main(String[] args) {

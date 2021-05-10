@@ -16,6 +16,7 @@
 
         <property name="show_sql">true</property>
 
+        <mapping class="com.project.model.Account" />
         <mapping class="com.project.model.AccountInfo" />
         <mapping class="com.project.model.BusSchedules" />
         <mapping class="com.project.model.CancelHistory" />

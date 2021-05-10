@@ -6,6 +6,7 @@
 package com.project.service;
 
 import com.project.request.EmpInfoRequest;
+import com.project.response.EmpInfoResponse;
 
 /**
  *
@@ -15,9 +16,9 @@ public interface EmpInfoService {
     Object getAllEmpInfo(int page, int size);
     
     //Using getEmpInfoById in Repository
-    //EmpInfoResponse getEmpInfoById(String id);
+    EmpInfoResponse getEmpInfoById(String id);
     
     EmpInfoRequest createEmpInfo(EmpInfoRequest empInfo);
-    EmpInfoRequest updateEmpInfoById(String id, EmpInfoRequest empInfo);
+    EmpInfoRequest updateEmpInfoById(EmpInfoRequest empInfo);
     boolean deleteEmpInfoById(String id);
 }

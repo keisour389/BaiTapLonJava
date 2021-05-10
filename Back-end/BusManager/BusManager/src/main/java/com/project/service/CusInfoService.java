@@ -6,6 +6,7 @@
 package com.project.service;
 
 import com.project.request.CusInfoRequest;
+import com.project.response.CusInfoResponse;
 
 /**
  *
@@ -15,9 +16,9 @@ public interface CusInfoService {
     Object getAllCusInfo(int page, int size);
     
     //Using getCusInfoById in Repository
-    //CusInfoResponse getCusInfoById(String id);
+    CusInfoResponse getCusInfoById(String id);
     
     CusInfoRequest createCusInfo(CusInfoRequest cusInfo);
-    CusInfoRequest updateCusInfoById(String id, CusInfoRequest cusInfo);
+    CusInfoRequest updateCusInfoById(CusInfoRequest cusInfo);
     boolean deleteCusInfoById(String id);
 }

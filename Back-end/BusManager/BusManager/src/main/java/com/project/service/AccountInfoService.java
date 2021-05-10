@@ -5,6 +5,7 @@
  */
 package com.project.service;
 
+import com.project.model.AccountInfo;
 import com.project.request.AccountInfoRequest;
 import com.project.request.LoginRequest;
 import com.project.response.AccountInfoResponse;
@@ -18,9 +19,8 @@ public interface AccountInfoService {
     AccountInfoResponse getAccountInfoByUserIdPassword(LoginRequest loginRequest);
     
     //Using getAccountInfoById in Repository
-    //AccountInfoResponse getAccountInfoById(String id);
-    
+    AccountInfo getAccountInfoById(String id);
     AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo);
-    AccountInfoRequest updateAccountInfoById(String id, AccountInfoRequest accountInfo);
+    AccountInfo updateAccountInfoById(AccountInfoRequest accountInfo);
     boolean deleteAccountInfoById(String id);
 }

@@ -15,7 +15,7 @@ import java.util.Date;
 public class FeedbackRequest {
     private String feedbackId;
     private String content;
-    private Integer status;
+    private int status;
     private String note;
     private String cusId;
     private String empId;
@@ -23,7 +23,7 @@ public class FeedbackRequest {
     public FeedbackRequest(){
     }
     
-    public FeedbackRequest(String feedbackId, String content, Integer status, 
+    public FeedbackRequest(String feedbackId, String content, int status, 
             String note, String cusId, String empId){
         this.feedbackId = feedbackId;
         this.content = content;
@@ -64,14 +64,14 @@ public class FeedbackRequest {
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

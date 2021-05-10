@@ -25,8 +25,7 @@ import javax.persistence.Table;
 @Table(name = "feedback")
 public class Feedback implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "FEEDBACK_ID", length = 20)
+    @Column(name = "FEEDBACK_ID", length = 20, nullable = false)
     private String feedbackId;
     
     @JsonProperty("content")
@@ -35,19 +34,21 @@ public class Feedback implements Serializable {
     
     @JsonProperty("status")
     @Column(name = "STATUS", nullable = false)
-    private Integer status;
+    private int status;
     
     @Column(name = "NOTE", length = 200, nullable = true)
     private String note;
     
     @JsonProperty("cusId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUS_ID")
+    @ManyToOne
+//    fetch = FetchType.LAZY
+    @JoinColumn(name = "CUS_ID", nullable = true)
     private CusInfo cusId;
     
     @JsonProperty("empId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_ID")
+    @ManyToOne
+//    fetch = FetchType.LAZY
+    @JoinColumn(name = "EMP_ID", nullable = true)
     private EmpInfo empId;
 
     /**
@@ -81,14 +82,14 @@ public class Feedback implements Serializable {
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

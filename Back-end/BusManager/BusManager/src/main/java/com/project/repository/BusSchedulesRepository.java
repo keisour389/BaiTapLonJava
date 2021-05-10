@@ -6,6 +6,7 @@
 package com.project.repository;
 
 import com.project.model.BusSchedules;
+import com.project.response.BusSchedulesResponse;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface BusSchedulesRepository {
     List getAllBusSchedules();
-    BusSchedules getBusSchedulesById(String id);
+    BusSchedulesResponse getBusSchedulesById(String id);
     BusSchedules createBusSchedules(BusSchedules busSchedules);
     void updateBusSchedulesById(String id, BusSchedules busSchedules);
     void deleteBusSchedulesById(String id);

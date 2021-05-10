@@ -23,7 +23,8 @@ import org.springframework.stereotype.Service;
  * @author DELL
  */
 @Service
-public class AccountInfoServiceImpl implements AccountInfoService{
+public class AccountInfoServiceImpl implements AccountInfoService {
+
     @Autowired
     private AccountInfoRepository accountInfoRepository;
 
@@ -33,14 +34,14 @@ public class AccountInfoServiceImpl implements AccountInfoService{
         List result = accountInfoRepository.getAllAccountInfo();
         int offset = (page - 1) * size;
         int total = result.size();
-        int totalPage = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+        int totalPage = (total % size) == 0 ? (int) (total / size) : (int) ((total / size) + 1);
         Object[] data = result.stream().skip(offset).limit(size).toArray();
         commonResponse.setData(data);
         commonResponse.setTotalPage(totalPage);
-        commonResponse.setTotalPage(total);
-        commonResponse.setTotalPage(page);
-        commonResponse.setTotalPage(size);
-        
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+
         return commonResponse;
     }
 
@@ -49,16 +50,13 @@ public class AccountInfoServiceImpl implements AccountInfoService{
         String passwordHash = Hashing.sha256().hashString(loginRequest.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo result = accountInfoRepository.getAccountInfoByUserIdPassword(loginRequest.getUserId(), passwordHash);
         AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
-        
+
         accountInfoResponse.setType(result.getType());
         accountInfoResponse.setStatus(result.getStatus());
-        accountInfoResponse.setCreatedOn(result.getCreatedOn());
-        accountInfoResponse.setUpdatedOn(result.getUpdatedOn());
-        accountInfoResponse.setNote(result.getNote());
-        
+
         return accountInfoResponse;
     }
-    
+
     @Override
     public AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo) {
         AccountInfo newAccountInfo = new AccountInfo();
@@ -70,38 +68,53 @@ public class AccountInfoServiceImpl implements AccountInfoService{
         newAccountInfo.setCreatedOn(accountInfo.getCreatedOn());
         newAccountInfo.setUpdatedOn(accountInfo.getUpdatedOn());
         newAccountInfo.setNote(accountInfo.getNote());
-        
-        if(accountInfoRepository.createAccountInfo(newAccountInfo) != null)
+
+        if (accountInfoRepository.createAccountInfo(newAccountInfo) != null) {
             return accountInfo;
-        else
+        } else {
             return null;
+        }
     }
 
+    //Need to return the data of account to show the password after hashing
     @Override
-    public AccountInfoRequest updateAccountInfoById(String id, AccountInfoRequest accountInfo) {
+    public AccountInfo updateAccountInfoById(AccountInfoRequest accountInfo) {
+        //Hash password before udpating
+        String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo newAccountInfo = new AccountInfo();
-        newAccountInfo.setPassword(accountInfo.getPassword());
+        newAccountInfo.setUserId(accountInfo.getUserId());
+        newAccountInfo.setPassword(passwordHash);
         newAccountInfo.setType(accountInfo.getType());
         newAccountInfo.setStatus(accountInfo.getStatus());
         newAccountInfo.setCreatedOn(accountInfo.getCreatedOn());
         newAccountInfo.setUpdatedOn(accountInfo.getUpdatedOn());
         newAccountInfo.setNote(accountInfo.getNote());
-        
-        if(accountInfoRepository.createAccountInfo(newAccountInfo) != null){
-            accountInfoRepository.updateAccountInfoById(id, newAccountInfo);
-            return accountInfo;
-        }
-        else
+
+        if (accountInfo.getUserId() != null) {
+            accountInfoRepository.updateAccountInfoById(newAccountInfo);
+            return newAccountInfo;
+        } else {
             return null;
+        }
     }
 
     @Override
     public boolean deleteAccountInfoById(String id) {
-        if(accountInfoRepository.getAccountInfoById(id) != null){
+        if (accountInfoRepository.getAccountInfoById(id) != null) {
             accountInfoRepository.deleteAccountInfoById(id);
             return true;
-        }
-        else
+        } else {
             return false;
+        }
+    }
+
+    @Override
+    public AccountInfo getAccountInfoById(String id) {
+        AccountInfo result = accountInfoRepository.getAccountInfoById(id);
+        if (result != null) {
+            return result;
+        } else {
+            return null;
+        }
     }
 }

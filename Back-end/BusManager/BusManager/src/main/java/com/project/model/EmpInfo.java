@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,8 +32,7 @@ import javax.persistence.Temporal;
 @Table(name = "emp_info")
 public class EmpInfo implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
+    @Column(name = "USER_ID", length = 20, nullable = false)
     private String userId;
     
     @JsonProperty("first_name")
@@ -70,7 +70,7 @@ public class EmpInfo implements Serializable {
     
     @JsonProperty("type")
     @Column(name = "TYPE", nullable = false)
-    private Integer type;
+    private int type;
     
     @Column(name = "CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
@@ -82,21 +82,36 @@ public class EmpInfo implements Serializable {
     private String note;
     
     @JsonProperty("username")
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USERNAME", nullable = false)
+    @OneToOne()
+    //fetch = FetchType.EAGER
+    @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID"
+            , nullable = true, updatable = false)
     private AccountInfo username;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "emp_info", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empId")
+//    fetch = FetchType.LAZY
     private List<CancelHistory> CancelHistory;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "emp_info", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empId")
+//    fetch = FetchType.LAZY
     private List<Feedback> feedback;
             
     @JsonIgnore
-    @OneToMany(mappedBy = "emp_info", fetch = FetchType.LAZY)
-    private List<BusSchedules> busSchedules;
+    @OneToMany(mappedBy = "mainDriver")
+//    fetch = FetchType.LAZY
+    private List<BusSchedules> mainDriver;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "subDriver")
+//    fetch = FetchType.LAZY
+    private List<BusSchedules> subDriver;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "manager")
+//    fetch = FetchType.LAZY
+    private List<BusSchedules> manager;
 
     /**
      * @return the userId
@@ -227,14 +242,14 @@ public class EmpInfo implements Serializable {
     /**
      * @return the type
      */
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -290,10 +305,8 @@ public class EmpInfo implements Serializable {
     /**
      * @param username to set
      */
-    public void setUsername(String username) {
-        AccountInfo newAccountInfo = new AccountInfo();
-        newAccountInfo.setUserId(username);
-        this.username = newAccountInfo;
+    public void setUsername(AccountInfo accountInfo) {
+        this.username = accountInfo;
     }
 
     /**
@@ -325,16 +338,44 @@ public class EmpInfo implements Serializable {
     }
 
     /**
-     * @return the busSchedules
+     * @return the mainDriver
      */
-    public List<BusSchedules> getBusSchedules() {
-        return busSchedules;
+    public List<BusSchedules> getMainDriver() {
+        return mainDriver;
     }
 
     /**
-     * @param busSchedules the busSchedules to set
+     * @param mainDriver the mainDriver to set
      */
-    public void setBusSchedules(List<BusSchedules> busSchedules) {
-        this.busSchedules = busSchedules;
+    public void setMainDriver(List<BusSchedules> mainDriver) {
+        this.mainDriver = mainDriver;
+    }
+
+    /**
+     * @return the subDriver
+     */
+    public List<BusSchedules> getSubDriver() {
+        return subDriver;
+    }
+
+    /**
+     * @param subDriver the subDriver to set
+     */
+    public void setSubDriver(List<BusSchedules> subDriver) {
+        this.subDriver = subDriver;
+    }
+
+    /**
+     * @return the manager
+     */
+    public List<BusSchedules> getManager() {
+        return manager;
+    }
+
+    /**
+     * @param manager the manager to set
+     */
+    public void setManager(List<BusSchedules> manager) {
+        this.manager = manager;
     }
 }

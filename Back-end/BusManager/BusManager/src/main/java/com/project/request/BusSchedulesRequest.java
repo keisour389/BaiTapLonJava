@@ -17,13 +17,13 @@ public class BusSchedulesRequest {
     private String licensePlates;
     private String mainDriver;
     private String subDriver;
-    private String from;
-    private String to;
-    private Date departureDay;
-    private Integer totalTime;
-    private Integer status;
-    private String vehicalType;
-    private Integer totalSeats;
+    private String start;
+    private String destination;
+    private LocalDateTime departureDay;
+    private int totalTime;
+    private int status;
+    private String vehicleType;
+    private int totalSeats;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
@@ -33,19 +33,19 @@ public class BusSchedulesRequest {
     }
     
     public BusSchedulesRequest(String tripId, String licensePlates, String mainDriver,
-                String subDriver, String from, String to, Date departureDay, Integer totalTime, 
-                Integer status, String vehicalType, Integer totalSeats, LocalDateTime createdOn, 
+                String subDriver, String start, String destination, LocalDateTime departureDay, int totalTime, 
+                int status, String vehicleType, int totalSeats, LocalDateTime createdOn, 
                 LocalDateTime updatedOn, String note, String manager){
         this.tripId = tripId;
         this.licensePlates = licensePlates;
         this.mainDriver = mainDriver;
         this.subDriver = subDriver;
-        this.from = from;
-        this.to = to;
+        this.start = start;
+        this.destination = destination;
         this.departureDay = departureDay;
         this.totalTime = totalTime;
         this.status = status;
-        this.vehicalType = vehicalType;
+        this.vehicleType = vehicleType;
         this.totalSeats = totalSeats;
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
@@ -82,100 +82,100 @@ public class BusSchedulesRequest {
     }
 
     /**
-     * @return the from
+     * @return the start
      */
-    public String getFrom() {
-        return from;
+    public String getStart() {
+        return start;
     }
 
     /**
-     * @param from the from to set
+     * @param start the start to set
      */
-    public void setFrom(String from) {
-        this.from = from;
+    public void setStart(String start) {
+        this.start = start;
     }
 
     /**
-     * @return the to
+     * @return the destination
      */
-    public String getTo() {
-        return to;
+    public String getDestination() {
+        return destination;
     }
 
     /**
-     * @param to the to to set
+     * @param destination the destination to set
      */
-    public void setTo(String to) {
-        this.to = to;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     /**
      * @return the departureDay
      */
-    public Date getDepartureDay() {
+    public LocalDateTime getDepartureDay() {
         return departureDay;
     }
 
     /**
      * @param departureDay the departureDay to set
      */
-    public void setDepartureDay(Date departureDay) {
+    public void setDepartureDay(LocalDateTime departureDay) {
         this.departureDay = departureDay;
     }
 
     /**
      * @return the totalTime
      */
-    public Integer getTotalTime() {
+    public int getTotalTime() {
         return totalTime;
     }
 
     /**
      * @param totalTime the totalTime to set
      */
-    public void setTotalTime(Integer totalTime) {
+    public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     /**
-     * @return the vehicalType
+     * @return the vehicleType
      */
-    public String getVehicalType() {
-        return vehicalType;
+    public String getVehicleType() {
+        return vehicleType;
     }
 
     /**
-     * @param vehicalType the vehicalType to set
+     * @param vehicleType the vehicleType to set
      */
-    public void setVehicalType(String vehicalType) {
-        this.vehicalType = vehicalType;
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     /**
      * @return the totalSeats
      */
-    public Integer getTotalSeats() {
+    public int getTotalSeats() {
         return totalSeats;
     }
 
     /**
      * @param totalSeats the totalSeats to set
      */
-    public void setTotalSeats(Integer totalSeats) {
+    public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
     }
 

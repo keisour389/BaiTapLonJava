@@ -41,7 +41,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmpInfoController {
     @Autowired
     EmpInfoService empInfoService;
-    EmpInfoRepository empInfoRepository;
     
     @Operation(responses = @ApiResponse(responseCode = "200", 
             content = @Content(schema = @Schema(hidden = true))))
@@ -67,7 +66,7 @@ public class EmpInfoController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getEmpInfo/")
     public ResponseEntity<?> getEmpInfoById(@RequestParam String id){
-        Object dataEmpInfo = empInfoRepository.getEmpInfoById(id);
+        Object dataEmpInfo = empInfoService.getEmpInfoById(id);
         if(dataEmpInfo != null){
             return new ResponseEntity<>(dataEmpInfo, HttpStatus.OK);
         }
@@ -78,8 +77,9 @@ public class EmpInfoController {
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateEmpInfo/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateEmpInfo(@RequestParam String id, @RequestBody EmpInfoRequest empInfoRequest){
-        EmpInfoRequest dataEmpInfo = empInfoService.updateEmpInfoById(id, empInfoRequest);
+    //Dont need id request param
+    public ResponseEntity<?> updateEmpInfo(@RequestBody EmpInfoRequest empInfoRequest){
+        EmpInfoRequest dataEmpInfo = empInfoService.updateEmpInfoById(empInfoRequest);
         if(dataEmpInfo != null){
             return new ResponseEntity<>(dataEmpInfo, HttpStatus.OK);
         }

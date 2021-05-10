@@ -32,8 +32,7 @@ import javax.persistence.Temporal;
 @Table(name = "ticket_management")
 public class TicketManagement implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TICKET_ID", length = 20)
+    @Column(name = "TICKET_ID", length = 20, nullable = false)
     private String ticketId;
     
     @JsonProperty("seat_id")
@@ -42,15 +41,15 @@ public class TicketManagement implements Serializable {
     
     @JsonProperty("price")
     @Column(name = "PRICE", length = 45, nullable = false)
-    private BigDecimal price;
+    private String price;
     
     @JsonProperty("status")
     @Column(name = "STATUS", nullable = false)
-    private Integer status;
+    private int status;
     
     @JsonProperty("payment")
     @Column(name = "PAYMENT", nullable = true)
-    private BigDecimal payment;
+    private int payment;
     
     @JsonProperty("payment_date")
     @Column(name = "PAYMENT_DATE", nullable = true)
@@ -65,16 +64,19 @@ public class TicketManagement implements Serializable {
     @Column(name = "NOTE", length = 200, nullable = true)
     private String note;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TRIP_ID")
+    @ManyToOne
+//    fetch = FetchType.LAZY
+    @JoinColumn(name = "TRIP_ID", nullable = true)
     private BusSchedules tripId;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUS_ID")
+    @ManyToOne
+//    fetch = FetchType.LAZY
+    @JoinColumn(name = "CUS_ID", nullable = true)
     private CusInfo cusId;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "ticket_management", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "ticketId")
+//    fetch = FetchType.EAGER
     private List<CancelHistory> cancelHistory = new ArrayList<>();
 
     /**
@@ -108,42 +110,42 @@ public class TicketManagement implements Serializable {
     /**
      * @return the price
      */
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     /**
      * @return the payment
      */
-    public BigDecimal getPayment() {
+    public int getPayment() {
         return payment;
     }
 
     /**
      * @param payment the payment to set
      */
-    public void setPayment(BigDecimal payment) {
+    public void setPayment(int payment) {
         this.payment = payment;
     }
 

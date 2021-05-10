@@ -48,11 +48,11 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
                 root.get("address"),
                 root.get("id"),
                 root.get("gender"),
-                root.get("type"),
+                root.get("type").as(String.class),
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
                 root.get("note"),
-                root.get("username")
+                root.get("username").as(String.class)
         ));
         return session.createQuery(query).getResultList();
     }
@@ -87,7 +87,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
 
     @Override
     @Transactional
-    public void updateEmpInfoById(String id, EmpInfo empInfo) {
+    public void updateEmpInfoById(EmpInfo empInfo) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<EmpInfo> query = criteriaBuilder.createCriteriaUpdate(EmpInfo.class);
@@ -104,9 +104,8 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         query.set("createdOn", empInfo.getCreatedOn());
         query.set("updatedOn", empInfo.getUpdatedOn());
         query.set("note", empInfo.getNote());
-        query.set("username", empInfo.getUsername());
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("userId"), empInfo.getUserId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }

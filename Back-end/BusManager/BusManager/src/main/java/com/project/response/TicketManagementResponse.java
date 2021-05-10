@@ -15,21 +15,20 @@ import java.util.Date;
 public class TicketManagementResponse {
     private String ticketId;
     private String seatId;
-    private BigDecimal price;
-    private Integer status;
-    private BigDecimal payment;
+    private String price;
+    private int status;
+    private int payment;
     private Date paymentDate;
     private Date bookingDate;
-    private String note;
     private String tripId;
     private String cusId;
     
     public TicketManagementResponse(){
     }
     
-    public TicketManagementResponse(String ticketId, String seatId, BigDecimal price, 
-            Integer status, BigDecimal payment, Date paymentDate, Date bookingDate,
-            String note, String tripId, String cusId){
+    public TicketManagementResponse(String ticketId, String seatId, String price, 
+            int status, int payment, Date paymentDate, Date bookingDate,
+            String tripId, String cusId){
         this.ticketId = ticketId;
         this.seatId = seatId;
         this.price = price;
@@ -37,23 +36,8 @@ public class TicketManagementResponse {
         this.payment = payment;
         this.paymentDate = paymentDate;
         this.bookingDate = bookingDate;
-        this.note = note;
         this.tripId = tripId;
         this.cusId = cusId;
-    }
-
-    /**
-     * @return the ticketId
-     */
-    public String getTicketId() {
-        return ticketId;
-    }
-
-    /**
-     * @param ticketId the ticketId to set
-     */
-    public void setTicketId(String ticketId) {
-        this.ticketId = ticketId;
     }
 
     /**
@@ -73,42 +57,42 @@ public class TicketManagementResponse {
     /**
      * @return the price
      */
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
     /**
      * @return the status
      */
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     /**
      * @return the payment
      */
-    public BigDecimal getPayment() {
+    public int getPayment() {
         return payment;
     }
 
     /**
      * @param payment the payment to set
      */
-    public void setPayment(BigDecimal payment) {
+    public void setPayment(int payment) {
         this.payment = payment;
     }
 
@@ -141,17 +125,17 @@ public class TicketManagementResponse {
     }
 
     /**
-     * @return the note
+     * @return the ticketId
      */
-    public String getNote() {
-        return note;
+    public String getTicketId() {
+        return ticketId;
     }
 
     /**
-     * @param note the note to set
+     * @param ticketId the ticketId to set
      */
-    public void setNote(String note) {
-        this.note = note;
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
     }
 
     /**
