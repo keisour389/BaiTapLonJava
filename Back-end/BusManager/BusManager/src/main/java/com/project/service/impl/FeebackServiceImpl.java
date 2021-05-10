@@ -117,8 +117,8 @@ public class FeebackServiceImpl implements FeedbackService{
             feedbackResponse.setFeedbackId(result.getFeedbackId());
             feedbackResponse.setContent(result.getContent());
             feedbackResponse.setStatus(result.getStatus());
-            feedbackResponse.setCusId(result.getCusId().toString());
-            feedbackResponse.setEmpId(result.getEmpId().toString());
+            feedbackResponse.setCusId(result.getCusId());
+            feedbackResponse.setEmpId(result.getEmpId());
             
             return feedbackResponse;
         }

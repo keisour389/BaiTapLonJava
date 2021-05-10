@@ -131,7 +131,7 @@ public class EmpInfoServiceImpl implements EmpInfoService {
             empInfoResponse.setId(result.getId());
             empInfoResponse.setGender(result.getGender());
             empInfoResponse.setType(result.getType());
-            empInfoResponse.setUsername(result.getUsername().toString());
+            empInfoResponse.setUsername(result.getUsername());
 
             return empInfoResponse;
         } else {

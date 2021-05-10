@@ -136,8 +136,8 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
             
             busSchedulesResponse.setTripId(result.getTripId());
             busSchedulesResponse.setLicensePlates(result.getLicensePlates());
-            busSchedulesResponse.setMainDriverId(result.getMainDriver().toString());
-            busSchedulesResponse.setSubDriverId(result.getSubDriver().toString());
+            busSchedulesResponse.setMainDriverId(result.getMainDriver());
+            busSchedulesResponse.setSubDriverId(result.getSubDriver());
             busSchedulesResponse.setStart(result.getStart());
             busSchedulesResponse.setDestination(result.getDestination());
             busSchedulesResponse.setDepartureDay(result.getDepartureDay());
@@ -147,8 +147,8 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
             busSchedulesResponse.setTotalSeats(result.getTotalSeats());
             busSchedulesResponse.setCreatedOn(result.getCreatedOn());
             busSchedulesResponse.setUpdatedOn(result.getUpdatedOn());
-//            busSchedulesResponse.setNote(result.getNote());
-            busSchedulesResponse.setManagerId(result.getManager().toString());
+            busSchedulesResponse.setNote(result.getNote());
+            busSchedulesResponse.setManagerId(result.getManager());
             
             return busSchedulesResponse;
         }

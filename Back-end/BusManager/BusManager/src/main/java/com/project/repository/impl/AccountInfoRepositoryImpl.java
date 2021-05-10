@@ -32,10 +32,10 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
 
     @Override
     @Transactional
-    public List getAllAccountInfo() {
+    public List<AccountInfoResponse> getAllAccountInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+        CriteriaQuery<AccountInfoResponse> query = criteriaBuilder.createQuery(AccountInfoResponse.class);
         Root<AccountInfo> root = query.from(AccountInfo.class);
         query.select(criteriaBuilder.construct(
                 AccountInfoResponse.class,

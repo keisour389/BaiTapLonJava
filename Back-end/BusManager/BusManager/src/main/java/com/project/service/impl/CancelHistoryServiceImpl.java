@@ -125,9 +125,9 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
             CancelHistoryResponse cancelHistoryResponse = new CancelHistoryResponse();
             cancelHistoryResponse.setCancelId(result.getCancelId());
             cancelHistoryResponse.setReason(result.getReason());
-            cancelHistoryResponse.setCusId(result.getCusId().toString());
-            cancelHistoryResponse.setEmpId(result.getEmpId().toString());
-            cancelHistoryResponse.setTicketId(result.getTicketId().toString());
+            cancelHistoryResponse.setCusId(result.getCusId());
+            cancelHistoryResponse.setEmpId(result.getEmpId());
+            cancelHistoryResponse.setTicketId(result.getTicketId());
             
             return cancelHistoryResponse;
         }

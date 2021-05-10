@@ -33,10 +33,10 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
 
     @Override
     @Transactional
-    public List getAllCusInfo() {
+    public List<CusInfoResponse> getAllCusInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+        CriteriaQuery<CusInfoResponse> query = criteriaBuilder.createQuery(CusInfoResponse.class);
         Root<CusInfo> root = query.from(CusInfo.class);
         query.select(criteriaBuilder.construct(
                 CusInfoResponse.class,

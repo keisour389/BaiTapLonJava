@@ -129,8 +129,8 @@ public class TicketManagementServiceImpl implements TicketManagementService{
             ticketManagementResponse.setPayment(result.getPayment());
             ticketManagementResponse.setPaymentDate(result.getPaymentDate());
             ticketManagementResponse.setBookingDate(result.getBookingDate());
-            ticketManagementResponse.setTripId(result.getTripId().toString());
-            ticketManagementResponse.setCusId(result.getCusId().toString());
+            ticketManagementResponse.setTripId(result.getTripId());
+            ticketManagementResponse.setCusId(result.getCusId());
             
             return ticketManagementResponse;
         }

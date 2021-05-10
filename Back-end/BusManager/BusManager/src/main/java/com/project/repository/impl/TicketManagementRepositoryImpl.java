@@ -32,10 +32,10 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
 
     @Override
     @Transactional
-    public List getAllTicketManagement() {
+    public List<TicketManagementResponse> getAllTicketManagement() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+        CriteriaQuery<TicketManagementResponse> query = criteriaBuilder.createQuery(TicketManagementResponse.class);
         Root<TicketManagement> root = query.from(TicketManagement.class);
         query.select(criteriaBuilder.construct(
                 TicketManagementResponse.class,

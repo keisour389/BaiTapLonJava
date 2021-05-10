@@ -67,21 +67,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         CriteriaQuery<BusSchedules> query = criteriaBuilder.createQuery(BusSchedules.class);
         Root<BusSchedules> root = query.from(BusSchedules.class);
         query.select(root);
-//        query.select(criteriaBuilder.construct(BusSchedulesResponse.class,
-//                root.get("tripId"),
-//                root.get("licensePlates"),
-//                root.get("mainDriver").get("userId"),
-//                root.get("subDriver").get("userId"),
-//                root.get("start"),
-//                root.get("destination"),
-//                root.get("departureDay"),
-//                root.get("totalTime"),
-//                root.get("status"),
-//                root.get("vehicleType"),
-//                root.get("totalSeats"),
-//                root.get("createdOn"),
-//                root.get("updatedOn"),
-//                root.get("manager").get("userId")));
+
         Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
 
         query.where(p);
