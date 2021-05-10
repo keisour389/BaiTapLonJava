@@ -78,8 +78,8 @@ public class BusSchedulesController {
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateBusSchedules/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateBusSchedules(@RequestParam String id, @RequestBody BusSchedulesRequest busSchedulesRequest){
-        BusSchedulesRequest dataBusSchedules = busSchedulesService.updateBusSchedulesById(id, busSchedulesRequest);
+    public ResponseEntity<?> updateBusSchedules(@RequestBody BusSchedulesRequest busSchedulesRequest){
+        BusSchedulesRequest dataBusSchedules = busSchedulesService.updateBusSchedulesById(busSchedulesRequest);
         if(dataBusSchedules != null){
             return new ResponseEntity<>(dataBusSchedules, HttpStatus.OK);
         }

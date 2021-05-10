@@ -19,6 +19,6 @@ public interface CancelHistoryService {
     CancelHistoryResponse getCancelHistoryById(String id);
     
     CancelHistoryRequest createCancelHistory(CancelHistoryRequest cancelHistory);
-    CancelHistoryRequest updateCancelHistoryById(String id, CancelHistoryRequest cancelHistory);
+    CancelHistoryRequest updateCancelHistoryById(CancelHistoryRequest cancelHistory);
     boolean deleteCancelHistoryById(String id);
 }

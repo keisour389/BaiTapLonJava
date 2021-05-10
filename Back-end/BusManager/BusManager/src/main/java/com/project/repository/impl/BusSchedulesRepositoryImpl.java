@@ -103,7 +103,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
 
     @Override
     @Transactional
-    public void updateBusSchedulesById(String id, BusSchedules busSchedules) {
+    public void updateBusSchedulesById(BusSchedules busSchedules) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<BusSchedules> query = criteriaBuilder.createCriteriaUpdate(BusSchedules.class);
@@ -123,7 +123,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         query.set("note", busSchedules.getNote());
         query.set("manager", busSchedules.getManager());
 
-        Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("tripId"), busSchedules.getTripId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }

@@ -77,8 +77,8 @@ public class CancelHistoryController {
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateCancelHistory/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateCancelHistory(@RequestParam String id, @RequestBody CancelHistoryRequest cancelHistoryRequest){
-        CancelHistoryRequest dataCancelHistory = cancelHistoryService.updateCancelHistoryById(id, cancelHistoryRequest);
+    public ResponseEntity<?> updateCancelHistory(@RequestBody CancelHistoryRequest cancelHistoryRequest){
+        CancelHistoryRequest dataCancelHistory = cancelHistoryService.updateCancelHistoryById(cancelHistoryRequest);
         if(dataCancelHistory != null){
             return new ResponseEntity<>(dataCancelHistory, HttpStatus.OK);
         }

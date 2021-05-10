@@ -16,6 +16,6 @@ public interface CancelHistoryRepository{
     List getAllCancelHistory();
     CancelHistory getCancelHistoryById(String id);
     CancelHistory createCancelHistory(CancelHistory cancelHistory);
-    void updateCancelHistoryById(String id, CancelHistory cancelHistory);
+    void updateCancelHistoryById(CancelHistory cancelHistory);
     void deleteCancelHistoryById(String id);
 }

@@ -19,6 +19,6 @@ public interface FeedbackService {
     FeedbackResponse getFeedbackById(String id);
     
     FeedbackRequest createFeedback(FeedbackRequest feedback);
-    FeedbackRequest updateFeedbackById(String id, FeedbackRequest feedback);
+    FeedbackRequest updateFeedbackById(FeedbackRequest feedback);
     boolean deleteFeedbackById(String id);
 }

@@ -16,6 +16,6 @@ public interface FeedbackRepository{
     List getAllFeedback();
     Feedback getFeedbackById(String id);
     Feedback createFeedback(Feedback feedback);
-    void updateFeedbackById(String id, Feedback feedback);
+    void updateFeedbackById(Feedback feedback);
     void deleteFeedbackById(String id);
 }

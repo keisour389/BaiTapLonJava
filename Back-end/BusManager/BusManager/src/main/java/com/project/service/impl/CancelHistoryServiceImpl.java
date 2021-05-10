@@ -58,7 +58,7 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
     }
 
     @Override
-    public CancelHistoryRequest updateCancelHistoryById(String id, CancelHistoryRequest cancelHistory) {
+    public CancelHistoryRequest updateCancelHistoryById(CancelHistoryRequest cancelHistory) {
         CancelHistory newCancelHistory = new CancelHistory();
         newCancelHistory.setCancelId(cancelHistory.getCancelId());
         newCancelHistory.setReason(cancelHistory.getReason());
@@ -68,7 +68,7 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         newCancelHistory.setTicketId(cancelHistory.getTicketId());
         
         if(cancelHistoryRepository.createCancelHistory(newCancelHistory) != null){
-            cancelHistoryRepository.updateCancelHistoryById(id, newCancelHistory);
+            cancelHistoryRepository.updateCancelHistoryById(newCancelHistory);
             return cancelHistory;
         }
         else

@@ -79,7 +79,7 @@ public class CancelHistoryRepositoryImpl implements CancelHistoryRepository{
 
     @Override
     @Transactional
-    public void updateCancelHistoryById(String id, CancelHistory cancelHistory) {
+    public void updateCancelHistoryById(CancelHistory cancelHistory) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<CancelHistory> query = criteriaBuilder.createCriteriaUpdate(CancelHistory.class);
@@ -90,7 +90,7 @@ public class CancelHistoryRepositoryImpl implements CancelHistoryRepository{
         query.set("empId", cancelHistory.getEmpId());
         query.set("ticketId", cancelHistory.getTicketId());
         
-        Predicate p = criteriaBuilder.equal(root.get("cancelId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("cancelId"), cancelHistory.getCancelId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }

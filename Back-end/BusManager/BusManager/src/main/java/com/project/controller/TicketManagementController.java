@@ -77,8 +77,8 @@ public class TicketManagementController {
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateTicketManagement/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateTicketManagement(@RequestParam String id, @RequestBody TicketManagementRequest ticketManagementRequest){
-        TicketManagementRequest dataTicketManagement = ticketManagementService.updateTicketManagementById(id, ticketManagementRequest);
+    public ResponseEntity<?> updateTicketManagement(@RequestBody TicketManagementRequest ticketManagementRequest){
+        TicketManagementRequest dataTicketManagement = ticketManagementService.updateTicketManagementById(ticketManagementRequest);
         if(dataTicketManagement != null){
             return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
         }

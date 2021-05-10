@@ -19,6 +19,6 @@ public interface TicketManagementService {
     TicketManagementResponse getTicketManagementById(String id);
     
     TicketManagementRequest createTicketManagement(TicketManagementRequest ticketManagement);
-    TicketManagementRequest updateTicketManagementById(String id, TicketManagementRequest ticketManagement);
+    TicketManagementRequest updateTicketManagementById(TicketManagementRequest ticketManagement);
     boolean deleteTicketManagementById(String id);
 }

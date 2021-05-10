@@ -83,7 +83,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
 
     @Override
     @Transactional
-    public void updateTicketManagementById(String id, TicketManagement ticketManagement) {
+    public void updateTicketManagementById(TicketManagement ticketManagement) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<TicketManagement> query = criteriaBuilder.createCriteriaUpdate(TicketManagement.class);
@@ -98,7 +98,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         query.set("tripId", ticketManagement.getTripId());
         query.set("cusId", ticketManagement.getCusId());
         
-        Predicate p = criteriaBuilder.equal(root.get("ticketId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("ticketId"), ticketManagement);
         query.where(p);
         session.createQuery(query).executeUpdate();
     }

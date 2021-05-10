@@ -62,7 +62,7 @@ public class TicketManagementServiceImpl implements TicketManagementService{
     }
 
     @Override
-    public TicketManagementRequest updateTicketManagementById(String id, TicketManagementRequest ticketManagement) {
+    public TicketManagementRequest updateTicketManagementById(TicketManagementRequest ticketManagement) {
         TicketManagement newTicketManagement = new TicketManagement();
         newTicketManagement.setTicketId(ticketManagement.getTicketId());
         newTicketManagement.setSeatId(ticketManagement.getSeatId());
@@ -76,7 +76,7 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         newTicketManagement.setCusId(ticketManagement.getCusId());
         
         if(ticketManagementRepository.createTicketManagement(newTicketManagement) != null){
-            ticketManagementRepository.updateTicketManagementById(id, newTicketManagement);
+            ticketManagementRepository.updateTicketManagementById(newTicketManagement);
             return ticketManagement;
         }
         else

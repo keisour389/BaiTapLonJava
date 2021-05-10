@@ -77,8 +77,8 @@ public class FeedbackController {
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateFeedback/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateFeedback(@RequestParam String id, @RequestBody FeedbackRequest feedbackRequest){
-        FeedbackRequest dataFeedback = feedbackService.updateFeedbackById(id, feedbackRequest);
+    public ResponseEntity<?> updateFeedback(@RequestBody FeedbackRequest feedbackRequest){
+        FeedbackRequest dataFeedback = feedbackService.updateFeedbackById(feedbackRequest);
         if(dataFeedback != null){
             return new ResponseEntity<>(dataFeedback, HttpStatus.OK);
         }

@@ -58,7 +58,7 @@ public class FeebackServiceImpl implements FeedbackService{
     }
 
     @Override
-    public FeedbackRequest updateFeedbackById(String id, FeedbackRequest feedback) {
+    public FeedbackRequest updateFeedbackById(FeedbackRequest feedback) {
         Feedback newFeedback = new Feedback();
         newFeedback.setFeedbackId(feedback.getFeedbackId());
         newFeedback.setContent(feedback.getContent());
@@ -68,7 +68,7 @@ public class FeebackServiceImpl implements FeedbackService{
         newFeedback.setEmpId(feedback.getEmpId());
         
         if(feedbackRepository.createFeedback(newFeedback) != null){
-            feedbackRepository.updateFeedbackById(id, newFeedback);
+            feedbackRepository.updateFeedbackById(newFeedback);
             return feedback;
         }
         else

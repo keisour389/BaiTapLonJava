@@ -79,7 +79,7 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
 
     @Override
     @Transactional
-    public void updateFeedbackById(String id, Feedback feedback) {
+    public void updateFeedbackById(Feedback feedback) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Feedback> query = criteriaBuilder.createCriteriaUpdate(Feedback.class);
@@ -90,7 +90,7 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
         query.set("cusId", feedback.getCusId());
         query.set("empId", feedback.getEmpId());
         
-        Predicate p = criteriaBuilder.equal(root.get("feedbackId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("feedbackId"), feedback.getFeedbackId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
