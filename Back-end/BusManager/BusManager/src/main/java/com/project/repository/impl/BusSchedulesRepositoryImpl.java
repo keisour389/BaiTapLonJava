@@ -53,35 +53,35 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
                 root.get("status"),
                 root.get("vehicleType"),
                 root.get("totalSeats"),
-                root.get("createdOn"),
-                root.get("updatedOn"),
+                root.get("createdOn").as(String.class),
+                root.get("updatedOn").as(String.class),
                 root.get("manager").get("userId")));
         return session.createQuery(query).getResultList();
     }
 
     @Override
     @Transactional
-    public BusSchedulesResponse getBusSchedulesById(String id) {
+    public BusSchedules getBusSchedulesById(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<BusSchedulesResponse> query = criteriaBuilder.createQuery(BusSchedulesResponse.class);
+        CriteriaQuery<BusSchedules> query = criteriaBuilder.createQuery(BusSchedules.class);
         Root<BusSchedules> root = query.from(BusSchedules.class);
-//        query.select(root);
-        query.select(criteriaBuilder.construct(BusSchedulesResponse.class,
-                root.get("tripId"),
-                root.get("licensePlates"),
-                root.get("mainDriver").get("userId"),
-                root.get("subDriver").get("userId"),
-                root.get("start"),
-                root.get("destination"),
-                root.get("departureDay"),
-                root.get("totalTime"),
-                root.get("status"),
-                root.get("vehicleType"),
-                root.get("totalSeats"),
-                root.get("createdOn"),
-                root.get("updatedOn"),
-                root.get("manager").get("userId")));
+        query.select(root);
+//        query.select(criteriaBuilder.construct(BusSchedulesResponse.class,
+//                root.get("tripId"),
+//                root.get("licensePlates"),
+//                root.get("mainDriver").get("userId"),
+//                root.get("subDriver").get("userId"),
+//                root.get("start"),
+//                root.get("destination"),
+//                root.get("departureDay"),
+//                root.get("totalTime"),
+//                root.get("status"),
+//                root.get("vehicleType"),
+//                root.get("totalSeats"),
+//                root.get("createdOn"),
+//                root.get("updatedOn"),
+//                root.get("manager").get("userId")));
         Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
 
         query.where(p);

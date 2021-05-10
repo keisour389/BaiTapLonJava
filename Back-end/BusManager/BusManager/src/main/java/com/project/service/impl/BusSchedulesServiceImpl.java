@@ -130,12 +130,29 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
 
     @Override
     public BusSchedulesResponse getBusSchedulesById(String id) {
-        //Don't get the object, just get the id of the foreign key
-        BusSchedulesResponse result = busSchedulesRepository.getBusSchedulesById(id);
-        if (result != null) {
-            return result;
-        } else {
-            return null;
+        BusSchedules result = busSchedulesRepository.getBusSchedulesById(id);
+        if(result != null){
+            BusSchedulesResponse busSchedulesResponse = new BusSchedulesResponse();
+            
+            busSchedulesResponse.setTripId(result.getTripId());
+            busSchedulesResponse.setLicensePlates(result.getLicensePlates());
+            busSchedulesResponse.setMainDriverId(result.getMainDriver().toString());
+            busSchedulesResponse.setSubDriverId(result.getSubDriver().toString());
+            busSchedulesResponse.setStart(result.getStart());
+            busSchedulesResponse.setDestination(result.getDestination());
+            busSchedulesResponse.setDepartureDay(result.getDepartureDay());
+            busSchedulesResponse.setTotalTime(result.getTotalTime());
+            busSchedulesResponse.setStatus(result.getStatus());
+            busSchedulesResponse.setVehicleType(result.getVehicleType());
+            busSchedulesResponse.setTotalSeats(result.getTotalSeats());
+            busSchedulesResponse.setCreatedOn(result.getCreatedOn());
+            busSchedulesResponse.setUpdatedOn(result.getUpdatedOn());
+//            busSchedulesResponse.setNote(result.getNote());
+            busSchedulesResponse.setManagerId(result.getManager().toString());
+            
+            return busSchedulesResponse;
         }
+        else
+            return null;
     }
 }

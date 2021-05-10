@@ -27,6 +27,7 @@ public class BusSchedulesResponse {
     private int totalSeats;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+    private String note;
     private String managerId;
     
     public BusSchedulesResponse(){}
@@ -34,7 +35,7 @@ public class BusSchedulesResponse {
     public BusSchedulesResponse(String tripId, String licensePlates, String mainDriverId, String subDriverId,
             String start, String destination, LocalDateTime departureDay, int totalTime,
             int status, String vehicleType, int totalSeats, LocalDateTime createdOn,
-            LocalDateTime updatedOn, String managerId) {
+            LocalDateTime updatedOn, String note, String managerId) {
         this.tripId = tripId;
         this.licensePlates = licensePlates;
         this.mainDriverId = mainDriverId;
@@ -240,6 +241,20 @@ public class BusSchedulesResponse {
      */
     public void setManagerId(String managerId) {
         this.managerId = managerId;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 
 }

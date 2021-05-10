@@ -131,11 +131,18 @@ public class BusSchedules implements Serializable {
         this.licensePlates = licensePlates;
     }
 
+//    /**
+//     * @return the mainDriver
+//     */
+//    public EmpInfo getMainDriver() {
+//        return mainDriver;
+//    }
+    
     /**
      * @return the mainDriver
      */
-    public EmpInfo getMainDriver() {
-        return mainDriver;
+    public String getMainDriver() {
+        return mainDriver.getUsername();
     }
     
     /**
@@ -145,11 +152,18 @@ public class BusSchedules implements Serializable {
         this.mainDriver = mainDriver;
     }
 
+//    /**
+//     * @return the subDriver
+//     */
+//    public EmpInfo getSubDriver() {
+//        return subDriver;
+//    }
+    
     /**
      * @return the subDriver
      */
-    public EmpInfo getSubDriver() {
-        return subDriver;
+    public String getSubDriver() {
+        return subDriver.getUsername();
     }
     
     /**
@@ -299,11 +313,18 @@ public class BusSchedules implements Serializable {
         this.note = note;
     }
 
+//    /**
+//     * @return the manager
+//     */
+//    public EmpInfo getManager() {
+//        return manager;
+//    }
+    
     /**
      * @return the manager
      */
-    public EmpInfo getManager() {
-        return manager;
+    public String getManager() {
+        return manager.getUsername();
     }
     
     /**

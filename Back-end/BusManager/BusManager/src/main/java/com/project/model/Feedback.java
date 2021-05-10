@@ -107,35 +107,63 @@ public class Feedback implements Serializable {
         this.note = note;
     }
 
+//    /**
+//     * @return the cusId
+//     */
+//    public CusInfo getCusId() {
+//        return cusId;
+//    }
+    
     /**
      * @return the cusId
      */
-    public CusInfo getCusId() {
-        return cusId;
+    public String getCusId() {
+        return cusId.getUsername();
     }
     
+//    /**
+//     * @param cusId to set
+//     */
+//    public void setCusId(String cusId) {
+//        CusInfo newCusInfo = new CusInfo();
+//        newCusInfo.setUserId(cusId);
+//        this.setCusId(newCusInfo);
+//    }
+    
     /**
-     * @param cusId to set
+     * @param cusId the cusId to set
      */
-    public void setCusId(String cusId) {
-        CusInfo newCusInfo = new CusInfo();
-        newCusInfo.setUserId(cusId);
-        this.cusId = newCusInfo;
+    public void setCusId(CusInfo cusId) {
+        this.cusId = cusId;
     }
 
+//    /**
+//     * @return the empId
+//     */
+//    public EmpInfo getEmpId() {
+//        return empId;
+//    }
+    
     /**
      * @return the empId
      */
-    public EmpInfo getEmpId() {
-        return empId;
+    public String getEmpId() {
+        return empId.getUsername();
     }
     
+//    /**
+//     * @param empId to set
+//     */
+//    public void setEmpId(String empId) {
+//        EmpInfo newEmpInfo = new EmpInfo();
+//        newEmpInfo.setUserId(empId);
+//        this.setEmpId(newEmpInfo);
+//    }
+
     /**
-     * @param empId to set
+     * @param empId the empId to set
      */
-    public void setEmpId(String empId) {
-        EmpInfo newEmpInfo = new EmpInfo();
-        newEmpInfo.setUserId(empId);
-        this.empId = newEmpInfo;
+    public void setEmpId(EmpInfo empId) {
+        this.empId = empId;
     }
 }

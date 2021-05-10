@@ -5,7 +5,11 @@
  */
 package com.project.service.impl;
 
+import com.project.model.BusSchedules;
+import com.project.model.CusInfo;
 import com.project.model.TicketManagement;
+import com.project.repository.BusSchedulesRepository;
+import com.project.repository.CusInfoRepository;
 import com.project.repository.TicketManagementRepository;
 import com.project.request.TicketManagementRequest;
 import com.project.response.CommonResponse;
@@ -23,6 +27,12 @@ import org.springframework.stereotype.Service;
 public class TicketManagementServiceImpl implements TicketManagementService{
     @Autowired
     private TicketManagementRepository ticketManagementRepository;
+    
+    @Autowired
+    private CusInfoRepository cusInfoRepository; 
+    
+    @Autowired
+    private BusSchedulesRepository busSchedulesRepository; 
 
     @Override
     public Object getAllTicketManagement(int page, int size) {
@@ -43,7 +53,14 @@ public class TicketManagementServiceImpl implements TicketManagementService{
 
     @Override
     public TicketManagementRequest createTicketManagement(TicketManagementRequest ticketManagement) {
+        BusSchedules trip = new BusSchedules();
+        CusInfo cus = new CusInfo();
+
         TicketManagement newTicketManagement = new TicketManagement();
+        
+        trip = busSchedulesRepository.getBusSchedulesById(ticketManagement.getTripId());
+        cus = cusInfoRepository.getCusInfoById(ticketManagement.getCusId());
+        
         newTicketManagement.setTicketId(ticketManagement.getTicketId());
         newTicketManagement.setSeatId(ticketManagement.getSeatId());
         newTicketManagement.setPrice(ticketManagement.getPrice());
@@ -52,8 +69,8 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         newTicketManagement.setPaymentDate(ticketManagement.getPaymentDate());
         newTicketManagement.setBookingDate(ticketManagement.getBookingDate());
         newTicketManagement.setNote(ticketManagement.getNote());
-        newTicketManagement.setTripId(ticketManagement.getTripId());
-        newTicketManagement.setCusId(ticketManagement.getCusId());
+        newTicketManagement.setTripId(trip);
+        newTicketManagement.setCusId(cus);
         
         if(ticketManagementRepository.createTicketManagement(newTicketManagement) != null)
             return ticketManagement;
@@ -63,7 +80,14 @@ public class TicketManagementServiceImpl implements TicketManagementService{
 
     @Override
     public TicketManagementRequest updateTicketManagementById(TicketManagementRequest ticketManagement) {
+        BusSchedules trip = new BusSchedules();
+        CusInfo cus = new CusInfo();
+
         TicketManagement newTicketManagement = new TicketManagement();
+        
+        trip = busSchedulesRepository.getBusSchedulesById(ticketManagement.getTripId());
+        cus = cusInfoRepository.getCusInfoById(ticketManagement.getCusId());
+
         newTicketManagement.setTicketId(ticketManagement.getTicketId());
         newTicketManagement.setSeatId(ticketManagement.getSeatId());
         newTicketManagement.setPrice(ticketManagement.getPrice());
@@ -72,8 +96,8 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         newTicketManagement.setPaymentDate(ticketManagement.getPaymentDate());
         newTicketManagement.setBookingDate(ticketManagement.getBookingDate());
         newTicketManagement.setNote(ticketManagement.getNote());
-        newTicketManagement.setTripId(ticketManagement.getTripId());
-        newTicketManagement.setCusId(ticketManagement.getCusId());
+        newTicketManagement.setTripId(trip);
+        newTicketManagement.setCusId(cus);
         
         if(ticketManagementRepository.createTicketManagement(newTicketManagement) != null){
             ticketManagementRepository.updateTicketManagementById(newTicketManagement);

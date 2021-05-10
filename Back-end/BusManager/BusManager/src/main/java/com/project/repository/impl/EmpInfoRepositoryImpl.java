@@ -32,10 +32,10 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
 
     @Override
     @Transactional
-    public List getAllEmpInfo() {
+    public List<EmpInfoResponse> getAllEmpInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+        CriteriaQuery<EmpInfoResponse> query = criteriaBuilder.createQuery(EmpInfoResponse.class);
         Root<EmpInfo> root = query.from(EmpInfo.class);
         query.select(criteriaBuilder.construct(
                 EmpInfoResponse.class,
@@ -52,7 +52,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
                 root.get("createdOn").as(String.class),
                 root.get("updatedOn").as(String.class),
                 root.get("note"),
-                root.get("username").as(String.class)
+                root.get("username")
         ));
         return session.createQuery(query).getResultList();
     }

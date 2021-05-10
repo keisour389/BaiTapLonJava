@@ -191,36 +191,64 @@ public class TicketManagement implements Serializable {
         this.note = note;
     }
 
+//    /**
+//     * @return the tripId
+//     */
+//    public BusSchedules getTripId() {
+//        return tripId;
+//    }
+    
     /**
      * @return the tripId
      */
-    public BusSchedules getTripId() {
-        return tripId;
+    public String getTripId() {
+        return tripId.getTripId();
     }
     
+//    /**
+//     * @param tripId to set
+//     */
+//    public void setTripId(String tripId) {
+//        BusSchedules newBusSchedules = new BusSchedules();
+//        newBusSchedules.setTripId(tripId);
+//        this.setTripId(newBusSchedules);
+//    }
+    
     /**
-     * @param tripId to set
+     * @param tripId the tripId to set
      */
-    public void setTripId(String tripId) {
-        BusSchedules newBusSchedules = new BusSchedules();
-        newBusSchedules.setTripId(tripId);
-        this.tripId = newBusSchedules;
+    public void setTripId(BusSchedules tripId) {
+        this.tripId = tripId;
     }
 
+//    /**
+//     * @return the cusId
+//     */
+//    public CusInfo getCusId() {
+//        return cusId;
+//    }
+    
     /**
      * @return the cusId
      */
-    public CusInfo getCusId() {
-        return cusId;
+    public String getCusId() {
+        return cusId.getUsername();
     }
     
+//    /**
+//     * @param cusId to set
+//     */
+//    public void setCusId(String cusId) {
+//        CusInfo newCusInfo = new CusInfo();
+//        newCusInfo.setUserId(cusId);
+//        this.setCusId(newCusInfo);
+//    }
+    
     /**
-     * @param cusId to set
+     * @param cusId the cusId to set
      */
-    public void setCusId(String cusId) {
-        CusInfo newCusInfo = new CusInfo();
-        newCusInfo.setUserId(cusId);
-        this.cusId = newCusInfo;
+    public void setCusId(CusInfo cusId) {
+        this.cusId = cusId;
     }
 
     /**
