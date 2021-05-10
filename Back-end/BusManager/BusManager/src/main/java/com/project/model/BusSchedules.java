@@ -51,11 +51,11 @@ public class BusSchedules implements Serializable {
     @JoinColumn(name="SUB_DRIVER", nullable = false)
     private EmpInfo subDriver;
     
-    @JsonProperty("from")
+    @JsonProperty("start")
     @Column(name="START", length = 100, nullable = false)
     private String start;
     
-    @JsonProperty("to")
+    @JsonProperty("destination")
     @Column(name="DESTINATION", length = 100, nullable = false)
     private String destination;
     
@@ -232,14 +232,14 @@ public class BusSchedules implements Serializable {
     /**
      * @return the vehicalType
      */
-    public String getVehicalType() {
+    public String getVehicleType() {
         return vehicleType;
     }
 
     /**
      * @param vehicleType the vehicalType to set
      */
-    public void setVehicalType(String vehicleType) {
+    public void setVehicleType(String vehicleType) {
         this.vehicleType = vehicleType;
     }
 

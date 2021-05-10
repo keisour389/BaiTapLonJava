@@ -116,7 +116,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         query.set("departureDay", busSchedules.getDepartureDay());
         query.set("totalTime", busSchedules.getTotalTime());
         query.set("status", busSchedules.getStatus());
-        query.set("vehicleType", busSchedules.getVehicalType());
+        query.set("vehicleType", busSchedules.getVehicleType());
         query.set("totalSeats", busSchedules.getTotalSeats());
         query.set("createdOn", busSchedules.getCreatedOn());
         query.set("updatedOn", busSchedules.getUpdatedOn());
