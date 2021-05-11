@@ -53,6 +53,7 @@ public class CusInfo implements Serializable {
     
     @JsonProperty("dob")
     @Column(name = "DOB", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date birthday;
     
     @JsonProperty("gender")

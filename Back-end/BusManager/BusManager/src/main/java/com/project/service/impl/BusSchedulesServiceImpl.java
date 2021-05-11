@@ -31,7 +31,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
     private EmpInfoRepository empInfoRepository;
 
     @Override
-    public CommonResponse getAllBusSchedules(int page, int size) {
+    public Object getAllBusSchedules(int page, int size) {
         CommonResponse commonResponse = new CommonResponse();
         List result = busSchedulesRepository.getAllBusSchedules();
         int offset = (page - 1) * size;
@@ -154,5 +154,22 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         }
         else
             return null;
+    }
+
+    @Override
+    public Object getBusSchedulesByDestination(int page, int size, String dest) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = busSchedulesRepository.getBusSchedulesByDestination(dest);
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total % size) == 0 ? (int) (total / size) : (int) ((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+
+        return commonResponse;
     }
 }

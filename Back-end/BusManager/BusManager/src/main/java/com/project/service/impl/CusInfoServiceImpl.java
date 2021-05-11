@@ -122,6 +122,9 @@ public class CusInfoServiceImpl implements CusInfoService {
             cusInfoResponse.setPhoneNumber(result.getPhoneNumber());
             cusInfoResponse.setBirthday(result.getBirthday());
             cusInfoResponse.setGender(result.getGender());
+            cusInfoResponse.setCreatedOn(result.getCreatedOn());
+            cusInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            cusInfoResponse.setNote(result.getNote());
             cusInfoResponse.setUsername(result.getUsername());
 
             return cusInfoResponse;

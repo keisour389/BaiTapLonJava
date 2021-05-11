@@ -8,6 +8,8 @@ package com.project.repository.impl;
 import com.project.model.EmpInfo;
 import com.project.repository.EmpInfoRepository;
 import com.project.response.EmpInfoResponse;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -32,10 +34,10 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
 
     @Override
     @Transactional
-    public List<EmpInfoResponse> getAllEmpInfo() {
+    public List<Object> getAllEmpInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<EmpInfoResponse> query = criteriaBuilder.createQuery(EmpInfoResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<EmpInfo> root = query.from(EmpInfo.class);
         query.select(criteriaBuilder.construct(
                 EmpInfoResponse.class,
@@ -44,15 +46,15 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
                 root.get("lastName"),
                 root.get("displayName"),
                 root.get("phoneNumber"),
-                root.get("birthday").as(String.class),
+                root.get("birthday").as(Date.class),
                 root.get("address"),
                 root.get("id"),
                 root.get("gender"),
-                root.get("type").as(String.class),
-                root.get("createdOn").as(String.class),
-                root.get("updatedOn").as(String.class),
+                root.get("type"),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
                 root.get("note"),
-                root.get("username")
+                root.get("username").get("userId")
         ));
         return session.createQuery(query).getResultList();
     }

@@ -31,11 +31,11 @@ public class BusSchedulesResponse {
     private String managerId;
     
     public BusSchedulesResponse(){}
-
+    
     public BusSchedulesResponse(String tripId, String licensePlates, String mainDriverId, String subDriverId,
-            String start, String destination, LocalDateTime departureDay, int totalTime,
-            int status, String vehicleType, int totalSeats, LocalDateTime createdOn,
-            LocalDateTime updatedOn, String note, String managerId) {
+                                String start, String destination, LocalDateTime departureDay, int totalTime, int status,
+                                String vehicleType, int totalSeats, LocalDateTime createdOn,
+                                LocalDateTime updatedOn, String note, String managerId) {
         this.tripId = tripId;
         this.licensePlates = licensePlates;
         this.mainDriverId = mainDriverId;
@@ -44,7 +44,13 @@ public class BusSchedulesResponse {
         this.destination = destination;
         this.departureDay = departureDay;
         this.totalTime = totalTime;
+        this.status = status;
         this.vehicleType = vehicleType;
+        this.totalSeats = totalSeats;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.note = note;
+        this.managerId = managerId;
     }
 
     /**

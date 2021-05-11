@@ -32,19 +32,19 @@ public class CancelHistoryRepositoryImpl implements CancelHistoryRepository{
 
     @Override
     @Transactional
-    public List<CancelHistoryResponse> getAllCancelHistory() {
+    public List<Object> getAllCancelHistory() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<CancelHistoryResponse> query = criteriaBuilder.createQuery(CancelHistoryResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<CancelHistory> root = query.from(CancelHistory.class);
         query.select(criteriaBuilder.construct(
                 CancelHistoryResponse.class,
                 root.get("cancelId"),
                 root.get("reason"),
                 root.get("note"),
-                root.get("cusId").as(String.class),
-                root.get("empId").as(String.class),
-                root.get("ticketId").as(String.class)
+                root.get("cusId").get("username").get("userId"),
+                root.get("empId").get("username").get("userId"),
+                root.get("ticketId").get("ticketId")
         ));
         return session.createQuery(query).getResultList();
     }

@@ -20,6 +20,7 @@ public class TicketManagementResponse {
     private int payment;
     private Date paymentDate;
     private Date bookingDate;
+    private String note;
     private String tripId;
     private String cusId;
     
@@ -28,7 +29,7 @@ public class TicketManagementResponse {
     
     public TicketManagementResponse(String ticketId, String seatId, String price, 
             int status, int payment, Date paymentDate, Date bookingDate,
-            String tripId, String cusId){
+            String note, String tripId, String cusId){
         this.ticketId = ticketId;
         this.seatId = seatId;
         this.price = price;
@@ -36,6 +37,7 @@ public class TicketManagementResponse {
         this.payment = payment;
         this.paymentDate = paymentDate;
         this.bookingDate = bookingDate;
+        this.note = note;
         this.tripId = tripId;
         this.cusId = cusId;
     }
@@ -164,5 +166,19 @@ public class TicketManagementResponse {
      */
     public void setCusId(String cusId) {
         this.cusId = cusId;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 }

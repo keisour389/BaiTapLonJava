@@ -53,7 +53,7 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         commonResponse.setPage(page);
         commonResponse.setSize(size);
         
-        return  commonResponse;
+        return commonResponse;
     }
 
     @Override
@@ -125,6 +125,7 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
             CancelHistoryResponse cancelHistoryResponse = new CancelHistoryResponse();
             cancelHistoryResponse.setCancelId(result.getCancelId());
             cancelHistoryResponse.setReason(result.getReason());
+            cancelHistoryResponse.setNote(result.getNote());
             cancelHistoryResponse.setCusId(result.getCusId());
             cancelHistoryResponse.setEmpId(result.getEmpId());
             cancelHistoryResponse.setTicketId(result.getTicketId());

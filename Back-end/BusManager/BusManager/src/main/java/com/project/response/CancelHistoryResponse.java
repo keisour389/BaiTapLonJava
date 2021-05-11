@@ -12,6 +12,7 @@ package com.project.response;
 public class CancelHistoryResponse {
     private String cancelId;
     private String reason;
+    private String note;
     private String cusId;
     private String empId;
     private String ticketId;
@@ -19,10 +20,11 @@ public class CancelHistoryResponse {
     public CancelHistoryResponse(){
     }
     
-    public CancelHistoryResponse(String cancelId, String reason, String cusId,
-                String empId, String ticketId){
+    public CancelHistoryResponse(String cancelId, String reason, String note, 
+            String cusId, String empId, String ticketId){
         this.cancelId = cancelId;
         this.reason = reason;
+        this.note = note;
         this.cusId = cusId;
         this.empId = empId;
         this.ticketId = ticketId;
@@ -96,5 +98,19 @@ public class CancelHistoryResponse {
      */
     public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 }

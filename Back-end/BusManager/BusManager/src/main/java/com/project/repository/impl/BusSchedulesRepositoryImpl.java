@@ -36,26 +36,28 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
 
     @Override
     @Transactional
-    public List<BusSchedulesResponse> getAllBusSchedules() {
+    public List<Object> getAllBusSchedules() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<BusSchedulesResponse> query = criteriaBuilder.createQuery(BusSchedulesResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<BusSchedules> root = query.from(BusSchedules.class);
         query.select(criteriaBuilder.construct(BusSchedulesResponse.class,
                 root.get("tripId"),
                 root.get("licensePlates"),
-                root.get("mainDriver").get("userId"),
-                root.get("subDriver").get("userId"),
+                root.get("mainDriver").get("username").get("userId"),
+                root.get("subDriver").get("username").get("userId"),
                 root.get("start"),
                 root.get("destination"),
-                root.get("departureDay"),
+                root.get("departureDay").as(LocalDateTime.class),
                 root.get("totalTime"),
                 root.get("status"),
                 root.get("vehicleType"),
                 root.get("totalSeats"),
-                root.get("createdOn").as(String.class),
-                root.get("updatedOn").as(String.class),
-                root.get("manager").get("userId")));
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
+                root.get("note"),
+                root.get("manager").get("username").get("userId")
+        ));
         return session.createQuery(query).getResultList();
     }
 
@@ -125,5 +127,40 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
+    }
+
+    @Override
+    public List<Object> getBusSchedulesByDestination(String dest) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+        Root<BusSchedules> root = query.from(BusSchedules.class);
+        query.select(criteriaBuilder.construct(
+                BusSchedulesResponse.class,
+                root.get("tripId"),
+                root.get("licensePlates"),
+                root.get("mainDriver").get("username").get("userId"),
+                root.get("subDriver").get("username").get("userId"),
+                root.get("start"),
+                root.get("destination"),
+                root.get("departureDay").as(LocalDateTime.class),
+                root.get("totalTime"),
+                root.get("status"),
+                root.get("vehicleType"),
+                root.get("totalSeats"),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
+                root.get("note"),
+                root.get("manager").get("username").get("userId")
+        ));
+        //
+        if(dest != null){
+            Predicate p = criteriaBuilder.like(root.get("destination").as(String.class), dest);
+            query.where(p);
+            return session.createQuery(query).getResultList();
+        }
+        else {
+            return getAllBusSchedules();
+        }
     }
 }

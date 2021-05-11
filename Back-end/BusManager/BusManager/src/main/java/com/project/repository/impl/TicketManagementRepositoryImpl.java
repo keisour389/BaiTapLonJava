@@ -8,6 +8,7 @@ package com.project.repository.impl;
 import com.project.model.TicketManagement;
 import com.project.repository.TicketManagementRepository;
 import com.project.response.TicketManagementResponse;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -32,23 +33,23 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
 
     @Override
     @Transactional
-    public List<TicketManagementResponse> getAllTicketManagement() {
+    public List<Object> getAllTicketManagement() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<TicketManagementResponse> query = criteriaBuilder.createQuery(TicketManagementResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<TicketManagement> root = query.from(TicketManagement.class);
         query.select(criteriaBuilder.construct(
                 TicketManagementResponse.class,
                 root.get("ticketId"),
                 root.get("seatId"),
                 root.get("price"),
-                root.get("status").as(String.class),
-                root.get("payment").as(String.class),
-                root.get("paymentDate").as(String.class),
-                root.get("bookingDate").as(String.class),
+                root.get("status"),
+                root.get("payment"),
+                root.get("paymentDate").as(Date.class),
+                root.get("bookingDate").as(Date.class),
                 root.get("note"),
-                root.get("tripId").as(String.class),
-                root.get("cusId").as(String.class)
+                root.get("tripId").get("tripId"),
+                root.get("cusId").get("cusId")
         ));
         return session.createQuery(query).getResultList();
     }

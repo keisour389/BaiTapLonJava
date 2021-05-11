@@ -32,19 +32,19 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
 
     @Override
     @Transactional
-    public List<FeedbackResponse> getAllFeedback() {
+    public List<Object> getAllFeedback() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<FeedbackResponse> query = criteriaBuilder.createQuery(FeedbackResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Feedback> root = query.from(Feedback.class);
         query.select(criteriaBuilder.construct(
                 FeedbackResponse.class,
                 root.get("feedbackId"),
                 root.get("content"),
-                root.get("status").as(String.class),
+                root.get("status"),
                 root.get("note"),
-                root.get("cusId").as(String.class),
-                root.get("empId").as(String.class)
+                root.get("cusId").get("username").get("userId"),
+                root.get("empId").get("username").get("userId")
         ));
         return session.createQuery(query).getResultList();
     }

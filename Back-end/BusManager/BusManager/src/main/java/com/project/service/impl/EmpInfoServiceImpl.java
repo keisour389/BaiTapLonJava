@@ -131,6 +131,9 @@ public class EmpInfoServiceImpl implements EmpInfoService {
             empInfoResponse.setId(result.getId());
             empInfoResponse.setGender(result.getGender());
             empInfoResponse.setType(result.getType());
+            empInfoResponse.setCreatedOn(result.getCreatedOn());
+            empInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            empInfoResponse.setNote(result.getNote());
             empInfoResponse.setUsername(result.getUsername());
 
             return empInfoResponse;

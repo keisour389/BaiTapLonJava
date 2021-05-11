@@ -13,6 +13,7 @@ public class FeedbackResponse {
     private String feedbackId;
     private String content;
     private int status;
+    private String note;
     private String cusId;
     private String empId;
     
@@ -20,10 +21,11 @@ public class FeedbackResponse {
     }
     
     public FeedbackResponse(String feedbackId, String content, int status,
-                String cusId, String empId){
+                String note, String cusId, String empId){
         this.feedbackId = feedbackId;
         this.content = content;
         this.status = status;
+        this.note = note;
         this.cusId = cusId;
         this.empId = empId;
     }
@@ -96,5 +98,19 @@ public class FeedbackResponse {
      */
     public void setEmpId(String empId) {
         this.empId = empId;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 }

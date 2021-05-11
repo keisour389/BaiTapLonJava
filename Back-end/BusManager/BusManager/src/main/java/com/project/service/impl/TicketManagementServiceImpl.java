@@ -48,7 +48,7 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         commonResponse.setPage(page);
         commonResponse.setSize(size);
         
-        return  commonResponse;
+        return commonResponse;
     }
 
     @Override
@@ -129,6 +129,7 @@ public class TicketManagementServiceImpl implements TicketManagementService{
             ticketManagementResponse.setPayment(result.getPayment());
             ticketManagementResponse.setPaymentDate(result.getPaymentDate());
             ticketManagementResponse.setBookingDate(result.getBookingDate());
+            ticketManagementResponse.setNote(result.getNote());
             ticketManagementResponse.setTripId(result.getTripId());
             ticketManagementResponse.setCusId(result.getCusId());
             

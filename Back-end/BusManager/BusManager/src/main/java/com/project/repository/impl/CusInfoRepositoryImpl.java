@@ -9,6 +9,8 @@ import com.project.model.AccountInfo;
 import com.project.model.CusInfo;
 import com.project.repository.CusInfoRepository;
 import com.project.response.CusInfoResponse;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -33,10 +35,10 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
 
     @Override
     @Transactional
-    public List<CusInfoResponse> getAllCusInfo() {
+    public List<Object> getAllCusInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<CusInfoResponse> query = criteriaBuilder.createQuery(CusInfoResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<CusInfo> root = query.from(CusInfo.class);
         query.select(criteriaBuilder.construct(
                 CusInfoResponse.class,
@@ -45,12 +47,12 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
                 root.get("lastName"),
                 root.get("displayName"),
                 root.get("phoneNumber"),
-                root.get("birthday").as(String.class),
+                root.get("birthday").as(Date.class),
                 root.get("gender"),
-                root.get("createdOn").as(String.class),
-                root.get("updatedOn").as(String.class),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
                 root.get("note"),
-                root.get("username").as(String.class)
+                root.get("username").get("userId")
         ));
         return session.createQuery(query).getResultList();
     }
@@ -99,7 +101,6 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         query.set("createdOn", cusInfo.getCreatedOn());
         query.set("updatedOn", cusInfo.getUpdatedOn());
         query.set("note", cusInfo.getNote());
-//        query.set("username", cusInfo.getUsername());
         
         Predicate p = criteriaBuilder.equal(root.get("userId"), cusInfo.getUserId());
         query.where(p);

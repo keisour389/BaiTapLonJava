@@ -23,6 +23,9 @@ public class EmpInfoResponse {
     private String id;
     private String gender;
     private int type;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
+    private String note;
     private String username;
     
     public EmpInfoResponse(){
@@ -30,7 +33,8 @@ public class EmpInfoResponse {
     
     public EmpInfoResponse(String userId, String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String address, 
-            String id, String gender, int type, String username){
+            String id, String gender, int type, LocalDateTime createdOn, 
+            LocalDateTime updatedOn, String note, String username){
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,6 +45,9 @@ public class EmpInfoResponse {
         this.id = id;
         this.gender = gender;
         this.type = type;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.note = note;
         this.username = username;
     }
 
@@ -196,5 +203,47 @@ public class EmpInfoResponse {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the createdOn
+     */
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    /**
+     * @param createdOn the createdOn to set
+     */
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    /**
+     * @return the updatedOn
+     */
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    /**
+     * @param updatedOn the updatedOn to set
+     */
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 }

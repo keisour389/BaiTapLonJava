@@ -30,7 +30,8 @@ public class CusInfoRequest {
     
     public CusInfoRequest(String userId, String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, String gender, 
-            LocalDateTime createdOn, LocalDateTime updatedOn, String note, String username){
+            LocalDateTime createdOn, LocalDateTime updatedOn, String note, 
+            String username){
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;

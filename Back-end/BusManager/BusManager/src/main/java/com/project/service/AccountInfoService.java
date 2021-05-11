@@ -9,6 +9,7 @@ import com.project.model.AccountInfo;
 import com.project.request.AccountInfoRequest;
 import com.project.request.LoginRequest;
 import com.project.response.AccountInfoResponse;
+import com.project.response.CommonResponse;
 
 /**
  *
@@ -19,7 +20,7 @@ public interface AccountInfoService {
     AccountInfoResponse getAccountInfoByUserIdPassword(LoginRequest loginRequest);
     
     //Using getAccountInfoById in Repository
-    AccountInfo getAccountInfoById(String id);
+    AccountInfoResponse getAccountInfoById(String id);
     AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo);
     AccountInfo updateAccountInfoById(AccountInfoRequest accountInfo);
     boolean deleteAccountInfoById(String id);

@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface BusSchedulesRepository {
     List getAllBusSchedules();
+    List getBusSchedulesByDestination(String dest);
     BusSchedules getBusSchedulesById(String id);
     BusSchedules createBusSchedules(BusSchedules busSchedules);
     void updateBusSchedulesById(BusSchedules busSchedules);

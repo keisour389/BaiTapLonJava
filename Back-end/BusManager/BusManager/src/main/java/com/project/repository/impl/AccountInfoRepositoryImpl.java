@@ -8,6 +8,7 @@ package com.project.repository.impl;
 import com.project.model.AccountInfo;
 import com.project.repository.AccountInfoRepository;
 import com.project.response.AccountInfoResponse;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -32,19 +33,19 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
 
     @Override
     @Transactional
-    public List<AccountInfoResponse> getAllAccountInfo() {
+    public List<Object> getAllAccountInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
-        CriteriaQuery<AccountInfoResponse> query = criteriaBuilder.createQuery(AccountInfoResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<AccountInfo> root = query.from(AccountInfo.class);
         query.select(criteriaBuilder.construct(
                 AccountInfoResponse.class,
                 root.get("userId"),
                 root.get("password"),
-                root.get("type").as(String.class),
-                root.get("status").as(String.class),
-                root.get("createdOn").as(String.class),
-                root.get("updatedOn").as(String.class),
+                root.get("type"),
+                root.get("status"),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
                 root.get("note")
         ));
         return session.createQuery(query).getResultList();

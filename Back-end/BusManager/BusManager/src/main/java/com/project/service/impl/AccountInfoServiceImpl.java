@@ -49,18 +49,29 @@ public class AccountInfoServiceImpl implements AccountInfoService {
     public AccountInfoResponse getAccountInfoByUserIdPassword(LoginRequest loginRequest) {
         String passwordHash = Hashing.sha256().hashString(loginRequest.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo result = accountInfoRepository.getAccountInfoByUserIdPassword(loginRequest.getUserId(), passwordHash);
-        AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
+        if(result != null){
+            AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
+            
+            accountInfoResponse.setUserId(result.getUserId());
+            accountInfoResponse.setPassword(passwordHash);
+            accountInfoResponse.setType(result.getType());
+            accountInfoResponse.setStatus(result.getStatus());
+            accountInfoResponse.setCreatedOn(result.getCreatedOn());
+            accountInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            accountInfoResponse.setNote(result.getNote());
 
-        accountInfoResponse.setType(result.getType());
-        accountInfoResponse.setStatus(result.getStatus());
-
-        return accountInfoResponse;
+            return accountInfoResponse;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
     public AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo) {
         AccountInfo newAccountInfo = new AccountInfo();
         String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
+        
         newAccountInfo.setUserId(accountInfo.getUserId());
         newAccountInfo.setPassword(passwordHash);
         newAccountInfo.setType(accountInfo.getType());
@@ -82,6 +93,7 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         //Hash password before udpating
         String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo newAccountInfo = new AccountInfo();
+        
         newAccountInfo.setUserId(accountInfo.getUserId());
         newAccountInfo.setPassword(passwordHash);
         newAccountInfo.setType(accountInfo.getType());
@@ -109,10 +121,23 @@ public class AccountInfoServiceImpl implements AccountInfoService {
     }
 
     @Override
-    public AccountInfo getAccountInfoById(String id) {
+    public AccountInfoResponse getAccountInfoById(String id) {
         AccountInfo result = accountInfoRepository.getAccountInfoById(id);
+        AccountInfoRequest accountInfo = new AccountInfoRequest();
+        String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
+            
         if (result != null) {
-            return result;
+            AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
+            
+            accountInfoResponse.setUserId(result.getUserId());
+            accountInfoResponse.setPassword(passwordHash);
+            accountInfoResponse.setType(result.getType());
+            accountInfoResponse.setStatus(result.getStatus());
+            accountInfoResponse.setCreatedOn(result.getCreatedOn());
+            accountInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            accountInfoResponse.setNote(result.getNote());
+
+            return accountInfoResponse;
         } else {
             return null;
         }
