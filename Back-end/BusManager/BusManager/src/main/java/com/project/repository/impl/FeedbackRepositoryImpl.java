@@ -109,6 +109,7 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
     }
 
     @Override
+    @Transactional
     public boolean feedbackIsExist(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

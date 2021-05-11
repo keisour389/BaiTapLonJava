@@ -121,6 +121,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
     }
 
     @Override
+    @Transactional
     public boolean cusInfoIsExist(String username) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

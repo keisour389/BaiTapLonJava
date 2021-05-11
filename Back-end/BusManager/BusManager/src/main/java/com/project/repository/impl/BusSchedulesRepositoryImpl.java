@@ -169,6 +169,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
     }
 
     @Override
+    @Transactional
     public boolean busSchedulesIsExist(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

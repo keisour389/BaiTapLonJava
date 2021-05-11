@@ -109,6 +109,7 @@ public class CancelHistoryRepositoryImpl implements CancelHistoryRepository{
     }
 
     @Override
+    @Transactional
     public boolean cancelHistoryIsExist(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

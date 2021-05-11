@@ -128,6 +128,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
     }
 
     @Override
+    @Transactional
     public boolean accountInfoIsExist(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

@@ -116,6 +116,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
     }
 
     @Override
+    @Transactional
     public boolean ticketManagementIsExist(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

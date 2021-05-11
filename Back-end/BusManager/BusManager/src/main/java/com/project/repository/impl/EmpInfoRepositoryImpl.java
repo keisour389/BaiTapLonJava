@@ -126,6 +126,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
     }
 
     @Override
+    @Transactional
     public boolean empInfoIsExist(String username) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
