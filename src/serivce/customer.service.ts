@@ -15,7 +15,7 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   login(loginData: any): Observable<any> {
-    return this.http.post(defaultAccountUrl + "/loginAccountInfo", loginData);
+    return this.http.post(defaultAccountUrl + "/loginAccountInfo/", loginData);
   }
 
   registerLoginData(refisterData: any): Observable<any> {

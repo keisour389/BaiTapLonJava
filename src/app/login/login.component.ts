@@ -32,33 +32,46 @@ export class LoginComponent implements OnInit, AfterViewInit {
   // tslint:disable-next-line:variable-name
   constructor(private _location: Location, private customerService: CustomerService, private router: Router) { }
 
-  changeLoginType(type: string): void{
+  changeLoginType(type: string): void {
     this.loginType = type;
     // Change border after choosing login type
-    if (type === 'khách hàng'){
+    if (type === 'khách hàng') {
       this.cus.nativeElement.style.border = '1px solid #0068bd';
       this.emp.nativeElement.style.border = 'none';
     }
-    else{
+    else {
       this.emp.nativeElement.style.border = '1px solid #0068bd';
       this.cus.nativeElement.style.border = 'none';
     }
   }
 
-  onSubmit(form: NgForm): void{
+  onSubmit(form: NgForm): void {
     console.log(form);
     // Check input is submitted or not
     this.isSubmitted = true;
-    if(form.valid){
+    if (form.valid) {
       this.loginData.userId = form.value.userId;
       this.loginData.password = form.value.password;
-      this.loginStatus = this.customerService.login(this.loginData).subscribe(
+      this.customerService.login(this.loginData).subscribe(
         result => {
           let res: any = result;
-          if(res !== null){
-            this.router.navigate(['/']);
+          console.log(res);
+          if (res !== null) {
+            //Check login type
+            if (this.loginType === 'khách hàng' && res.type === 1) {
+              //Customer
+              this.router.navigate(['/']);
+            }
+            else if (this.loginType === 'nhân viên' && res.type === 2) {
+              //Admin
+              this.router.navigate(['/management']);
+            }
+            else {
+              this.loginStatus.message = 'Sai tài khoản hoặc mật khẩu';
+              this.loginStatus.isLogin = false;
+            }
           }
-          else{
+          else {
             //Set login status
             this.loginStatus.message = 'Sai tài khoản hoặc mật khẩu';
             this.loginStatus.isLogin = false;
@@ -66,15 +79,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
         },
         error => {
           console.error("Server error !!!");
-           //Set login status
-           this.loginStatus.message = 'Server error';
-           this.loginStatus.isLogin = false;
+          //Set login status
+          this.loginStatus.message = 'Server error';
+          this.loginStatus.isLogin = false;
         }
       );
     }
   }
 
-  backClicked(): void{
+  backClicked(): void {
     // Return previous page
     this._location.back();
   }
@@ -83,7 +96,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   // Setting login type is "Cus" after create template
-  ngAfterViewInit(): void{
+  ngAfterViewInit(): void {
     this.cus.nativeElement.style.border = '1px solid #0068bd';
   }
 
