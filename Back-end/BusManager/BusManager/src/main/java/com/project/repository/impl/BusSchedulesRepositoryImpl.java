@@ -132,6 +132,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
     }
 
     @Override
+    @Transactional
     public List<Object> getBusSchedulesByDestination(String dest) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
