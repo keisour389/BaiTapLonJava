@@ -114,4 +114,19 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
+
+    @Override
+    public boolean ticketManagementIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<TicketManagement> query = criteriaBuilder.createQuery(TicketManagement.class);
+        Root<TicketManagement> root = query.from(TicketManagement.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("ticketId"), id));
+        TicketManagement result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
+    }
 }

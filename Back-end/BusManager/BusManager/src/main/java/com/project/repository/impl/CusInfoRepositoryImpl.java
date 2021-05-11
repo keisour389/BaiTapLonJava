@@ -119,4 +119,19 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
+
+    @Override
+    public boolean cusInfoIsExist(String username) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<CusInfo> query = criteriaBuilder.createQuery(CusInfo.class);
+        Root<CusInfo> root = query.from(CusInfo.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("username"), username));
+        CusInfo result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
+    }
 }

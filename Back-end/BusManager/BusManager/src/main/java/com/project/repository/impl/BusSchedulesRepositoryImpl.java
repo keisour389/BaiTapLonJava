@@ -166,4 +166,19 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
             return getAllBusSchedules();
         }
     }
+
+    @Override
+    public boolean busSchedulesIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<BusSchedules> query = criteriaBuilder.createQuery(BusSchedules.class);
+        Root<BusSchedules> root = query.from(BusSchedules.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("tripId"), id));
+        BusSchedules result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
+    }
 }

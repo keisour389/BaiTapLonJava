@@ -68,8 +68,12 @@ public class FeebackServiceImpl implements FeedbackService{
         newFeedback.setCusId(cus);
         newFeedback.setEmpId(emp);
         
-        if(feedbackRepository.createFeedback(newFeedback) != null)
-            return feedback;
+        if(!feedbackRepository.feedbackIsExist(feedback.getFeedbackId())){
+            if(feedbackRepository.createFeedback(newFeedback) != null)
+                return feedback;
+            else
+                return null;
+        }
         else
             return null;
     }

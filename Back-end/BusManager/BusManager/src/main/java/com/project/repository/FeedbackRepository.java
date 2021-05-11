@@ -16,6 +16,7 @@ public interface FeedbackRepository{
     List getAllFeedback();
     Feedback getFeedbackById(String id);
     Feedback createFeedback(Feedback feedback);
+    boolean feedbackIsExist(String id);
     void updateFeedbackById(Feedback feedback);
     void deleteFeedbackById(String id);
 }

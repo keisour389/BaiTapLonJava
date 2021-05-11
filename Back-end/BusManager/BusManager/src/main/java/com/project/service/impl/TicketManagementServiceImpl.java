@@ -71,8 +71,12 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         newTicketManagement.setTripId(trip);
         newTicketManagement.setCusId(cus);
         
-        if(ticketManagementRepository.createTicketManagement(newTicketManagement) != null)
-            return ticketManagement;
+        if(!ticketManagementRepository.ticketManagementIsExist(ticketManagement.getTicketId())){
+            if(ticketManagementRepository.createTicketManagement(newTicketManagement) != null)
+                return ticketManagement;
+            else
+                return null;
+        }
         else
             return null;
     }

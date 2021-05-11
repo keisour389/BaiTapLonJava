@@ -66,10 +66,15 @@ public class CusInfoServiceImpl implements CusInfoService {
         newCusInfo.setUpdatedOn(cusInfo.getUpdatedOn());
         newCusInfo.setNote(cusInfo.getNote());
         newCusInfo.setUsername(accountInfo);
-
-        if (cusInfoRepository.createCusInfo(newCusInfo) != null) {
-            return cusInfo;
-        } else {
+        
+        if(!cusInfoRepository.cusInfoIsExist(cusInfo.getUsername())){
+            if (cusInfoRepository.createCusInfo(newCusInfo) != null) {
+                return cusInfo;
+            } else {
+                return null;
+            }
+        }
+        else {
             return null;
         }
     }

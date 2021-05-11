@@ -107,4 +107,19 @@ public class CancelHistoryRepositoryImpl implements CancelHistoryRepository{
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
+
+    @Override
+    public boolean cancelHistoryIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<CancelHistory> query = criteriaBuilder.createQuery(CancelHistory.class);
+        Root<CancelHistory> root = query.from(CancelHistory.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("cancelId"), id));
+        CancelHistory result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
+    }
 }

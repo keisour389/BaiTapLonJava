@@ -107,4 +107,19 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
+
+    @Override
+    public boolean feedbackIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Feedback> query = criteriaBuilder.createQuery(Feedback.class);
+        Root<Feedback> root = query.from(Feedback.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("feedbackId"), id));
+        Feedback result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
+    }
 }

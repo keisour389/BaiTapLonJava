@@ -124,4 +124,19 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
+
+    @Override
+    public boolean empInfoIsExist(String username) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<EmpInfo> query = criteriaBuilder.createQuery(EmpInfo.class);
+        Root<EmpInfo> root = query.from(EmpInfo.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("username"), username));
+        EmpInfo result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
+    }
 }

@@ -126,4 +126,19 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
+
+    @Override
+    public boolean accountInfoIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<AccountInfo> query = criteriaBuilder.createQuery(AccountInfo.class);
+        Root<AccountInfo> root = query.from(AccountInfo.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("userId"), id));
+        AccountInfo result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
+    }
 }

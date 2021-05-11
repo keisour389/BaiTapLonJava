@@ -16,6 +16,7 @@ public interface CusInfoRepository {
     List getAllCusInfo();
     CusInfo getCusInfoById(String id);
     CusInfo createCusInfo(CusInfo cusInfo);
+    boolean cusInfoIsExist(String username);
     void updateCusInfoById(CusInfo cusInfo);
     void deleteCusInfoById(String id);
             

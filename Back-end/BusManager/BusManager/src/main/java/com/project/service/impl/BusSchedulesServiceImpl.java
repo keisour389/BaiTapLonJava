@@ -76,10 +76,14 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         newBusSchedules.setManager(manager);
         
 //        return busSchedulesRepository.createBusSchedules(newBusSchedules);
-
-        if (busSchedulesRepository.createBusSchedules(newBusSchedules) != null) {
-            return busSchedules;
-        } else {
+        if(!busSchedulesRepository.busSchedulesIsExist(busSchedules.getTripId())){
+            if (busSchedulesRepository.createBusSchedules(newBusSchedules) != null) {
+                return busSchedules;
+            } else {
+                return null;
+            }
+        }
+        else {
             return null;
         }
     }

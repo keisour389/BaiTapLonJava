@@ -80,9 +80,14 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         newAccountInfo.setUpdatedOn(accountInfo.getUpdatedOn());
         newAccountInfo.setNote(accountInfo.getNote());
 
-        if (accountInfoRepository.createAccountInfo(newAccountInfo) != null) {
-            return accountInfo;
-        } else {
+        if(!accountInfoRepository.accountInfoIsExist(accountInfo.getUserId())){
+            if (accountInfoRepository.createAccountInfo(newAccountInfo) != null) {
+                return accountInfo;
+            } else {
+                return null;
+            }
+        }
+        else {
             return null;
         }
     }
