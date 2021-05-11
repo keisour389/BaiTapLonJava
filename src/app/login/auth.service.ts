@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Login } from './login.model';
 
@@ -9,7 +10,7 @@ export class AuthService {
 
   loginStatus = new BehaviorSubject<Login>(null!);
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   //This method set in app component to auto login after loading page
   autoLogin(): void {
@@ -33,6 +34,19 @@ export class AuthService {
       // console.log(timeOut);
     }
   }
+
+  logout(): void {
+    //Set subject return to null
+    this.loginStatus.next(null!);
+    //Clear data storage afer log out
+    localStorage.removeItem('loginStatus');
+    this.router.navigate(['/login']);
+    //Clear time out if loggin out manually
+    // if(this.tokenExpirationTimer){
+    //     clearTimeout(this.tokenExpirationTimer);
+    // }
+    // this.tokenExpirationTimer = null;
+}
 
   handleAuthentication(userId: string, _expirationDate: number): void {
     const newExpirationDate = new Date(_expirationDate + 3600);
