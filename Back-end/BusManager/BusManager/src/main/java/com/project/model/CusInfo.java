@@ -73,7 +73,7 @@ public class CusInfo implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
 //    fetch = FetchType.EAGER
     @JoinColumn(name = "USERNAME", referencedColumnName = "USER_ID",
-            nullable = false, updatable = false)
+            nullable = true, updatable = false)
     private AccountInfo username;
     
     @JsonIgnore

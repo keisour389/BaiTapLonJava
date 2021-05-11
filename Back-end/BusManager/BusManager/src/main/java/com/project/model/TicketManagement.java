@@ -62,12 +62,12 @@ public class TicketManagement implements Serializable {
     
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name = "TRIP_ID", nullable = false)
+    @JoinColumn(name = "TRIP_ID", nullable = true)
     private BusSchedules tripId;
     
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name = "CUS_ID", nullable = false)
+    @JoinColumn(name = "CUS_ID", nullable = true)
     private CusInfo cusId;
     
     @JsonIgnore

@@ -84,7 +84,7 @@ CREATE TABLE `bus_schedules` (
 
 LOCK TABLES `bus_schedules` WRITE;
 /*!40000 ALTER TABLE `bus_schedules` DISABLE KEYS */;
-INSERT INTO `bus_schedules` VALUES ('trip1','string5','tri2','tri2','string5','string6','2021-05-09 19:31:17',10,0,'2',40,0,'2021-05-09 19:31:17','2021-05-09 19:31:17','string','tri2'),('trip2','test','tri2','tri2','string','string','2021-05-10 10:18:13',0,0,'5',0,0,'2021-05-10 10:18:13','2021-05-10 10:18:13','string','tri2');
+INSERT INTO `bus_schedules` VALUES ('trip1','string5','tri2','tri2','string5','string6','2021-05-09 19:31:17',10,0,'2',40,0,'2021-05-09 19:31:17','2021-05-09 19:31:17','string','tri2'),('trip2','test','tri2','tri2','string','string','2021-05-10 10:18:13',0,0,'5',0,0,'2021-05-10 10:18:13','2021-05-10 10:18:13','string','tri2'),('trip3','string','tri2','tri2','string','string','2021-05-11 17:26:09',0,0,'string',0,0,'2021-05-11 17:26:09','2021-05-11 17:26:09','string','tri2');
 /*!40000 ALTER TABLE `bus_schedules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +242,7 @@ CREATE TABLE `ticket_management` (
   `BOOKING_DATE` datetime DEFAULT NULL,
   `NOTE` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `TRIP_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `CUS_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `CUS_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   PRIMARY KEY (`TICKET_ID`),
   KEY `fk_ticket_management_bus_schedules1_idx` (`TRIP_ID`),
   KEY `fk_ticket_management_cus_info1_idx` (`CUS_ID`),
@@ -269,4 +269,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-11 22:35:40
+-- Dump completed on 2021-05-12  1:57:22
