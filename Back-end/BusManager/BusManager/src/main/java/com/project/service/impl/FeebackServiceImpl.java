@@ -53,7 +53,7 @@ public class FeebackServiceImpl implements FeedbackService{
         newFeedback.setStatus(feedback.getStatus());
         newFeedback.setCreatedOn(feedback.getCreatedOn());
         newFeedback.setNote(feedback.getNote()); 
-        newFeedback.setEmpId(feedback.getEmpId());
+        //newFeedback.setEmpId(null);
         
         if(feedbackRepository.createFeedback(newFeedback) != null)
             return feedback;
