@@ -69,6 +69,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         newBusSchedules.setStatus(busSchedules.getStatus());
         newBusSchedules.setVehicleType(busSchedules.getVehicleType());
         newBusSchedules.setTotalSeats(busSchedules.getTotalSeats());
+        newBusSchedules.setPrice(busSchedules.getPrice());
         newBusSchedules.setCreatedOn(busSchedules.getCreatedOn());
         newBusSchedules.setUpdatedOn(busSchedules.getUpdatedOn());
         newBusSchedules.setNote(busSchedules.getNote());
@@ -84,7 +85,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
     }
 
     @Override
-    public BusSchedulesRequest updateBusSchedulesById(BusSchedulesRequest busSchedules) {
+    public BusSchedulesRequest updateBusSchedulesById(String id, BusSchedulesRequest busSchedules) {
         EmpInfo driver = new EmpInfo();
         EmpInfo subDriver = new EmpInfo();
         EmpInfo manager = new EmpInfo();
@@ -94,7 +95,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         subDriver = empInfoRepository.getEmpInfoById(busSchedules.getMainDriver());
         manager = empInfoRepository.getEmpInfoById(busSchedules.getMainDriver());
         
-        newBusSchedules.setTripId(busSchedules.getTripId());
+//        newBusSchedules.setTripId(busSchedules.getTripId());
         newBusSchedules.setLicensePlates(busSchedules.getLicensePlates());
         newBusSchedules.setMainDriver(driver);
         newBusSchedules.setSubDriver(subDriver);
@@ -105,13 +106,14 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         newBusSchedules.setStatus(busSchedules.getStatus());
         newBusSchedules.setVehicleType(busSchedules.getVehicleType());
         newBusSchedules.setTotalSeats(busSchedules.getTotalSeats());
+        newBusSchedules.setPrice(busSchedules.getPrice());
         newBusSchedules.setCreatedOn(busSchedules.getCreatedOn());
         newBusSchedules.setUpdatedOn(busSchedules.getUpdatedOn());
         newBusSchedules.setNote(busSchedules.getNote());
         newBusSchedules.setManager(manager);
 
-        if (busSchedulesRepository.createBusSchedules(newBusSchedules) != null) {
-            busSchedulesRepository.updateBusSchedulesById(newBusSchedules);
+        if (busSchedulesRepository.getBusSchedulesById(id) != null) {
+            busSchedulesRepository.updateBusSchedulesById(id, newBusSchedules);
             return busSchedules;
         } else {
             return null;
@@ -145,6 +147,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
             busSchedulesResponse.setStatus(result.getStatus());
             busSchedulesResponse.setVehicleType(result.getVehicleType());
             busSchedulesResponse.setTotalSeats(result.getTotalSeats());
+            busSchedulesResponse.setPrice(result.getPrice());
             busSchedulesResponse.setCreatedOn(result.getCreatedOn());
             busSchedulesResponse.setUpdatedOn(result.getUpdatedOn());
             busSchedulesResponse.setNote(result.getNote());

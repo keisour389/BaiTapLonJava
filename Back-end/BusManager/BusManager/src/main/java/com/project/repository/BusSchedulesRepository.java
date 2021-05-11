@@ -18,6 +18,6 @@ public interface BusSchedulesRepository {
     List getBusSchedulesByDestination(String dest);
     BusSchedules getBusSchedulesById(String id);
     BusSchedules createBusSchedules(BusSchedules busSchedules);
-    void updateBusSchedulesById(BusSchedules busSchedules);
+    void updateBusSchedulesById(String id, BusSchedules busSchedules);
     void deleteBusSchedulesById(String id);
 }

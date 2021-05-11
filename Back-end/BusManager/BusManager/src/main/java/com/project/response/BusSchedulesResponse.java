@@ -6,6 +6,7 @@
 package com.project.response;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -25,6 +26,7 @@ public class BusSchedulesResponse {
     private int status;
     private String vehicleType;
     private int totalSeats;
+    private BigDecimal price;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
@@ -33,9 +35,10 @@ public class BusSchedulesResponse {
     public BusSchedulesResponse(){}
     
     public BusSchedulesResponse(String tripId, String licensePlates, String mainDriverId, String subDriverId,
-                                String start, String destination, LocalDateTime departureDay, int totalTime, int status,
-                                String vehicleType, int totalSeats, LocalDateTime createdOn,
-                                LocalDateTime updatedOn, String note, String managerId) {
+                                String start, String destination, LocalDateTime departureDay, int totalTime, 
+                                int status, String vehicleType, int totalSeats, BigDecimal price,
+                                LocalDateTime createdOn, LocalDateTime updatedOn, String note, 
+                                String managerId) {
         this.tripId = tripId;
         this.licensePlates = licensePlates;
         this.mainDriverId = mainDriverId;
@@ -47,6 +50,7 @@ public class BusSchedulesResponse {
         this.status = status;
         this.vehicleType = vehicleType;
         this.totalSeats = totalSeats;
+        this.price = price;
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
         this.note = note;
@@ -261,6 +265,20 @@ public class BusSchedulesResponse {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * @return the price
+     */
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
 }

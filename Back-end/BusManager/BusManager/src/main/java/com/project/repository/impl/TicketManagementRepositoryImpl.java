@@ -42,7 +42,6 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
                 TicketManagementResponse.class,
                 root.get("ticketId"),
                 root.get("seatId"),
-                root.get("price"),
                 root.get("status"),
                 root.get("payment"),
                 root.get("paymentDate").as(Date.class),
@@ -90,7 +89,6 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         CriteriaUpdate<TicketManagement> query = criteriaBuilder.createCriteriaUpdate(TicketManagement.class);
         Root<TicketManagement> root = query.from(TicketManagement.class);
         query.set("seatId", ticketManagement.getSeatId());
-        query.set("price", ticketManagement.getPrice());
         query.set("status", ticketManagement.getStatus());
         query.set("payment", ticketManagement.getPayment());
         query.set("paymentDate", ticketManagement.getPaymentDate());

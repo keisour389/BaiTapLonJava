@@ -42,13 +42,13 @@ public class Feedback implements Serializable {
     @JsonProperty("cusId")
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name = "CUS_ID", nullable = true)
+    @JoinColumn(name = "CUS_ID", nullable = false)
     private CusInfo cusId;
     
     @JsonProperty("empId")
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name = "EMP_ID", nullable = true)
+    @JoinColumn(name = "EMP_ID", nullable = false)
     private EmpInfo empId;
 
     /**

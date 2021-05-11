@@ -40,7 +40,7 @@ CREATE TABLE `account_info` (
 
 LOCK TABLES `account_info` WRITE;
 /*!40000 ALTER TABLE `account_info` DISABLE KEYS */;
-INSERT INTO `account_info` VALUES ('1','1',1,1,NULL,NULL,NULL),('2','2',2,2,NULL,NULL,NULL),('5','5',5,5,NULL,NULL,NULL),('6','6',6,6,NULL,NULL,NULL),('7','7',7,7,NULL,NULL,NULL),('8','8',8,8,NULL,NULL,NULL),('string','473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8',0,0,'2021-05-07 10:23:06','2021-05-07 10:23:06','string'),('string1','473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8',0,0,'2021-05-07 10:23:06','2021-05-07 10:23:06','string'),('string5','2cae428fbbaa3e5f551f7d60ca74722d811f63399457f600b8516cfa2e18469c',0,0,'2021-05-07 17:21:42','2021-05-07 17:21:42','string'),('testy','testy',0,0,'2021-03-30 16:30:54','2021-03-30 16:30:54',NULL),('testyy','$2a$10$.ncUyYh5LYyZGzjUWm/Zw.1fCOm5ZzohteiKJIRdFxM3kl1yWmcyK',0,0,'2021-03-30 16:34:21','2021-03-30 16:34:21',NULL),('testyyy','$2a$10$IUoXhS9GURK5/8hiDgOvQOLAI7sLALB7EBMA4A//65AOQyKF5K6uK',0,0,'2021-03-30 17:06:23','2021-03-30 17:06:23',NULL),('testyyyy','$2a$10$iffqlM1zLuEuDwiIymVCeekNaxT5aLHZ21KbNZzncWsTzCH/GuK36',0,0,'2021-03-30 17:19:32','2021-03-30 17:19:32',NULL),('testyyyyy','$2a$10$6xDtT2As/b0sB6iootXyUu6knitTAP/oj.AlUyG3XBx9wszJy47W6',0,0,'2021-03-30 17:20:24','2021-03-30 17:20:24',NULL),('tri','$2a$10$f5SyeD691ZlPcAheTseitOvRHdaRbORJByPEALuKoSyvJFKkxdOd2',0,0,'2021-04-16 17:48:25','2021-04-16 17:48:25',NULL);
+INSERT INTO `account_info` VALUES ('1','1',1,1,NULL,NULL,NULL),('2','2',2,2,NULL,NULL,NULL),('5','5',5,5,NULL,NULL,NULL),('6','6',6,6,NULL,NULL,NULL),('7','7',7,7,NULL,NULL,NULL),('8','8',8,8,NULL,NULL,NULL),('string','473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8',0,0,'2021-05-07 10:23:06','2021-05-07 10:23:06','string'),('string1','473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8',0,0,'2021-05-07 10:23:06','2021-05-07 10:23:06','string'),('string5','2cae428fbbaa3e5f551f7d60ca74722d811f63399457f600b8516cfa2e18469c',0,0,'2021-05-07 17:21:42','2021-05-07 17:21:42','string'),('testy','testy',0,0,'2021-03-30 16:30:54','2021-03-30 16:30:54',NULL),('testyy','$2a$10$.ncUyYh5LYyZGzjUWm/Zw.1fCOm5ZzohteiKJIRdFxM3kl1yWmcyK',0,0,'2021-03-30 16:34:21','2021-03-30 16:34:21',NULL),('testyyy','$2a$10$IUoXhS9GURK5/8hiDgOvQOLAI7sLALB7EBMA4A//65AOQyKF5K6uK',0,0,'2021-03-30 17:06:23','2021-03-30 17:06:23',NULL),('testyyyy','$2a$10$iffqlM1zLuEuDwiIymVCeekNaxT5aLHZ21KbNZzncWsTzCH/GuK36',0,0,'2021-03-30 17:19:32','2021-03-30 17:19:32',NULL),('testyyyyy','$2a$10$6xDtT2As/b0sB6iootXyUu6knitTAP/oj.AlUyG3XBx9wszJy47W6',0,0,'2021-03-30 17:20:24','2021-03-30 17:20:24',NULL),('tri','$2a$10$f5SyeD691ZlPcAheTseitOvRHdaRbORJByPEALuKoSyvJFKkxdOd2',0,0,'2021-04-16 17:48:25','2021-04-16 17:48:25',NULL),('tri2','61b747cc5c4c81ae214a01f1834562b1ae73f5d305ca927d076b26efb19f92ab',0,0,'2021-05-09 16:55:14','2021-05-09 16:55:14','string');
 /*!40000 ALTER TABLE `account_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,6 +63,7 @@ CREATE TABLE `bus_schedules` (
   `STATUS` int NOT NULL,
   `VEHICLE_TYPE` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `TOTAL_SEATS` int NOT NULL,
+  `PRICE` decimal(45,0) NOT NULL,
   `CREATED_ON` datetime DEFAULT NULL,
   `UPDATED_ON` datetime DEFAULT NULL,
   `NOTE` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
@@ -83,6 +84,7 @@ CREATE TABLE `bus_schedules` (
 
 LOCK TABLES `bus_schedules` WRITE;
 /*!40000 ALTER TABLE `bus_schedules` DISABLE KEYS */;
+INSERT INTO `bus_schedules` VALUES ('trip1','string5','tri2','tri2','string5','string6','2021-05-09 19:31:17',10,0,'2',40,0,'2021-05-09 19:31:17','2021-05-09 19:31:17','string','tri2'),('trip2','test','tri2','tri2','string','string','2021-05-10 10:18:13',0,0,'5',0,0,'2021-05-10 10:18:13','2021-05-10 10:18:13','string','tri2');
 /*!40000 ALTER TABLE `bus_schedules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +191,7 @@ CREATE TABLE `emp_info` (
 
 LOCK TABLES `emp_info` WRITE;
 /*!40000 ALTER TABLE `emp_info` DISABLE KEYS */;
-INSERT INTO `emp_info` VALUES ('1','1','1','','1','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,''),('2','2','2','','2','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,''),('3','3','3','','3','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,''),('8','8','8','','8','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,'');
+INSERT INTO `emp_info` VALUES ('1','1','1','','1','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,''),('2','2','2','','2','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,''),('3','3','3','','3','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,''),('8','8','8','','8','2021-01-01 00:00:00','1','','',0,NULL,NULL,NULL,''),('tri2','string','string','string','string','2021-05-10 00:00:00','string','string','string',0,'2021-05-10 09:19:55','2021-05-10 09:19:55','string','tri2');
 /*!40000 ALTER TABLE `emp_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,14 +236,13 @@ DROP TABLE IF EXISTS `ticket_management`;
 CREATE TABLE `ticket_management` (
   `TICKET_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `SEAT_ID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `PRICE` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `STATUS` int NOT NULL,
   `PAYMENT` int DEFAULT NULL,
   `PAYMENT_DATE` datetime DEFAULT NULL,
   `BOOKING_DATE` datetime DEFAULT NULL,
   `NOTE` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `TRIP_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `CUS_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `CUS_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`TICKET_ID`),
   KEY `fk_ticket_management_bus_schedules1_idx` (`TRIP_ID`),
   KEY `fk_ticket_management_cus_info1_idx` (`CUS_ID`),
@@ -268,4 +269,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-09  1:55:24
+-- Dump completed on 2021-05-11 22:35:40

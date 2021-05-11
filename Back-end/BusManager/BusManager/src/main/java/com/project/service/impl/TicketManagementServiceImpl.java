@@ -62,8 +62,7 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         cus = cusInfoRepository.getCusInfoById(ticketManagement.getCusId());
         
         newTicketManagement.setTicketId(ticketManagement.getTicketId());
-        newTicketManagement.setSeatId(ticketManagement.getSeatId());
-        newTicketManagement.setPrice(ticketManagement.getPrice());
+        newTicketManagement.setSeatId(ticketManagement.getSeatId());   
         newTicketManagement.setStatus(ticketManagement.getStatus());
         newTicketManagement.setPayment(ticketManagement.getPayment());
         newTicketManagement.setPaymentDate(ticketManagement.getPaymentDate());
@@ -88,9 +87,8 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         trip = busSchedulesRepository.getBusSchedulesById(ticketManagement.getTripId());
         cus = cusInfoRepository.getCusInfoById(ticketManagement.getCusId());
 
-        newTicketManagement.setTicketId(ticketManagement.getTicketId());
+//        newTicketManagement.setTicketId(ticketManagement.getTicketId());
         newTicketManagement.setSeatId(ticketManagement.getSeatId());
-        newTicketManagement.setPrice(ticketManagement.getPrice());
         newTicketManagement.setStatus(ticketManagement.getStatus());
         newTicketManagement.setPayment(ticketManagement.getPayment());
         newTicketManagement.setPaymentDate(ticketManagement.getPaymentDate());
@@ -124,7 +122,6 @@ public class TicketManagementServiceImpl implements TicketManagementService{
             TicketManagementResponse ticketManagementResponse = new TicketManagementResponse();
             ticketManagementResponse.setTicketId(result.getTicketId());
             ticketManagementResponse.setSeatId(result.getSeatId());
-            ticketManagementResponse.setPrice(result.getPrice());
             ticketManagementResponse.setStatus(result.getStatus());
             ticketManagementResponse.setPayment(result.getPayment());
             ticketManagementResponse.setPaymentDate(result.getPaymentDate());

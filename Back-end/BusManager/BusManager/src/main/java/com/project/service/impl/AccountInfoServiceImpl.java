@@ -94,7 +94,7 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo newAccountInfo = new AccountInfo();
         
-        newAccountInfo.setUserId(accountInfo.getUserId());
+//        newAccountInfo.setUserId(accountInfo.getUserId());
         newAccountInfo.setPassword(passwordHash);
         newAccountInfo.setType(accountInfo.getType());
         newAccountInfo.setStatus(accountInfo.getStatus());

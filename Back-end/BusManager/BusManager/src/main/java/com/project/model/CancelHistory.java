@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name="cancel_history")
 public class CancelHistory implements Serializable {
     @Id
-    @Column(name = "CANCEL_ID", length = 20, nullable = false)
+    @Column(name = "CANCEL_ID", length = 20)
     private String cancelId;
     
     @JsonProperty("reason")
@@ -38,19 +38,19 @@ public class CancelHistory implements Serializable {
     @JsonProperty("cusId")
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name="CUS_ID", nullable = true)
+    @JoinColumn(name="CUS_ID", nullable = false)
     private CusInfo cusId;
     
     @JsonProperty("empId")
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name="EMP_ID", nullable = true)
+    @JoinColumn(name="EMP_ID", nullable = false)
     private EmpInfo empId;
     
     @JsonProperty("ticketId")
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name="TICKET_ID", nullable = true)
+    @JoinColumn(name="TICKET_ID", nullable = false)
     private TicketManagement ticketId;
 
     /**

@@ -84,7 +84,7 @@ public class FeebackServiceImpl implements FeedbackService{
         cus = cusInfoRepository.getCusInfoById(feedback.getCusId());
         emp = empInfoRepository.getEmpInfoById(feedback.getEmpId());
 
-        newFeedback.setFeedbackId(feedback.getFeedbackId());
+//        newFeedback.setFeedbackId(feedback.getFeedbackId());
         newFeedback.setContent(feedback.getContent());
         newFeedback.setStatus(feedback.getStatus());
         newFeedback.setNote(feedback.getNote());

@@ -15,7 +15,6 @@ import java.util.Date;
 public class TicketManagementRequest {
     private String ticketId;
     private String seatId;
-    private String price;
     private int status;
     private int payment;
     private Date paymentDate;
@@ -27,12 +26,11 @@ public class TicketManagementRequest {
     public TicketManagementRequest(){
     }
     
-    public TicketManagementRequest(String ticketId, String seatId, String price, 
+    public TicketManagementRequest(String ticketId, String seatId,
             int status, int payment, Date paymentDate, Date bookingDate,
             String note, String tripId, String cusId){
         this.ticketId = ticketId;
         this.seatId = seatId;
-        this.price = price;
         this.status = status;
         this.payment = payment;
         this.paymentDate = paymentDate;
@@ -68,20 +66,6 @@ public class TicketManagementRequest {
      */
     public void setSeatId(String seatId) {
         this.seatId = seatId;
-    }
-
-    /**
-     * @return the price
-     */
-    public String getPrice() {
-        return price;
-    }
-
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     /**

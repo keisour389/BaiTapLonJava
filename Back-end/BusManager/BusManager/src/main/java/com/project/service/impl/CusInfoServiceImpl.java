@@ -80,7 +80,7 @@ public class CusInfoServiceImpl implements CusInfoService {
         CusInfo newCusInfo = new CusInfo();
         accountInfo = accountInfoResitory.getAccountInfoById(cusInfo.getUserId());
         
-        newCusInfo.setUserId(cusInfo.getUserId());
+//        newCusInfo.setUserId(cusInfo.getUserId());
         newCusInfo.setFirstName(cusInfo.getFirstName());
         newCusInfo.setLastName(cusInfo.getLastName());
         newCusInfo.setDisplayName(cusInfo.getDisplayName());
@@ -90,7 +90,7 @@ public class CusInfoServiceImpl implements CusInfoService {
         newCusInfo.setCreatedOn(cusInfo.getCreatedOn());
         newCusInfo.setUpdatedOn(cusInfo.getUpdatedOn());
         newCusInfo.setNote(cusInfo.getNote());
-        newCusInfo.setUsername(accountInfo);
+//        newCusInfo.setUsername(accountInfo);
 
         if (cusInfo.getUserId() != null) {
             cusInfoRepository.updateCusInfoById(newCusInfo);

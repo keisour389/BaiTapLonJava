@@ -39,10 +39,6 @@ public class TicketManagement implements Serializable {
     @Column(name = "SEAT_ID", length = 30, nullable = false)
     private String seatId;
     
-    @JsonProperty("price")
-    @Column(name = "PRICE", length = 45, nullable = false)
-    private String price;
-    
     @JsonProperty("status")
     @Column(name = "STATUS", nullable = false)
     private int status;
@@ -66,12 +62,12 @@ public class TicketManagement implements Serializable {
     
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name = "TRIP_ID", nullable = true)
+    @JoinColumn(name = "TRIP_ID", nullable = false)
     private BusSchedules tripId;
     
     @ManyToOne
 //    fetch = FetchType.LAZY
-    @JoinColumn(name = "CUS_ID", nullable = true)
+    @JoinColumn(name = "CUS_ID", nullable = false)
     private CusInfo cusId;
     
     @JsonIgnore
@@ -105,20 +101,6 @@ public class TicketManagement implements Serializable {
      */
     public void setSeatId(String seatId) {
         this.seatId = seatId;
-    }
-
-    /**
-     * @return the price
-     */
-    public String getPrice() {
-        return price;
-    }
-
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     /**

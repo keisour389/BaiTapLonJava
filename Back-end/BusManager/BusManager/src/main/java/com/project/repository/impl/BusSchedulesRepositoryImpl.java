@@ -53,6 +53,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
                 root.get("status"),
                 root.get("vehicleType"),
                 root.get("totalSeats"),
+                root.get("price"),
                 root.get("createdOn").as(LocalDateTime.class),
                 root.get("updatedOn").as(LocalDateTime.class),
                 root.get("note"),
@@ -91,7 +92,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
 
     @Override
     @Transactional
-    public void updateBusSchedulesById(BusSchedules busSchedules) {
+    public void updateBusSchedulesById(String id, BusSchedules busSchedules) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<BusSchedules> query = criteriaBuilder.createCriteriaUpdate(BusSchedules.class);
@@ -106,12 +107,13 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         query.set("status", busSchedules.getStatus());
         query.set("vehicleType", busSchedules.getVehicleType());
         query.set("totalSeats", busSchedules.getTotalSeats());
+        query.set("price", busSchedules.getPrice());
         query.set("createdOn", busSchedules.getCreatedOn());
         query.set("updatedOn", busSchedules.getUpdatedOn());
         query.set("note", busSchedules.getNote());
         query.set("manager", busSchedules.getManager());
 
-        Predicate p = criteriaBuilder.equal(root.get("tripId"), busSchedules.getTripId());
+        Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
@@ -148,6 +150,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
                 root.get("status"),
                 root.get("vehicleType"),
                 root.get("totalSeats"),
+                root.get("price"),
                 root.get("createdOn").as(LocalDateTime.class),
                 root.get("updatedOn").as(LocalDateTime.class),
                 root.get("note"),

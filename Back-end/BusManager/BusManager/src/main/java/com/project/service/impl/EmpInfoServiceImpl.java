@@ -83,7 +83,7 @@ public class EmpInfoServiceImpl implements EmpInfoService {
 
         accountInfo = accountInfoRepository.getAccountInfoById(empInfo.getUsername());
 
-        newEmpInfo.setUserId(empInfo.getUserId());
+//        newEmpInfo.setUserId(empInfo.getUserId());
         newEmpInfo.setFirstName(empInfo.getFirstName());
         newEmpInfo.setLastName(empInfo.getLastName());
         newEmpInfo.setDisplayName(empInfo.getDisplayName());
@@ -96,7 +96,7 @@ public class EmpInfoServiceImpl implements EmpInfoService {
         newEmpInfo.setCreatedOn(empInfo.getCreatedOn());
         newEmpInfo.setUpdatedOn(empInfo.getUpdatedOn());
         newEmpInfo.setNote(empInfo.getNote());
-        newEmpInfo.setUsername(accountInfo);
+//        newEmpInfo.setUsername(accountInfo);
 
         if (empInfo.getUserId() != null) {
             empInfoRepository.updateEmpInfoById(newEmpInfo);

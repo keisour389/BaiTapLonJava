@@ -68,7 +68,7 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         emp = empInfoRepository.getEmpInfoById(cancelHistory.getEmpId());
         ticket = ticketManagementRepository.getTicketManagementById(cancelHistory.getTicketId());
         
-        newCancelHistory.setCancelId(cancelHistory.getCancelId());
+//        newCancelHistory.setCancelId(cancelHistory.getCancelId());
         newCancelHistory.setReason(cancelHistory.getReason());
         newCancelHistory.setNote(cancelHistory.getNote());
         newCancelHistory.setCusId(cus);
