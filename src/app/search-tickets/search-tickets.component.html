@@ -89,25 +89,25 @@
             <div class="search-tickets-result">
                 <h2>Kết quả tìm kiếm</h2>
                 <div class="search-results-list">
-                    <div class="search-result shadow-sm p-3 mb-5 bg-white rounded">
+                    <div *ngFor="let data of busData; index as i" class="search-result shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="row ticket-info">
                             <div class="col-md-4">
                                 <p class="search-result-title">Điểm đi</p>
-                                <p class="search-result-content">TP.Hồ Chí Minh</p>
+                                <p class="search-result-content">{{data.start}}</p>
                                 <p class="search-result-title">Loại xe</p>
-                                <p class="search-result-content">Giường nằm</p>
+                                <p class="search-result-content">{{data.vehicleType}}</p>
                             </div>
                             <div class="col-md-4">
                                 <p class="search-result-title">Điểm đến</p>
-                                <p class="search-result-content">TP.Đà Lạt</p>
+                                <p class="search-result-content">{{data.destination}}</p>
                                 <p class="search-result-title">Giá vé</p>
                                 <p class="search-result-content">100.000VNĐ</p>
                             </div>
                             <div class="col-md-4">
                                 <p class="search-result-title">Ngày khởi hành</p>
-                                <p class="search-result-content">01-01-2021</p>
+                                <p class="search-result-content">{{data.departureDay | date: 'dd-MM-yyyy'}}</p>
                                 <p class="search-result-title">Giờ khởi hành</p>
-                                <p class="search-result-content">10h30</p>
+                                <p class="search-result-content">{{data.departureDay | date: 'h:mm a'}}</p>
                             </div>
                         </div>
                         <div class="row ticket-amount">

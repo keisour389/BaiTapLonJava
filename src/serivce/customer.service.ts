@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 const defaultAccountUrl = "http://localhost:8080/api/accountinfo";
 const defaultCusAccountUrl = "http://localhost:8080/api/cusinfo";
+const defaultFeedbackurl = "http://localhost:8080/api/feedback"
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class CustomerService {
   }
   registerPersonalData(refisterData: any): Observable<any> {
     return this.http.post(defaultCusAccountUrl + "/createCusInfo", refisterData);
-  } 
+  }
+  
+  sendFeedback(feedbackData: any): Observable<any> {
+    return this.http.post(defaultFeedbackurl + "/createFeedback", feedbackData);
+  }
 }
