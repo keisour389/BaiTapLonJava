@@ -84,11 +84,6 @@ public class CusInfo implements Serializable {
     @OneToMany(mappedBy = "cusId")
 //    fetch = FetchType.LAZY
     private List<CancelHistory> cancelHistory;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "cusId")
-//    fetch = FetchType.LAZY
-    private List<Feedback> feedback;
 
     /**
      * @return the userId
@@ -270,19 +265,5 @@ public class CusInfo implements Serializable {
      */
     public void setCancelHistory(List<CancelHistory> cancelHistory) {
         this.cancelHistory = cancelHistory;
-    }
-
-    /**
-     * @return the feedback
-     */
-    public List<Feedback> getFeedback() {
-        return feedback;
-    }
-
-    /**
-     * @param feedback the feedback to set
-     */
-    public void setFeedback(List<Feedback> feedback) {
-        this.feedback = feedback;
     }
 }

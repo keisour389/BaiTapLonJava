@@ -15,21 +15,28 @@ import java.util.Date;
 public class FeedbackRequest {
     private String feedbackId;
     private String content;
+    private String fullname;
+    private String phoneNumber;
+    private String type;
     private int status;
+    private LocalDateTime createdOn;
     private String note;
-    private String cusId;
     private String empId;
     
     public FeedbackRequest(){
     }
     
-    public FeedbackRequest(String feedbackId, String content, int status, 
+    public FeedbackRequest(String feedbackId, String content, String fullname,
+            String phoneNumber, String type, int status, LocalDateTime createdOn,
             String note, String cusId, String empId){
         this.feedbackId = feedbackId;
         this.content = content;
+        this.fullname = fullname;
+        this.phoneNumber = phoneNumber;
+        this.type = type;
         this.status = status;
+        this.createdOn = createdOn;
         this.note = note;
-        this.cusId = cusId;
         this.empId = empId;
     }
 
@@ -90,20 +97,6 @@ public class FeedbackRequest {
     }
 
     /**
-     * @return the cusId
-     */
-    public String getCusId() {
-        return cusId;
-    }
-
-    /**
-     * @param cusId the cusId to set
-     */
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
-    }
-
-    /**
      * @return the empId
      */
     public String getEmpId() {
@@ -115,5 +108,61 @@ public class FeedbackRequest {
      */
     public void setEmpId(String empId) {
         this.empId = empId;
+    }
+
+    /**
+     * @return the fullname
+     */
+    public String getFullname() {
+        return fullname;
+    }
+
+    /**
+     * @param fullname the fullname to set
+     */
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    /**
+     * @return the phoneNumber
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * @param phoneNumber the phoneNumber to set
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the createdOn
+     */
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    /**
+     * @param createdOn the createdOn to set
+     */
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
     }
 }

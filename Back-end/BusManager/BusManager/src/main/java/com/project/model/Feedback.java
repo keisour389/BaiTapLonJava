@@ -7,6 +7,7 @@ package com.project.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,27 +25,52 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "feedback")
 public class Feedback implements Serializable {
+
+    /**
+     * @return the createdOn
+     */
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    /**
+     * @param createdOn the createdOn to set
+     */
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
     @Id
     @Column(name = "FEEDBACK_ID", length = 20, nullable = false)
     private String feedbackId;
-    
+
+    @JsonProperty("fullname")
+    @Column(name = "FULLNAME", length = 100, nullable = false)
+    private String fullname;
+
+    @JsonProperty("phoneNumber")
+    @Column(name = "PHONE_NUMBER", length = 20, nullable = false)
+    private String phoneNumber;
+
+    @JsonProperty("type")
+    @Column(name = "TYPE", length = 50, nullable = false)
+    private String type;
+
     @JsonProperty("content")
     @Column(name = "CONTENT", length = 1000, nullable = false)
     private String content;
-    
+
     @JsonProperty("status")
     @Column(name = "STATUS", nullable = false)
     private int status;
-    
+
+    @JsonProperty("createdOn")
+    @Column(name = "CREATED_ON", nullable = false)
+    private LocalDateTime createdOn;
+
     @Column(name = "NOTE", length = 200, nullable = true)
     private String note;
-    
-    @JsonProperty("cusId")
-    @ManyToOne
-//    fetch = FetchType.LAZY
-    @JoinColumn(name = "CUS_ID", nullable = true)
-    private CusInfo cusId;
-    
+
     @JsonProperty("empId")
     @ManyToOne
 //    fetch = FetchType.LAZY
@@ -108,28 +134,12 @@ public class Feedback implements Serializable {
     }
 
     /**
-     * @return the cusId
-     */
-    public CusInfo getCusId() {
-        return cusId;
-    }
-    
-    /**
-     * @param cusId to set
-     */
-    public void setCusId(String cusId) {
-        CusInfo newCusInfo = new CusInfo();
-        newCusInfo.setUserId(cusId);
-        this.cusId = newCusInfo;
-    }
-
-    /**
      * @return the empId
      */
     public EmpInfo getEmpId() {
         return empId;
     }
-    
+
     /**
      * @param empId to set
      */
@@ -137,5 +147,47 @@ public class Feedback implements Serializable {
         EmpInfo newEmpInfo = new EmpInfo();
         newEmpInfo.setUserId(empId);
         this.empId = newEmpInfo;
+    }
+
+    /**
+     * @return the fullname
+     */
+    public String getFullname() {
+        return fullname;
+    }
+
+    /**
+     * @param fullname the fullname to set
+     */
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    /**
+     * @return the phoneNumber
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * @param phoneNumber the phoneNumber to set
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
     }
 }
