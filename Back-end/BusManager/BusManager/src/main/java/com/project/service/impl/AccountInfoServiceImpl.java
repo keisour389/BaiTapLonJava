@@ -123,14 +123,12 @@ public class AccountInfoServiceImpl implements AccountInfoService {
     @Override
     public AccountInfoResponse getAccountInfoById(String id) {
         AccountInfo result = accountInfoRepository.getAccountInfoById(id);
-        AccountInfoRequest accountInfo = new AccountInfoRequest();
-        String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
             
         if (result != null) {
             AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
             
             accountInfoResponse.setUserId(result.getUserId());
-            accountInfoResponse.setPassword(passwordHash);
+            accountInfoResponse.setPassword(result.getPassword());
             accountInfoResponse.setType(result.getType());
             accountInfoResponse.setStatus(result.getStatus());
             accountInfoResponse.setCreatedOn(result.getCreatedOn());
