@@ -13,7 +13,7 @@
         </svg>
         <div class="row">
             <div class="col-md-12 page">
-                <form (ngSubmit)="onSubmit(confirmPassword)" #f="ngForm"
+                <form (ngSubmit)="onSubmit(f)" #f="ngForm"
                     class="register-form shadow-sm p-3 mb-5 bg-white rounded">
                     <h4>Đăng kí</h4>
                     <div class="form-group">
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="gender">Giới tính</label>
-                                <select class="form-control">
+                                <select class="form-control" id="gender" name="gender" #gender="ngModel" ngModel [(ngModel)]="personalData.gender">
                                     <option value="Nam">Nam</option>
                                     <option value="Nữ">Nữ</option>
                                     <option value="Khác">Khác</option>
