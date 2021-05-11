@@ -89,7 +89,7 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
     }
 
     @Override
-    public BusSchedulesRequest updateBusSchedulesById(String id, BusSchedulesRequest busSchedules) {
+    public BusSchedulesRequest updateBusSchedulesById(BusSchedulesRequest busSchedules) {
         EmpInfo driver = new EmpInfo();
         EmpInfo subDriver = new EmpInfo();
         EmpInfo manager = new EmpInfo();
@@ -116,8 +116,8 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         newBusSchedules.setNote(busSchedules.getNote());
         newBusSchedules.setManager(manager);
 
-        if (busSchedulesRepository.getBusSchedulesById(id) != null) {
-            busSchedulesRepository.updateBusSchedulesById(id, newBusSchedules);
+        if (busSchedulesRepository.getBusSchedulesById(newBusSchedules.getTripId()) != null) {
+            busSchedulesRepository.updateBusSchedulesById(newBusSchedules);
             return busSchedules;
         } else {
             return null;

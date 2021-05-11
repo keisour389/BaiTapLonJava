@@ -103,7 +103,14 @@ public class EmpInfoServiceImpl implements EmpInfoService {
         newEmpInfo.setNote(empInfo.getNote());
 //        newEmpInfo.setUsername(accountInfo);
 
-        if (empInfo.getUserId() != null) {
+//        if (empInfo.getUserId() != null) {
+//            empInfoRepository.updateEmpInfoById(newEmpInfo);
+//            return empInfo;
+//        } else {
+//            return null;
+//        }
+
+        if (empInfoRepository.getEmpInfoById(newEmpInfo.getUsername()) != null) {
             empInfoRepository.updateEmpInfoById(newEmpInfo);
             return empInfo;
         } else {

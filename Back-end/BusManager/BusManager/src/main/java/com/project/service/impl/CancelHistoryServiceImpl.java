@@ -104,7 +104,7 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         newCancelHistory.setEmpId(emp);
         newCancelHistory.setTicketId(ticket);
         
-        if(cancelHistoryRepository.createCancelHistory(newCancelHistory) != null){
+        if(cancelHistoryRepository.getCancelHistoryById(newCancelHistory.getCancelId()) != null){
             cancelHistoryRepository.updateCancelHistoryById(newCancelHistory);
             return cancelHistory;
         }

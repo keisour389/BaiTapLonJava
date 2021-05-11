@@ -19,6 +19,6 @@ public interface BusSchedulesRepository {
     BusSchedules getBusSchedulesById(String id);
     BusSchedules createBusSchedules(BusSchedules busSchedules);
     boolean busSchedulesIsExist(String id);
-    void updateBusSchedulesById(String id, BusSchedules busSchedules);
+    void updateBusSchedulesById(BusSchedules busSchedules);
     void deleteBusSchedulesById(String id);
 }

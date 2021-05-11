@@ -21,6 +21,6 @@ public interface BusSchedulesService {
     BusSchedulesResponse getBusSchedulesById(String id);
     
     BusSchedulesRequest createBusSchedules(BusSchedulesRequest busSchedules);
-    BusSchedulesRequest updateBusSchedulesById(String id, BusSchedulesRequest busSchedules);
+    BusSchedulesRequest updateBusSchedulesById(BusSchedulesRequest busSchedules);
     boolean deleteBusSchedulesById(String id);
 }

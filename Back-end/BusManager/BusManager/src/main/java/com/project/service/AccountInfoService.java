@@ -22,6 +22,6 @@ public interface AccountInfoService {
     //Using getAccountInfoById in Repository
     AccountInfoResponse getAccountInfoById(String id);
     AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo);
-    AccountInfo updateAccountInfoById(AccountInfoRequest accountInfo);
+    AccountInfoRequest updateAccountInfoById(AccountInfoRequest accountInfo);
     boolean deleteAccountInfoById(String id);
 }

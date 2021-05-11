@@ -94,7 +94,7 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 
     //Need to return the data of account to show the password after hashing
     @Override
-    public AccountInfo updateAccountInfoById(AccountInfoRequest accountInfo) {
+    public AccountInfoRequest updateAccountInfoById(AccountInfoRequest accountInfo) {
         //Hash password before udpating
         String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo newAccountInfo = new AccountInfo();
@@ -107,9 +107,16 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         newAccountInfo.setUpdatedOn(accountInfo.getUpdatedOn());
         newAccountInfo.setNote(accountInfo.getNote());
 
-        if (accountInfo.getUserId() != null) {
+//        if (accountInfo.getUserId() != null) {
+//            accountInfoRepository.updateAccountInfoById(newAccountInfo);
+//            return newAccountInfo;
+//        } else {
+//            return null;
+//        }
+        
+        if (accountInfoRepository.getAccountInfoById(newAccountInfo.getUserId()) != null) {
             accountInfoRepository.updateAccountInfoById(newAccountInfo);
-            return newAccountInfo;
+            return accountInfo;
         } else {
             return null;
         }
