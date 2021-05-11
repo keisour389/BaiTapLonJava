@@ -101,7 +101,7 @@ public class EmpInfoServiceImpl implements EmpInfoService {
         newEmpInfo.setCreatedOn(empInfo.getCreatedOn());
         newEmpInfo.setUpdatedOn(empInfo.getUpdatedOn());
         newEmpInfo.setNote(empInfo.getNote());
-//        newEmpInfo.setUsername(accountInfo);
+        newEmpInfo.setUsername(accountInfo);
 
 //        if (empInfo.getUserId() != null) {
 //            empInfoRepository.updateEmpInfoById(newEmpInfo);

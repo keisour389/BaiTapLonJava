@@ -67,7 +67,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         CriteriaQuery<EmpInfo> query = criteriaBuilder.createQuery(EmpInfo.class);
         Root<EmpInfo> root = query.from(EmpInfo.class);
         query.select(root);
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), id);
         
         query.where(p);
         
@@ -107,7 +107,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         query.set("updatedOn", empInfo.getUpdatedOn());
         query.set("note", empInfo.getNote());
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), empInfo.getUserId());
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), empInfo.getUsername());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
@@ -120,7 +120,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         CriteriaDelete<EmpInfo> query = criteriaBuilder.createCriteriaDelete(EmpInfo.class);
         Root<EmpInfo> root = query.from(EmpInfo.class);
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
@@ -133,7 +133,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         CriteriaQuery<EmpInfo> query = criteriaBuilder.createQuery(EmpInfo.class);
         Root<EmpInfo> root = query.from(EmpInfo.class);
         
-        query.select(root).where(criteriaBuilder.equal(root.get("username"), username));
+        query.select(root).where(criteriaBuilder.equal(root.get("username").get("userId"), username));
         EmpInfo result = session.createQuery(query).uniqueResult();
         if(result == null)
             return false;

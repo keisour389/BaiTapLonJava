@@ -95,7 +95,7 @@ public class CusInfoServiceImpl implements CusInfoService {
         newCusInfo.setCreatedOn(cusInfo.getCreatedOn());
         newCusInfo.setUpdatedOn(cusInfo.getUpdatedOn());
         newCusInfo.setNote(cusInfo.getNote());
-//        newCusInfo.setUsername(accountInfo);
+        newCusInfo.setUsername(accountInfo);
 
 //        if (cusInfo.getUserId() != null) {
 //            cusInfoRepository.updateCusInfoById(newCusInfo);

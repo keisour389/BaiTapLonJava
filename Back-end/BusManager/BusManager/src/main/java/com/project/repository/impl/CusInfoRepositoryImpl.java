@@ -65,7 +65,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         CriteriaQuery<CusInfo> query = criteriaBuilder.createQuery(CusInfo.class);
         Root<CusInfo> root = query.from(CusInfo.class);
         query.select(root);
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), id);
         
         query.where(p);
         
@@ -102,7 +102,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         query.set("updatedOn", cusInfo.getUpdatedOn());
         query.set("note", cusInfo.getNote());
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), cusInfo.getUserId());
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), cusInfo.getUsername());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
@@ -115,7 +115,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         CriteriaDelete<CusInfo> query = criteriaBuilder.createCriteriaDelete(CusInfo.class);
         Root<CusInfo> root = query.from(CusInfo.class);
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
@@ -128,7 +128,7 @@ public class CusInfoRepositoryImpl implements CusInfoRepository{
         CriteriaQuery<CusInfo> query = criteriaBuilder.createQuery(CusInfo.class);
         Root<CusInfo> root = query.from(CusInfo.class);
         
-        query.select(root).where(criteriaBuilder.equal(root.get("username"), username));
+        query.select(root).where(criteriaBuilder.equal(root.get("username").get("userId"), username));
         CusInfo result = session.createQuery(query).uniqueResult();
         if(result == null)
             return false;
