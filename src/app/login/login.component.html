@@ -45,6 +45,9 @@
                             <div *ngIf="isSubmitted && userId.valid && password.invalid" class="alert alert-danger" role="alert">
                                 Vui lòng nhập mật khẩu
                             </div>
+                            <div *ngIf="loginStatus.isLogin !== null && !loginStatus.isLogin" class="alert alert-danger" role="alert">
+                                {{loginStatus.message}}
+                            </div>
                         </div>                     
                         <div class="form-group">
                             <label for="userId" class="text-login">Tên đăng nhập</label>
@@ -53,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password" class="text-login">Mật khẩu</label>
-                            <input type="text" class="form-control" id="password" name="password" #password="ngModel"
+                            <input type="password" class="form-control" id="password" name="password" #password="ngModel"
                                 ngModel required>
                         </div>
                         <div class="form-group">
