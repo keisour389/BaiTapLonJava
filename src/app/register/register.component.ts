@@ -117,17 +117,17 @@ export class RegisterComponent implements OnInit {
   }
 
   private bindingPersonnalData(form: NgForm): void {
-    this.personalData.userId = form.value.userId,
-      this.personalData.firstName = form.value.firstName,
-      this.personalData.lastName = form.value.lastName,
-      this.personalData.displayName = this.personalData.firstName + " " + this.personalData.lastName,
-      this.personalData.phoneNumber = form.value.phoneNumber,
+    this.personalData.userId = form.value.userId;
+      this.personalData.firstName = form.value.firstName;
+      this.personalData.lastName = form.value.lastName;
+      this.personalData.displayName = this.personalData.firstName + " " + this.personalData.lastName;
+      this.personalData.phoneNumber = form.value.phoneNumber;
       this.personalData.birthday = this.parseNormalDateToJsonDate(form.value.dob);
-      this.personalData.gender = form.value.gender,
-      this.personalData.createdOn = this.createJsonNowDate(),
-      this.personalData.updatedOn = null,
-      this.personalData.note = null,
-      this.personalData.username = form.value.userId
+      this.personalData.gender = form.value.gender;
+      this.personalData.createdOn = this.createJsonNowDate();
+      this.personalData.updatedOn = null;
+      this.personalData.note = null;
+      this.personalData.username = form.value.userId;
   }
 
   private parseNormalDateToJsonDate(normalDateTime: string): string{
