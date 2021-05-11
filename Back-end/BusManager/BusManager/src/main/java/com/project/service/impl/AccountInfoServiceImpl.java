@@ -47,13 +47,20 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 
     @Override
     public AccountInfoResponse getAccountInfoByUserIdPassword(LoginRequest loginRequest) {
+        boolean isLogin = false;
         String passwordHash = Hashing.sha256().hashString(loginRequest.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo result = accountInfoRepository.getAccountInfoByUserIdPassword(loginRequest.getUserId(), passwordHash);
         AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
 
-        accountInfoResponse.setType(result.getType());
-        accountInfoResponse.setStatus(result.getStatus());
-
+        if (result != null) {
+            accountInfoResponse.setUserId(result.getUserId());
+            accountInfoResponse.setType(result.getType());
+            accountInfoResponse.setStatus(result.getStatus());
+        }
+        else{
+            return null;
+        }
+        
         return accountInfoResponse;
     }
 

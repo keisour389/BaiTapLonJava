@@ -1,6 +1,8 @@
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CustomerService } from 'src/serivce/customer.service';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +10,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
+  //Checking variables
+  loginStatus: any = {
+    message: null,
+    isLogin: null
+  };
+  //Data to send
+  loginData: any = {
+    userId: null,
+    password: null
+  }
+
   // Reference DOM by ViewChild
   @ViewChild('emp') emp!: ElementRef;
   @ViewChild('cus') cus!: ElementRef;
@@ -17,7 +30,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   isSubmitted!: boolean;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _location: Location) { }
+  constructor(private _location: Location, private customerService: CustomerService, private router: Router) { }
 
   changeLoginType(type: string): void{
     this.loginType = type;
@@ -36,6 +49,29 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log(form);
     // Check input is submitted or not
     this.isSubmitted = true;
+    if(form.valid){
+      this.loginData.userId = form.value.userId;
+      this.loginData.password = form.value.password;
+      this.loginStatus = this.customerService.login(this.loginData).subscribe(
+        result => {
+          let res: any = result;
+          if(res !== null){
+            this.router.navigate(['/']);
+          }
+          else{
+            //Set login status
+            this.loginStatus.message = 'Sai tài khoản hoặc mật khẩu';
+            this.loginStatus.isLogin = false;
+          }
+        },
+        error => {
+          console.error("Server error !!!");
+           //Set login status
+           this.loginStatus.message = 'Server error';
+           this.loginStatus.isLogin = false;
+        }
+      );
+    }
   }
 
   backClicked(): void{
