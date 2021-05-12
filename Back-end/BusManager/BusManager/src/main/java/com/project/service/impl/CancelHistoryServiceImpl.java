@@ -68,14 +68,14 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         emp = empInfoRepository.getEmpInfoById(cancelHistory.getEmpId());
         ticket = ticketManagementRepository.getTicketManagementById(cancelHistory.getTicketId());
         
-//        newCancelHistory.setCancelId(cancelHistory.getCancelId());
+        newCancelHistory.setCancelId(cancelHistory.getCancelId());
         newCancelHistory.setReason(cancelHistory.getReason());
         newCancelHistory.setNote(cancelHistory.getNote());
         newCancelHistory.setCusId(cus);
         newCancelHistory.setEmpId(emp);
         newCancelHistory.setTicketId(ticket);
         
-        if(!cancelHistoryRepository.cancelHistoryIsExist(cancelHistory.getCancelId())){
+        if(!cancelHistoryRepository.cancelHistoryIsExist(newCancelHistory.getCancelId())){
             if(cancelHistoryRepository.createCancelHistory(newCancelHistory) != null)
                 return cancelHistory;
             else
@@ -130,9 +130,9 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
             cancelHistoryResponse.setCancelId(result.getCancelId());
             cancelHistoryResponse.setReason(result.getReason());
             cancelHistoryResponse.setNote(result.getNote());
-            cancelHistoryResponse.setCusId(result.getCusId());
-            cancelHistoryResponse.setEmpId(result.getEmpId());
-            cancelHistoryResponse.setTicketId(result.getTicketId());
+            cancelHistoryResponse.setCusId(result.getCusId().getUsername());
+            cancelHistoryResponse.setEmpId(result.getEmpId().getUsername());
+            cancelHistoryResponse.setTicketId(result.getTicketId().getTicketId());
             
             return cancelHistoryResponse;
         }

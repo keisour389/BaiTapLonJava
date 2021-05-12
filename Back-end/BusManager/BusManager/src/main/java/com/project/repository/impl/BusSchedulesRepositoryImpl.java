@@ -8,7 +8,6 @@ package com.project.repository.impl;
 import com.project.model.BusSchedules;
 import com.project.repository.BusSchedulesRepository;
 import com.project.response.BusSchedulesResponse;
-import com.project.response.BusSchedulesResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;

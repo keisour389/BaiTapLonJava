@@ -95,19 +95,19 @@ public class CancelHistory implements Serializable {
         this.note = note;
     }
 
-//    /**
-//     * @return the cusId
-//     */
-//    public CusInfo getCusId() {
-//        return cusId;
-//    }
-    
     /**
      * @return the cusId
      */
-    public String getCusId() {
-        return cusId.getUsername();
+    public CusInfo getCusId() {
+        return cusId;
     }
+    
+//    /**
+//     * @return the cusId
+//     */
+//    public String getCusId() {
+//        return cusId.getUsername();
+//    }
   
     /**
      * @param cusId the cusId to set
@@ -125,19 +125,19 @@ public class CancelHistory implements Serializable {
 //        this.setCusId(newCusInfo);
 //    }
 
-//    /**
-//     * @return the empId
-//     */
-//    public EmpInfo getEmpId() {
-//        return empId;
-//    }
-    
     /**
      * @return the empId
      */
-    public String getEmpId() {
-        return empId.getUsername();
+    public EmpInfo getEmpId() {
+        return empId;
     }
+    
+//    /**
+//     * @return the empId
+//     */
+//    public String getEmpId() {
+//        return empId.getUsername();
+//    }
   
     /**
      * @param empId the empId to set
@@ -155,19 +155,19 @@ public class CancelHistory implements Serializable {
 //        this.setEmpId(newEmpInfo);
 //    }
 
-//    /**
-//     * @return the ticketId
-//     */
-//    public TicketManagement getTicketId() {
-//        return ticketId;
-//    }
-    
     /**
      * @return the ticketId
      */
-    public String getTicketId() {
-        return ticketId.getTicketId();
+    public TicketManagement getTicketId() {
+        return ticketId;
     }
+    
+//    /**
+//     * @return the ticketId
+//     */
+//    public String getTicketId() {
+//        return ticketId.getTicketId();
+//    }
 
     /**
      * @param ticketId the ticketId to set

@@ -91,7 +91,7 @@ public class TicketManagementServiceImpl implements TicketManagementService{
         trip = busSchedulesRepository.getBusSchedulesById(ticketManagement.getTripId());
         cus = cusInfoRepository.getCusInfoById(ticketManagement.getCusId());
 
-//        newTicketManagement.setTicketId(ticketManagement.getTicketId());
+        newTicketManagement.setTicketId(ticketManagement.getTicketId());
         newTicketManagement.setSeatId(ticketManagement.getSeatId());
         newTicketManagement.setStatus(ticketManagement.getStatus());
         newTicketManagement.setPayment(ticketManagement.getPayment());
@@ -131,8 +131,8 @@ public class TicketManagementServiceImpl implements TicketManagementService{
             ticketManagementResponse.setPaymentDate(result.getPaymentDate());
             ticketManagementResponse.setBookingDate(result.getBookingDate());
             ticketManagementResponse.setNote(result.getNote());
-            ticketManagementResponse.setTripId(result.getTripId());
-            ticketManagementResponse.setCusId(result.getCusId());
+            ticketManagementResponse.setTripId(result.getTripId().getTripId());
+            ticketManagementResponse.setCusId(result.getCusId().getUsername());
             
             return ticketManagementResponse;
         }

@@ -85,7 +85,7 @@ public class CusInfoServiceImpl implements CusInfoService {
         CusInfo newCusInfo = new CusInfo();
         accountInfo = accountInfoResitory.getAccountInfoById(cusInfo.getUserId());
         
-//        newCusInfo.setUserId(cusInfo.getUserId());
+        newCusInfo.setUserId(cusInfo.getUserId());
         newCusInfo.setFirstName(cusInfo.getFirstName());
         newCusInfo.setLastName(cusInfo.getLastName());
         newCusInfo.setDisplayName(cusInfo.getDisplayName());

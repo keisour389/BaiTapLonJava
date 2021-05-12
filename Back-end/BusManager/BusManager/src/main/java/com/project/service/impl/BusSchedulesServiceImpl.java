@@ -96,10 +96,10 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
         BusSchedules newBusSchedules = new BusSchedules();
 
         driver = empInfoRepository.getEmpInfoById(busSchedules.getMainDriver());
-        subDriver = empInfoRepository.getEmpInfoById(busSchedules.getMainDriver());
-        manager = empInfoRepository.getEmpInfoById(busSchedules.getMainDriver());
+        subDriver = empInfoRepository.getEmpInfoById(busSchedules.getSubDriver());
+        manager = empInfoRepository.getEmpInfoById(busSchedules.getManager());
         
-//        newBusSchedules.setTripId(busSchedules.getTripId());
+        newBusSchedules.setTripId(busSchedules.getTripId());
         newBusSchedules.setLicensePlates(busSchedules.getLicensePlates());
         newBusSchedules.setMainDriver(driver);
         newBusSchedules.setSubDriver(subDriver);
@@ -142,8 +142,8 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
             
             busSchedulesResponse.setTripId(result.getTripId());
             busSchedulesResponse.setLicensePlates(result.getLicensePlates());
-            busSchedulesResponse.setMainDriverId(result.getMainDriver());
-            busSchedulesResponse.setSubDriverId(result.getSubDriver());
+            busSchedulesResponse.setMainDriverId(result.getMainDriver().getUsername());
+            busSchedulesResponse.setSubDriverId(result.getSubDriver().getUsername());
             busSchedulesResponse.setStart(result.getStart());
             busSchedulesResponse.setDestination(result.getDestination());
             busSchedulesResponse.setDepartureDay(result.getDepartureDay());
@@ -155,12 +155,20 @@ public class BusSchedulesServiceImpl implements BusSchedulesService {
             busSchedulesResponse.setCreatedOn(result.getCreatedOn());
             busSchedulesResponse.setUpdatedOn(result.getUpdatedOn());
             busSchedulesResponse.setNote(result.getNote());
-            busSchedulesResponse.setManagerId(result.getManager());
+            busSchedulesResponse.setManagerId(result.getManager().getUsername());
             
             return busSchedulesResponse;
         }
         else
             return null;
+
+//        //Don't get the object, just get the id of the foreign key
+//        BusSchedulesResponse result = busSchedulesRepository.getBusSchedulesById(id);
+//        if (result != null) {
+//            return result;
+//        } else {
+//            return null;
+//        }
     }
 
     @Override

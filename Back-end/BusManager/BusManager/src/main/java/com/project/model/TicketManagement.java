@@ -173,19 +173,19 @@ public class TicketManagement implements Serializable {
         this.note = note;
     }
 
-//    /**
-//     * @return the tripId
-//     */
-//    public BusSchedules getTripId() {
-//        return tripId;
-//    }
-    
     /**
      * @return the tripId
      */
-    public String getTripId() {
-        return tripId.getTripId();
+    public BusSchedules getTripId() {
+        return tripId;
     }
+    
+//    /**
+//     * @return the tripId
+//     */
+//    public String getTripId() {
+//        return tripId.getTripId();
+//    }
     
 //    /**
 //     * @param tripId to set
@@ -203,19 +203,19 @@ public class TicketManagement implements Serializable {
         this.tripId = tripId;
     }
 
-//    /**
-//     * @return the cusId
-//     */
-//    public CusInfo getCusId() {
-//        return cusId;
-//    }
-    
     /**
      * @return the cusId
      */
-    public String getCusId() {
-        return cusId.getUsername();
+    public CusInfo getCusId() {
+        return cusId;
     }
+    
+//    /**
+//     * @return the cusId
+//     */
+//    public String getCusId() {
+//        return cusId.getUsername();
+//    }
     
 //    /**
 //     * @param cusId to set

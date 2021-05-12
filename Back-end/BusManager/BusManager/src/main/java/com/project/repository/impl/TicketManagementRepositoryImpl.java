@@ -48,7 +48,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
                 root.get("bookingDate").as(Date.class),
                 root.get("note"),
                 root.get("tripId").get("tripId"),
-                root.get("cusId").get("cusId")
+                root.get("cusId").get("username").get("userId")
         ));
         return session.createQuery(query).getResultList();
     }
@@ -97,7 +97,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         query.set("tripId", ticketManagement.getTripId());
         query.set("cusId", ticketManagement.getCusId());
         
-        Predicate p = criteriaBuilder.equal(root.get("ticketId"), ticketManagement);
+        Predicate p = criteriaBuilder.equal(root.get("ticketId"), ticketManagement.getTicketId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }

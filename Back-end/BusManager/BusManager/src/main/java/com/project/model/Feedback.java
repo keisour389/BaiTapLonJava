@@ -107,19 +107,19 @@ public class Feedback implements Serializable {
         this.note = note;
     }
 
-//    /**
-//     * @return the cusId
-//     */
-//    public CusInfo getCusId() {
-//        return cusId;
-//    }
-    
     /**
      * @return the cusId
      */
-    public String getCusId() {
-        return cusId.getUsername();
+    public CusInfo getCusId() {
+        return cusId;
     }
+    
+//    /**
+//     * @return the cusId
+//     */
+//    public String getCusId() {
+//        return cusId.getUsername();
+//    }
     
 //    /**
 //     * @param cusId to set
@@ -137,19 +137,19 @@ public class Feedback implements Serializable {
         this.cusId = cusId;
     }
 
-//    /**
-//     * @return the empId
-//     */
-//    public EmpInfo getEmpId() {
-//        return empId;
-//    }
-    
     /**
      * @return the empId
      */
-    public String getEmpId() {
-        return empId.getUsername();
+    public EmpInfo getEmpId() {
+        return empId;
     }
+    
+//    /**
+//     * @return the empId
+//     */
+//    public String getEmpId() {
+//        return empId.getUsername();
+//    }
     
 //    /**
 //     * @param empId to set
