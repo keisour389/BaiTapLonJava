@@ -45,11 +45,15 @@ public class FeebackServiceImpl implements FeedbackService{
     public FeedbackRequest createFeedback(FeedbackRequest feedback) {
         Feedback newFeedback = new Feedback();
         newFeedback.setFeedbackId(feedback.getFeedbackId());
+        newFeedback.setFullname(feedback.getFullname());
+        newFeedback.setPhoneNumber(feedback.getPhoneNumber());
+        newFeedback.setType(feedback.getType());
+        newFeedback.setFullname(feedback.getFullname());
         newFeedback.setContent(feedback.getContent());
         newFeedback.setStatus(feedback.getStatus());
-        newFeedback.setNote(feedback.getNote());
-        newFeedback.setCusId(feedback.getCusId());
-        newFeedback.setEmpId(feedback.getEmpId());
+        newFeedback.setCreatedOn(feedback.getCreatedOn());
+        newFeedback.setNote(feedback.getNote()); 
+        //newFeedback.setEmpId(null);
         
         if(feedbackRepository.createFeedback(newFeedback) != null)
             return feedback;
@@ -61,13 +65,16 @@ public class FeebackServiceImpl implements FeedbackService{
     public FeedbackRequest updateFeedbackById(FeedbackRequest feedback) {
         Feedback newFeedback = new Feedback();
         newFeedback.setFeedbackId(feedback.getFeedbackId());
+        newFeedback.setFullname(feedback.getFullname());
+        newFeedback.setPhoneNumber(feedback.getPhoneNumber());
+        newFeedback.setType(feedback.getType());
+        newFeedback.setFullname(feedback.getFullname());
         newFeedback.setContent(feedback.getContent());
         newFeedback.setStatus(feedback.getStatus());
-        newFeedback.setNote(feedback.getNote());
-        newFeedback.setCusId(feedback.getCusId());
+        newFeedback.setCreatedOn(feedback.getCreatedOn());
+        newFeedback.setNote(feedback.getNote()); 
         newFeedback.setEmpId(feedback.getEmpId());
-        
-        if(feedbackRepository.createFeedback(newFeedback) != null){
+        if(feedback.getFeedbackId() != null){
             feedbackRepository.updateFeedbackById(newFeedback);
             return feedback;
         }
@@ -91,9 +98,12 @@ public class FeebackServiceImpl implements FeedbackService{
         if(result != null){
             FeedbackResponse feedbackResponse = new FeedbackResponse();
             feedbackResponse.setFeedbackId(result.getFeedbackId());
+            feedbackResponse.setFullname(result.getFullname());
+            feedbackResponse.setPhoneNumber(result.getPhoneNumber());
+            feedbackResponse.setType(result.getType());
             feedbackResponse.setContent(result.getContent());
             feedbackResponse.setStatus(result.getStatus());
-            feedbackResponse.setCusId(result.getCusId().toString());
+            feedbackResponse.setCreatedOn(result.getCreatedOn());
             feedbackResponse.setEmpId(result.getEmpId().toString());
             
             return feedbackResponse;

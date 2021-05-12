@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/serivce/customer.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-login',
@@ -69,12 +70,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
             else {
               this.loginStatus.message = 'Sai tài khoản hoặc mật khẩu';
               this.loginStatus.isLogin = false;
+              localStorage.removeItem('loginStatus');
             }
           }
           else {
             //Set login status
             this.loginStatus.message = 'Sai tài khoản hoặc mật khẩu';
             this.loginStatus.isLogin = false;
+            localStorage.removeItem('loginStatus');
           }
         },
         error => {
@@ -82,6 +85,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           //Set login status
           this.loginStatus.message = 'Server error';
           this.loginStatus.isLogin = false;
+          localStorage.removeItem('loginStatus');
         }
       );
     }

@@ -5,26 +5,38 @@
  */
 package com.project.response;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author DELL
  */
 public class FeedbackResponse {
+
     private String feedbackId;
     private String content;
+    private String fullname;
+    private String phoneNumber;
+    private String type;
     private int status;
-    private String cusId;
+    private LocalDateTime createdOn;
+    private String note;
     private String empId;
-    
-    public FeedbackResponse(){
+
+    public FeedbackResponse() {
     }
-    
-    public FeedbackResponse(String feedbackId, String content, int status,
-                String cusId, String empId){
+
+    public FeedbackResponse(String feedbackId, String content, String fullname,
+            String phoneNumber, String type, int status, LocalDateTime createdOn,
+            String note, String cusId, String empId) {
         this.feedbackId = feedbackId;
         this.content = content;
+        this.fullname = fullname;
+        this.phoneNumber = phoneNumber;
+        this.type = type;
         this.status = status;
-        this.cusId = cusId;
+        this.createdOn = createdOn;
+        this.note = note;
         this.empId = empId;
     }
 
@@ -71,20 +83,6 @@ public class FeedbackResponse {
     }
 
     /**
-     * @return the cusId
-     */
-    public String getCusId() {
-        return cusId;
-    }
-
-    /**
-     * @param cusId the cusId to set
-     */
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
-    }
-
-    /**
      * @return the empId
      */
     public String getEmpId() {
@@ -96,5 +94,75 @@ public class FeedbackResponse {
      */
     public void setEmpId(String empId) {
         this.empId = empId;
+    }
+
+    /**
+     * @return the fullname
+     */
+    public String getFullname() {
+        return fullname;
+    }
+
+    /**
+     * @param fullname the fullname to set
+     */
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    /**
+     * @return the phoneNumber
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * @param phoneNumber the phoneNumber to set
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the createdOn
+     */
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    /**
+     * @param createdOn the createdOn to set
+     */
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 }
