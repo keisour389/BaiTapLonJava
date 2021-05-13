@@ -32,11 +32,17 @@
             </svg>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" routerLinkActive="active">
+            <li *ngIf="!isLogin" class="nav-item" routerLinkActive="active">
                 <a class="nav-item-text nav-link" routerLink="/login">Đăng nhập</a>
             </li>
-            <li class="nav-item" routerLinkActive="active">
+            <li *ngIf="!isLogin" class="nav-item" routerLinkActive="active">
                 <a class="nav-item-text nav-link" routerLink="/register">Đăng kí</a>
+            </li>
+            <li *ngIf="isLogin" class="nav-item">
+                <div class="nav-item-text nav-link">Xin chào: <strong>{{loginStatus.userId}}</strong></div>
+            </li>
+            <li *ngIf="isLogin" class="nav-item" routerLinkActive="active">
+                <a style="cursor: pointer;" class="nav-item-text nav-link" (click)="logout()">Đăng xuất</a>
             </li>
         </ul>
     </div>
