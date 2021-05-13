@@ -41,10 +41,13 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
                 FeedbackResponse.class,
                 root.get("feedbackId"),
                 root.get("content"),
-                root.get("status"),
+                root.get("fullname"),
+                root.get("phoneNumber"),
+                root.get("type"),
+                root.get("status").as(String.class),
+                root.get("createdOn"),
                 root.get("note"),
-                root.get("cusId").get("username").get("userId"),
-                root.get("empId").get("username").get("userId")
+                root.get("empId").as(String.class)
         ));
         return session.createQuery(query).getResultList();
     }
@@ -85,9 +88,12 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
         CriteriaUpdate<Feedback> query = criteriaBuilder.createCriteriaUpdate(Feedback.class);
         Root<Feedback> root = query.from(Feedback.class);
         query.set("content", feedback.getContent());
+        query.set("fullname", feedback.getFullname());
+        query.set("phoneNumber", feedback.getPhoneNumber());
+        query.set("type", feedback.getType());
         query.set("status", feedback.getStatus());
-        query.set("note", feedback.getNote());
-        query.set("cusId", feedback.getCusId());
+        query.set("createdOn", feedback.getCreatedOn());
+        query.set("note", feedback.getNote());   
         query.set("empId", feedback.getEmpId());
         
         Predicate p = criteriaBuilder.equal(root.get("feedbackId"), feedback.getFeedbackId());

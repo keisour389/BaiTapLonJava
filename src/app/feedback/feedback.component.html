@@ -5,7 +5,8 @@
             <div class="row">
                 <div class="col-sm-6 offset-md-3">
                     <h2>Phản hồi về dịch vụ</h2>
-                    <form (ngSubmit)="onSubmit()" #f="ngForm" class="feedback-form shadow-sm p-3 mb-5 bg-white rounded">
+                    <form (ngSubmit)="onSubmit(f)" #f="ngForm"
+                        class="feedback-form shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="form-group">
                             <div class="row">
                                 <div class="feedback-text col-md-3">
@@ -43,8 +44,8 @@
                         <div class="error-message">
                             <div class="row">
                                 <div class="offset-md-3 col-md-9">
-                                    <div *ngIf="phoneNumber.invalid && phoneNumber.touched && phoneNumber.errors!.required" class="alert alert-danger"
-                                        role="alert">
+                                    <div *ngIf="phoneNumber.invalid && phoneNumber.touched && phoneNumber.errors!.required"
+                                        class="alert alert-danger" role="alert">
                                         Không được để trống
                                     </div>
                                     <div *ngIf="phoneNumber.errors !== null && !phoneNumber.errors.required"
@@ -60,12 +61,13 @@
                                     Phản hồi về:
                                 </div>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="feedbackType" id="feedbackType">
-                                        <option value="1">Chất lượng dịch vụ</option>
-                                        <option value="2">Phương tiện di chuyển</option>
-                                        <option value="3">Tài xế và dịch vụ</option>
-                                        <option value="4">Đóng góp ý kiến</option>
-                                        <option value="5">Khác</option>
+                                    <select class="form-control" name="feedbackType" id="feedbackType"
+                                        #feedbackType="ngModel" ngModel [(ngModel)]="feedbackData.type">
+                                        <option value="Chất lượng dịch vụ">Chất lượng dịch vụ</option>
+                                        <option value="Phương tiện di chuyển">Phương tiện di chuyển</option>
+                                        <option value="Tài xế và dịch vụ">Tài xế và dịch vụ</option>
+                                        <option value="Đóng góp ý kiến">Đóng góp ý kiến</option>
+                                        <option value="Khác">Khác</option>
                                     </select>
                                 </div>
                             </div>

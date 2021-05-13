@@ -9,6 +9,7 @@
 /*Option*/
 .option{
     background-color: rgb(51, 160, 214, 0.6);
+    max-height: 700px;
 }
 .option-text{
     margin-left: 5px;

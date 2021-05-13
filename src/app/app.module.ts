@@ -39,6 +39,7 @@ import { ChecknumericDirective } from './directive/checknumeric.directive';
 import { LicencePlateValidatorDirective } from './directive/licence-plate-validator.directive';
 import { IdValidatorDirective } from './directive/id-validator.directive';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { AuthGraud } from './login/auth.graud';
 
 const appRouters: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -49,7 +50,7 @@ const appRouters: Routes = [
   { path: 'payment', component: PaymentComponent },
   { path: 'order-success', component: OrderSuccessComponent },
   {
-    path: 'management', component: AppComponent, children: [
+    path: 'management', component: AppComponent, canActivate: [AuthGraud], children: [
       {
         path: '', component: ManagementComponent, pathMatch: 'full'
       },

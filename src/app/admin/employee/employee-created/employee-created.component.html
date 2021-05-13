@@ -4,7 +4,7 @@
         <div class="title">
             <h1>Tạo tài khoản cho nhân viên</h1>
         </div>
-        <form (ngSubmit)="onSubmit(id)" #f="ngForm" class="shadow p-3 mb-5 bg-white rounded">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="shadow p-3 mb-5 bg-white rounded">
             <div class="form-group">
                 <div class="row">
                     <div class="label" class="col-md-6">
@@ -140,10 +140,18 @@
             </div>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="label" for="phoneNumber">Số điện thoại</label>
                         <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
                             #phoneNumber="ngModel" ngModel appPhonenumberValidator required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="gender">Giới tính</label>
+                        <select class="form-control" id="gender" name="gender" #gender="ngModel" ngModel [(ngModel)]="personalData.gender">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Khác">Khác</option>
+                        </select>
                     </div>
                 </div>
             </div>

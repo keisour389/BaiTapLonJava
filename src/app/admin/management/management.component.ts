@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, HostListener, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChartType } from 'angular-google-charts';
+import { AuthService } from 'src/app/login/auth.service';
 
 @Component({
   selector: 'app-management',
