@@ -38,25 +38,38 @@
                 </div>
                 <div class="row">
                     <div class="col-md-9">
-                        <input class="form-control" placeholder="Bạn muốn đi đâu nè?" id="searchInput" type="text">
+                        <input class="form-control" placeholder="Bạn muốn đi đâu nè?" id="searchInput"
+                            #searchInput="ngModel" ngModel name="searchInput" type="text" [(ngModel)]="destination"
+                            required>
+
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                        <button class="btn btn-primary" type="submit" (click)="onSubmit()">Tìm kiếm</button>
                     </div>
                 </div>
-                <div class="row" style="margin-top: 15px;">
+                    <div class="error-message">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div *ngIf="searchInput.invalid && searchInput.touched" class="alert alert-danger"
+                                    role="alert">
+                                    Vui lòng không để trống trường này.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="row">
                     <div class="col-md-12">
                         <a class="text-search" style="cursor: pointer;" (click)="openSearchAdvance()"
                             data-toggle="tooltip" data-placement="right" title="Tìm kiếm chuyến xe cụ thể hơn">Tìm kiếm
                             nâng cao</a>
                     </div>
-                </div>
+                </div>                      
             </div>
         </form>
         <hr>
         <div class="service-banner shadow p-3 mb-5 rounded">
             <h5 style="color: white;">CÁC DỊCH VỤ</h5>
-            <hr style="background-color: #ffee00; width: 10%; height: 1px;">      
+            <hr style="background-color: #ffee00; width: 10%; height: 1px;">
             <div class="service-frame">
                 <img class="service-image" src="/assets/images/IMG_HOME_BANNER_1.png">
                 <div class="service-text">VẬN CHUYỂN HÀNH KHÁCH</div>

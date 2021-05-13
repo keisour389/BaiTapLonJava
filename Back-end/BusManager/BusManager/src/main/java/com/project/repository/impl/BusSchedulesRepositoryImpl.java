@@ -158,7 +158,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         ));
         //
         if(dest != null){
-            Predicate p = criteriaBuilder.like(root.get("destination").as(String.class), dest);
+            Predicate p = criteriaBuilder.like(root.get("destination").as(String.class),"%"+dest+"%");
             query.where(p);
             return session.createQuery(query).getResultList();
         }

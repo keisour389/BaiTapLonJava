@@ -14,4 +14,8 @@ export class BusesScheduleService {
   getAllBusesSchedule(page: Number, size: Number): Observable<any> {
     return this.http.get<any>(defaultUrl + "/getAllBusSchedules/?page=" + page + "&size=" + size);
   }
+
+  getBusesScheduleByDestination(page: Number, size: Number, destiantion: string): Observable<any> {
+    return this.http.get<any>(defaultUrl + "/getBusSchedulesByDestination/?page=" + page + "&size=" + size + "&dest=" + destiantion);
+  }
 }
