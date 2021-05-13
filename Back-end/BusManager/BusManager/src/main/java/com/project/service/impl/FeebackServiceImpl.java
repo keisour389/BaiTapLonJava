@@ -58,9 +58,6 @@ public class FeebackServiceImpl implements FeedbackService{
         
         Feedback newFeedback = new Feedback();
         
-        cus = cusInfoRepository.getCusInfoById(feedback.getCusId());
-        emp = empInfoRepository.getEmpInfoById(feedback.getEmpId());
-        
         newFeedback.setFeedbackId(feedback.getFeedbackId());
         newFeedback.setFullname(feedback.getFullname());
         newFeedback.setPhoneNumber(feedback.getPhoneNumber());
@@ -72,14 +69,10 @@ public class FeebackServiceImpl implements FeedbackService{
         newFeedback.setNote(feedback.getNote()); 
         //newFeedback.setEmpId(null);
         
-        if(!feedbackRepository.feedbackIsExist(feedback.getFeedbackId())){
-            if(feedbackRepository.createFeedback(newFeedback) != null)
+        if(feedbackRepository.createFeedback(newFeedback) != null)
                 return feedback;
             else
                 return null;
-        }
-        else
-            return null;
     }
 
     @Override
@@ -89,9 +82,6 @@ public class FeebackServiceImpl implements FeedbackService{
         
         Feedback newFeedback = new Feedback();
         
-        cus = cusInfoRepository.getCusInfoById(feedback.getCusId());
-        emp = empInfoRepository.getEmpInfoById(feedback.getEmpId());
-
         newFeedback.setFeedbackId(feedback.getFeedbackId());
         newFeedback.setFullname(feedback.getFullname());
         newFeedback.setPhoneNumber(feedback.getPhoneNumber());
@@ -101,7 +91,6 @@ public class FeebackServiceImpl implements FeedbackService{
         newFeedback.setStatus(feedback.getStatus());
         newFeedback.setCreatedOn(feedback.getCreatedOn());
         newFeedback.setNote(feedback.getNote()); 
-        newFeedback.setEmpId(feedback.getEmpId());
         if(feedback.getFeedbackId() != null){
             feedbackRepository.updateFeedbackById(newFeedback);
             return feedback;
