@@ -11,10 +11,10 @@
             <tbody *ngIf="managedType === '1'">
                 <tr *ngFor="let data of data; let i = index">
                     <th scope="row">{{data.tripId}}</th>
-                    <td>{{data.driver}}</td>
-                    <td>{{data.subDriver}}</td>
-                    <td>{{data.from}}</td>
-                    <td>{{data.to}}</td>
+                    <td>{{data.mainDriverId}}</td>
+                    <td>{{data.subDriverId}}</td>
+                    <td>{{data.start}}</td>
+                    <td>{{data.destination}}</td>
                     <td>{{data.departureDay | date:'dd-MM-yyyy'}}</td>
                     <td>{{data.vehicleType}}</td>
                     <td>
@@ -30,7 +30,6 @@
                 <tr *ngFor="let data of data; let i = index">
                     <th scope="row">{{data.ticketId}}</th>
                     <td>{{data.seatId}}</td>
-                    <td>{{data.price}}</td>
                     <td>{{data.status}}</td>
                     <td>{{data.payment}}</td>
                     <td>

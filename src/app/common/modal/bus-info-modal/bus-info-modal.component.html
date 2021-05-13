@@ -19,7 +19,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="licensePlate" class="info-label">Biển số xe</label>
-                                <input [disabled]=true name="licensePlate" id="licensePlate" type="text" class="form-control" [(ngModel)]="indexData.licensePlate">
+                                <input [disabled]=true name="licensePlate" id="licensePlate" type="text" class="form-control" [(ngModel)]="indexData.licensePlates">
                             </div>
                             <div class="col-md-4">
                                 <label for="vehicleType" class="info-label">Loại xe</label>
@@ -31,11 +31,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="driver" class="info-label">Tài xế</label>
-                                <input [disabled]=true name="driver" id="driver" type="text" class="form-control" [(ngModel)]="indexData.driver">
+                                <input [disabled]=true name="driver" id="driver" type="text" class="form-control" [(ngModel)]="indexData.mainDriverId">
                             </div>
                             <div class="col-md-6">
                                 <label for="subDriver" class="info-label">Phụ xe</label>
-                                <input [disabled]=true name="subDriver" id="subDriver" type="text" class="form-control" [(ngModel)]="indexData.subDriver">
+                                <input [disabled]=true name="subDriver" id="subDriver" type="text" class="form-control" [(ngModel)]="indexData.subDriverId">
                             </div>
                         </div>
                     </div>
@@ -43,11 +43,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="from" class="info-label">Điểm đi</label>
-                                <input [disabled]=true name="from" id="from" type="text" class="form-control" [(ngModel)]="indexData.from">
+                                <input [disabled]=true name="from" id="from" type="text" class="form-control" [(ngModel)]="indexData.destination">
                             </div>
                             <div class="col-md-6">
                                 <label for="to" class="info-label">Điểm đến</label>
-                                <input [disabled]=true name="to" id="to" type="text" class="form-control" [(ngModel)]="indexData.to">
+                                <input [disabled]=true name="to" id="to" type="text" class="form-control" [(ngModel)]="indexData.destination">
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="totalSeat" class="info-label">Số chỗ ngồi</label>
-                                <input [disabled]=true name="totalSeat" id="totalSeat" type="text" class="form-control" [(ngModel)]="indexData.totalSeat">
+                                <input [disabled]=true name="totalSeat" id="totalSeat" type="text" class="form-control" [(ngModel)]="indexData.totalSeats">
                             </div>
                             <div class="col-md-3">
                                 <label for="status" class="info-label">Trạng thái</label>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="managed" class="info-label">Quản lí bởi</label>
-                                <input [disabled]=true name="managed" id="managed" type="text" class="form-control" [(ngModel)]="indexData.managed">
+                                <input [disabled]=true name="managed" id="managed" type="text" class="form-control" [(ngModel)]="indexData.managerId">
                             </div>
                         </div>
                     </div>                  
@@ -111,7 +111,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="licensePlate" class="info-label">Biển số xe</label>
-                                <input name="licensePlate" id="licensePlate" type="text" class="form-control" [(ngModel)]="indexData.licensePlate">
+                                <input name="licensePlate" id="licensePlate" type="text" class="form-control" [(ngModel)]="indexData.licensePlates">
                             </div>
                             <div class="col-md-4">
                                 <label for="vehicleType" class="info-label">Loại xe</label>
@@ -123,11 +123,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="driver" class="info-label">Tài xế</label>
-                                <input name="driver" id="driver" type="text" class="form-control" [(ngModel)]="indexData.driver">
+                                <input name="driver" id="driver" type="text" class="form-control" [(ngModel)]="indexData.mainDriverId">
                             </div>
                             <div class="col-md-6">
                                 <label for="subDriver" class="info-label">Phụ xe</label>
-                                <input name="subDriver" id="subDriver" type="text" class="form-control" [(ngModel)]="indexData.subDriver">
+                                <input name="subDriver" id="subDriver" type="text" class="form-control" [(ngModel)]="indexData.subDriverId">
                             </div>
                         </div>
                     </div>
@@ -135,11 +135,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="from" class="info-label">Điểm đi</label>
-                                <input name="from" id="from" type="text" class="form-control" [(ngModel)]="indexData.from">
+                                <input name="from" id="from" type="text" class="form-control" [(ngModel)]="indexData.start">
                             </div>
                             <div class="col-md-6">
                                 <label for="to" class="info-label">Điểm đến</label>
-                                <input name="to" id="to" type="text" class="form-control" [(ngModel)]="indexData.to">
+                                <input name="to" id="to" type="text" class="form-control" [(ngModel)]="indexData.destination">
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="totalSeat" class="info-label">Số chỗ ngồi</label>
-                                <input name="totalSeat" id="totalSeat" type="text" class="form-control" [(ngModel)]="indexData.totalSeat">
+                                <input name="totalSeat" id="totalSeat" type="text" class="form-control" [(ngModel)]="indexData.totalSeats">
                             </div>
                             <div class="col-md-3">
                                 <label for="status" class="info-label">Trạng thái</label>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="managed" class="info-label">Quản lí bởi</label>
-                                <input name="managed" id="managed" type="text" class="form-control" [(ngModel)]="indexData.managed">
+                                <input name="managed" id="managed" type="text" class="form-control" [(ngModel)]="indexData.managerId">
                             </div>
                         </div>
                     </div>                  

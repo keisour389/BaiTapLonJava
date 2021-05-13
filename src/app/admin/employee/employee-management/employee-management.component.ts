@@ -21,6 +21,9 @@ export class EmployeeManagementComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+   
   }
+
+ 
 
 }

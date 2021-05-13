@@ -21,4 +21,8 @@ export class EmployeeService {
   registerPersonalData(refisterData: any): Observable<any> {
     return this.http.post(defaultCusAccountUrl + "/createEmpInfo", refisterData);
   }
+
+  getAllEmployee(page: number, size: number): Observable<any>{
+    return this.http.get<any>(defaultCusAccountUrl + "/getAllEmpInfo/?page=" + page +"&size=" + size);
+  }
 }

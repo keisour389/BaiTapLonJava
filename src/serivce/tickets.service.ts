@@ -16,4 +16,8 @@ export class TicketsService {
   getTicketsByTripId(page: Number, size: Number, tripId: string): Observable<any>{
     return this.http.get<any>(defaultAccountUrl + "/getTicketsByTripId/?page=" + page + "&size=" + size + "&tripId=" + tripId);
   }
+
+  getAllTickets(page: Number, size: Number): Observable<any>{
+    return this.http.get<any>(defaultAccountUrl + "/getAllTicketManagement/?page=" + page + "&size=" + size);
+  }
 }

@@ -1,6 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BusesScheduleService } from 'src/serivce/buses-schedule.service';
+import { EmployeeService } from 'src/serivce/employee.service';
+import { TicketsService } from 'src/serivce/tickets.service';
 
 declare const $: any;
 
@@ -35,7 +38,7 @@ export class ManageInformationComponent implements OnInit {
 
   busTitle: Array<string> = ['Mã chuyến xe', 'Tài xế', 'Phụ xe', 'Điểm đi', 'Điểm đến', 'Ngày khởi hành', 'Loại xe', 'Chức năng'];
 
-  ticketTitle: Array<string> = ['Mã vé', 'Mã ghế', 'Giá vé', 'Trạng thái', 'Thanh toán', 'Chức năng'];
+  ticketTitle: Array<string> = ['Mã vé', 'Mã ghế', 'Trạng thái', 'Thanh toán', 'Chức năng'];
 
   empTitle: Array<string> = ['Tài khoản', 'Họ tên', 'Số điện thoại', 'Ngày sinh', 'Địa chỉ', 'CMND', 'Chức năng'];
 
@@ -182,21 +185,23 @@ export class ManageInformationComponent implements OnInit {
         // Get data form API
         this.managedTitle = 'Thông tin các chuyến xe';
         this.title = this.busTitle;
-        this.data = this.busData;
+        this.getBusesSchedule();
         break;
       case '2':
         // Ticket
         // Get data form API
         this.managedTitle = 'Thông tin vé';
         this.title = this.ticketTitle;
-        this.data = this.ticketData;
+        this.getAllTickets();
         break;
       case '3':
         // Emplotyee
         // Get data form API
         this.managedTitle = 'Thông tin nhân viên';
         this.title = this.empTitle;
-        this.data = this.empData;
+        this.getAllEmployee();
+        
+
         break;
     }
   }
@@ -204,12 +209,13 @@ export class ManageInformationComponent implements OnInit {
   openInfoModal(isUpdate: boolean, index: number): void {
     this.isUpdate = isUpdate;
     this.indexData = this.data[index];
+    console.log(this.indexData);
     this.indexData = this.changeDateInData(this.indexData, this.managedType);
     console.log(this.indexData);
     $('#infoModal').modal('show');
   }
 
-  constructor(private route: ActivatedRoute, private datePipe: DatePipe) { }
+  constructor(private busesSchedule: BusesScheduleService,private ticketService: TicketsService, private employeeService: EmployeeService, private route: ActivatedRoute, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.managedType = this.route.snapshot.paramMap.get('managedType');
@@ -258,12 +264,46 @@ export class ManageInformationComponent implements OnInit {
         break;
       case '3':
         // Employee
-        data.dOB = this.transformToNormalDate(data.dOB);
+        data.dOB = this.transformToNormalDate(data.birthday);
         data.createdOn = this.transformToNormalDate(data.createdOn);
         data.updatedOn = this.transformToNormalDate(data.updatedOn);
         break;
     }
     return data;
+  }
+
+  getAllEmployee(): void {
+    this.employeeService.getAllEmployee(1, 20).subscribe(
+      result => {
+        let res: any = result;
+        if(res !== null){
+          this.data = res.data;
+        }
+      }
+    )
+  }
+
+  getAllTickets(): void {
+    this.ticketService.getAllTickets(1, 20).subscribe(
+      result => {
+        let res: any = result;
+        if(res !== null){
+          this.data = res.data;
+        }
+      }
+    )
+  }
+
+  getBusesSchedule(): void {
+    this.busesSchedule.getAllBusesSchedule(1, 20).subscribe(
+      result => {
+        let res: any = result;
+        if(res !== null){
+          this.data = res.data;
+          console.log(res.data);
+        }
+      }
+    )
   }
 
 
