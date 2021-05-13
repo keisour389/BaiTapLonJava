@@ -113,7 +113,9 @@ export class PaymentComponent implements OnInit {
           if(res.errorCode !== 0){
             alert("Đã xảy ra lỗi bất thường."); 
           }
-          else{         
+          else{
+            //Create order success information
+            localStorage.setItem('orderSuccessInfo', JSON.stringify({"cusInfo": this.customerInfo, "paymentInfo": this.paymentInfo}));
             window.open(res.payUrl, '_blank');
             setTimeout(() => {
               this.closeConfirmModal();

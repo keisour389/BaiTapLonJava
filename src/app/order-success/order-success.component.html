@@ -11,37 +11,39 @@
                         <div class="row" style="vertical-align: middle;">
                             <div class="col-md-12">
                                 <div class="person-info-title" for="fullName">Họ tên: </div>
-                                <span id="fullName" class="person-info-text">Huấn Rô Sì</span>
+                                <span id="fullName" class="person-info-text">{{orderSuccessInfo.cusInfo.displayName}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="person-info-title">Số điện thoại: </div>
-                                <span class="person-info-text">0969696969</span>
+                                <span class="person-info-text">{{orderSuccessInfo.cusInfo.phoneNumber}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="person-info-title">Email: </div>
-                                <span class="person-info-text">1751010069huan@ou.edu.vn</span>
+                                <div class="person-info-title">Ngày sinh: </div>
+                                <span class="person-info-text">{{orderSuccessInfo.cusInfo.birthday | date: 'dd-MM-yyyy'}}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="ticket-review-frame shadow-sm p-3 mb-5 rounded">
+                    <div *ngFor="let data of orderSuccessInfo.paymentInfo.ticketSelectedList; index as i" class="ticket-review-frame shadow-sm p-3 mb-5 rounded">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="qr-code-frame">
-                                    <img [src]="imageUrl" alt="qr-code" class="qr-code">
+                                    <img [src]="imageUrl[i]" alt="qr-code" class="qr-code">
                                 </div>
                             </div>
                             <div class="col-md-7">
                                 <div class="ticket-info">
+                                    <div class="ticket-info-title">Mã vé</div>
+                                    <div class="ticket-info-text">{{data}}</div>
                                     <div class="ticket-info-title">Chuyến xe</div>
-                                    <div class="ticket-info-text">TP.Hồ Chí Minh - <br>TP. Đà Lạt</div>
+                                    <div class="ticket-info-text">{{orderSuccessInfo.paymentInfo.start}} - {{orderSuccessInfo.paymentInfo.destination}}</div>
                                     <div class="ticket-info-title">Ngày khởi hành</div>
-                                    <div class="ticket-info-text">30/02/2021</div>
+                                    <div class="ticket-info-text">{{orderSuccessInfo.paymentInfo.departureDay | date: "dd-MM-yyyy"}}</div>
                                     <div class="ticket-info-title">Giờ khởi hành</div>
-                                    <div class="ticket-info-text">12:00</div>
+                                    <div class="ticket-info-text">{{orderSuccessInfo.paymentInfo.departureDay | date: "h:mm a"}}</div>
                                 </div>
                             </div>
                         </div>
