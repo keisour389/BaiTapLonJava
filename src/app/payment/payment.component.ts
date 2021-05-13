@@ -57,7 +57,6 @@ export class PaymentComponent implements OnInit {
       console.error("Customer info is null");
     }
 
-    this.payment();
     this.signature = this.createHmacSha256String("", "");
   }
 
@@ -81,6 +80,11 @@ export class PaymentComponent implements OnInit {
   }
   //Working
   payment() {
+    if(this.paymentType === 0){
+      //Create order success information
+      localStorage.setItem('orderSuccessInfo', JSON.stringify({"cusInfo": this.customerInfo, "paymentInfo": this.paymentInfo}));
+      this.router.navigate(['/order-success'], {relativeTo: this.route});  
+    }
     if (this.paymentType === 1) {
       //Test generate random order id
       let r = Math.random().toString(36).substring(7);
@@ -103,6 +107,7 @@ export class PaymentComponent implements OnInit {
       this.momoPaymentRequest.signature = this.createHmacSha256String(this.message, this.momoSerectKey);
       this.momoPayment();
     }
+    this.closeConfirmModal();
   }
 
   momoPayment() {
@@ -118,7 +123,6 @@ export class PaymentComponent implements OnInit {
             localStorage.setItem('orderSuccessInfo', JSON.stringify({"cusInfo": this.customerInfo, "paymentInfo": this.paymentInfo}));
             window.open(res.payUrl, '_blank');
             setTimeout(() => {
-              this.closeConfirmModal();
               this.router.navigate(['/order-success'], {relativeTo: this.route});  
             }, 3000);                   
           }         

@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     }
     else{
       this.isLogin = false;
-      console.error("Payment info is null");
+      console.error("Login status info is null");
     }
   }
 
