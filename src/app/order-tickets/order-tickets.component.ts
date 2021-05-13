@@ -313,7 +313,9 @@ export class OrderTicketsComponent implements OnInit {
         "destination": this.busScheduleData.destination,
         "departureDay": this.busScheduleData.departureDay,
         "totalPrice": this.totalPrice,
-        "ticketSelectedList": this.ticketsSelectedDataList}
+        "totalTicket": this.ticketsSelectedList.length,
+        "ticketSelectedList": this.ticketsSelectedList,
+        "ticketSelectedDataList": this.ticketsSelectedDataList}
       ));
     this.router.navigate(['/payment']);
   }

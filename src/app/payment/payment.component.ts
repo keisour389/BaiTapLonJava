@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { createHmac } from 'crypto';
 import * as crypto from 'crypto-js';
+import { CustomerService } from 'src/serivce/customer.service';
 
 declare var $: any;
 
@@ -13,9 +14,12 @@ declare var $: any;
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+
+  loginStatus!: any;
+  customerInfo!: any;
+  paymentInfo!: any;
   paymentType: number = 0;
   signature!: String;
-
 
   momoPaymentRequest: any = {
     accessKey: "mvD9FZ0hdixKT4yN",
@@ -34,18 +38,56 @@ export class PaymentComponent implements OnInit {
   message!: string;
   momoSerectKey: string = "44dIJp5rRk5DtHUmqJR5IqBPgp9KnFo4";
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private location: Location) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private customerService: CustomerService) { }
 
   ngOnInit(): void {
+    //Get data from orderticket
+    if(JSON.parse(localStorage.getItem('paymentInfo')!) !== null){
+      this.paymentInfo = JSON.parse(localStorage.getItem('paymentInfo')!);
+    }
+    else{
+      console.error("Payment info is null");
+    }
+    //Get customer info
+    if(JSON.parse(localStorage.getItem('loginStatus')!) !== null){
+      this.loginStatus = JSON.parse(localStorage.getItem('loginStatus')!);
+      this.getCustomerInfoByUserId(this.loginStatus.userId);
+    }
+    else{
+      console.error("Customer info is null");
+    }
+
     this.payment();
     this.signature = this.createHmacSha256String("", "");
   }
 
+  getCustomerInfoByUserId(userId: string): void{
+    this.customerService.getCustomerInfoByUserId(userId).subscribe(
+      result => {
+        let res: any = result;
+        if(res !== null){
+          this.customerInfo = res;
+          console.log(res);
+          console.log("Get customer information successfully");
+        }
+        else{
+          console.log("Get customer information failed");
+        }
+      },
+      error => {
+        console.error("Server error !!!");
+      }
+    )
+  }
   //Working
   payment() {
     if (this.paymentType === 1) {
       //Test generate random order id
       let r = Math.random().toString(36).substring(7);
+      //Before payment
+      this.momoPaymentRequest.amount = this.paymentInfo.totalPrice.toString();
+      this.momoPaymentRequest.orderInfo = "Thanh toán trực tuyến MoMo";
+      
       
       this.momoPaymentRequest.orderId = r;
       this.message = "partnerCode=" + this.momoPaymentRequest.partnerCode +

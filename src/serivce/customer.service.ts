@@ -28,6 +28,10 @@ export class CustomerService {
   registerPersonalData(refisterData: any): Observable<any> {
     return this.http.post(defaultCusAccountUrl + "/createCusInfo", refisterData);
   }
+
+  getCustomerInfoByUserId(userId: string): Observable<any> {
+    return this.http.get<any>(defaultCusAccountUrl + "/getCusInfo/?id=" + userId);
+  }
   
   sendFeedback(feedbackData: any): Observable<any> {
     return this.http.post(defaultFeedbackurl + "/createFeedback", feedbackData);
