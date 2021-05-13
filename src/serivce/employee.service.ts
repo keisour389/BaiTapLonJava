@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const defaultAccountUrl = "http://localhost:8080/api/accountinfo";
-const defaultCusAccountUrl = "http://localhost:8080/api/empinfo";
+const defaultEmpAccountUrl = "http://localhost:8080/api/empinfo";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,14 @@ export class EmployeeService {
   }
 
   registerPersonalData(refisterData: any): Observable<any> {
-    return this.http.post(defaultCusAccountUrl + "/createEmpInfo", refisterData);
+    return this.http.post(defaultEmpAccountUrl + "/createEmpInfo", refisterData);
+  }
+
+  updatePersonalDate(updateData: any): Observable<any> {
+    return this.http.put(defaultEmpAccountUrl + "/updateEmpInfo/", updateData);
   }
 
   getAllEmployee(page: number, size: number): Observable<any>{
-    return this.http.get<any>(defaultCusAccountUrl + "/getAllEmpInfo/?page=" + page +"&size=" + size);
+    return this.http.get<any>(defaultEmpAccountUrl + "/getAllEmpInfo/?page=" + page +"&size=" + size);
   }
 }

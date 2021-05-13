@@ -278,6 +278,7 @@ export class ManageInformationComponent implements OnInit {
         let res: any = result;
         if(res !== null){
           this.data = res.data;
+          console.log(res.data)
         }
       }
     )
@@ -300,7 +301,6 @@ export class ManageInformationComponent implements OnInit {
         let res: any = result;
         if(res !== null){
           this.data = res.data;
-          console.log(res.data);
         }
       }
     )

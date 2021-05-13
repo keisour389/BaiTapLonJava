@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BusesScheduleService } from 'src/serivce/buses-schedule.service';
 
 @Component({
   selector: 'app-bus-info-modal',
@@ -22,12 +23,22 @@ export class BusInfoModalComponent implements OnInit {
     createdOn: '',
     updatedOn: null,
     note: null,
-    managed: ''
+    manager: ''
   };
 
-  constructor() { }
+  constructor(private busesScheduleService: BusesScheduleService) { }
 
   ngOnInit(): void {
+  }
+
+  updateBusesSchedule(): void{
+    this.busesScheduleService.updateBusesSchedule(this.indexData).subscribe(
+      result => {
+        let res: any = result;
+        console.log(res);
+      }
+    );
+
   }
 
 }

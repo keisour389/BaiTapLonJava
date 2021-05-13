@@ -4,28 +4,28 @@
         <div class="title">
             <h1>Tạo chuyến xe mới</h1>
         </div>
-        <form (ngSubmit)="onSubmit(licensePlates)" #f="ngForm" class="shadow p-3 mb-5 bg-white rounded">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="shadow p-3 mb-5 bg-white rounded">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="from">Điểm đi</label>
-                        <input type="text" class="form-control" id="from" name="from" placeholder="Ví dụ: TP.Hồ Chí Minh" #from="ngModel" ngModel required>
+                        <input type="text" class="form-control" id="start" name="start" placeholder="Ví dụ: TP.Hồ Chí Minh" #start="ngModel" ngModel required>
                     </div>
                     <div class="col-md-6">
                         <label for="to">Điểm đến</label>
-                        <input type="text" class="form-control" id="to" name="to" placeholder="Ví dụ: TP.Đà Lạt" #to="ngModel" ngModel required>
+                        <input type="text" class="form-control" id="destination" name="destination" placeholder="Ví dụ: TP.Đà Lạt" #destination="ngModel" ngModel required>
                     </div>
                 </div>
             </div>
             <div class="error-message">
                 <div class="row">
                     <div class="col-md-6">
-                        <div *ngIf="from.invalid && from.touched" class="alert alert-danger" role="alert">
+                        <div *ngIf="start.invalid && start.touched" class="alert alert-danger" role="alert">
                             Không được để trống
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div *ngIf="to.invalid && to.touched" class="alert alert-danger" role="alert">
+                        <div *ngIf="destination.invalid && destination.touched" class="alert alert-danger" role="alert">
                             Không được để trống
                         </div>                      
                     </div>
@@ -35,12 +35,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label class="label" for="driver">Tài xế</label>
-                        <input type="text" class="form-control" id="driver" name="driver" placeholder="Ví dụ: Nguyễn Văn A" #driver="ngModel" ngModel
+                        <input type="text" class="form-control" id="driver" name="driver" placeholder="Ví dụ: THA123" #driver="ngModel" ngModel
                             required>
                     </div>
                     <div class="col-md-6">
                         <label class="label" for="subDriver">Phụ xe</label>
-                        <input type="text" class="form-control" id="subDriver" name="subDriver" placeholder="Ví dụ: Nguyễn Văn B" #subDriver="ngModel"
+                        <input type="text" class="form-control" id="subDriver" name="subDriver" placeholder="Ví dụ: TKC812" #subDriver="ngModel"
                             ngModel required>
                     </div>
                 </div>
