@@ -6,7 +6,13 @@
 package com.project.service.impl;
 
 import com.project.model.CancelHistory;
+import com.project.model.CusInfo;
+import com.project.model.EmpInfo;
+import com.project.model.TicketManagement;
 import com.project.repository.CancelHistoryRepository;
+import com.project.repository.CusInfoRepository;
+import com.project.repository.EmpInfoRepository;
+import com.project.repository.TicketManagementRepository;
 import com.project.request.CancelHistoryRequest;
 import com.project.response.CancelHistoryResponse;
 import com.project.response.CommonResponse;
@@ -23,6 +29,15 @@ import org.springframework.stereotype.Service;
 public class CancelHistoryServiceImpl implements CancelHistoryService{
     @Autowired
     private CancelHistoryRepository cancelHistoryRepository;
+    
+    @Autowired
+    private CusInfoRepository cusInfoRepository; 
+    
+    @Autowired
+    private EmpInfoRepository empInfoRepository; 
+    
+    @Autowired
+    private TicketManagementRepository ticketManagementRepository; 
 
     @Override
     public Object getAllCancelHistory(int page, int size) {
@@ -38,36 +53,58 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
         commonResponse.setPage(page);
         commonResponse.setSize(size);
         
-        return  commonResponse;
+        return commonResponse;
     }
 
     @Override
     public CancelHistoryRequest createCancelHistory(CancelHistoryRequest cancelHistory) {
+        CusInfo cus = new CusInfo();
+        EmpInfo emp = new EmpInfo();
+        TicketManagement ticket = new TicketManagement();
+        
         CancelHistory newCancelHistory = new CancelHistory();
+        
+        cus = cusInfoRepository.getCusInfoById(cancelHistory.getCusId());
+        emp = empInfoRepository.getEmpInfoById(cancelHistory.getEmpId());
+        ticket = ticketManagementRepository.getTicketManagementById(cancelHistory.getTicketId());
+        
         newCancelHistory.setCancelId(cancelHistory.getCancelId());
         newCancelHistory.setReason(cancelHistory.getReason());
         newCancelHistory.setNote(cancelHistory.getNote());
-        newCancelHistory.setCusId(cancelHistory.getCusId());
-        newCancelHistory.setEmpId(cancelHistory.getEmpId());
-        newCancelHistory.setTicketId(cancelHistory.getTicketId());
+        newCancelHistory.setCusId(cus);
+        newCancelHistory.setEmpId(emp);
+        newCancelHistory.setTicketId(ticket);
         
-        if(cancelHistoryRepository.createCancelHistory(newCancelHistory) != null)
-            return cancelHistory;
+        if(!cancelHistoryRepository.cancelHistoryIsExist(newCancelHistory.getCancelId())){
+            if(cancelHistoryRepository.createCancelHistory(newCancelHistory) != null)
+                return cancelHistory;
+            else
+                return null;
+        }
         else
             return null;
     }
 
     @Override
     public CancelHistoryRequest updateCancelHistoryById(CancelHistoryRequest cancelHistory) {
+        CusInfo cus = new CusInfo();
+        EmpInfo emp = new EmpInfo();
+        TicketManagement ticket = new TicketManagement();
+        
         CancelHistory newCancelHistory = new CancelHistory();
+        
+        cus = cusInfoRepository.getCusInfoById(cancelHistory.getCusId());
+        emp = empInfoRepository.getEmpInfoById(cancelHistory.getEmpId());
+        ticket = ticketManagementRepository.getTicketManagementById(cancelHistory.getTicketId());
+        
         newCancelHistory.setCancelId(cancelHistory.getCancelId());
         newCancelHistory.setReason(cancelHistory.getReason());
         newCancelHistory.setNote(cancelHistory.getNote());
-        newCancelHistory.setCusId(cancelHistory.getCusId());
-        newCancelHistory.setEmpId(cancelHistory.getEmpId());
-        newCancelHistory.setTicketId(cancelHistory.getTicketId());
+        newCancelHistory.setCusId(cus);
+        newCancelHistory.setEmpId(emp);
+        newCancelHistory.setTicketId(ticket);
         
-        if(cancelHistoryRepository.createCancelHistory(newCancelHistory) != null){
+        if(cancelHistoryRepository.getCancelHistoryById(newCancelHistory.getCancelId()) != null){
             cancelHistoryRepository.updateCancelHistoryById(newCancelHistory);
             return cancelHistory;
         }
@@ -92,9 +129,10 @@ public class CancelHistoryServiceImpl implements CancelHistoryService{
             CancelHistoryResponse cancelHistoryResponse = new CancelHistoryResponse();
             cancelHistoryResponse.setCancelId(result.getCancelId());
             cancelHistoryResponse.setReason(result.getReason());
-            cancelHistoryResponse.setCusId(result.getCusId().toString());
-            cancelHistoryResponse.setEmpId(result.getEmpId().toString());
-            cancelHistoryResponse.setTicketId(result.getTicketId().toString());
+            cancelHistoryResponse.setNote(result.getNote());
+            cancelHistoryResponse.setCusId(result.getCusId().getUsername());
+            cancelHistoryResponse.setEmpId(result.getEmpId().getUsername());
+            cancelHistoryResponse.setTicketId(result.getTicketId().getTicketId());
             
             return cancelHistoryResponse;
         }

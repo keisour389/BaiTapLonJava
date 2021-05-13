@@ -5,6 +5,7 @@
  */
 package com.project.request;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -24,6 +25,7 @@ public class BusSchedulesRequest {
     private int status;
     private String vehicleType;
     private int totalSeats;
+    private BigDecimal price;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private String note;
@@ -32,10 +34,12 @@ public class BusSchedulesRequest {
     public BusSchedulesRequest(){
     }
     
-    public BusSchedulesRequest(String tripId, String licensePlates, String mainDriver,
-                String subDriver, String start, String destination, LocalDateTime departureDay, int totalTime, 
-                int status, String vehicleType, int totalSeats, LocalDateTime createdOn, 
-                LocalDateTime updatedOn, String note, String manager){
+    public BusSchedulesRequest(String tripId, String licensePlates, 
+                String mainDriver, String subDriver, String start, 
+                String destination, LocalDateTime departureDay, int totalTime, 
+                int status, String vehicleType, int totalSeats, BigDecimal price,
+                LocalDateTime createdOn, LocalDateTime updatedOn, String note, 
+                String manager){
         this.tripId = tripId;
         this.licensePlates = licensePlates;
         this.mainDriver = mainDriver;
@@ -47,6 +51,7 @@ public class BusSchedulesRequest {
         this.status = status;
         this.vehicleType = vehicleType;
         this.totalSeats = totalSeats;
+        this.price = price;
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
         this.note = note;
@@ -261,5 +266,19 @@ public class BusSchedulesRequest {
      */
     public void setManager(String manager) {
         this.manager = manager;
+    }
+
+    /**
+     * @return the price
+     */
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

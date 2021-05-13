@@ -66,10 +66,15 @@ public class CusInfoServiceImpl implements CusInfoService {
         newCusInfo.setUpdatedOn(cusInfo.getUpdatedOn());
         newCusInfo.setNote(cusInfo.getNote());
         newCusInfo.setUsername(accountInfo);
-
-        if (cusInfoRepository.createCusInfo(newCusInfo) != null) {
-            return cusInfo;
-        } else {
+        
+        if(!cusInfoRepository.cusInfoIsExist(cusInfo.getUsername())){
+            if (cusInfoRepository.createCusInfo(newCusInfo) != null) {
+                return cusInfo;
+            } else {
+                return null;
+            }
+        }
+        else {
             return null;
         }
     }
@@ -92,7 +97,14 @@ public class CusInfoServiceImpl implements CusInfoService {
         newCusInfo.setNote(cusInfo.getNote());
         newCusInfo.setUsername(accountInfo);
 
-        if (cusInfo.getUserId() != null) {
+//        if (cusInfo.getUserId() != null) {
+//            cusInfoRepository.updateCusInfoById(newCusInfo);
+//            return cusInfo;
+//        } else {
+//            return null;
+//        }
+
+        if (cusInfoRepository.getCusInfoById(newCusInfo.getUsername()) != null) {
             cusInfoRepository.updateCusInfoById(newCusInfo);
             return cusInfo;
         } else {
@@ -122,7 +134,10 @@ public class CusInfoServiceImpl implements CusInfoService {
             cusInfoResponse.setPhoneNumber(result.getPhoneNumber());
             cusInfoResponse.setBirthday(result.getBirthday());
             cusInfoResponse.setGender(result.getGender());
-            cusInfoResponse.setUsername(result.getUsername().toString());
+            cusInfoResponse.setCreatedOn(result.getCreatedOn());
+            cusInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            cusInfoResponse.setNote(result.getNote());
+            cusInfoResponse.setUsername(result.getUsername());
 
             return cusInfoResponse;
         } else {

@@ -5,7 +5,11 @@
  */
 package com.project.service.impl;
 
+import com.project.model.CusInfo;
+import com.project.model.EmpInfo;
 import com.project.model.Feedback;
+import com.project.repository.CusInfoRepository;
+import com.project.repository.EmpInfoRepository;
 import com.project.repository.FeedbackRepository;
 import com.project.request.FeedbackRequest;
 import com.project.response.CommonResponse;
@@ -23,6 +27,12 @@ import org.springframework.stereotype.Service;
 public class FeebackServiceImpl implements FeedbackService{
     @Autowired
     private FeedbackRepository feedbackRepository;
+    
+    @Autowired
+    private CusInfoRepository cusInfoRepository; 
+    
+    @Autowired
+    private EmpInfoRepository empInfoRepository; 
 
     @Override
     public Object getAllFeedback(int page, int size) {
@@ -43,7 +53,14 @@ public class FeebackServiceImpl implements FeedbackService{
 
     @Override
     public FeedbackRequest createFeedback(FeedbackRequest feedback) {
+        CusInfo cus = new CusInfo();
+        EmpInfo emp = new EmpInfo();
+        
         Feedback newFeedback = new Feedback();
+        
+        cus = cusInfoRepository.getCusInfoById(feedback.getCusId());
+        emp = empInfoRepository.getEmpInfoById(feedback.getEmpId());
+        
         newFeedback.setFeedbackId(feedback.getFeedbackId());
         newFeedback.setFullname(feedback.getFullname());
         newFeedback.setPhoneNumber(feedback.getPhoneNumber());
@@ -55,15 +72,26 @@ public class FeebackServiceImpl implements FeedbackService{
         newFeedback.setNote(feedback.getNote()); 
         //newFeedback.setEmpId(null);
         
-        if(feedbackRepository.createFeedback(newFeedback) != null)
-            return feedback;
+        if(!feedbackRepository.feedbackIsExist(feedback.getFeedbackId())){
+            if(feedbackRepository.createFeedback(newFeedback) != null)
+                return feedback;
+            else
+                return null;
+        }
         else
             return null;
     }
 
     @Override
     public FeedbackRequest updateFeedbackById(FeedbackRequest feedback) {
+        CusInfo cus = new CusInfo();
+        EmpInfo emp = new EmpInfo();
+        
         Feedback newFeedback = new Feedback();
+        
+        cus = cusInfoRepository.getCusInfoById(feedback.getCusId());
+        emp = empInfoRepository.getEmpInfoById(feedback.getEmpId());
+
         newFeedback.setFeedbackId(feedback.getFeedbackId());
         newFeedback.setFullname(feedback.getFullname());
         newFeedback.setPhoneNumber(feedback.getPhoneNumber());

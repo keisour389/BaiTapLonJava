@@ -81,7 +81,7 @@ public class AccountInfoController {
     @PutMapping(value = "updateAccountInfo/", consumes = MediaType.APPLICATION_JSON_VALUE)
     //Dont need the request id param because we can get user id in Json file to update
     public ResponseEntity<?> updateAccountInfo(@RequestBody AccountInfoRequest accountInfoRequest){
-        AccountInfo dataAccountInfo = accountInfoService.updateAccountInfoById(accountInfoRequest);
+        AccountInfoRequest dataAccountInfo = accountInfoService.updateAccountInfoById(accountInfoRequest);
         if(dataAccountInfo != null){
             return new ResponseEntity<>(dataAccountInfo, HttpStatus.OK);
         }

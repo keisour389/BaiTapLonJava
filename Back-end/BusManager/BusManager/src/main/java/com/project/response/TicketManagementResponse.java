@@ -15,27 +15,27 @@ import java.util.Date;
 public class TicketManagementResponse {
     private String ticketId;
     private String seatId;
-    private String price;
     private int status;
     private int payment;
     private Date paymentDate;
     private Date bookingDate;
+    private String note;
     private String tripId;
     private String cusId;
     
     public TicketManagementResponse(){
     }
     
-    public TicketManagementResponse(String ticketId, String seatId, String price, 
+    public TicketManagementResponse(String ticketId, String seatId,
             int status, int payment, Date paymentDate, Date bookingDate,
-            String tripId, String cusId){
+            String note, String tripId, String cusId){
         this.ticketId = ticketId;
         this.seatId = seatId;
-        this.price = price;
         this.status = status;
         this.payment = payment;
         this.paymentDate = paymentDate;
         this.bookingDate = bookingDate;
+        this.note = note;
         this.tripId = tripId;
         this.cusId = cusId;
     }
@@ -52,20 +52,6 @@ public class TicketManagementResponse {
      */
     public void setSeatId(String seatId) {
         this.seatId = seatId;
-    }
-
-    /**
-     * @return the price
-     */
-    public String getPrice() {
-        return price;
-    }
-
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     /**
@@ -164,5 +150,19 @@ public class TicketManagementResponse {
      */
     public void setCusId(String cusId) {
         this.cusId = cusId;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 }

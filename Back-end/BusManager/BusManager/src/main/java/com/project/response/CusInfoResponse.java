@@ -21,6 +21,9 @@ public class CusInfoResponse implements Serializable{
     private String phoneNumber;
     private Date birthday;
     private String gender;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
+    private String note;
     private String username;
     
     public CusInfoResponse(){
@@ -28,7 +31,8 @@ public class CusInfoResponse implements Serializable{
     
     public CusInfoResponse(String userId, String firstName, String lastName, 
             String displayName, String phoneNumber, Date birthday, 
-            String gender, String username){
+            String gender, LocalDateTime createdOn, LocalDateTime updatedOn,
+            String note, String username){
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +40,9 @@ public class CusInfoResponse implements Serializable{
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.gender = gender;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.note = note;
         this.username = username;
     }
 
@@ -149,5 +156,47 @@ public class CusInfoResponse implements Serializable{
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the createdOn
+     */
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    /**
+     * @param createdOn the createdOn to set
+     */
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    /**
+     * @return the updatedOn
+     */
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    /**
+     * @param updatedOn the updatedOn to set
+     */
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 }

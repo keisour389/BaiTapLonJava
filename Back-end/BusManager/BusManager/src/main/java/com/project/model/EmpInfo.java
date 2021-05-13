@@ -295,11 +295,18 @@ public class EmpInfo implements Serializable {
         this.note = note;
     }
 
+//    /**
+//     * @return the username
+//     */
+//    public AccountInfo getUsername() {
+//        return username;
+//    }
+    
     /**
      * @return the username
      */
-    public AccountInfo getUsername() {
-        return username;
+    public String getUsername() {
+        return username.getUserId();
     }
     
     /**

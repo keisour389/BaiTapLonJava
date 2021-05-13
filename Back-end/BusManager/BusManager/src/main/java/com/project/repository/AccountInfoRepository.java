@@ -17,6 +17,7 @@ public interface AccountInfoRepository {
     AccountInfo getAccountInfoById(String id);
     AccountInfo getAccountInfoByUserIdPassword(String userId, String password);
     AccountInfo createAccountInfo(AccountInfo accountInfo);
+    boolean accountInfoIsExist(String id);
     void updateAccountInfoById(AccountInfo accountInfo);
     void deleteAccountInfoById(String id);
 }

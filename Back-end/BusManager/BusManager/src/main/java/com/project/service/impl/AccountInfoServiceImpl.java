@@ -50,24 +50,29 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         boolean isLogin = false;
         String passwordHash = Hashing.sha256().hashString(loginRequest.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo result = accountInfoRepository.getAccountInfoByUserIdPassword(loginRequest.getUserId(), passwordHash);
-        AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
-
-        if (result != null) {
+        if(result != null){
+            AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
+            
             accountInfoResponse.setUserId(result.getUserId());
+            accountInfoResponse.setPassword(passwordHash);
             accountInfoResponse.setType(result.getType());
             accountInfoResponse.setStatus(result.getStatus());
+            accountInfoResponse.setCreatedOn(result.getCreatedOn());
+            accountInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            accountInfoResponse.setNote(result.getNote());
+
+            return accountInfoResponse;
         }
         else{
             return null;
         }
-        
-        return accountInfoResponse;
     }
 
     @Override
     public AccountInfoRequest createAccountInfo(AccountInfoRequest accountInfo) {
         AccountInfo newAccountInfo = new AccountInfo();
         String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
+        
         newAccountInfo.setUserId(accountInfo.getUserId());
         newAccountInfo.setPassword(passwordHash);
         newAccountInfo.setType(accountInfo.getType());
@@ -76,19 +81,25 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         newAccountInfo.setUpdatedOn(accountInfo.getUpdatedOn());
         newAccountInfo.setNote(accountInfo.getNote());
 
-        if (accountInfoRepository.createAccountInfo(newAccountInfo) != null) {
-            return accountInfo;
-        } else {
+        if(!accountInfoRepository.accountInfoIsExist(accountInfo.getUserId())){
+            if (accountInfoRepository.createAccountInfo(newAccountInfo) != null) {
+                return accountInfo;
+            } else {
+                return null;
+            }
+        }
+        else {
             return null;
         }
     }
 
     //Need to return the data of account to show the password after hashing
     @Override
-    public AccountInfo updateAccountInfoById(AccountInfoRequest accountInfo) {
+    public AccountInfoRequest updateAccountInfoById(AccountInfoRequest accountInfo) {
         //Hash password before udpating
         String passwordHash = Hashing.sha256().hashString(accountInfo.getPassword(), StandardCharsets.UTF_8).toString();
         AccountInfo newAccountInfo = new AccountInfo();
+        
         newAccountInfo.setUserId(accountInfo.getUserId());
         newAccountInfo.setPassword(passwordHash);
         newAccountInfo.setType(accountInfo.getType());
@@ -96,10 +107,10 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         newAccountInfo.setCreatedOn(accountInfo.getCreatedOn());
         newAccountInfo.setUpdatedOn(accountInfo.getUpdatedOn());
         newAccountInfo.setNote(accountInfo.getNote());
-
-        if (accountInfo.getUserId() != null) {
+        
+        if (accountInfoRepository.getAccountInfoById(newAccountInfo.getUserId()) != null) {
             accountInfoRepository.updateAccountInfoById(newAccountInfo);
-            return newAccountInfo;
+            return accountInfo;
         } else {
             return null;
         }
@@ -116,10 +127,21 @@ public class AccountInfoServiceImpl implements AccountInfoService {
     }
 
     @Override
-    public AccountInfo getAccountInfoById(String id) {
+    public AccountInfoResponse getAccountInfoById(String id) {
         AccountInfo result = accountInfoRepository.getAccountInfoById(id);
+            
         if (result != null) {
-            return result;
+            AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
+            
+            accountInfoResponse.setUserId(result.getUserId());
+            accountInfoResponse.setPassword(result.getPassword());
+            accountInfoResponse.setType(result.getType());
+            accountInfoResponse.setStatus(result.getStatus());
+            accountInfoResponse.setCreatedOn(result.getCreatedOn());
+            accountInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            accountInfoResponse.setNote(result.getNote());
+
+            return accountInfoResponse;
         } else {
             return null;
         }

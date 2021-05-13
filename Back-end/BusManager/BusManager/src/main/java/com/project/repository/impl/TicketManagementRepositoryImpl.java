@@ -8,6 +8,7 @@ package com.project.repository.impl;
 import com.project.model.TicketManagement;
 import com.project.repository.TicketManagementRepository;
 import com.project.response.TicketManagementResponse;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -32,7 +33,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
 
     @Override
     @Transactional
-    public List getAllTicketManagement() {
+    public List<Object> getAllTicketManagement() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
@@ -41,14 +42,13 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
                 TicketManagementResponse.class,
                 root.get("ticketId"),
                 root.get("seatId"),
-                root.get("price"),
-                root.get("status").as(String.class),
-                root.get("payment").as(String.class),
-                root.get("paymentDate").as(String.class),
-                root.get("bookingDate").as(String.class),
+                root.get("status"),
+                root.get("payment"),
+                root.get("paymentDate").as(Date.class),
+                root.get("bookingDate").as(Date.class),
                 root.get("note"),
-                root.get("tripId").as(String.class),
-                root.get("cusId").as(String.class)
+                root.get("tripId").get("tripId"),
+                root.get("cusId").get("username").get("userId")
         ));
         return session.createQuery(query).getResultList();
     }
@@ -89,7 +89,6 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         CriteriaUpdate<TicketManagement> query = criteriaBuilder.createCriteriaUpdate(TicketManagement.class);
         Root<TicketManagement> root = query.from(TicketManagement.class);
         query.set("seatId", ticketManagement.getSeatId());
-        query.set("price", ticketManagement.getPrice());
         query.set("status", ticketManagement.getStatus());
         query.set("payment", ticketManagement.getPayment());
         query.set("paymentDate", ticketManagement.getPaymentDate());
@@ -98,7 +97,7 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         query.set("tripId", ticketManagement.getTripId());
         query.set("cusId", ticketManagement.getCusId());
         
-        Predicate p = criteriaBuilder.equal(root.get("ticketId"), ticketManagement);
+        Predicate p = criteriaBuilder.equal(root.get("ticketId"), ticketManagement.getTicketId());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
@@ -114,5 +113,21 @@ public class TicketManagementRepositoryImpl implements TicketManagementRepositor
         Predicate p = criteriaBuilder.equal(root.get("ticketId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public boolean ticketManagementIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<TicketManagement> query = criteriaBuilder.createQuery(TicketManagement.class);
+        Root<TicketManagement> root = query.from(TicketManagement.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("ticketId"), id));
+        TicketManagement result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
     }
 }

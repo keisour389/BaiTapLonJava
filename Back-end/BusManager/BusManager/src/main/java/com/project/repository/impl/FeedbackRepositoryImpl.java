@@ -32,7 +32,7 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
 
     @Override
     @Transactional
-    public List getAllFeedback() {
+    public List<Object> getAllFeedback() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
@@ -112,5 +112,21 @@ public class FeedbackRepositoryImpl implements FeedbackRepository{
         Predicate p = criteriaBuilder.equal(root.get("feedbackId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public boolean feedbackIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Feedback> query = criteriaBuilder.createQuery(Feedback.class);
+        Root<Feedback> root = query.from(Feedback.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("feedbackId"), id));
+        Feedback result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
     }
 }

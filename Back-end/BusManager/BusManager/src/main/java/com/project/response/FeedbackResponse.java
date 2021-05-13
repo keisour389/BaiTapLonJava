@@ -165,4 +165,18 @@ public class FeedbackResponse {
     public void setNote(String note) {
         this.note = note;
     }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 }

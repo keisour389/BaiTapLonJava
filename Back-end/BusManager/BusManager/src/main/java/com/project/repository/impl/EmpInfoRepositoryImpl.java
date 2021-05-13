@@ -8,6 +8,8 @@ package com.project.repository.impl;
 import com.project.model.EmpInfo;
 import com.project.repository.EmpInfoRepository;
 import com.project.response.EmpInfoResponse;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -32,7 +34,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
 
     @Override
     @Transactional
-    public List getAllEmpInfo() {
+    public List<Object> getAllEmpInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
@@ -44,15 +46,15 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
                 root.get("lastName"),
                 root.get("displayName"),
                 root.get("phoneNumber"),
-                root.get("birthday").as(String.class),
+                root.get("birthday").as(Date.class),
                 root.get("address"),
                 root.get("id"),
                 root.get("gender"),
-                root.get("type").as(String.class),
-                root.get("createdOn").as(String.class),
-                root.get("updatedOn").as(String.class),
+                root.get("type"),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
                 root.get("note"),
-                root.get("username").as(String.class)
+                root.get("username").get("userId")
         ));
         return session.createQuery(query).getResultList();
     }
@@ -65,7 +67,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         CriteriaQuery<EmpInfo> query = criteriaBuilder.createQuery(EmpInfo.class);
         Root<EmpInfo> root = query.from(EmpInfo.class);
         query.select(root);
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), id);
         
         query.where(p);
         
@@ -105,7 +107,7 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         query.set("updatedOn", empInfo.getUpdatedOn());
         query.set("note", empInfo.getNote());
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), empInfo.getUserId());
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), empInfo.getUsername());
         query.where(p);
         session.createQuery(query).executeUpdate();
     }
@@ -118,8 +120,24 @@ public class EmpInfoRepositoryImpl implements EmpInfoRepository{
         CriteriaDelete<EmpInfo> query = criteriaBuilder.createCriteriaDelete(EmpInfo.class);
         Root<EmpInfo> root = query.from(EmpInfo.class);
         
-        Predicate p = criteriaBuilder.equal(root.get("userId"), id);
+        Predicate p = criteriaBuilder.equal(root.get("username").get("userId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public boolean empInfoIsExist(String username) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<EmpInfo> query = criteriaBuilder.createQuery(EmpInfo.class);
+        Root<EmpInfo> root = query.from(EmpInfo.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("username").get("userId"), username));
+        EmpInfo result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
     }
 }

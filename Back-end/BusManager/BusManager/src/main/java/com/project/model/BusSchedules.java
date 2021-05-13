@@ -8,6 +8,7 @@ package com.project.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,6 +80,10 @@ public class BusSchedules implements Serializable {
     @Column(name="TOTAL_SEATS", nullable = false)
     private int totalSeats;
     
+    @JsonProperty("price")
+    @Column(name = "PRICE", length = 45, nullable = false)
+    private BigDecimal price;
+    
     @Column(name="CREATED_ON", nullable = true)
     private LocalDateTime createdOn;
     
@@ -138,6 +143,13 @@ public class BusSchedules implements Serializable {
         return mainDriver;
     }
     
+//    /**
+//     * @return the mainDriver
+//     */
+//    public String getMainDriver() {
+//        return mainDriver.getUsername();
+//    }
+    
     /**
      * @param mainDriver to set
      */
@@ -152,11 +164,18 @@ public class BusSchedules implements Serializable {
         return subDriver;
     }
     
+//    /**
+//     * @return the subDriver
+//     */
+//    public String getSubDriver() {
+//        return subDriver.getUsername();
+//    }
+//    
     /**
      * @param subDriver to set
      */
     public void setSubDriver(EmpInfo subDriver) {
-        this.subDriver = mainDriver;
+        this.subDriver = subDriver;
     }
 
     /**
@@ -306,6 +325,13 @@ public class BusSchedules implements Serializable {
         return manager;
     }
     
+//    /**
+//     * @return the manager
+//     */
+//    public String getManager() {
+//        return manager.getUsername();
+//    }
+    
     /**
      * @param manager to set
      */
@@ -325,6 +351,20 @@ public class BusSchedules implements Serializable {
      */
     public void setTicketManagement(List<TicketManagement> ticketManagement) {
         this.ticketManagement = ticketManagement;
+    }
+
+    /**
+     * @return the price
+     */
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     

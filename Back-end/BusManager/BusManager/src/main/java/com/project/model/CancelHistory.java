@@ -102,14 +102,28 @@ public class CancelHistory implements Serializable {
         return cusId;
     }
     
-     /**
-     * @param cusId to set
+//    /**
+//     * @return the cusId
+//     */
+//    public String getCusId() {
+//        return cusId.getUsername();
+//    }
+  
+    /**
+     * @param cusId the cusId to set
      */
-    public void setCusId(String cusId) {
-        CusInfo newCusInfo = new CusInfo();
-        newCusInfo.setUserId(cusId);
-        this.cusId = newCusInfo;
+    public void setCusId(CusInfo cusId) {
+        this.cusId = cusId;
     }
+    
+//     /**
+//     * @param cusId to set
+//     */
+//    public void setCusId(String cusId) {
+//        CusInfo newCusInfo = new CusInfo();
+//        newCusInfo.setUserId(cusId);
+//        this.setCusId(newCusInfo);
+//    }
 
     /**
      * @return the empId
@@ -118,14 +132,28 @@ public class CancelHistory implements Serializable {
         return empId;
     }
     
+//    /**
+//     * @return the empId
+//     */
+//    public String getEmpId() {
+//        return empId.getUsername();
+//    }
+  
     /**
-     * @param empId to set
+     * @param empId the empId to set
      */
-    public void setEmpId(String empId) {
-        EmpInfo newEmpInfo = new EmpInfo();
-        newEmpInfo.setUserId(empId);
-        this.empId = newEmpInfo;
+    public void setEmpId(EmpInfo empId) {
+        this.empId = empId;
     }
+    
+//    /**
+//     * @param empId to set
+//     */
+//    public void setEmpId(String empId) {
+//        EmpInfo newEmpInfo = new EmpInfo();
+//        newEmpInfo.setUserId(empId);
+//        this.setEmpId(newEmpInfo);
+//    }
 
     /**
      * @return the ticketId
@@ -133,13 +161,27 @@ public class CancelHistory implements Serializable {
     public TicketManagement getTicketId() {
         return ticketId;
     }
+    
+//    /**
+//     * @return the ticketId
+//     */
+//    public String getTicketId() {
+//        return ticketId.getTicketId();
+//    }
 
     /**
-     * @param ticketId to set
+     * @param ticketId the ticketId to set
      */
-    public void setTicketId(String ticketId) {
-        TicketManagement newTicketManagement = new TicketManagement();
-        newTicketManagement.setTicketId(ticketId);
-        this.ticketId = newTicketManagement;
+    public void setTicketId(TicketManagement ticketId) {
+        this.ticketId = ticketId;
     }
+    
+//    /**
+//     * @param ticketId to set
+//     */
+//    public void setTicketId(String ticketId) {
+//        TicketManagement newTicketManagement = new TicketManagement();
+//        newTicketManagement.setTicketId(ticketId);
+//        this.setTicketId(newTicketManagement);
+//    }
 }

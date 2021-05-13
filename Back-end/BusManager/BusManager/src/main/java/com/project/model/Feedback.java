@@ -134,6 +134,7 @@ public class Feedback implements Serializable {
     }
 
     /**
+
      * @return the empId
      */
     public EmpInfo getEmpId() {
@@ -141,12 +142,10 @@ public class Feedback implements Serializable {
     }
 
     /**
-     * @param empId to set
+     * @param empId the empId to set
      */
-    public void setEmpId(String empId) {
-        EmpInfo newEmpInfo = new EmpInfo();
-        newEmpInfo.setUserId(empId);
-        this.empId = newEmpInfo;
+    public void setEmpId(EmpInfo empId) {
+        this.empId = empId;
     }
 
     /**

@@ -39,10 +39,6 @@ public class TicketManagement implements Serializable {
     @Column(name = "SEAT_ID", length = 30, nullable = false)
     private String seatId;
     
-    @JsonProperty("price")
-    @Column(name = "PRICE", length = 45, nullable = false)
-    private String price;
-    
     @JsonProperty("status")
     @Column(name = "STATUS", nullable = false)
     private int status;
@@ -105,20 +101,6 @@ public class TicketManagement implements Serializable {
      */
     public void setSeatId(String seatId) {
         this.seatId = seatId;
-    }
-
-    /**
-     * @return the price
-     */
-    public String getPrice() {
-        return price;
-    }
-
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     /**
@@ -198,13 +180,27 @@ public class TicketManagement implements Serializable {
         return tripId;
     }
     
+//    /**
+//     * @return the tripId
+//     */
+//    public String getTripId() {
+//        return tripId.getTripId();
+//    }
+    
+//    /**
+//     * @param tripId to set
+//     */
+//    public void setTripId(String tripId) {
+//        BusSchedules newBusSchedules = new BusSchedules();
+//        newBusSchedules.setTripId(tripId);
+//        this.setTripId(newBusSchedules);
+//    }
+    
     /**
-     * @param tripId to set
+     * @param tripId the tripId to set
      */
-    public void setTripId(String tripId) {
-        BusSchedules newBusSchedules = new BusSchedules();
-        newBusSchedules.setTripId(tripId);
-        this.tripId = newBusSchedules;
+    public void setTripId(BusSchedules tripId) {
+        this.tripId = tripId;
     }
 
     /**
@@ -214,13 +210,27 @@ public class TicketManagement implements Serializable {
         return cusId;
     }
     
+//    /**
+//     * @return the cusId
+//     */
+//    public String getCusId() {
+//        return cusId.getUsername();
+//    }
+    
+//    /**
+//     * @param cusId to set
+//     */
+//    public void setCusId(String cusId) {
+//        CusInfo newCusInfo = new CusInfo();
+//        newCusInfo.setUserId(cusId);
+//        this.setCusId(newCusInfo);
+//    }
+    
     /**
-     * @param cusId to set
+     * @param cusId the cusId to set
      */
-    public void setCusId(String cusId) {
-        CusInfo newCusInfo = new CusInfo();
-        newCusInfo.setUserId(cusId);
-        this.cusId = newCusInfo;
+    public void setCusId(CusInfo cusId) {
+        this.cusId = cusId;
     }
 
     /**

@@ -53,6 +53,7 @@ public class CusInfo implements Serializable {
     
     @JsonProperty("dob")
     @Column(name = "DOB", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date birthday;
     
     @JsonProperty("gender")
@@ -225,11 +226,18 @@ public class CusInfo implements Serializable {
         this.note = note;
     }
 
+//    /**
+//     * @return the username
+//     */
+//    public AccountInfo getUsername() {
+//        return username;
+//    }
+    
     /**
      * @return the username
      */
-    public AccountInfo getUsername() {
-        return username;
+    public String getUsername() {
+        return username.getUserId();
     }
     
     /**

@@ -16,6 +16,7 @@ public interface TicketManagementRepository{
     List getAllTicketManagement();
     TicketManagement getTicketManagementById(String id);
     TicketManagement createTicketManagement(TicketManagement ticketManagement);
+    boolean ticketManagementIsExist(String id);
     void updateTicketManagementById(TicketManagement ticketManagement);
     void deleteTicketManagementById(String id);
 }

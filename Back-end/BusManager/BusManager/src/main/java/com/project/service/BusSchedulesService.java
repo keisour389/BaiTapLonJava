@@ -14,7 +14,8 @@ import com.project.response.CommonResponse;
  * @author DELL
  */
 public interface BusSchedulesService {
-    CommonResponse getAllBusSchedules(int page, int size);
+    Object getAllBusSchedules(int page, int size);
+    Object getBusSchedulesByDestination(int page, int size, String dest);
     
     //Using getBusSchedulesById in Repository
     BusSchedulesResponse getBusSchedulesById(String id);

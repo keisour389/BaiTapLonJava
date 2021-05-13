@@ -69,9 +69,14 @@ public class EmpInfoServiceImpl implements EmpInfoService {
         newEmpInfo.setNote(empInfo.getNote());
         newEmpInfo.setUsername(accountInfo);
 
-        if (empInfoRepository.createEmpInfo(newEmpInfo) != null) {
-            return empInfo;
-        } else {
+        if(!empInfoRepository.empInfoIsExist(empInfo.getUsername())){
+            if (empInfoRepository.createEmpInfo(newEmpInfo) != null) {
+                return empInfo;
+            } else {
+                return null;
+            }
+        }
+        else {
             return null;
         }
     }
@@ -98,7 +103,14 @@ public class EmpInfoServiceImpl implements EmpInfoService {
         newEmpInfo.setNote(empInfo.getNote());
         newEmpInfo.setUsername(accountInfo);
 
-        if (empInfo.getUserId() != null) {
+//        if (empInfo.getUserId() != null) {
+//            empInfoRepository.updateEmpInfoById(newEmpInfo);
+//            return empInfo;
+//        } else {
+//            return null;
+//        }
+
+        if (empInfoRepository.getEmpInfoById(newEmpInfo.getUsername()) != null) {
             empInfoRepository.updateEmpInfoById(newEmpInfo);
             return empInfo;
         } else {
@@ -131,7 +143,10 @@ public class EmpInfoServiceImpl implements EmpInfoService {
             empInfoResponse.setId(result.getId());
             empInfoResponse.setGender(result.getGender());
             empInfoResponse.setType(result.getType());
-            empInfoResponse.setUsername(result.getUsername().toString());
+            empInfoResponse.setCreatedOn(result.getCreatedOn());
+            empInfoResponse.setUpdatedOn(result.getUpdatedOn());
+            empInfoResponse.setNote(result.getNote());
+            empInfoResponse.setUsername(result.getUsername());
 
             return empInfoResponse;
         } else {

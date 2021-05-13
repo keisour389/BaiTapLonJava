@@ -60,8 +60,22 @@ public class BusSchedulesController {
     @GetMapping(value = "getAllBusSchedules/")
     public ResponseEntity<?> getAllBusSchedules(@RequestParam int page,
                                         @RequestParam int size){
-        CommonResponse dataBusSchedules = busSchedulesService.getAllBusSchedules(page, size);
+        Object dataBusSchedules = busSchedulesService.getAllBusSchedules(page, size);
         return new ResponseEntity<>(dataBusSchedules, HttpStatus.OK);
+    }
+    
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @GetMapping(value = "getBusSchedulesByDestination/")
+    public ResponseEntity<?> getBusSchedulesByDestination(@RequestParam int page,
+                                        @RequestParam int size,
+                                        @RequestParam(required = false) String dest){
+        Object dataBusSchedules = busSchedulesService.getBusSchedulesByDestination(page, size, dest);
+        if(dataBusSchedules != null){
+            return new ResponseEntity<>(dataBusSchedules, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
+        }
     }
     
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))

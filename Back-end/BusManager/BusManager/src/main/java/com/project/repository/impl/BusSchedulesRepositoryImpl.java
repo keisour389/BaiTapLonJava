@@ -8,7 +8,6 @@ package com.project.repository.impl;
 import com.project.model.BusSchedules;
 import com.project.repository.BusSchedulesRepository;
 import com.project.response.BusSchedulesResponse;
-import com.project.response.BusSchedulesResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -36,52 +35,41 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
 
     @Override
     @Transactional
-    public List<BusSchedulesResponse> getAllBusSchedules() {
+    public List<Object> getAllBusSchedules() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<BusSchedulesResponse> query = criteriaBuilder.createQuery(BusSchedulesResponse.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<BusSchedules> root = query.from(BusSchedules.class);
         query.select(criteriaBuilder.construct(BusSchedulesResponse.class,
                 root.get("tripId"),
                 root.get("licensePlates"),
-                root.get("mainDriver").get("userId"),
-                root.get("subDriver").get("userId"),
+                root.get("mainDriver").get("username").get("userId"),
+                root.get("subDriver").get("username").get("userId"),
                 root.get("start"),
                 root.get("destination"),
-                root.get("departureDay"),
+                root.get("departureDay").as(LocalDateTime.class),
                 root.get("totalTime"),
                 root.get("status"),
                 root.get("vehicleType"),
                 root.get("totalSeats"),
-                root.get("createdOn"),
-                root.get("updatedOn"),
-                root.get("manager").get("userId")));
+                root.get("price"),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
+                root.get("note"),
+                root.get("manager").get("username").get("userId")
+        ));
         return session.createQuery(query).getResultList();
     }
 
     @Override
     @Transactional
-    public BusSchedulesResponse getBusSchedulesById(String id) {
+    public BusSchedules getBusSchedulesById(String id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<BusSchedulesResponse> query = criteriaBuilder.createQuery(BusSchedulesResponse.class);
+        CriteriaQuery<BusSchedules> query = criteriaBuilder.createQuery(BusSchedules.class);
         Root<BusSchedules> root = query.from(BusSchedules.class);
-//        query.select(root);
-        query.select(criteriaBuilder.construct(BusSchedulesResponse.class,
-                root.get("tripId"),
-                root.get("licensePlates"),
-                root.get("mainDriver").get("userId"),
-                root.get("subDriver").get("userId"),
-                root.get("start"),
-                root.get("destination"),
-                root.get("departureDay"),
-                root.get("totalTime"),
-                root.get("status"),
-                root.get("vehicleType"),
-                root.get("totalSeats"),
-                root.get("createdOn"),
-                root.get("updatedOn"),
-                root.get("manager").get("userId")));
+        query.select(root);
+
         Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
 
         query.where(p);
@@ -110,7 +98,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         Root<BusSchedules> root = query.from(BusSchedules.class);
         query.set("licensePlates", busSchedules.getLicensePlates());
         query.set("mainDriver", busSchedules.getMainDriver());
-        query.set("subDriver", busSchedules.getStatus());
+        query.set("subDriver", busSchedules.getSubDriver());
         query.set("start", busSchedules.getStart());
         query.set("destination", busSchedules.getDestination());
         query.set("departureDay", busSchedules.getDepartureDay());
@@ -118,6 +106,7 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         query.set("status", busSchedules.getStatus());
         query.set("vehicleType", busSchedules.getVehicleType());
         query.set("totalSeats", busSchedules.getTotalSeats());
+        query.set("price", busSchedules.getPrice());
         query.set("createdOn", busSchedules.getCreatedOn());
         query.set("updatedOn", busSchedules.getUpdatedOn());
         query.set("note", busSchedules.getNote());
@@ -139,5 +128,58 @@ public class BusSchedulesRepositoryImpl implements BusSchedulesRepository {
         Predicate p = criteriaBuilder.equal(root.get("tripId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public List<Object> getBusSchedulesByDestination(String dest) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+        Root<BusSchedules> root = query.from(BusSchedules.class);
+        query.select(criteriaBuilder.construct(
+                BusSchedulesResponse.class,
+                root.get("tripId"),
+                root.get("licensePlates"),
+                root.get("mainDriver").get("username").get("userId"),
+                root.get("subDriver").get("username").get("userId"),
+                root.get("start"),
+                root.get("destination"),
+                root.get("departureDay").as(LocalDateTime.class),
+                root.get("totalTime"),
+                root.get("status"),
+                root.get("vehicleType"),
+                root.get("totalSeats"),
+                root.get("price"),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
+                root.get("note"),
+                root.get("manager").get("username").get("userId")
+        ));
+        //
+        if(dest != null){
+            Predicate p = criteriaBuilder.like(root.get("destination").as(String.class), dest);
+            query.where(p);
+            return session.createQuery(query).getResultList();
+        }
+        else {
+            return getAllBusSchedules();
+        }
+    }
+
+    @Override
+    @Transactional
+    public boolean busSchedulesIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<BusSchedules> query = criteriaBuilder.createQuery(BusSchedules.class);
+        Root<BusSchedules> root = query.from(BusSchedules.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("tripId"), id));
+        BusSchedules result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
     }
 }

@@ -8,6 +8,7 @@ package com.project.repository.impl;
 import com.project.model.AccountInfo;
 import com.project.repository.AccountInfoRepository;
 import com.project.response.AccountInfoResponse;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -32,7 +33,7 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
 
     @Override
     @Transactional
-    public List getAllAccountInfo() {
+    public List<Object> getAllAccountInfo() {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
@@ -41,10 +42,10 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
                 AccountInfoResponse.class,
                 root.get("userId"),
                 root.get("password"),
-                root.get("type").as(String.class),
-                root.get("status").as(String.class),
-                root.get("createdOn").as(String.class),
-                root.get("updatedOn").as(String.class),
+                root.get("type"),
+                root.get("status"),
+                root.get("createdOn").as(LocalDateTime.class),
+                root.get("updatedOn").as(LocalDateTime.class),
                 root.get("note")
         ));
         return session.createQuery(query).getResultList();
@@ -124,5 +125,21 @@ public class AccountInfoRepositoryImpl implements AccountInfoRepository{
         Predicate p = criteriaBuilder.equal(root.get("userId"), id);
         query.where(p);
         session.createQuery(query).executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public boolean accountInfoIsExist(String id) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<AccountInfo> query = criteriaBuilder.createQuery(AccountInfo.class);
+        Root<AccountInfo> root = query.from(AccountInfo.class);
+        
+        query.select(root).where(criteriaBuilder.equal(root.get("userId"), id));
+        AccountInfo result = session.createQuery(query).uniqueResult();
+        if(result == null)
+            return false;
+        else
+            return true;
     }
 }
