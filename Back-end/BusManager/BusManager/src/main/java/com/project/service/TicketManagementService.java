@@ -22,4 +22,5 @@ public interface TicketManagementService {
     TicketManagementRequest createTicketManagement(TicketManagementRequest ticketManagement);
     TicketManagementRequest updateTicketManagementById(TicketManagementRequest ticketManagement);
     boolean deleteTicketManagementById(String id);
+    Object getTicketsByTripId(int page, int size, String tripId);
 }

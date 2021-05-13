@@ -1,5 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { BusesScheduleService } from 'src/serivce/buses-schedule.service';
 
 @Component({
@@ -14,17 +15,27 @@ export class SearchTicketsComponent implements OnInit {
   page: Number = 1;
   size: Number = 20;
 
-  constructor(private busesScheduleService: BusesScheduleService, private route: ActivatedRoute) { }
+  constructor(private busesScheduleService: BusesScheduleService,
+     private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     let destination!: any;
-    if(this.route.snapshot.queryParamMap.get('destination') !== null){
-      destination = this.route.snapshot.queryParamMap.get('destination');
+    if(this.activatedRoute.snapshot.queryParamMap.get('destination') !== null){
+      destination = this.activatedRoute.snapshot.queryParamMap.get('destination');
       this.getBusesScheduleByDestiantion(destination);
     }
     else{
       console.error("Destiantion is null");
     }
+  }
+
+  chooseBusSchedule(index: number): void{
+    let data: any = this.busData[index];
+    let navigationExtras: NavigationExtras = {
+      queryParams: {'destination': data.tripId}
+    }
+    localStorage.setItem('busSelected', JSON.stringify(data));
+    this.router.navigate(['/order-tickets'], navigationExtras)
   }
 
   getBusesScheduleByDestiantion(destination: string): void {

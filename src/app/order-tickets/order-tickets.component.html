@@ -35,12 +35,12 @@
                                     <!-- <div class="seat-text">A{{(seatNumber | count)}}</div> -->
                                     <div class="seat-text">A{{coupleData[0].seatId}}</div>
                                 </span>
-                                <span #seatA *ngIf="coupleData[0].status == 0" ngModel name="seatA"
+                                <span #seatA *ngIf="coupleData[0].status == 0" 
                                     class="seat-unavailable seat-a{{i}}{{j}}"
-                                    (click)="selectedTicketInDiagram(true, i, j, 0, seatA)">
-                                    <!-- <div class="seat-text">A{{(seatNumber | count)}}</div> -->
+                                    (click)="selectedTicketInDiagram(false, i, j, 0)">
                                     <div class="seat-text">A{{coupleData[0].seatId}}</div>
                                 </span>
+                                
                                 <span #seatB *ngIf="coupleData[1].status == 1" class="seat seat-b{{i}}{{j}}"
                                     (click)="selectedTicketInDiagram(false, i, j, 1)">
                                     <div class="seat-text">B{{coupleData[1].seatId}}</div>
@@ -107,24 +107,24 @@
                             <div class="row">
                                 <div class="col-md-4 info-frame">
                                     <p class="selected-tickets-text text-break">
-                                        TP.HCM
+                                        {{busScheduleData.start}}
                                     </p>
                                 </div>
                                 <div class="col-md-4 info-frame">
                                     <p class="selected-tickets-text text-break">
-                                        Đà Lạt
+                                        {{busScheduleData.destination}}
                                     </p>
                                 </div>
                                 <div class="col-md-4 info-frame" style="border-right: none !important;">
                                     <p class="selected-tickets-text text-break">
-                                        12:00
+                                        {{busScheduleData.departureDay | date: 'dd-MM-yyyy'}}
                                         <br>
-                                        30/02/2020
+                                        {{busScheduleData.departureDay | date: 'h:mm a'}}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <p class="selected-tickets-title">Giá vé: <em class="ticket-price">120.000VNĐ</em></p>
+                        <p class="selected-tickets-title">Giá vé: <em class="ticket-price">{{busScheduleData.price}}VNĐ</em></p>
                     </div>
                     <hr>
                     <p class="title-content">Thông tin vé</p>
@@ -139,7 +139,7 @@
                         <p class="selected-tickets-title">
                             Tổng tiền: <em class="ticket-price">{{totalPrice}}VNĐ</em>
                         </p>
-                        <button class="btn btn-primary">Tiến hành thanh toán</button>
+                        <button class="btn btn-primary" type="submit" (click)="payment()">Tiến hành thanh toán</button>
                     </div>
                 </div>
             </div>

@@ -5,9 +5,11 @@
  */
 package com.project.response;
 
+import com.project.model.TicketManagement;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *

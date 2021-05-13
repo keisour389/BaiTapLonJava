@@ -39,62 +39,72 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @RequestMapping("api/ticketmanagement")
 public class TicketManagementController {
+
     @Autowired
     TicketManagementService ticketManagementService;
-    
-    @Operation(responses = @ApiResponse(responseCode = "200", 
+
+    @Operation(responses = @ApiResponse(responseCode = "200",
             content = @Content(schema = @Schema(hidden = true))))
     @PostMapping(value = "createTicketManagement", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createCancelHistory(@RequestBody TicketManagementRequest ticketManagementRequest){
+    public ResponseEntity<?> createCancelHistory(@RequestBody TicketManagementRequest ticketManagementRequest) {
         TicketManagementRequest dataTicketManagement = ticketManagementService.createTicketManagement(ticketManagementRequest);
-        if(dataTicketManagement != null){
+        if (dataTicketManagement != null) {
             return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
-        }
-        else{
+        } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    } 
-    
+    }
+
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getAllTicketManagement/")
     public ResponseEntity<?> getAllTicketManagement(@RequestParam int page,
-                                        @RequestParam int size){
+            @RequestParam int size) {
         Object dataTicketManagement = ticketManagementService.getAllTicketManagement(page, size);
         return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
     }
-    
+
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getTicketManagement/")
-    public ResponseEntity<?> getTicketManagement(@RequestParam String id){
+    public ResponseEntity<?> getTicketManagement(@RequestParam String id) {
         Object dataTicketManagement = ticketManagementService.getTicketManagementById(id);
-        if(dataTicketManagement != null){
+        if (dataTicketManagement != null) {
             return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
-        }
-        else{
+        } else {
             return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
         }
     }
-    
+
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @GetMapping(value = "getTicketsByTripId/")
+    public ResponseEntity<?> getTicketsByTripId(@RequestParam int page,
+            @RequestParam int size,
+            @RequestParam(required = false) String tripId) {
+        Object dataTicketManagement = ticketManagementService.getTicketsByTripId(page, size, tripId);
+        if (dataTicketManagement != null) {
+            return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
+        }
+    }
+
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateTicketManagement/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateTicketManagement(@RequestBody TicketManagementRequest ticketManagementRequest){
+    public ResponseEntity<?> updateTicketManagement(@RequestBody TicketManagementRequest ticketManagementRequest) {
         TicketManagementRequest dataTicketManagement = ticketManagementService.updateTicketManagementById(ticketManagementRequest);
-        if(dataTicketManagement != null){
+        if (dataTicketManagement != null) {
             return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
-        }
-        else{
+        } else {
             return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @DeleteMapping(value = "deleteTicketManagement/")
-    public ResponseEntity<?> deleteTicketManagement(@RequestParam String id){
+    public ResponseEntity<?> deleteTicketManagement(@RequestParam String id) {
         boolean dataTicketManagement = ticketManagementService.deleteTicketManagementById(id);
-        if(dataTicketManagement){
+        if (dataTicketManagement) {
             return new ResponseEntity<>(dataTicketManagement, HttpStatus.OK);
-        }
-        else{
+        } else {
             return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
         }
     }

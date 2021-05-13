@@ -6,6 +6,7 @@
 package com.project.repository.impl;
 
 import com.project.model.BusSchedules;
+import com.project.model.TicketManagement;
 import com.project.repository.BusSchedulesRepository;
 import com.project.response.BusSchedulesResponse;
 import java.time.LocalDateTime;

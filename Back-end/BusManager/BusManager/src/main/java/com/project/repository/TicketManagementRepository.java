@@ -19,4 +19,5 @@ public interface TicketManagementRepository{
     boolean ticketManagementIsExist(String id);
     void updateTicketManagementById(TicketManagement ticketManagement);
     void deleteTicketManagementById(String id);
+    List getTicketsByTripId(String tripId);
 }

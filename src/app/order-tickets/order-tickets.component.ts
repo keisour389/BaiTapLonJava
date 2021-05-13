@@ -1,4 +1,8 @@
+import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { multicast } from 'rxjs/operators';
+import { TicketsService } from 'src/serivce/tickets.service';
 
 @Component({
   selector: 'app-order-tickets',
@@ -9,6 +13,10 @@ export class OrderTicketsComponent implements OnInit {
   //Use viewChildren to reference the list of properties
   @ViewChildren('seatA') seatA!: QueryList<ElementRef>;
   @ViewChildren('seatB') seatB!: QueryList<ElementRef>;
+
+
+  busScheduleData!: any;
+  ticketsData!: any;
 
   dummyData: any = [
     {
@@ -66,9 +74,10 @@ export class OrderTicketsComponent implements OnInit {
   //1: This seat isn't empty
   //2: This seat is empty
   isTicketAcceptable: number = 0;
-  ticketPrice: number = 120000; //Default ticketPrice get from database
+  ticketPrice!: number; //Default ticketPrice get from database
   totalPrice: number = 0;
-  ticketsSelectedList: Array<any> = []; //This var store the tickets customer selected
+  ticketsSelectedList: Array<any> = []; //This var render the tickets customer selected
+  ticketsSelectedDataList: Array<any> = []; //This var store the tickets customer selected
 
   totalSeat: Array<number>;
   ticketRow: any;
@@ -77,9 +86,10 @@ export class OrderTicketsComponent implements OnInit {
   seatNumber: number = 0;
   seperate: any;
   diagramLocation: Array<any>;
-  viewLocation: Array<any>;
+  viewLocation!: Array<any>;
 
-  constructor(private render: Renderer2) {
+  constructor(private render: Renderer2, private activatedRoute: ActivatedRoute,
+     private ticketsService: TicketsService, private router: Router) {
     //Total seat get form other place
     this.totalSeat = Array.from(Array(40), (x, i) => i)
     this.seperate = this.totalSeat.values();
@@ -92,15 +102,56 @@ export class OrderTicketsComponent implements OnInit {
     console.log(this.ticketRow);
     this.diagramLocation = this.createLocationFormDiagram();
     console.log(this.diagramLocation);
-    this.data = this.spearateTicketsToDiagram(this.dummyData);
-    console.log("Data seperate from API:");
-    console.log(this.data);
-    this.viewLocation = this.createViewChildrenLoction();
-    console.log("View Children:");
-    console.log(this.viewLocation);
+    //this.data = this.spearateTicketsToDiagram(this.dummyData);
+    // console.log("Data seperate from API:");
+    // console.log(this.data);
+    // this.viewLocation = this.createViewChildrenLoction();
+    // console.log("View Children:");
+    // console.log(this.viewLocation);
+  }
+
+  renderBusTickets(): void{
+    let destination!: any;
+    if(this.activatedRoute.snapshot.queryParamMap.get('destination') !== null){
+      destination = this.activatedRoute.snapshot.queryParamMap.get('destination');
+      this.getTicketsByTripId(destination);
+    }
+    else{
+      console.error("Destiantion is null");
+    }
+  }
+
+  getTicketsByTripId(tripId: string): void{
+    this.ticketsService.getTicketsByTripId(1, 20, tripId).subscribe(
+      result => {
+        let res: any = result;
+        if(res !== null){
+          this.ticketsData = res.data;
+          console.log(this.ticketsData);
+          this.data = this.spearateTicketsToDiagram(this.ticketsData);
+          console.log("Data seperate from API:");
+          console.log(this.data);
+          this.viewLocation = this.createViewChildrenLoction();
+          console.log("View Children:");
+          console.log(this.viewLocation);
+        }  
+        console.log(res);
+      }
+    )
   }
 
   ngOnInit(): void {
+    if(JSON.parse(localStorage.getItem('busSelected')!) !== null){
+      this.busScheduleData = JSON.parse(localStorage.getItem('busSelected')!);
+      this.ticketPrice = this.busScheduleData.price;
+      console.log(this.busScheduleData.price);
+    }
+    else{
+      console.error("Buses schedule is null");
+    }
+     
+    this.renderBusTickets();
+    
     // this.data.push(this.spearateTicketsToDiagram(this.dummyData));
     // console.log(this.data);
   }
@@ -112,6 +163,7 @@ export class OrderTicketsComponent implements OnInit {
 
     //This var to show the position of data array
     let location: number = this.diagramLocation[i][j][z];
+    console.log("location " + location);
     //This var to show the positon of view children
     let viewChildenLocation: number = this.viewLocation[i][j];
     let backgroundColor = "rgb(255, 0, 0)"; //Set default background color
@@ -119,7 +171,7 @@ export class OrderTicketsComponent implements OnInit {
     let ticketSelected: string;
     let ticketFromData: any;
     //Get ticket from data
-    ticketFromData = this.dummyData[location];
+    ticketFromData = this.ticketsData[location];
     if (ticketFromData.status === 0) {
       //This seat isn't empty
       this.isTicketAcceptable = 1;
@@ -140,12 +192,12 @@ export class OrderTicketsComponent implements OnInit {
       if (isLeft) {
         //A ticket
         currentColor = this.seatA.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
-        ticketSelected = "A" + (this.dummyData[location].seatId);
+        ticketSelected = "A" + (this.ticketsData[location].seatId);
       }
       else {
         //B ticket
         currentColor = this.seatB.get(viewChildenLocation)!.nativeElement.style.backgroundColor;
-        ticketSelected = "B" + (this.dummyData[location].seatId);
+        ticketSelected = "B" + (this.ticketsData[location].seatId);
       }
       //Check current background color
       //currentColor != backgroundColor  ? backgroundColor = "rgb(255, 0, 0)" : backgroundColor = "rgb(255, 255, 255)";
@@ -156,6 +208,8 @@ export class OrderTicketsComponent implements OnInit {
         this.totalPrice += this.ticketPrice;
         //Add ticket selected in list
         this.ticketsSelectedList.push(ticketSelected);
+        //Add ticket to payment
+        this.ticketsSelectedDataList.push(this.ticketsData[location].ticketId);
       }
       else {
         //Remove selected
@@ -250,5 +304,17 @@ export class OrderTicketsComponent implements OnInit {
     return arr.filter((ele: any) => {
       return ele != value;
     });
+  }
+
+  payment(): void{
+    localStorage.setItem('paymentInfo', JSON.stringify(
+      {
+        "start": this.busScheduleData.start,
+        "destination": this.busScheduleData.destination,
+        "departureDay": this.busScheduleData.departureDay,
+        "totalPrice": this.totalPrice,
+        "ticketSelectedList": this.ticketsSelectedDataList}
+      ));
+    this.router.navigate(['/payment']);
   }
 }

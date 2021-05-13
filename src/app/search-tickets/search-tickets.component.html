@@ -89,7 +89,7 @@
             <div class="search-tickets-result">
                 <h2>Kết quả tìm kiếm</h2>
                 <div class="search-results-list">
-                    <div *ngFor="let data of busData; index as i" class="search-result shadow-sm p-3 mb-5 bg-white rounded">
+                    <div (click)="chooseBusSchedule(i)" *ngFor="let data of busData; index as i" class="search-result shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="row ticket-info">
                             <div class="col-md-4">
                                 <p class="search-result-title">Điểm đi</p>
